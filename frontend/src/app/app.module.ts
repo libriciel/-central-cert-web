@@ -7,12 +7,14 @@ import { CertificatListComponent } from './certificat-list/certificat-list.compo
 import { CertificatFormComponent } from './certificat-form/certificat-form.component';
 import { FormsModule } from '@angular/forms';
 import { CertificatService } from './service/certificat.service';
+import { NavmenuComponent } from './navmenu/navmenu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CertificatListComponent,
-    CertificatFormComponent
+    CertificatFormComponent,
+    NavmenuComponent,
   ],
   imports: [
     BrowserModule,
