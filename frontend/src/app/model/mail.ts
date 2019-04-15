@@ -1,7 +1,6 @@
 import { Certificat } from './certificat';
 
 export class Mail {
-  mailId: number;
+  id: number;
   adresseMail: String;
-  certificates: Certificat[];
 }

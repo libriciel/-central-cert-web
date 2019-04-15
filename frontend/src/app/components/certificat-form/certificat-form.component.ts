@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CertificatService } from '../service/certificat.service';
-import { Certificat } from '../model/certificat';
+import { CertificatService } from '../../service/certificat.service';
+import { Certificat } from '../../model/certificat';
 
 @Component({
   selector: 'app-certificat-form',

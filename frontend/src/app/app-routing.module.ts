@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CertificatListComponent } from './certificat-list/certificat-list.component';
+import { CertificatListComponent } from './components/certificat-list/certificat-list.component';
+import { UrlFormComponent } from './components/url-form/url-form.component';
+
 const routes: Routes = [
   {
     path: 'certificats',
@@ -9,6 +11,10 @@ const routes: Routes = [
   {
     path: 'home',
     redirectTo: '/'
+  },
+  {
+    path: 'ajouter',
+    component: UrlFormComponent
   }
 ];
 

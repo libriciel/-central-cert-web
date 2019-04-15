@@ -3,11 +3,13 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CertificatListComponent } from './certificat-list/certificat-list.component';
-import { CertificatFormComponent } from './certificat-form/certificat-form.component';
+import { CertificatListComponent } from './components/certificat-list/certificat-list.component';
+import { CertificatFormComponent } from './components/certificat-form/certificat-form.component';
 import { FormsModule } from '@angular/forms';
 import { CertificatService } from './service/certificat.service';
-import { NavmenuComponent } from './navmenu/navmenu.component';
+import { NavmenuComponent } from './components/navmenu/navmenu.component';
+import { CertificatDetailComponent } from './components/certificat-detail/certificat-detail.component';
+import { UrlFormComponent } from './components/url-form/url-form.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { NavmenuComponent } from './navmenu/navmenu.component';
     CertificatListComponent,
     CertificatFormComponent,
     NavmenuComponent,
+    CertificatDetailComponent,
+    UrlFormComponent,
   ],
   imports: [
     BrowserModule,

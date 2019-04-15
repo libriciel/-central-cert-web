@@ -1,0 +1,15 @@
+<div *ngIf="certificat">
+  <h2>{{certificat.id}} Details</h2>
+  <div><span>id: </span>{{certificat.id}}</div>
+  <div>
+    <label>Not before:
+      <input [(ngModel)]="certificat.notBefore" placeholder="not before"/>
+    </label>
+    <label>Not after:
+      <input [(ngModel)]="certificat.notAfter" placeholder="not after"/>
+    </label>
+    <label>Mails:
+      <input [(ngModel)]="certificat.mails" placeholder="mails"/>
+    </label>
+  </div>
+</div>

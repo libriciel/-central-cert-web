@@ -10,7 +10,7 @@ export class NavmenuComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    
+
   }
 
 }

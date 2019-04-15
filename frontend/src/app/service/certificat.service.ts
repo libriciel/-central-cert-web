@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Certificat } from '../model/certificat';
 import { Observable } from 'rxjs/Observable';
+import { UrlFormComponent } from '../components/url-form/url-form.component';
 
 @Injectable()
 export class CertificatService {
@@ -10,6 +11,10 @@ export class CertificatService {
 
   constructor(private http: HttpClient) {
     this.certificatUrl = '/api/certificat';
+  }
+
+  public getFromUrl(url: String): Observable<Certificat[]> {
+    return this.http.get<Certificat[]>(this.certificatUrl + "?URL=" + url);
   }
 
   public findAll(): Observable<Certificat[]> {

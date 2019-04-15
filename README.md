@@ -136,10 +136,12 @@ Parmi les entreprises qui proposent ce type de produits :
   * #### *Ajout via Token (magasin Windows) :*
 
     Le magasin de certificats Windows recense les certificats installés sur le système d'exploitation. Ainsi on souhaite pouvoir récupérer l'entièreté de ces certificats et les ajouter sur l'application.
+    Tous les certificats du magasin Windows seront donc ajouté d'un clic.
 
   * #### *Ajout via URL :*
 
     Les pages WEB possèdent pour la majorité un certificat. Il est important de pouvoir simplement récupérer les certificats de ces pages WEB en entrant une URL dans l'application afin d'avoir une gestion plus simple de la validité des sites WEB à gérer.
+    Ainsi, il sera possible d'entrer une URL dans l'application et d'en retirer directement le certificat. Qui sera par la suite ajouté à la liste des certificats visibles.
 
   * #### *Ajout depuis une autre instance de l'application :*
 
@@ -152,14 +154,14 @@ Parmi les entreprises qui proposent ce type de produits :
   Une fois les certificats ajoutés dans l'application, plusieurs actions sont possibles sur eux, allant d'un simple tri, à des alertes automatiques.
 
   * #### *Gestion des contacts :*
-
-    Les deux points précédents impliquent la présence d'un destinataire à qui envoyer des notifications.
-
     Dans le cas ou la personne renseignée dans le certificat n'est pas la personne à contacter, il doit être possible d'ajouter des personnes à contacter pour chaque certificat.
+    On pourra donc visualiser la liste des contacts déjà présents dans le certificat et ajouter des personnes à contacter. Via leurs adresses mails par exemple.
 
   * #### *Groupage de certificats :*
 
-    Certains certificats peuvent tous être en rapport avec un même sujet. La mise en place d'un système de regroupement de ces certificats facilitera la visualisation des    informations les concernant.
+    Certains certificats peuvent tous être en rapport avec un même sujet. La mise en place d'un système de regroupement de ces certificats facilitera la visualisation des informations les concernant.
+
+    On pourra ainsi regrouper plusieurs certificats dans un même groupe, par exemple on pourrait regrouper ensemble l'ensemble des certificats logiciels que l'on possède.
 
   * #### *Classification personnalisée :*
 
@@ -175,29 +177,7 @@ Parmi les entreprises qui proposent ce type de produits :
 
   * #### *Sauvegarde des données :*
 
-    Afin de fournir une application pratique et fiable, une sauvegarde sera possible. Donnant ainsi accès à une interface de gestion des "versions" avec la possibilité de restaurer ces versions antécédentes
-
-***
-
-* ### **Gestion des comptes :**
-
-  Deux types de comptes composeront les accès à l'application, les comptes Utilisateur et les comptes Administrateur.
-
-  * #### *Compte Utilisateur :*
-
-    Chaque compte utilisateur est préservé par un login (ou adresse mail) et un mot de passe.
-
-    Un compte utilisateur permettra l'ajout, la gestion et la visualisation des certificats du compte.
-
-  * #### *Compte Administrateur :*
-
-    Un compte administrateur est aussi préservé par un login et un mot de passe.
-
-    Un compte administrateur permet de créer des comptes utilisateurs et de les gérer par la suite.
-
-    Un compte utilisateur peut envoyer des demandes à des comptes utilisateurs afin de pouvoir les superviser.
-
-    Un compte administrateur permet l'ajout, la gestion et la visualisation des certificats des comptes qu'il gère.
+    Afin de fournir une application pratique et fiable, une sauvegarde sera possible. Donnant ainsi accès à une interface de gestion des "versions" avec la possibilité de restaurer ces versions antécédentes.
 
 ***
 

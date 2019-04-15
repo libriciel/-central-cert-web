@@ -1,7 +1,7 @@
-<div class="card my-5">
-  <div class="card-body">
-    <table class="table table-bordered table-striped">
-      <thead class="thead-dark">
+<div>
+  <div>
+    <table>
+      <thead>
         <tr>
           <th scope="col">id</th>
           <th scope="col">notBefore</th>
@@ -10,7 +10,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let certificat of certificats">
+        <tr *ngFor="let certificat of certificats"
+          [class.selected]="certificat === selectedCertificat"
+          (click)="onSelect(certificat)">
           <td>{{ certificat.id }}</td>
           <td>{{ certificat.notBefore }}</td>
           <td>{{ certificat.notAfter }}</td>
@@ -20,3 +22,5 @@
     </table>
   </div>
 </div>
+
+<app-certificat-detail [certificat]="selectedCertificat"></app-certificat-detail>
