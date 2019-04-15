@@ -122,3 +122,125 @@ Parmi les entreprises qui proposent ce type de produits :
   https://www.quest.com/fr-fr/products/active-administrator/
 
   https://www.quest.com/fr-fr/products/active-administrator-for-certificate-management/
+  
+## Spécifications
+
+
+* ### **Ajout de certificats :**
+
+  Le cœur de l'application réside dans la possibilité de récupérer les certificats à gérer de tous les moyens possible. Il est ainsi nécessaire de rendre facile d'accès l'ajout de ces certificats. Pour ce faire, différentes techniques sont possibles :
+
+  * #### *Ajout via Token (magasin Windows) :*
+
+    Le magasin de certificats Windows recense les certificats installés sur le système d'exploitation. Ainsi on souhaite pouvoir récupérer l'entièreté de ces certificats et les ajouter sur l'application.
+
+  * #### *Ajout via URL :*
+
+    Les pages WEB possèdent pour la majorité un certificat. Il est important de pouvoir simplement récupérer les certificats de ces pages WEB en entrant une URL dans l'application afin d'avoir une gestion plus simple de la validité des sites WEB à gérer.
+
+  * #### *Ajout depuis une autre instance de l'application :*
+
+    Dans l'idée ou plusieurs instances doivent êtres réunies, on peut souhaiter pouvoir directement importer une base de certificats.
+
+***
+
+* ### **Gestion des certificats :**
+
+  Une fois les certificats ajoutés dans l'application, plusieurs actions sont possibles sur eux, allant d'un simple tri, à des alertes automatiques.
+
+  * #### *Gestion des contacts :*
+
+    Les deux points précédents impliquent la présence d'un destinataire à qui envoyer des notifications.
+
+    Dans le cas ou la personne renseignée dans le certificat n'est pas la personne à contacter, il doit être possible d'ajouter des personnes à contacter pour chaque certificat.
+
+  * #### *Groupage de certificats :*
+
+    Certains certificats peuvent tous être en rapport avec un même sujet. La mise en place d'un système de regroupement de ces certificats facilitera la visualisation des informations les concernant.
+
+  * #### *Classification personnalisée :*
+
+    Certains certificats doivent êtres mis en avant plus que d'autres. Un certificat primordial pour l'entreprise ou un groupe de certificats portant sur des logiciels phares.
+
+    Afin de les mettre en avant, il sera possible d'organiser simplement la classification des certificats.
+
+    Cela sera réalisable par une mise en favoris ou l'ajout d'un attribut d'importance, comme un "rang".
+
+  * #### *Vérification de l'autorisation :*
+
+    Afin de prévenir des problèmes futurs on souhaite vérifier si l'AC respective au certificat a toujours le droit de diffuser des certificats, relativement à un référentiel (RGS, eIDAS). Ainsi, il est possible de prévenir un changement d'AC.
+
+  * #### *Sauvegarde des données :*
+
+    Afin de fournir une application pratique et fiable, une sauvegarde sera possible. Donnant ainsi accès à une interface de gestion des "versions" avec la possibilité de restaurer ces versions antécédentes
+
+***
+
+* ### **Gestion des comptes :**
+
+  Deux types de comptes composeront les accès à l'application, les comptes Utilisateur et les comptes Administrateur.
+
+  * #### *Compte Utilisateur :*
+
+    Chaque compte utilisateur est préservé par un login (ou adresse mail) et un mot de passe.
+
+    Un compte utilisateur permettra l'ajout, la gestion et la visualisation des certificats du compte.
+
+  * #### *Compte Administrateur :*
+
+    Un compte administrateur est aussi préservé par un login et un mot de passe.
+
+    Un compte administrateur permet de créer des comptes utilisateurs et de les gérer par la suite.
+
+    Un compte utilisateur peut envoyer des demandes à des comptes utilisateurs afin de pouvoir les superviser.
+
+    Un compte administrateur permet l'ajout, la gestion et la visualisation des certificats des comptes qu'il gère.
+
+***
+
+* ### **Visualisation des certificats :**
+
+  La totalité des certificats doit pouvoir être visible d'un coup d’œil. Il est important de pouvoir avoir une vision globale de l'état des certificats. Chaque certificat sera facilement identifiable selon différents critères importants et entièrement paramétrables car chaque personne peut apporter une importance différente à une même information.
+
+  Pour cela, différents codes visuels seront attribués dans la présentation des certificats. Allant des codes couleurs aux icônes.
+
+  * #### *Identification des certificats :*
+
+    Afin de faciliter l'identification d'un certificat en stade critique (bientôt expiré), il faut mettre en valeur le stade d'avancement des certificats. tous doivent avoir un indicateur de ce stade.
+
+    Il s'agit d'une fonctionnalité semblant basique, mais elle reste très importante. Par exemple, en présence d'un grand nombre de certificats, on doit pouvoir rapidement identifier lesquels sont presque expirés.
+
+  * #### *Tri des certificats :*
+
+    Chaque certificat possède des caractéristiques différentes, et il peut être nécessaire de ne vouloir afficher que les certificats comportant certaines caractéristiques.
+
+    On peut ainsi imaginer un système de tri :
+
+    * ***Par date de création.***
+
+    * ***Par date d'expiration.***
+
+    * ***Par organisme de délivrance.***
+
+    * ***Par propriétaire.***
+
+    * ***Et par groupe.***
+
+    Une barre de recherche pourra aussi être implémentée afin d'effectuer une recherche rapide parmi les certificats présents dans l'application.
+
+  * #### *Système d'alertes :*
+
+    Le précédent point implique la présence de plusieurs stades pour chaque certificat. L'implantation d'un système d'alertes pourra permettre de prévenir l'avancement dans le temps des certificats.
+
+    Ces alertes peuvent autant être une notification interne à l'application, un envoi de mail ou un message directement envoyé à un destinataire.
+
+  * #### *Mailing automatique :*
+
+    Afin de pouvoir facilement prévenir de l'expiration et de l'avancement d'un certificat, il est nécessaire d'implémenter un système de mailing automatique.
+***
+
+* ***Représentation simplifiée des spécifications via un diagramme de cas d'utilisations :***
+
+![](img/app_use_case.png)
+
+![](/uploads/upload_b91835eb623898828723f420a77597fc.png)
