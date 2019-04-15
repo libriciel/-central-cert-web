@@ -17,7 +17,7 @@ Parmi les entreprises qui proposent ce type de produits :
 
   Ci dessous, le schéma de l'AEG de GlobalSign :
 
-  ![Schéma de l'AEG de GlobalSign](img/AEG_Schema.png)
+  ![Schéma de l'AEG de GlobalSign](markdown_ressources/img/AEG_Schema.png)
 
   L'un des objectifs de cette plateforme est de libérer les entreprises des Autorités de Certifications (AC) Windows, jugées trop lourdes et coûteuses à entretenir.
 
@@ -31,7 +31,7 @@ Parmi les entreprises qui proposent ce type de produits :
 
   La solution proposée par GlobalSign est très appréciée et semble performante, mais elle reste payante et non Open Source.
 
-* ### **Thawte :**
+* ### **Thawte :*
 
   L'entreprise "**Thawte**" qui vend des certificats SSL évoque dans un document la notion de "Parc de certificats", dont le but est de centraliser les certificats utilisés dans une entreprise dans un seul et même espace.
 
@@ -63,7 +63,7 @@ Parmi les entreprises qui proposent ce type de produits :
 
   *Ci-dessous une partie de l'interface proposée par Quest.*
 
-  ![interface application quest](img/quest_interface.jpg)
+  ![interface application quest](markdown_ressources/img/quest_interface.jpg)
 
   Diverses fonctionnalités viennent avec cette application :
 
@@ -122,7 +122,7 @@ Parmi les entreprises qui proposent ce type de produits :
   https://www.quest.com/fr-fr/products/active-administrator/
 
   https://www.quest.com/fr-fr/products/active-administrator-for-certificate-management/
-  
+
 ## Spécifications
 
 
@@ -241,6 +241,4 @@ Parmi les entreprises qui proposent ce type de produits :
 
 * ***Représentation simplifiée des spécifications via un diagramme de cas d'utilisations :***
 
-![](img/app_use_case.png)
-
-![](/uploads/upload_b91835eb623898828723f420a77597fc.png)
+![](markdown_ressources/img/app_use_case.png)
