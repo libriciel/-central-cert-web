@@ -31,7 +31,7 @@ Parmi les entreprises qui proposent ce type de produits :
 
   La solution proposée par GlobalSign est très appréciée et semble performante, mais elle reste payante et non Open Source.
 
-* ### **Thawte :*
+* ### **Thawte :**
 
   L'entreprise "**Thawte**" qui vend des certificats SSL évoque dans un document la notion de "Parc de certificats", dont le but est de centraliser les certificats utilisés dans une entreprise dans un seul et même espace.
 
