@@ -123,6 +123,9 @@ Parmi les entreprises qui proposent ce type de produits :
 
   https://www.quest.com/fr-fr/products/active-administrator-for-certificate-management/
 
+
+
+
 ## Spécifications
 
 
@@ -156,7 +159,7 @@ Parmi les entreprises qui proposent ce type de produits :
 
   * #### *Groupage de certificats :*
 
-    Certains certificats peuvent tous être en rapport avec un même sujet. La mise en place d'un système de regroupement de ces certificats facilitera la visualisation des informations les concernant.
+    Certains certificats peuvent tous être en rapport avec un même sujet. La mise en place d'un système de regroupement de ces certificats facilitera la visualisation des    informations les concernant.
 
   * #### *Classification personnalisée :*
 
