@@ -1,7 +1,16 @@
 <div>
-  <form (ngSubmit)="onSubmit(url)" #url="ngForm">
+  <form #urlForm="ngForm" (ngSubmit)="onSubmit(urlForm.value)">
     <label for="urlString">URL :</label>
-    <input type="text" id="url" required>
+    <input type="text" name="urlString" ngModel required>
+    <button type="submit">Ajouter</button>
+  </form>
+</div>
+<div>
+  <form #urlFormSave="ngForm" (ngSubmit)="saveOnSubmit(urlFormSave)">
+    <div *ngFor="let certificat of certificats; let i = index">
+        <p> id :{{ certificat.id }} | nb :{{ certificat.notBefore }} | na :{{ certificat.notAfter }}</p>
+        <input type="checkbox" name="check{{i}}" ngModel>
+    </div>
     <button type="submit">Ajouter</button>
   </form>
 </div>

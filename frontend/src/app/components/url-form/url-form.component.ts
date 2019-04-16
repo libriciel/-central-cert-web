@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Certificat } from '../../model/certificat';
 import { CertificatService } from '../../service/certificat.service';
+import { Mail } from '../../model/mail';
 
 @Component({
   selector: 'app-url-form',
@@ -10,18 +11,28 @@ import { CertificatService } from '../../service/certificat.service';
 export class UrlFormComponent implements OnInit {
   certificats: Certificat[];
   submitted = false;
-  urlString: String;
+  urlString: string;
+  subcerts: Certificat[];
+  constructor(private certificatService: CertificatService) { }
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
-  }
-
-  onSubmit(url){
+  onSubmit(form){
     this.submitted = true;
-    this.urlString = url;
-    this.certificatService.getFromUrl(url).subscribe(data => {
+    this.urlString = form.urlString;
+    this.certificatService.selectFromUrl(this.urlString).subscribe(data => {
       this.certificats = data;
     });
+  }
+
+  saveOnSubmit(form){
+    let checks = Object.values(form.value);
+    let res = new Array();
+    for(let i = 0; i < checks.length; i ++){
+      if(checks[i] === true){
+        res.push(this.certificats[i]);
+      }
+    }
+    this.certificatService.saveAll(res).subscribe();
   }
 }

@@ -1,15 +1,22 @@
-<div *ngIf="certificat">
-  <h2>{{certificat.id}} Details</h2>
-  <div><span>id: </span>{{certificat.id}}</div>
-  <div>
-    <label>Not before:
-      <input [(ngModel)]="certificat.notBefore" placeholder="not before"/>
-    </label>
-    <label>Not after:
-      <input [(ngModel)]="certificat.notAfter" placeholder="not after"/>
-    </label>
-    <label>Mails:
-      <input [(ngModel)]="certificat.mails" placeholder="mails"/>
-    </label>
-  </div>
+<div id="updateform" *ngIf="certificat">
+  <form #updateForm="ngForm" (ngSubmit)="updateOnSubmit(updateForm.value)">
+    <p>Not before :</p>
+    <p>{{certificat.notBefore}}</p>
+    <p>Not after :</p>
+    <p>{{certificat.notAfter}}</p>
+    <p>Mails :</p>
+    <div *ngFor="let mail of certificat.mails; let l = index">
+      <input name="mail{{l}}" [(ngModel)]="certificat.mails[l].adresseMail" placeholder="exemple@exemple.com"/>
+    </div>
+
+    <div *ngFor="let mailInput of mailInputs; let m = index">
+      <input name="mail{{l}}" placeholder="exemple@exemple.com"/>
+    </div>
+    <p>Ajouter une adresse :</p>
+    <form #addMailForm="ngForm" (ngSubmit)="addMailOnSubmit(addMailForm.value)">
+      <input type="text" name="addMailInput" placeholder="exemple@exemple.com" ngModel email="true"/>
+      <button type="submit">Ajouter</button>
+    </form>
+    <button type="submit">Modifier</button>
+  </form>
 </div>

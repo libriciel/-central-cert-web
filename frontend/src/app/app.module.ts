@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CertificatListComponent } from './components/certificat-list/certificat-list.component';
-import { CertificatFormComponent } from './components/certificat-form/certificat-form.component';
 import { FormsModule } from '@angular/forms';
 import { CertificatService } from './service/certificat.service';
 import { NavmenuComponent } from './components/navmenu/navmenu.component';
@@ -15,7 +14,6 @@ import { UrlFormComponent } from './components/url-form/url-form.component';
   declarations: [
     AppComponent,
     CertificatListComponent,
-    CertificatFormComponent,
     NavmenuComponent,
     CertificatDetailComponent,
     UrlFormComponent,

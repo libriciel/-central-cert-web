@@ -7,20 +7,25 @@
           <th scope="col">notBefore</th>
           <th scope="col">notAfter</th>
           <th scope="col">mails</th>
+          <th scope="col">delete</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let certificat of certificats"
+        <tr *ngFor="let certificat of certificats; let j = index"
           [class.selected]="certificat === selectedCertificat"
           (click)="onSelect(certificat)">
           <td>{{ certificat.id }}</td>
           <td>{{ certificat.notBefore }}</td>
           <td>{{ certificat.notAfter }}</td>
-          <td>{{ certificat.mails }}</td>
+          <td><div *ngFor="let mail of certificat.mails; let k = index">
+            <p>{{certificat.mails[k].id}}</p>
+            <p>{{certificat.mails[k].adresseMail}}</p>
+          </div></td>
+          <td><input value="delete" type="submit" (click)="delete(certificat.id, j)"></td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
-
+<input type="submit" (click)="deleteAll()" value="deleteall">
 <app-certificat-detail [certificat]="selectedCertificat"></app-certificat-detail>
