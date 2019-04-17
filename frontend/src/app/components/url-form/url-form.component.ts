@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Certificat } from '../../model/certificat';
 import { CertificatService } from '../../service/certificat.service';
-import { Mail } from '../../model/mail';
 
 @Component({
   selector: 'app-url-form',

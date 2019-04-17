@@ -17,10 +17,11 @@
           <td>{{ certificat.id }}</td>
           <td>{{ certificat.notBefore }}</td>
           <td>{{ certificat.notAfter }}</td>
-          <td><div *ngFor="let mail of certificat.mails; let k = index">
-            <p>{{certificat.mails[k].id}}</p>
-            <p>{{certificat.mails[k].adresseMail}}</p>
-          </div></td>
+          <td>
+            <div *ngFor="let mail of certificat.mails; let k = index">
+              <p>{{certificat.mails[k]}}</p>
+            </div>
+          </td>
           <td><input value="delete" type="submit" (click)="delete(certificat.id, j)"></td>
         </tr>
       </tbody>

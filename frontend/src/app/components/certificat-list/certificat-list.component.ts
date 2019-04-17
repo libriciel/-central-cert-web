@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Certificat } from '../../model/certificat';
-import { Mail } from '../../model/mail';
 import { CertificatService } from '../../service/certificat.service';
 
 @Component({

@@ -6,7 +6,7 @@
     <p>{{certificat.notAfter}}</p>
     <p>Mails :</p>
     <div *ngFor="let mail of certificat.mails; let l = index">
-      <input name="mail{{l}}" [(ngModel)]="certificat.mails[l].adresseMail" placeholder="exemple@exemple.com"/>
+      <input name="mail{{l}}" [(ngModel)]="certificat.mails[l]" placeholder="exemple@exemple.com"/>
     </div>
 
     <div *ngFor="let mailInput of mailInputs; let m = index">
