@@ -11,20 +11,21 @@ import { CertificatService } from '../../service/certificat.service';
 export class CertificatListComponent implements OnInit {
 
   certificats: Certificat[];
-  mails1: Mail[];
+  /*mails1: Mail[];
   mails2: Mail[];
   mails3: Mail[];
   mails4: Mail[];
-
+*/
   selectedCertificat: Certificat;
 
   constructor(private certificatService: CertificatService) { }
 
   ngOnInit() {
-    /*this.certificatService.selectAll().subscribe(data => {
+    this.certificatService.selectAll().subscribe(data => {
+      console.log(data);
       this.certificats = data;
-    });*/
-
+    });
+    /*
     this.mails1 = [
       {id: 1, adresseMail:"truc1@truc.truc"},
       {id: 2, adresseMail:"truc2@truc.truc"}
@@ -51,7 +52,7 @@ export class CertificatListComponent implements OnInit {
       {id: 2, notBefore: new Date("November 17, 1995 03:24:00"), notAfter: new Date("December 17, 1995 03:24:00"), mails: this.mails2},
       {id: 3, notBefore: new Date("November 18, 1995 03:24:00"), notAfter: new Date("December 18, 1995 03:24:00"), mails: this.mails3},
       {id: 4, notBefore: new Date("November 19, 1995 03:24:00"), notAfter: new Date("December 19, 1995 03:24:00"), mails: this.mails4}
-    ]
+    ]*/
   }
 
   onSelect(certificat: Certificat): void {

@@ -7,6 +7,7 @@ export class MailService {
 
   private saveUrl: string;
   private saveAllUrl: string;
+  private createUrl: string;
   private selectUrl: string;
   private selectAllUrl: string;
   private deleteUrl: string;
@@ -17,6 +18,7 @@ export class MailService {
   constructor(private http: HttpClient) {
     this.saveUrl = '/api/mail/save';
     this.saveAllUrl = '/api/mail/saveAll';
+    this.createUrl = '/api/mail/create';
     this.selectUrl = '/api/mail/select?id=';
     this.selectAllUrl = '/api/mail/selectAll';
     this.deleteUrl = '/api/mail/delete?id=';
@@ -31,6 +33,10 @@ export class MailService {
 
   public saveAll(mail: Mail[]){
     return this.http.post(this.saveAllUrl, mail);
+  }
+
+  public create(mail: String){
+    return this.http.post(this.createUrl, mail);
   }
 
   public select(id: number) {

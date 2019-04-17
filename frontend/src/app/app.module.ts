@@ -9,7 +9,7 @@ import { CertificatService } from './service/certificat.service';
 import { NavmenuComponent } from './components/navmenu/navmenu.component';
 import { CertificatDetailComponent } from './components/certificat-detail/certificat-detail.component';
 import { UrlFormComponent } from './components/url-form/url-form.component';
-
+import { MailService } from './service/mail.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +24,7 @@ import { UrlFormComponent } from './components/url-form/url-form.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [CertificatService],
+  providers: [CertificatService, MailService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

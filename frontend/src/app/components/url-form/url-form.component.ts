@@ -15,7 +15,7 @@ export class UrlFormComponent implements OnInit {
   subcerts: Certificat[];
   constructor(private certificatService: CertificatService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onSubmit(form){
     this.submitted = true;

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Certificat } from '../model/certificat';
+import { Mail } from '../model/mail';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
@@ -15,6 +16,7 @@ export class CertificatService {
   private deleteAllUrl: string;
   private updateUrl: string;
   private updateAllUrl: string;
+  private updateAndAddMailUrl: String;
 
   constructor(private http: HttpClient) {
     this.saveUrl = '/api/certificat/save';
@@ -26,6 +28,7 @@ export class CertificatService {
     this.deleteAllUrl = '/api/certificat/deleteAll';
     this.updateUrl = '/api/certificat/update';
     this.updateAllUrl = '/api/certificat/updateAll';
+    this.updateAndAddMailUrl = '/api/certificat/updateAndAddMail?id=';
   }
 
   public save(certificat: Certificat): Observable<Certificat> {
@@ -62,5 +65,9 @@ export class CertificatService {
 
   public updateAll(certificats: Certificat[]) {
     return this.http.put(this.updateAllUrl, certificats);
+  }
+
+  public updateAndAddMail(id: number, mail: string){
+    return this.http.put(this.updateAndAddMailUrl + "" + id, mail);
   }
 }
