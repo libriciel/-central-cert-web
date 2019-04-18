@@ -127,6 +127,12 @@ Parmi les entreprises qui proposent ce type de produits :
 
 ## Spécifications
 
+### Diagramme de classes de la base de données
+
+![Diagramme de classes de la base de données](markdown_ressources/img/BDD_class.png)
+
+***
+
 ### Récupération des certificats
 
 Une page dédiée à l'ajout de certificats à la base de donénes offrira différentes manières de les ajouter.
@@ -300,29 +306,32 @@ Le détail d'un certificat est accessible en cliquant sur celui-ci dans la liste
 
     2. Not After.
 
-    3. Temps restant.
+    3. adresse mail du certificat.
 
-    4. Intitulé (Common Name).
+    4. Adresse additionnelles.
 
-    5. Organisation.
+    5. Temps restant.
 
-    6. Unité d'Organisation (Organizational Unit).
+    6. DN (Distinguished Name)
 
-    7. Localité.
+        b. Intitulé (Common Name).
 
-    8. Pays.
+        c. Organisation.
 
-    9. Titre.
+        d. Unité d'Organisation (Organizational Unit).
 
-    10. Domain Component.
+        e. Localité.
 
-    11. Rue.
+        f. Pays.
 
-    12. Code postal / Zip code.
+        g. Titre.
 
-    13. adresse mail du certificat.
+        h. Domain Component.
 
-    14. Adresse additionnelles.
+        i. Rue.
+
+        j. Code postal / Zip code.
+
 
 * ***Actions possibles dans le détail d'un certificat :***
 
@@ -395,6 +404,7 @@ Le détail d'un certificat est accessible en cliquant sur celui-ci dans la liste
         b. En validant le formulaire, une notification personnalisée à ce certificat est créée.
 
         c. Il est possible de modifier tous les types de notifications.
+        
 ***
 
 #### Notifications et mailing automatique
@@ -432,3 +442,9 @@ Si les notifications personnalisées sont modifiables dans le détail des certif
     2. **Modification du message :**
 
         Afin d'altérer le message de la notification, un champ est présent dans le formulaire de modification et permet d'entrer un nouveau message.
+
+***
+
+#### Diagramme de cas d'utilisation de l'application
+
+![Diagramme de cas d'utilisation de l'application](markdown_ressources/img/Atteste_Use_Case.png)
