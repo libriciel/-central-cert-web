@@ -326,23 +326,23 @@ Le détail d'un certificat est accessible en cliquant sur celui-ci dans la liste
 
     6. DN (Distinguished Name)
 
-        b. Intitulé (Common Name).
+        a. Intitulé (Common Name).
 
-        c. Organisation.
+        b. Organisation.
 
-        d. Unité d'Organisation (Organizational Unit).
+        c. Unité d'Organisation (Organizational Unit).
 
-        e. Localité.
+        d. Localité.
 
-        f. Pays.
+        e. Pays.
 
-        g. Titre.
+        f. Titre.
 
-        h. Domain Component.
+        g. Domain Component.
 
-        i. Rue.
+        h. Rue.
 
-        j. Code postal / Zip code.
+        i. Code postal / Zip code.
 
 
 * ***Actions possibles dans le détail d'un certificat :***
@@ -471,8 +471,16 @@ Si les notifications personnalisées sont modifiables dans le détail des certif
 
   * ![](markdown_ressources/img/blue_zone_mind.png)
 
+    Représente la page d'accueil du site.
+
   * ![](markdown_ressources/img/red_zone_mind.png)
+
+    Représente une page du site.
 
   * ![](markdown_ressources/img/green_zone_mind.png)
 
+    Représente un pop up / une zone importante du site.
+
   * ![](markdown_ressources/img/grey_zone_mind.png)
+
+    Représente une action ou une section du site.
