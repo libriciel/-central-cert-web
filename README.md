@@ -123,105 +123,312 @@ Parmi les entreprises qui proposent ce type de produits :
 
   https://www.quest.com/fr-fr/products/active-administrator-for-certificate-management/
 
-
-
+***
 
 ## Spécifications
 
+### Récupération des certificats
 
-* ### **Ajout de certificats :**
+Une page dédiée à l'ajout de certificats à la base de donénes offrira différentes manières de les ajouter.
 
-  Le cœur de l'application réside dans la possibilité de récupérer les certificats à gérer de tous les moyens possible. Il est ainsi nécessaire de rendre facile d'accès l'ajout de ces certificats. Pour ce faire, différentes techniques sont possibles :
+* **Par URL :**
 
-  * #### *Ajout via Token (magasin Windows) :*
+  * L'utilisateur a accès à un formulaire.
 
-    Le magasin de certificats Windows recense les certificats installés sur le système d'exploitation. Ainsi on souhaite pouvoir récupérer l'entièreté de ces certificats et les ajouter sur l'application.
-    Tous les certificats du magasin Windows seront donc ajouté d'un clic.
+  * L'utilisateur peut entrer une URL dans un champ prévu à cet effet.
 
-  * #### *Ajout via URL :*
+  * En validant le formulaire :
 
-    Les pages WEB possèdent pour la majorité un certificat. Il est important de pouvoir simplement récupérer les certificats de ces pages WEB en entrant une URL dans l'application afin d'avoir une gestion plus simple de la validité des sites WEB à gérer.
-    Ainsi, il sera possible d'entrer une URL dans l'application et d'en retirer directement le certificat. Qui sera par la suite ajouté à la liste des certificats visibles.
+  * Il pourra visualiser une liste des certificats présent dans l'URL.
 
-  * #### *Ajout depuis une autre instance de l'application :*
+    * Pour chaque certificat de la liste, l'utilisateur peut décocher ou cocher une case (cochée de base) qui permettra de choisir si oui ou non on décide d'enregistrer le certificat.
 
-    Dans l'idée ou plusieurs instances doivent êtres réunies, on peut souhaiter pouvoir directement importer une base de certificats.
+    * Une vois les certificats choisis, un bouton permet de définitivement enregistrer les certificat.
+
+    * Après avoir enregistré les certificats, on obtient un visuel des certificats enregistré ainsi que le choix de continuer à entrer des URL, ou de visualiser la liste des certificats enregistrés.
+
+  * Si aucun certificat n'est présent ou que l'URL est incorrecte, un message d'erreur apparaît en réponse.
+
+* **Par le magasin Windows :**
+
+  ***TODO***
+
+* **Par token :**
+
+  * L'utilisateur à accès à un formulaire.
+
+  * L'utilisateur peut rechercher un fichier grâce à un champ prévu à cet effet.
+
+  * L'utilisateur peut ainsi importer son certificat.
+
+  * Une fois le certificat choisit, l'utilisateur peut valider le formulaire.
+
+  * En validant me formulaire :
+
+    * Soit le formulaire est valide et le certificat est enregistré.
+
+      * Le certificat est importé dans la liste et l'utilisateur a un visuel du certificat effectivement enregistré.
+
+    * Dans le cas ou le certificat est invalide, une erreur est renvoyée.
+
+### Gestion des certificats
+
+#### Liste des certificats
+
+* ***Informations visibles pour chaque certificat de la liste :***
+
+  1. **Sujet du certificat.**
+
+  2. **Autorité de certification.**
+
+  3. **Date d'expiration / temps restant du certificat.**
+
+  4. **Couleur**
+
+      a. Une couleur est présente pour chaque certificat de la liste.
+
+      b. Elle représente l'état du certificat dans le temps.
+
+      c. Vert / Orange / Rouge en fonction du temps.
+
+* ***Actions possible sur la liste :***
+
+
+  1. **Bouton / icône "supprimer" :**
+
+      a. Pour chaque certificat de la liste, un bouton "supprimer" est présent.
+
+      b. Il permet de supprimer un certificat de la base de données.
+
+      c. Une fois ce bouton activé, on demande à l'utilisateur s'il veut vraiment supprimer ce certificat.
+
+      d. S'il décide de le supprimer, le certificat est supprimé de la base de données.
+
+      e. Sinon rien ne se passe.
+
+  2. **Bouton / icône "supprimer tout" :**
+
+      a. Un bouton "supprimer tout" est présent dans la liste.
+
+      b. Il permet de supprimer tous les certificats de la base de données.
+
+      c. Une fois ce bouton activé, on demande à l'utilisateur s'il veut vraiment supprimer tous les certificats.
+
+      d. S'il décide de les supprimer, les certificat sont supprimés de la base de données.
+
+      e. Sinon rien ne se passe.
+
+  3. **Bouton/ icône "Ajouter aux favoris :"**
+
+      a. Pour chaque certificat dans la liste, un bouton "ajouter aux favoris" est présent.
+
+      b. Cliquer dessus ajoute / retire le certificat des favoris.
+
+      c. Un certificat ajouté aux favoris sera en haut de la liste.
+
+      d. Pour chaque ajout / retrait d'un favoris, on envoi une notification à l'utilisateur. Cette notification prévient d'un ajout ou d'un retrait des favoris.
+
+  4. **Sélection des certificats :**
+
+      a. Pour chaque certificat de la liste, une case à cocher est présente.
+
+      b. Il est possible de cocher / décocher ces cases afin de sélectionner les certificats et effectuer des actions de groupes décrites plus tard.
+
+  5. **Bouton sélectionner tout :"**
+
+      a. Un bouton "tout sélectionner" est présent en haut de la liste.
+
+      b. en appuyant sur ce bouton, on sélectionne / dé-sélectionne tous les certificats de la liste.
+
+  6. **Action de groupe : supprimer :**
+
+      a. Un bouton "Supprimer les éléments sélectionnés" est présent en haut de la liste.
+
+      b. En appuyant sur ce bouton :
+
+      c. Si des certificats sont sélectionnés :
+
+          a. On demande une validation à l'utilisateur.
+
+          b. si l'utilisateur valide les certificats sélectionnés sont supprimés.
+
+          c. Sinon rien ne se passe.
+
+      d. Si aucun certificat n'est sélectionné :
+
+          a. On envoi un message disant qu'aucun certificat n'est sélectionné.
+
+  7. **Action de groupe : Ajouter aux favoris :**
+
+      a. Un bouton "ajouter les éléments sélectionnés aux favoris" est présent en haut de la liste.
+
+      b. En appuyant sur ce bouton :
+
+      c. Si des certificats sont sélectionnés :
+
+          a. Les certificats sélectionnés sont ajoutés aux favoris.
+
+      d. Si aucun certificat n'est sélectionné :
+
+          a. On envoi un message disant qu'aucun certificat n'est sélectionné.
+
+    8. **Tri des certificats :**
+
+        a. En cliquant sur le haut des colonnes de chaque attribut des certificats, il est possible de les trier en fonction de ces attributs.
+
+            a. Tri par sujet.
+
+            b. Tri par AC.
+
+            c. tri par date.
+
+    9. **Recherche des certificats :**
+
+        a. Une barre de recherche est située en haut de la liste.
+
+        b. Il est possible d'entrer des recherches et d'afficher uniquement les certificats concernés.
 
 ***
 
-* ### **Gestion des certificats :**
+#### Détail d'un certificat
 
-  Une fois les certificats ajoutés dans l'application, plusieurs actions sont possibles sur eux, allant d'un simple tri, à des alertes automatiques.
+Le détail d'un certificat est accessible en cliquant sur celui-ci dans la liste.
 
-  * #### *Gestion des contacts :*
-    Dans le cas ou la personne renseignée dans le certificat n'est pas la personne à contacter, il doit être possible d'ajouter des personnes à contacter pour chaque certificat.
-    On pourra donc visualiser la liste des contacts déjà présents dans le certificat et ajouter des personnes à contacter. Via leurs adresses mails par exemple.
+* ***Informations visibles dans le détail d'un certificat :***
 
-  * #### *Groupage de certificats :*
+    1. Not before.
 
-    Certains certificats peuvent tous être en rapport avec un même sujet. La mise en place d'un système de regroupement de ces certificats facilitera la visualisation des informations les concernant.
+    2. Not After.
 
-    On pourra ainsi regrouper plusieurs certificats dans un même groupe, par exemple on pourrait regrouper ensemble l'ensemble des certificats logiciels que l'on possède.
+    3. Temps restant.
 
-  * #### *Classification personnalisée :*
+    4. Intitulé (Common Name).
 
-    Certains certificats doivent êtres mis en avant plus que d'autres. Un certificat primordial pour l'entreprise ou un groupe de certificats portant sur des logiciels phares.
+    5. Organisation.
 
-    Afin de les mettre en avant, il sera possible d'organiser simplement la classification des certificats.
+    6. Unité d'Organisation (Organizational Unit).
 
-    Cela sera réalisable par une mise en favoris ou l'ajout d'un attribut d'importance, comme un "rang".
+    7. Localité.
 
-  * #### *Vérification de l'autorisation :*
+    8. Pays.
 
-    Afin de prévenir des problèmes futurs on souhaite vérifier si l'AC respective au certificat a toujours le droit de diffuser des certificats, relativement à un référentiel (RGS, eIDAS). Ainsi, il est possible de prévenir un changement d'AC.
+    9. Titre.
 
-  * #### *Sauvegarde des données :*
+    10. Domain Component.
 
-    Afin de fournir une application pratique et fiable, une sauvegarde sera possible. Donnant ainsi accès à une interface de gestion des "versions" avec la possibilité de restaurer ces versions antécédentes.
+    11. Rue.
 
+    12. Code postal / Zip code.
+
+    13. adresse mail du certificat.
+
+    14. Adresse additionnelles.
+
+* ***Actions possibles dans le détail d'un certificat :***
+
+    1. **Ajout de mails :**
+
+        a. Un formulaire est présent dans le détail du certificat.
+
+        b. Le formulaire est composé d'un champ permettant d'entrer une adresse mail et d'un bouton permettant de valider le formulaire.
+
+        c. En validant le formulaire :
+
+        d. Si une adresse mail valide est présente dans le champ :
+
+            a. L'adresse mail est ajoutée aux adresses additionnelles du certificat.
+
+        d. Si une adresse mail invalide est présente dans le champ :
+
+            a. On envoi un message d'erreur à l'utilisateur.
+
+        e. Si aucune adresse n'est présente dans le champ :
+
+            a. On envoi un message d'erreur à l'utilisateur.
+
+    2. **Suppression de mails :**
+
+        a. Pour chaque adresse additionnelle présente dans le détail du certificat, un bouton "Supprimer l'adresse" est disponible.
+
+        b. Une fois activé, ce bouton supprime l'adresse du certificat.
+
+    2. **Bouton "Supprimer" :**
+
+        a. Un bouton "supprimer le certificat" est présent dans le détail du certificat.
+
+        b. Il permet de supprimer le certificat de la base de données.
+
+        c. Une fois ce bouton activé, on demande à l'utilisateur s'il veut vraiment supprimer ce certificat.
+
+        d. S'il décide de le supprimer, le certificat est supprimé de la base de données et l'utilisateur quitte le détail.
+
+        e. Sinon rien ne se passe.
+
+    3. **Bouton "Ajouter aux favoris" :**
+
+
+        a. Un bouton "ajouter aux favoris" est présent dans le détail du certificat.
+
+        b. Cliquer dessus ajoute / retire le certificat des favoris.
+
+
+    4. **Gestion des notifications :**
+
+        1. Gestion des adresses à notifier :
+
+            a. Pour chaque adresse additionnelle, une case à cocher est présente.
+
+            b. Si la case est cochée, le mailing automatique est activé pour cette adresse du certificat.
+
+            c. Si la case est décochée, le mailing automatique est désactivé pour cette adresse du certificat.
+
+        2. Gestion de l'activation des notification personnalisées :
+
+            a. Une case à cocher permet d'activer ou de désactiver (désactivé de base) les notifications personnalisées à ce certificat.
+
+            b. En cas d'activation des notifications personnalisées, un formulaire permettant de modifier ces notifications apparaît dans le détail du certificat (point numéro 5).
+
+    5. **Gestion du contenu de la notification :**
+
+        a. Dans le détail du certificat, un formulaire permettra de modifier l'objet et le message de la notification de ce certificat.
+
+        b. En validant le formulaire, une notification personnalisée à ce certificat est créée.
+
+        c. Il est possible de modifier tous les types de notifications.
 ***
 
-* ### **Visualisation des certificats :**
+#### Notifications et mailing automatique
 
-  La totalité des certificats doit pouvoir être visible d'un coup d’œil. Il est important de pouvoir avoir une vision globale de l'état des certificats. Chaque certificat sera facilement identifiable selon différents critères importants et entièrement paramétrables car chaque personne peut apporter une importance différente à une même information.
+Les notifications décrites plus bas seront à la fois visibles dans l'application et envoyée aux adresses mails présentes dans les certificats.
 
-  Pour cela, différents codes visuels seront attribués dans la présentation des certificats. Allant des codes couleurs aux icônes.
+Un certificat peut avoir une notification personnalisée qui est modifiable dans le détail des certificats. Mais dans le cas ou cette notification est désactivée, c'est la notification de base qui est envoyée.
 
-  * #### *Identification des certificats :*
+Si les notifications personnalisées sont modifiables dans le détail des certificats, les notifications de base sont modifiables dans les options de l'application.
 
-    Afin de faciliter l'identification d'un certificat en stade critique (bientôt expiré), il faut mettre en valeur le stade d'avancement des certificats. tous doivent avoir un indicateur de ce stade.
+* ***Informations présentes dans une notification :***
 
-    Il s'agit d'une fonctionnalité semblant basique, mais elle reste très importante. Par exemple, en présence d'un grand nombre de certificats, on doit pouvoir rapidement identifier lesquels sont presque expirés.
+    1. Objet :
 
-  * #### *Tri des certificats :*
+        L'objet d'une notification comporte une indication sur le but de celle-ci. Par exemple lorsque qu'un certificat arrive à son terme, l'objet de la notification pourrait être : "Certificat bientôt périmé".
 
-    Chaque certificat possède des caractéristiques différentes, et il peut être nécessaire de ne vouloir afficher que les certificats comportant certaines caractéristiques.
+    2. Certificat concerné :
 
-    On peut ainsi imaginer un système de tri :
+        Des informations sur le certificat concerné par la notification seront communiquées avec la notification.
 
-    * ***Par date de création.***
+    3. Message :
 
-    * ***Par date d'expiration.***
+        Un message permettra de compléter la notification en donnant des spécifications sur celle-ci.
 
-    * ***Par organisme de délivrance.***
+* ***Déclenchement d'une notification :***
 
-    * ***Par propriétaire.***
+    1. Différents stages sont identifiables dans le temps pour les certificats. On souhaite donc déclencher des notifications lorsque un certificats entre dans l'un de ces stades. Par exemple lorsque le certificat va expirer dans un ans, un mois ou une semaine.
 
-    * ***Et par groupe.***
+* ***Gestion des notifications:***
 
-    Une barre de recherche pourra aussi être implémentée afin d'effectuer une recherche rapide parmi les certificats présents dans l'application.
+    1. **Modification du sujet :**
 
-  * #### *Système d'alertes :*
+        Afin d'altérer le sujet de la notification, un champ est présent dans le formulaire de modification et permet d'entrer un nouveau sujet.
 
-    Le précédent point implique la présence de plusieurs stades pour chaque certificat. L'implantation d'un système d'alertes pourra permettre de prévenir l'avancement dans le temps des certificats.
+    2. **Modification du message :**
 
-    Ces alertes peuvent autant être une notification interne à l'application, un envoi de mail ou un message directement envoyé à un destinataire.
-
-  * #### *Mailing automatique :*
-
-    Afin de pouvoir facilement prévenir de l'expiration et de l'avancement d'un certificat, il est nécessaire d'implémenter un système de mailing automatique.
-***
-
-* ***Représentation simplifiée des spécifications via un diagramme de cas d'utilisations :***
-
-![](markdown_ressources/img/app_use_case.png)
+        Afin d'altérer le message de la notification, un champ est présent dans le formulaire de modification et permet d'entrer un nouveau message.
