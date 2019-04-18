@@ -15,11 +15,23 @@ export class CertificatDetailComponent implements OnInit {
   ngOnInit() {
   }
 
-  updateOnSubmit(form){
-
+  updateOnSubmit(){
+    this.certificatService.update(this.certificat).subscribe();
   }
 
   addMailOnSubmit(form){
-  
+    if(form.status === "VALID"){
+      let exists = false;
+      for(let i = 0; i < this.certificat.additionnalMails.length; i++){
+        if(this.certificat.additionnalMails[i] === form.value.addMailInput){
+          exists = true;
+        }
+      }
+      if(exists === false){
+        this.certificat.additionnalMails[this.certificat.additionnalMails.length] = form.value.addMailInput;
+      }
+    }else{
+      console.log(form.status);
+    }
   }
 }

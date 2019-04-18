@@ -5,16 +5,16 @@
     <p>Not after :</p>
     <p>{{certificat.notAfter}}</p>
     <p>Mails :</p>
-    <div *ngFor="let mail of certificat.mails; let l = index">
-      <input name="mail{{l}}" [(ngModel)]="certificat.mails[l]" placeholder="exemple@exemple.com"/>
+    <div *ngFor="let mail of certificat.mails; let i = index">
+      <p>{{certificat.mails[i].adresse}}</p>
     </div>
-
-    <div *ngFor="let mailInput of mailInputs; let m = index">
-      <input name="mail{{l}}" placeholder="exemple@exemple.com"/>
+    <p>additionnal Mails :</p>
+    <div *ngFor="let additionnalMail of certificat.additionnalMails; let j = index">
+      <p>{{certificat.additionnalMails[j].adresse}}</p>
     </div>
     <p>Ajouter une adresse :</p>
-    <form #addMailForm="ngForm" (ngSubmit)="addMailOnSubmit(addMailForm.value)">
-      <input type="text" name="addMailInput" placeholder="exemple@exemple.com" ngModel email="true"/>
+    <form #addMailForm="ngForm" (ngSubmit)="addMailOnSubmit(addMailForm)">
+      <input type="email" name="addMailInput" placeholder="exemple@exemple.com" ngModel [email]="true"/>
       <button type="submit">Ajouter</button>
     </form>
     <button type="submit">Modifier</button>

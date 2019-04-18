@@ -6,6 +6,7 @@
           <th scope="col">id</th>
           <th scope="col">notBefore</th>
           <th scope="col">notAfter</th>
+          <th scope="col">Remaining Time</th>
           <th scope="col">mails</th>
           <th scope="col">delete</th>
         </tr>
@@ -15,11 +16,15 @@
           [class.selected]="certificat === selectedCertificat"
           (click)="onSelect(certificat)">
           <td>{{ certificat.id }}</td>
-          <td>{{ certificat.notBefore }}</td>
-          <td>{{ certificat.notAfter }}</td>
+          <td>{{ getFrenchDate(certificat.notBefore)}}</td>
+          <td>{{ getFrenchDate(certificat.notAfter)}}</td>
+          <td>{{ getRemTime(certificat.notBefore, certificat.notAfter)}}</td>
           <td>
             <div *ngFor="let mail of certificat.mails; let k = index">
-              <p>{{certificat.mails[k]}}</p>
+              <p>{{certificat.mails[k].adresse}}</p>
+            </div>
+            <div *ngFor="let additionnalMail of certificat.additionnalMails; let l = index">
+              <p>{{certificat.mails[l].adresse}}</p>
             </div>
           </td>
           <td><input value="delete" type="submit" (click)="delete(certificat.id, j)"></td>
