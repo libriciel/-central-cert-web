@@ -155,9 +155,19 @@ Une page dédiée à l'ajout de certificats à la base de donénes offrira diff�
 
   * Si aucun certificat n'est présent ou que l'URL est incorrecte, un message d'erreur apparaît en réponse.
 
-* **Par le magasin Windows :**
+* **Par le magasin de certificats :**
 
-  ***TODO***
+  * L'utilisateur a accès à un bouton permettant de récupérer l'ensemble des certificats de l'ordinateur.
+
+  * Une fois le bouton appuyé, l'utilisateur pourra visualiser une liste des certificats présent dans l'ordinateur.
+
+    * Pour chaque certificat de la liste, l'utilisateur peut décocher ou cocher une case (cochée de base) qui permettra de choisir si oui ou non on décide d'enregistrer le certificat.
+
+    * Une vois les certificats choisis, un bouton permet de définitivement enregistrer les certificat.
+
+    * Après avoir enregistré les certificats, on obtient un visuel des certificats enregistré ainsi que le choix de continuer à entrer des URL, ou de visualiser la liste des certificats enregistrés.
+
+  * Si aucun certificat n'est présent, un message d'erreur apparaît en réponse.
 
 * **Par token :**
 
@@ -176,6 +186,8 @@ Une page dédiée à l'ajout de certificats à la base de donénes offrira diff�
       * Le certificat est importé dans la liste et l'utilisateur a un visuel du certificat effectivement enregistré.
 
     * Dans le cas ou le certificat est invalide, une erreur est renvoyée.
+
+***
 
 ### Gestion des certificats
 
@@ -404,7 +416,7 @@ Le détail d'un certificat est accessible en cliquant sur celui-ci dans la liste
         b. En validant le formulaire, une notification personnalisée à ce certificat est créée.
 
         c. Il est possible de modifier tous les types de notifications.
-        
+
 ***
 
 #### Notifications et mailing automatique
@@ -448,3 +460,19 @@ Si les notifications personnalisées sont modifiables dans le détail des certif
 #### Diagramme de cas d'utilisation de l'application
 
 ![Diagramme de cas d'utilisation de l'application](markdown_ressources/img/Atteste_Use_Case.png)
+
+***
+
+#### Organisation du frontend
+
+![organisation du frontend](markdown_ressources/img/Atteste_Mapping.png)
+
+* ***Légende :***
+
+  * ![](markdown_ressources/img/blue_zone_mind.png)
+
+  * ![](markdown_ressources/img/red_zone_mind.png)
+
+  * ![](markdown_ressources/img/green_zone_mind.png)
+
+  * ![](markdown_ressources/img/grey_zone_mind.png)
