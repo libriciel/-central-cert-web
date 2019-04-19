@@ -332,17 +332,17 @@ Le détail d'un certificat est accessible en cliquant sur celui-ci dans la liste
 
 * ***Informations visibles dans le détail d'un certificat :***
 
-    1. Not before.
+    1. Not before, date de mise en validation du certificat.
 
-    2. Not After.
+    2. Not After, date de fin de validité du certificat.
 
     3. adresse mail du certificat.
 
-    4. Adresse additionnelles.
+    4. Adresse additionnelles (contacts ajoutés par l'utilisateur).
 
-    5. Temps restant.
+    5. Temps restant avant fin de validité.
 
-    6. DN (Distinguished Name)
+    6. DN (Distinguished Name) :
 
         a. Intitulé (Common Name).
 
