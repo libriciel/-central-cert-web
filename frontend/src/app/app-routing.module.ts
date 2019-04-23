@@ -17,7 +17,7 @@ const routes: Routes = [
     component: UrlFormComponent
   },
   {
-    path: 'detail',
+    path: 'detail/:id',
     component: CertificatDetailComponent
   }
 ];

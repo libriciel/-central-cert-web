@@ -1,3 +1,46 @@
-<app-navmenu></app-navmenu>
+<ls-sidebar>
+  <section class="ls-sidebar-coll-logo">
+    <img alt="Logo de la ville"
+         src="https://images.midilibre.fr/api/v1/images/view/5b4c4de23e454662d5256caf/full/image.jpg">
+    <span>Ville de Montpellier</span>
+  </section>
+  <section class="ls-sidebar-menu">
+    <ul class="main-menu">
+      <li>
+        <a routerLink="home" href="javascript:;">
+          <i class="fa fa-home"></i>
+          <span>
+            Accueil
+          </span>
+        </a>
+        <ul class="sub-menu"></ul>
+      </li>
+      <li>
+        <a routerLink="certificats" href="javascript:;">
+          <i class="fab fa-angular"></i>
+          <span>
+            Certificats
+          </span>
+        </a>
+        <ul class="sub-menu"></ul>
+      </li>
+      <li>
+        <a routerLink="ajouter" href="javascript:;">
+          <i class="fa fa-home"></i>
+          <span>
+            Ajouter un certificat
+          </span>
+        </a>
+        <ul class="sub-menu"></ul>
+      </li>
+    </ul>
+  </section>
+</ls-sidebar>
 
-<router-outlet></router-outlet>
+<ls-content>
+  <router-outlet></router-outlet>
+</ls-content>
+
+<ls-footer></ls-footer>
+
+<app-notification-handler></app-notification-handler>

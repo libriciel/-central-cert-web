@@ -1,87 +1,19 @@
 import { Injectable } from '@angular/core';
-
+import { Certificat } from '../model/certificat';
 @Injectable({
   providedIn: 'root'
 })
 export class DateService {
 
-  private englishMonths: string[];
-  private frenchMonths: string[];
-  private englishDays: string[];
-  private frenchDays: string[];
+  constructor() { }
 
-  constructor() {
-    this.englishMonths = [
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ]
-
-    this.frenchMonths = [
-      "Janvier",
-      "Février",
-      "Mars",
-      "Avril",
-      "Mai",
-      "Juin",
-      "Juillet",
-      "Aout",
-      "Septembre",
-      "Octobre",
-      "Novembre",
-      "Decembre"
-    ]
-
-    this.englishDays = [
-      "Monday",
-      "Tuesday",
-      "Wednesday",
-      "Thursday",
-      "Friday",
-      "Saturday",
-      "Sunday"
-    ]
-
-    this.frenchDays = [
-      "Lundi",
-      "Mardi",
-      "Mercredi",
-      "Jeudi",
-      "Vendredi",
-      "Samedi",
-      "Dimanche"
-    ]
-  }
-
-  formatEnglish(d: Date){
-    let numJour = d.getDate();
-    let jour = this.englishDays[d.getDay()];
-    let mois = this.englishMonths[d.getMonth()];
+  format(d: Date){
+    d = new Date(d);
+    let jour = d.getDate();
+    let mois = d.getMonth() + 1;
     let annee = d.getFullYear();
-    let heure = d.getHours();
-    let minute = d.getMinutes();
 
-    return numJour + " " + mois + " " + " " + annee + " at " + heure + ":" + minute + ".";
-  }
-
-  formatFrench(d: Date){
-    let numJour = d.getDate();
-    let jour = this.frenchDays[d.getDay()];
-    let mois = this.frenchMonths[d.getMonth()];
-    let annee = d.getFullYear();
-    let heure = d.getHours();
-    let minute = d.getMinutes();
-
-    return jour + " " + numJour + " " + mois + " " + annee + " à " + heure + "h" + minute + ".";
+    return jour + "/" + mois + "/" + annee;
   }
 
   isBissextile(annee: number){
@@ -92,7 +24,13 @@ export class DateService {
     }
   }
 
-  getRemainingTime(d1: Date, d2: Date){
+  getRem(c: Certificat){
+    let d1: Date;
+    let d2: Date;
+
+    d1 = new Date(c.notBefore);
+    d2 = new Date(c.notAfter);
+
     if(d2.getTime() >= d1.getTime() && new Date().getTime() < d2.getTime()){
       let d1_annee = d1.getFullYear();
       let d2_annee = d2.getFullYear();
@@ -102,12 +40,6 @@ export class DateService {
 
       let d1_jour = d1.getDate();
       let d2_jour = d2.getDate();
-
-      let d1_heure = d1.getHours();
-      let d2_heure = d2.getHours();
-
-      let d1_minute = d1.getMinutes();
-      let d2_minute = d2.getMinutes();
 
       let annees = d2_annee - d1_annee;
 
@@ -141,39 +73,86 @@ export class DateService {
         }
       }
 
-      let heures;
-      if(d2_heure >= d1_heure){
-        heures = d2_heure - d1_heure;
-      }else{
-        heures = 24 + d2_heure - d1_heure;
+      return {annees: annees, mois: mois, jours: jours};
+    }else {
+      return undefined;
+    }
+  }
+
+  getRemainingTime(c: Certificat){
+    let tab = this.getRem(c);
+    if(tab != undefined){
+      let dateTab = new Array();
+
+      if(tab.annees > 0){
+        dateTab.push(tab.annees);
+        if(tab.annees === 1){
+          dateTab.push(" an ");
+        }else{
+          dateTab.push(" ans ");
+        }
+
+        if(tab.mois > 0 && tab.jours === 0){
+          dateTab.push(" et ")
+        }
       }
 
-      let minutes;
-      if(d2_minute >= d1_minute){
-        minutes = d2_minute - d1_minute;
-      }else{
-        minutes = 60 + d2_minute - d1_minute;
+      if(tab.mois > 0){
+        dateTab.push(tab.mois);
+        dateTab.push(" mois " );
       }
+
+      if(tab.jours > 0){
+        dateTab.push(" et ");
+      }
+
+      if(tab.jours > 0){
+        dateTab.push(tab.jours);
+        if(tab.jours === 1){
+          dateTab.push(" jour");
+        }else{
+          dateTab.push(" jours");
+        }
+      }
+
       let res = "";
-      if(annees > 0){
-        res += annees + " ans ";
+      for(let i = 0; i < dateTab.length; i++){
+        res += dateTab[i];
       }
-      if(mois > 0){
-        res += mois + " mois ";
-      }
-      if(jours > 0){
-        res += jours + " jours ";
-      }
-      if(heures > 0){
-        res += heures + " heures ";
-      }
-      if(minutes > 0){
-        res += minutes + " minutes";
-      }
+
       return res;
     }else{
-      return "Out of date";
+      return "expiré";
     }
+  }
 
+  isOrange(c: Certificat){
+    let remTime = this.getRem(c);
+    if(remTime != undefined){
+      if(remTime.annees >= 1){
+        return false;
+      }else if(remTime.mois >= 3){
+        return false;
+      }else{
+        return true;
+      }
+    }
+  }
+
+  isRed(c: Certificat){
+    let remTime = this.getRem(c);
+    if(remTime != undefined){
+      if(this.isOrange(c) === false){
+        return false;
+      }else{
+        if(remTime.mois === 1 && remTime.jours === 0){
+          return true;
+        }else if(remTime.mois === 0){
+          return true;
+        }else{
+          return false;
+        }
+      }
+    }
   }
 }

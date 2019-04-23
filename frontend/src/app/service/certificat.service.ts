@@ -32,12 +32,12 @@ export class CertificatService {
     return this.http.post<Certificat>(this.saveUrl, certificat);
   }
 
-  public saveAll(certificat: Certificat[]): Observable<Certificat> {
-    return this.http.post<Certificat>(this.saveAllUrl, certificat);
+  public saveAll(certificat: Certificat[]): Observable<Certificat[]> {
+    return this.http.post<Certificat[]>(this.saveAllUrl, certificat);
   }
 
-  public select(id: number) {
-    return this.http.get<Certificat[]>(this.selectUrl + id);
+  public select(id: number): Observable<Certificat>{
+    return this.http.get<Certificat>(this.selectUrl + id);
   }
 
   public selectFromUrl(url: String): Observable<Certificat[]> {
@@ -48,19 +48,19 @@ export class CertificatService {
     return this.http.get<Certificat[]>(this.selectAllUrl);
   }
 
-  public delete(id: number) {
-    return this.http.delete(this.deleteUrl + id);
+  public delete(id: number): Observable<Certificat> {
+    return this.http.delete<Certificat>(this.deleteUrl + id);
   }
 
-  public deleteAll() {
-    return this.http.delete(this.deleteAllUrl);
+  public deleteAll(): Observable<Certificat[]> {
+    return this.http.delete<Certificat[]>(this.deleteAllUrl);
   }
 
-  public update(certificat: Certificat) {
-    return this.http.put(this.updateUrl, certificat);
+  public update(certificat: Certificat): Observable<Certificat> {
+    return this.http.put<Certificat>(this.updateUrl, certificat);
   }
 
-  public updateAll(certificats: Certificat[]) {
-    return this.http.put(this.updateAllUrl, certificats);
+  public updateAll(certificats: Certificat[]): Observable<Certificat[]> {
+    return this.http.put<Certificat[]>(this.updateAllUrl, certificats);
   }
 }

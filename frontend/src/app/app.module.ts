@@ -10,6 +10,9 @@ import { NavmenuComponent } from './components/navmenu/navmenu.component';
 import { AppComponent } from './app.component';
 import { CertificatService } from './service/certificat.service';
 import { DateService } from './service/date.service';
+import { LsComposantsModule } from '@libriciel/ls-composants';
+import { NotificationsService } from './service/notifications.service';
+import { NotificationHandlerComponent } from './components/notification-handler/notification-handler.component';
 
 @NgModule({
   declarations: [
@@ -18,17 +21,20 @@ import { DateService } from './service/date.service';
     NavmenuComponent,
     CertificatDetailComponent,
     UrlFormComponent,
+    NotificationHandlerComponent,
   ],
   imports: [
     AppRoutingModule,
     HttpClientModule,
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    LsComposantsModule
   ],
   providers: [
     CertificatService,
-    DateService
+    DateService,
+    NotificationsService
   ],
   bootstrap: [AppComponent]
 })
