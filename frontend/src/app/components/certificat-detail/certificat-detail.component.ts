@@ -25,6 +25,7 @@ export class CertificatDetailComponent implements OnInit {
       id: 1,
       notBefore: new Date("March 13, 1995 03:24:00"),
       notAfter: new Date("November 19, 2022 03:22:00"),
+      favoris: true,
       dn: {
         cn: "cn",
         mail: "mail",

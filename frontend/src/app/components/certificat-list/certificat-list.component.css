@@ -1,1 +1,168 @@
-@import '~bootstrap/dist/css/bootstrap.min.css';
+.body-accueil {
+  width:80%;
+  width: 90%;
+  margin: auto;
+  color: #105385;
+}
+
+.search-div {
+  width:inherit;
+  background-color: #D0E8F9;
+  margin-top: 20px;
+}
+
+.search-div .fa{
+  width: auto;
+}
+
+.list-search-bar {
+  width:70%;
+  color: #42A1E8;
+  background-color: #D0E8F9;
+  padding: 10px;
+  border: none;
+  font-size: 15px;
+}
+
+.buttonDiv {
+  margin-top: 20px;
+}
+
+.top-list-button {
+  background-color: #FFFFFF;
+  border: 2px solid #89C4F1;
+  padding: 12px 16px;
+  margin-right: 20px;
+  font-size: 15px;
+  cursor: pointer;
+  color: #105385;
+}
+
+.table {
+  width:100%;
+  background-color: white;
+  border-collapse: collapse;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+  font-size: 15px;
+  margin-top: 20px;
+}
+
+.left-icon {
+  width: 10%;
+}
+
+.right-icon {
+  height: inherit;
+  width: 5%;
+  text-align: center;
+}
+
+.right-icon:hover{
+  background-color: #B3D9F5;
+  cursor: pointer;
+}
+
+.right-icon:hover .fa-ellipsis-v{
+  color: black;
+}
+
+.right-icon:hover .fa-star{
+  color: black;
+}
+
+.right-icon:hover .fa-eye{
+  color: black;
+}
+
+.right-icon .fa-none {
+  display: none;
+}
+
+.fa {
+  font-size: 20px;
+  margin: 0px 10px 0px 10px;
+}
+
+.list-item {
+  width:15%;
+}
+
+.expDate{
+  width:inherit;
+}
+
+.top-list {
+  text-align: left;
+  height: 30px;
+  border-bottom: 1px solid #C1C1C1;
+}
+
+.list-content {
+  line-height: 25%;
+}
+
+.list-content:hover {
+  background-color: #D0E8F9;
+}
+
+.list-content:hover .right-icon .fa-none {
+  display: inline;
+}
+
+tr:nth-child(even){
+  background-color: #ECF5FC;
+}
+
+/* DROPDOWN */
+.dropdown_table {
+  position: relative;
+}
+
+.dropdown_table:hover .dropdown_table_content{
+  display: block;
+}
+
+.dropdown_table_content {
+  z-index: 1;
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0px;
+  width: 500%;
+  height: 150%;
+  background-color: #FFFFFF;
+}
+
+.dropdown_table_content div {
+  text-align: left;
+  line-height: 100%;
+  border-color: #C1C1C1;
+  border-style: solid;
+  border-width: 1px 1px 0px 1px;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown_table_content div:hover {
+  background-color: #B3D9F5;
+}
+
+.dropdown_table_content div:first-child{
+  height: 60%;
+}
+
+.dropdown_table_content div:last-child{
+  height: 40%;
+}
+
+.dropdown_table_content:last-child {
+  border-bottom: 1px solid #C1C1C1;
+}
+
+.dropdown_table_content div .fa {
+
+}
+
+.fa-trash {
+  color:red;
+}

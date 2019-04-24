@@ -5,7 +5,7 @@ export class Notification {
   certificat: Certificat;
   objet: string;
   message: string;
-  Date: notBefore;
+  notBefore: Date;
   activated: boolean;
   seen: boolean;
 }

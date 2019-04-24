@@ -1,0 +1,36 @@
+.header {
+  overflow: hidden;
+  background-color: #89C4F1;
+  padding: 10px;
+  height: 20px;
+}
+
+.dropdown {
+  float: right;
+  display: inline-block;
+}
+
+.dropdown_content {
+  padding-top: 10px;
+  background-color: #89C4F1;
+  display: none;
+  position: absolute;
+  width: 200px;
+  z-index: 10;
+  right: 0px;
+}
+
+.dropdown_content a {
+  display: block;
+}
+
+.dropbtn {
+  background-color: #89C4F1;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.show {
+  display: block;
+}

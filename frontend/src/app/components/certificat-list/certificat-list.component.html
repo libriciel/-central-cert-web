@@ -1,25 +1,66 @@
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Objet</th>
-      <th scope="col">Autorité de certification</th>
-      <th scope="col">Date d'expiration</th>
-      <th scope="col"></th>
+<div class="body-accueil">
+  <div class="search-div">
+    <div class="search-left">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <input class="list-search-bar" type="text" placeholder="Rechercher un certificat ...">
+    </div>
+    <div class="search-right">
+      <button type="button"><i class="fa fa-star" aria-hidden="true"></i>Ajouter un certificat</button>
+    </div>
+  </div>
+  <div class="buttonDiv">
+    <button class="top-list-button" type="button"><i class="fa fa-star" aria-hidden="true"></i>Ajouter aux favoris</button>
+    <button class="top-list-button" type="button"><i class="fa fa-star-o" aria-hidden="true"></i>Retirer des favoris</button>
+    <button class="top-list-button" type="button"><i class="fa fa-star-o" aria-hidden="true"></i>Supprimer</button>
+  </div>
+
+  <table *ngIf="certificats.length > 0" class="table">
+    <tr class="top-list">
+      <th></th>
+      <th>Objet</th>
+      <th>AC</th>
+      <th>Date d'expiration</th>
+      <th></th>
+      <th></th>
+      <th></th>
     </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let certificat of certificats; let j = index"
-      [class.selected]="certificat === selectedCertificat"
-      routerLink="../detail/{{certificat.id}}">
-      <th scope="row"></th>
-      <td>{{certificat.dn.cn}}</td>
-      <td></td>
-      <td>
+    <tr class="list-content" *ngFor="let certificat of certificats; let j = index">
+      <td class="left-icon">
+        <input type="checkbox">
+        <i class="fa fa-star-o" *ngIf="certificat.favoris == false" aria-hidden="true"></i>
+        <i class="fa fa-star" *ngIf="certificat.favoris == true" aria-hidden="true"></i>
+      </td>
+      <td class="list-item">{{certificat.dn.cn}}</td>
+      <td class="list-item"></td>
+      <td class="expDate">
         <p>{{getDate(certificat.notAfter)}}</p>
         <p>{{getRemTime(certificat)}}</p>
       </td>
-      <td></td>
+
+      <td class="right-icon">
+        <i routerLink="../detail/{{certificat.id}}" class="fa-none fa fa-eye" aria-hidden="true"></i>
+      </td>
+      <td (click)="favorize(certificat)" class="right-icon">
+        <i class="fa-none fa fa-star addToFavoris" aria-hidden="true"></i>
+      </td>
+      <td class="right-icon dropdown_table">
+        <i class="fa-none fa fa-ellipsis-v" aria-hidden="true"></i>
+        <div class="dropdown_table_content">
+          <div>
+            <i class="fa fa-bell" aria-hidden="true"></i>
+            <a>Gérer les contacts et notifications</a>
+          </div>
+          <div (click)="delete(certificat.id)">
+            <i class="fa fa-star-o" aria-hidden="true"></i>
+            <a>Supprimer</a>
+          </div>
+        </div>
+      </td>
     </tr>
-  </tbody>
-</table>
+  </table>
+
+  <div *ngIf="certificats.length <= 0">
+    <p>Pas de certificats</p>
+  </div>
+
+</div>
