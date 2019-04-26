@@ -1,22 +1,23 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Certificat } from '../../model/certificat';
 import { CertificatService } from '../../service/certificat.service';
 import { ActivatedRoute } from '@angular/router';
 import { DateService } from '../../service/date.service';
 
 @Component({
-  selector: 'app-certificat-detail',
-  templateUrl: './certificat-detail.component.html',
-  styleUrls: ['./certificat-detail.component.css']
+  selector: 'app-certificats-contacts',
+  templateUrl: './certificats-contacts.component.html',
+  styleUrls: ['./certificats-contacts.component.css']
 })
-export class CertificatDetailComponent implements OnInit {
+export class CertificatsContactsComponent implements OnInit {
   certificat: Certificat;
+  formOpen: boolean;
 
   constructor(private dateService: DateService, private certificatService: CertificatService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.formOpen = false;
     let id = this.route.snapshot.params['id'] * 1;
-
     this.certificat = {
       id: id,
       notBefore: new Date(),
@@ -27,7 +28,6 @@ export class CertificatDetailComponent implements OnInit {
       notifications: [],
       notifyAll: false
     }
-
     this.certificatService.select(id).subscribe(data => {
       this.certificat = data;
     });
@@ -182,15 +182,46 @@ export class CertificatDetailComponent implements OnInit {
     return this.dateService.format(d);
   }
 
-  getRemTime(c: Certificat){
-    return this.dateService.getRemainingTime(c);
+  addContact(){
+
   }
 
-  delete(){
-    this.certificatService.delete(this.certificat.id).subscribe();
+  deleteContact(index){
+
+  }
+
+  changeNotifiable(index){
+    this.certificat.additionnalMails[index].notifiable = !this.certificat.additionnalMails[index].notifiable;
+    this.certificatService.save(this.certificat).subscribe();
+  }
+
+  changeNotifiableAll(){
+    this.certificat.notifyAll = !this.certificat.notifyAll;
+    this.certificatService.save(this.certificat).subscribe();
+  }
+
+  saveAll(){
+
   }
 
   getInformations(certificat: Certificat){
     return this.certificatService.getInformations(certificat);
   }
+
+  openCloseForm(){
+    let shadow = document.getElementsByClassName("shadow")[0];
+    let contactForm = document.getElementsByClassName("add-contact")[0];
+
+    if(this.formOpen === false){
+      shadow.setAttribute("style", "display:inline");
+      contactForm.setAttribute("style", "display:flex");
+      this.formOpen = true;
+    }else{
+      shadow.setAttribute("style", "display:none");
+      contactForm.setAttribute("style", "display:none");
+      this.formOpen = false;
+    }
+
+  }
+
 }

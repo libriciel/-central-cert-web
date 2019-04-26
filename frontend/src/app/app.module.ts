@@ -14,6 +14,10 @@ import { NotificationsService } from './service/notifications.service';
 import { NotificationHandlerComponent } from './components/notification-handler/notification-handler.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { CertificatsContactsComponent } from './components/certificats-contacts/certificats-contacts.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import {BreadcrumbsModule} from "ng6-breadcrumbs";
 
 @NgModule({
   declarations: [
@@ -23,7 +27,8 @@ import { FooterComponent } from './components/footer/footer.component';
     UrlFormComponent,
     NotificationHandlerComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    CertificatsContactsComponent
   ],
   imports: [
     AppRoutingModule,
@@ -31,7 +36,10 @@ import { FooterComponent } from './components/footer/footer.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    LsComposantsModule
+    LsComposantsModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(), // ToastrModule added
+    BreadcrumbsModule
   ],
   providers: [
     CertificatService,

@@ -1,24 +1,29 @@
 <div class="body-accueil">
+  <p class="titleAccueil"> Accueil </p>
   <div class="search-div">
     <div class="search-left">
       <i class="fa fa-search" aria-hidden="true"></i>
       <input class="list-search-bar" type="text" placeholder="Rechercher un certificat ...">
     </div>
     <div class="search-right">
-      <button type="button"><i class="fa fa-star" aria-hidden="true"></i>Ajouter un certificat</button>
+      <button type="button"><i class="fa fa-plus" aria-hidden="true"></i>Ajouter un certificat</button>
     </div>
   </div>
-  <div class="buttonDiv">
-    <button class="top-list-button" type="button"><i class="fa fa-star" aria-hidden="true"></i>Ajouter aux favoris</button>
-    <button class="top-list-button" type="button"><i class="fa fa-star-o" aria-hidden="true"></i>Retirer des favoris</button>
-    <button class="top-list-button" type="button"><i class="fa fa-star-o" aria-hidden="true"></i>Supprimer</button>
+  <div *ngIf="selectedCertificats.length > 0" class="buttonDiv">
+    <button class="top-list-button" (click)="selectedToFavoris()" type="button"><i class="fa fa-star" aria-hidden="true"></i>Ajouter aux favoris</button>
+    <button class="top-list-button" (click)="selectedToNotFavoris()" type="button"><i class="fa fa-star-o" aria-hidden="true"></i>Retirer des favoris</button>
+    <button class="top-list-button" (click)="verifySelectDelete()" type="button"><i class="fa fa-star-o" aria-hidden="true"></i>Supprimer</button>
+  </div>
+  <div *ngIf="selectedCertificats.length == 0" class="buttonDiv">
+    <button class="top-list-button-grey" type="button"><i class="fa fa-star" aria-hidden="true"></i>Ajouter aux favoris</button>
+    <button class="top-list-button-grey" type="button"><i class="fa fa-star-o" aria-hidden="true"></i>Retirer des favoris</button>
+    <button class="top-list-button-grey" type="button"><i class="fa fa-star-o" aria-hidden="true"></i>Supprimer</button>
   </div>
 
   <table *ngIf="certificats.length > 0" class="table">
     <tr class="top-list">
       <th></th>
       <th>Objet</th>
-      <th>AC</th>
       <th>Date d'expiration</th>
       <th></th>
       <th></th>
@@ -26,19 +31,18 @@
     </tr>
     <tr class="list-content" *ngFor="let certificat of certificats; let j = index">
       <td class="left-icon">
-        <input type="checkbox">
+        <input type="checkbox" (change)="checkBoxHandler(certificat, $event.target.checked)">
         <i class="fa fa-star-o" *ngIf="certificat.favoris == false" aria-hidden="true"></i>
         <i class="fa fa-star" *ngIf="certificat.favoris == true" aria-hidden="true"></i>
       </td>
-      <td class="list-item">{{certificat.dn.cn}}</td>
-      <td class="list-item"></td>
+      <td class="list-item">{{getInformations(certificat).cn}}</td>
       <td class="expDate">
         <p>{{getDate(certificat.notAfter)}}</p>
         <p>{{getRemTime(certificat)}}</p>
       </td>
 
-      <td class="right-icon">
-        <i routerLink="../detail/{{certificat.id}}" class="fa-none fa fa-eye" aria-hidden="true"></i>
+      <td routerLink="/accueil/detail/{{certificat.id}}" class="right-icon">
+        <i class="fa-none fa fa-eye" aria-hidden="true"></i>
       </td>
       <td (click)="favorize(certificat)" class="right-icon">
         <i class="fa-none fa fa-star addToFavoris" aria-hidden="true"></i>
@@ -46,12 +50,12 @@
       <td class="right-icon dropdown_table">
         <i class="fa-none fa fa-ellipsis-v" aria-hidden="true"></i>
         <div class="dropdown_table_content">
-          <div>
+          <div routerLink="/accueil/detail/contacts/{{certificat.id}}">
             <i class="fa fa-bell" aria-hidden="true"></i>
             <a>Gérer les contacts et notifications</a>
           </div>
-          <div (click)="delete(certificat.id)">
-            <i class="fa fa-star-o" aria-hidden="true"></i>
+          <div (click)="verifyDelete(certificat)">
+            <i class="fa fa-trash" aria-hidden="true"></i>
             <a>Supprimer</a>
           </div>
         </div>
@@ -62,5 +66,19 @@
   <div *ngIf="certificats.length <= 0">
     <p>Pas de certificats</p>
   </div>
+
+  <div class="verify-suppr">
+    <p *ngIf="inDeletion == undefined">Êtes-vous sur de vouloir supprimer ces {{selectedCertificats.length}} certificats ?</p>
+    <p *ngIf="inDeletion != undefined">Êtes-vous sur de vouloir supprimer "{{getInformations(inDeletion).cn}}" arrivant à expiration le {{getDate(inDeletion.notAfter)}} ?</p>
+    <div class="validcancelbutton">
+      <input (click)="closeVerifySuppr()" type="button" name="annuler" value="Annuler">
+      <button (click)="verifySupprDelete()" type="button"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer</button>
+    </div>
+    <i (click)="closeVerifySuppr()" class="fa fa-times close" aria-hidden="true"></i>
+  </div>
+
+</div>
+
+<div class="shadow">
 
 </div>

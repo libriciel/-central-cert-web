@@ -1,13 +1,73 @@
-<div>
-  <p>CN: {{certificat.dn.cn}}</p>
-  <p>Mail: {{certificat.dn.mail}}</p>
-  <p>O: {{certificat.dn.o}}</p>
-  <p>OU: {{certificat.dn.ou}}</p>
-  <p>L: {{certificat.dn.l}}</p>
-  <p>ST: {{certificat.dn.st}}</p>
-  <p>C: {{certificat.dn.c}}</p>
-  <p>T: {{certificat.dn.t}}</p>
-  <p>DC: {{certificat.dn.dc}}</p>
-  <p>STREET: {{certificat.dn.street}}</p>
-  <p>PC: {{certificat.dn.pc}}</p>
+<div class="body-detail">
+  <div class="detail-header">
+    <div class="detail-header-title-wraper">
+      <div class="detail-title">
+        <p class="title">Mon certificat</p>
+        <i class="title fa fa-star-o" *ngIf="certificat.favoris == false" aria-hidden="true"></i>
+        <i class="title fa fa-star" *ngIf="certificat.favoris == true" aria-hidden="true"></i>
+      </div>
+      <div class="detail-supprimer">
+        <button (click)="delete()" routerLink="/accueil" type="button"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer le certificat</button>
+      </div>
+    </div>
+    <p class="bleu-ciel subtitle">Arrive en expiration le {{getDate(certificat.notAfter)}} ( reste {{getRemTime(certificat)}} )</p>
+  </div>
+
+  <div class="detail-components">
+    <div class="detail-left">
+      <div class="info-container-column">
+        <div class="icon-text">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <p>Date de mise en validation :</p>
+        </div>
+        <p class="bleu-ciel">{{getDate(certificat.notBefore)}}</p>
+      </div>
+      <div class="info-container-column">
+        <div class="icon-text">
+          <i class="fa fa-envelope" aria-hidden="true"></i>
+          <p>Adresse mail du certificat :</p>
+        </div>
+        <p class="bleu-ciel">{{getInformations(certificat).mail}}</p>
+      </div>
+      <div class="info-container-row detail-adress-div">
+        <div class="detail-adresses icon-text">
+          <i class="fa fa-envelope-open" aria-hidden="true"></i>
+          <p>Adresse(s) additionnelle(s) :</p>
+        </div>
+        <div class="button-contact">
+          <button routerLink="/accueil/detail/contacts/{{certificat.id}}" type="button"><i class="fa fa-cog" aria-hidden="true"></i>Gérer les contacts</button>
+        </div>
+      </div>
+
+      <table class="detail-list">
+        <thead>
+          <tr class="detail-list-top">
+            <th>Adresse mail</th>
+            <th>Notification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="detail-list-content" *ngFor="let mail of certificat.additionnalMails; let i = index">
+            <td>{{mail.adresse}}</td>
+            <td *ngIf="mail.notifiable == false">NON</td>
+            <td *ngIf="mail.notifiable == true">OUI</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="detail-right">
+      <p class="dn-detail-title">Informations complémentaires</p>
+      <div class="dn-detail">
+        <span class="span-detail"><p>Intitulé :</p><p class="bleu-ciel">{{getInformations(certificat).cn}}</p></span>
+        <span class="span-detail"><p>Unité d'organisation :</p><p class="bleu-ciel">{{getInformations(certificat).ou}}</p></span>
+        <span class="span-detail"><p>Titre :</p><p class="bleu-ciel">{{getInformations(certificat).t}}</p></span>
+        <span class="span-detail"><p>Localité :</p><p class="bleu-ciel">{{getInformations(certificat).l}}</p></span>
+        <span class="span-detail"><p>Pays :</p><p class="bleu-ciel">{{getInformations(certificat).st}}</p></span>
+        <span class="span-detail"><p>Code postal / ZIP code :<p><p class="bleu-ciel">{{getInformations(certificat).pc}}</p></span>
+        <span class="span-detail"><p>Rue :</p><p class="bleu-ciel">{{getInformations(certificat).street}}</p></span>
+        <span class="span-detail"><p>Domain Component :</p><p class="bleu-ciel">{{getInformations(certificat).dc}}</p></span>
+        <span class="span-detail"><p>Organisation :</p><p class="bleu-ciel">{{getInformations(certificat).o}}</p></span>
+      </div>
+    </div>
+  </div>
 </div>
