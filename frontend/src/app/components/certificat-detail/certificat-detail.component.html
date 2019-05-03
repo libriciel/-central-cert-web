@@ -1,4 +1,4 @@
-<div class="body-detail">
+<div *ngIf="certificat" class="wrapper">
   <div class="detail-header">
     <div class="detail-header-title-wraper">
       <div class="detail-title">
@@ -7,10 +7,10 @@
         <i class="title fa fa-star" *ngIf="certificat.favoris == true" aria-hidden="true"></i>
       </div>
       <div class="detail-supprimer">
-        <button (click)="delete()" routerLink="/accueil" type="button"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer le certificat</button>
+        <button (click)="detVerifySelectDelete()" routerLink="/accueil" type="button"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer le certificat</button>
       </div>
     </div>
-    <p class="bleu-ciel subtitle">Arrive en expiration le {{getDate(certificat.notAfter)}} ( reste {{getRemTime(certificat)}} )</p>
+    <p class="bleu-ciel subtitle">Arrive en expiration le {{getDate(certificat.notAfter)}} ( {{getRemTime(certificat)}} )</p>
   </div>
 
   <div class="detail-components">
@@ -35,7 +35,7 @@
           <p>Adresse(s) additionnelle(s) :</p>
         </div>
         <div class="button-contact">
-          <button routerLink="/accueil/detail/contacts/{{certificat.id}}" type="button"><i class="fa fa-cog" aria-hidden="true"></i>Gérer les contacts</button>
+          <button (click)="contactWindow()" type="button"><i class="fa fa-cog" aria-hidden="true"></i>Gérer les contacts</button>
         </div>
       </div>
 
@@ -57,7 +57,7 @@
     </div>
     <div class="detail-right">
       <p class="dn-detail-title">Informations complémentaires</p>
-      <div class="dn-detail">
+      <div *ngIf="inEdit == false" class="dn-detail">
         <span class="span-detail"><p>Intitulé :</p><p class="bleu-ciel">{{getInformations(certificat).cn}}</p></span>
         <span class="span-detail"><p>Unité d'organisation :</p><p class="bleu-ciel">{{getInformations(certificat).ou}}</p></span>
         <span class="span-detail"><p>Titre :</p><p class="bleu-ciel">{{getInformations(certificat).t}}</p></span>
@@ -65,9 +65,70 @@
         <span class="span-detail"><p>Pays :</p><p class="bleu-ciel">{{getInformations(certificat).st}}</p></span>
         <span class="span-detail"><p>Code postal / ZIP code :<p><p class="bleu-ciel">{{getInformations(certificat).pc}}</p></span>
         <span class="span-detail"><p>Rue :</p><p class="bleu-ciel">{{getInformations(certificat).street}}</p></span>
-        <span class="span-detail"><p>Domain Component :</p><p class="bleu-ciel">{{getInformations(certificat).dc}}</p></span>
         <span class="span-detail"><p>Organisation :</p><p class="bleu-ciel">{{getInformations(certificat).o}}</p></span>
+        <button class="modifyButton" *ngIf="inEdit == false" (click)="edit()"><i class="fa fa-pencil" aria-hidden="true"></i>Modifier</button>
       </div>
+      <form *ngIf="inEdit == true" (ngSubmit)="changeDetail(formDetail)" #formDetail="ngForm">
+        <div class="form-group">
+          <p>Intitulé :</p>
+          <input type="text" name="cn" ngModel="{{getInformations(certificat).cn}}">
+        </div>
+        <div class="form-group">
+          <p>Unité d'organisation :</p>
+          <input type="text" name="ou" ngModel="{{getInformations(certificat).ou}}">
+        </div>
+        <div class="form-group">
+          <p>Titre :</p>
+          <input type="text" name="t" ngModel="{{getInformations(certificat).t}}">
+        </div>
+        <div class="form-group">
+          <p>Localité :</p>
+          <input type="text" name="l" ngModel="{{getInformations(certificat).l}}">
+        </div>
+        <div class="form-group">
+          <p>Pays :</p>
+          <input type="text" name="st" ngModel="{{getInformations(certificat).st}}">
+        </div>
+        <div class="form-group">
+          <p>Code postal / ZIP code :</p>
+          <input type="text" name="pc" ngModel="{{getInformations(certificat).pc}}">
+        </div>
+        <div class="form-group">
+          <p>Rue :</p>
+          <input type="text" name="street" ngModel="{{getInformations(certificat).street}}">
+        </div>
+        <div class="form-group">
+          <p>Organisation :</p>
+          <input type="text" name="o" ngModel="{{getInformations(certificat).o}}">
+        </div>
+        <div class="annulerAndSubmit">
+          <button class="cancelSubmit" (click)="annulerEdit()" type="button">Annuler</button>
+          <button class="submitChanges" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>Enregistrer</button>
+        </div>
+      </form>
+
     </div>
   </div>
+  <i (click)="closeSelf()" class="fa fa-times close" aria-hidden="true"></i>
+
+</div>
+
+<app-certificats-contacts [certificat]="contactCertificat" (event)="closeContactWindows()"></app-certificats-contacts>
+
+
+<div class="det-verify-suppr">
+  <p>Êtes-vous sur de vouloir supprimer "{{getInformations(inDeletion).cn}}" arrivant à expiration le {{getDate(inDeletion.notAfter)}} ?</p>
+  <div class="det-validcancelbutton">
+    <input (click)="detCloseVerifySuppr()" type="button" name="annuler" value="Annuler">
+    <button (click)="detVerifySupprDelete()" type="button"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer</button>
+  </div>
+  <i (click)="detCloseVerifySuppr()" class="fa fa-times det-close" aria-hidden="true"></i>
+</div>
+
+<div (click)="closeSelf()" *ngIf="certificat" class="shadow">
+
+</div>
+
+<div (click)="detCloseVerifySuppr()" *ngIf="certificat" class="supprshadow">
+
 </div>

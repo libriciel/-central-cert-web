@@ -1,11 +1,20 @@
 <div class="header">
-  <a class="logo_link" routerLink="/accueil">Atteste</a>
+  <img class="logo_link" alt="LOGO" routerLink="/accueil">
   <div class="dropdown">
-    <button class="dropbtn" (click)="dropMenu()">User Name</button>
-    <div class="dropdown_content">
-      <a>link 1</a>
-      <a>link 2</a>
-      <a>link 3</a>
+    <button class="dropbtn">Nom de l'utilisateur<i class="fa fa-sort-desc" aria-hidden="true"></i></button>
+    <div class="dropdown_content border-top">
+      <div>
+        <i class="fa fa-cogs" aria-hidden="true"></i>
+        <p>Options</p>
+      </div>
+      <div>
+        <i class="fa fa-certificate" aria-hidden="true"></i>
+        <p>Politique de confidentialité ( RGPD )</p>
+      </div>
+      <div class="border-top">
+        <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <p>Se déconnecter</p>
+      </div>
     </div>
   </div>
 </div>

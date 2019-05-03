@@ -10,14 +10,13 @@ import { AppComponent } from './app.component';
 import { CertificatService } from './service/certificat.service';
 import { DateService } from './service/date.service';
 import { LsComposantsModule } from '@libriciel/ls-composants';
-import { NotificationsService } from './service/notifications.service';
-import { NotificationHandlerComponent } from './components/notification-handler/notification-handler.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { CertificatsContactsComponent } from './components/certificats-contacts/certificats-contacts.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import {BreadcrumbsModule} from "ng6-breadcrumbs";
+import { CertAdderComponent } from './components/cert-adder/cert-adder.component';
+import { ContentComponent } from './components/content/content.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +24,11 @@ import {BreadcrumbsModule} from "ng6-breadcrumbs";
     CertificatListComponent,
     CertificatDetailComponent,
     UrlFormComponent,
-    NotificationHandlerComponent,
     HeaderComponent,
     FooterComponent,
-    CertificatsContactsComponent
+    CertificatsContactsComponent,
+    CertAdderComponent,
+    ContentComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -39,12 +39,10 @@ import {BreadcrumbsModule} from "ng6-breadcrumbs";
     LsComposantsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
-    BreadcrumbsModule
   ],
   providers: [
     CertificatService,
     DateService,
-    NotificationsService
   ],
   bootstrap: [AppComponent]
 })

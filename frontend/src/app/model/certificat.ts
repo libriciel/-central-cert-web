@@ -1,5 +1,4 @@
 import { Mail } from './mail';
-import { Notification } from './notification';
 import { DistinguishedNumber } from './DistinguishedNumber';
 
 export class Certificat {
@@ -9,6 +8,6 @@ export class Certificat {
   favoris: boolean;
   dn: string; // Distinguished Name
   additionnalMails: Mail[]; //Mails
-  notifications: Notification[];
   notifyAll: boolean;
+  notified: boolean;
 }

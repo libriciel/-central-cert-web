@@ -3,6 +3,7 @@ import { Certificat } from '../../model/certificat';
 import { CertificatService } from '../../service/certificat.service';
 import { DateService } from '../../service/date.service';
 import { ToastrService } from 'ngx-toastr';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-certificat-list',
@@ -11,119 +12,293 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class CertificatListComponent implements OnInit {
 
-  selectedCertificats: Certificat[];
-
   certificats: Certificat[];
 
+  selectedCertificats: Certificat[];
+
+  detailledCertificat: Certificat;
+
   inDeletion: Certificat;
+
+  contactPressed: Certificat;
+
+  page: Certificat[];
+
+  pageNumber: number;
 
   constructor(private toastr: ToastrService, private certificatService: CertificatService, private dateService: DateService) { }
 
   ngOnInit() {
     this.certificats = [];
-    this.certificatService.selectAll().subscribe(data => {
-      this.certificats = data;
-      this.orderByNotAfter();
-      this.orderByFavoris();
-    });
-
-    this.selectedCertificats = [];
-    this.inDeletion = undefined;
     this.certificats = [
       {
         id: 1,
-        notBefore: new Date("March 13, 1995 03:24:00"),
-        notAfter: new Date("November 19, 2022 03:22:00"),
+        notBefore: new Date("December 17, 1800"),
+        notAfter: new Date("December 17, 2027"),
         favoris: false,
-        dn: "",
-        additionnalMails:
-          [
-            {adresse: "test0@test.test", notifiable: true},
-            {adresse: "test1@test.test", notifiable: false},
-            {adresse: "test2@test.test", notifiable: true}
-          ],
-        notifications: [],
-        notifyAll: true
+        dn: "CN=Libriciel COOP1",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
       },
       {
         id: 2,
-        notBefore: new Date("March 13, 1995 03:24:00"),
-        notAfter: new Date("November 18, 2022 03:22:00"),
-        favoris: true,
-        dn: "",
-        additionnalMails:
-          [
-            {adresse: "test0@test.test", notifiable: true},
-            {adresse: "test1@test.test", notifiable: false},
-            {adresse: "test2@test.test", notifiable: true}
-          ],
-        notifications: [],
-        notifyAll: false
+        notBefore: new Date("April 12, 2019"),
+        notAfter: new Date("May 12, 2019"),
+        favoris: false,
+        dn: "CN=Libriciel COOP2",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
       },
       {
         id: 3,
-        notBefore: new Date("March 13, 1995 03:24:00"),
-        notAfter: new Date("November 15, 2022 03:22:00"),
+        notBefore: new Date(),
+        notAfter: new Date(),
         favoris: false,
-        dn: "",
-        additionnalMails:
-          [
-            {adresse: "test0@test.test", notifiable: true},
-            {adresse: "test1@test.test", notifiable: false},
-            {adresse: "test2@test.test", notifiable: true}
-          ],
-        notifications: [],
-        notifyAll: true
+        dn: "CN=Libriciel COOP3",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
       },
       {
         id: 4,
-        notBefore: new Date("March 13, 1995 03:24:00"),
-        notAfter: new Date("November 15, 2022 03:22:00"),
+        notBefore: new Date(),
+        notAfter: new Date(),
         favoris: false,
-        dn: "",
-        additionnalMails:
-          [
-            {adresse: "test0@test.test", notifiable: true},
-            {adresse: "test1@test.test", notifiable: false},
-            {adresse: "test2@test.test", notifiable: true}
-          ],
-        notifications: [],
-        notifyAll: true
+        dn: "CN=Libriciel COOP4",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
       },
       {
         id: 5,
-        notBefore: new Date("March 13, 1995 03:24:00"),
-        notAfter: new Date("November 15, 2022 03:22:00"),
+        notBefore: new Date(),
+        notAfter: new Date(),
         favoris: false,
-        dn: "",
-        additionnalMails:
-          [
-            {adresse: "test0@test.test", notifiable: true},
-            {adresse: "test1@test.test", notifiable: false},
-            {adresse: "test2@test.test", notifiable: true}
-          ],
-        notifications: [],
-        notifyAll: false
+        dn: "CN=Libriciel COOP5",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
       },
       {
         id: 6,
-        notBefore: new Date("November 17, 1995 03:24:00"),
-        notAfter: new Date("December 15, 1995 03:22:00"),
-        favoris: true,
-        dn: "",
-        additionnalMails:
-          [
-            {adresse: "test3@test.test", notifiable: true}
-          ],
-        notifications: [],
-        notifyAll: true
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP6",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 7,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP7",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 8,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP8",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 9,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP9",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 10,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP10",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 11,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP11",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 12,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP12",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 13,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP13",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 14,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP14",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 15,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP15",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 16,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP16",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 17,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP17",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 18,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP18",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 19,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP19",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 20,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP20",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 21,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP21",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 22,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP22",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 23,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP23",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 24,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP24",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 25,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: false,
+        dn: "CN=Libriciel COOP25",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
       }
     ];
+    this.certificatService.selectAll().subscribe(data => {
+      this.certificats = data;
+      this.dateDesc();
+      this.orderByFavoris();
+    });
+    this.pageNumber = 1;
+    this.page = this.getActualPage();
+    this.actualisePageIndication();
+    this.selectedCertificats = [];
+    this.inDeletion = undefined;
   }
 
-  orderByNotAfter(){
-    this.certificats.sort(function(a, b){
-      return (new Date(a.notAfter).getTime() - new Date(b.notAfter).getTime());
+  getAllCerts(){
+    this.certificatService.selectAll().subscribe(data => {
+      this.certificats = data;
+      this.dateDesc();
+      this.orderByFavoris();
     });
   }
 
@@ -142,6 +317,21 @@ export class CertificatListComponent implements OnInit {
       }
     });
     this.certificats = sortedArray;
+  }
+
+  toDetail(certificat){
+    this.detailledCertificat = certificat;
+  }
+
+  removeDetailled(){
+    this.contactPressed = undefined;
+    this.detailledCertificat = undefined;
+    this.getAllCerts();
+  }
+
+  toContact(certificat){
+    this.detailledCertificat = certificat;
+    this.contactPressed = certificat;
   }
 
   getDate(d: Date){
@@ -276,10 +466,188 @@ export class CertificatListComponent implements OnInit {
       this.deleteWithoutToastr(this.selectedCertificats[i].id);
       nbr ++;
     }
+    this.selectedCertificats = [];
     this.toastr.success(nbr + ' certificat supprimé avec succès !!!');
   }
 
   getInformations(certificat: Certificat){
     return this.certificatService.getInformations(certificat);
+  }
+
+  getActualPage(){
+    return this.getPage(this.pageNumber);
+  }
+
+  getPage(num: number){
+    let resPage = new Array();
+    let min = num * 10 - 10;
+    let max = num * 10 - 1;
+    if(max > this.certificats.length){
+      max = this.certificats.length - 1;
+    }
+    for(let i = min; i <= max; i++){
+      resPage.push(this.certificats[i]);
+    }
+    return resPage;
+  }
+
+  canPreviousPage(){
+    if(this.pageNumber > 1){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  canNextPage(){
+    if(this.pageNumber * 10 - 1 < this.certificats.length){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  nextPage(){
+    if(this.pageNumber * 10 - 1 < this.certificats.length){
+      this.pageNumber ++;
+      this.page = this.getActualPage();
+      this.actualisePageIndication()
+    }
+  }
+
+  previousPage(){
+    if(this.pageNumber > 1){
+      this.pageNumber --;
+      this.page = this.getActualPage();
+      this.actualisePageIndication()
+    }
+  }
+
+  actualisePageIndication(){
+    let paragraphs = document.getElementsByClassName("pageParagraph");
+    let max = this.certificats.length;
+    let borneMax = this.pageNumber * 10;
+    if(borneMax > max){
+      borneMax = max;
+    }
+    let borneMin = this.pageNumber * 10 - 9;
+
+    for(let i = 0; i < paragraphs.length; i++){
+      paragraphs[i].innerHTML = borneMin + "-" + borneMax + " sur " + max;
+    }
+  }
+
+  isGreen(certificat){
+    return !this.isOrange(certificat) && !this.isRed(certificat);
+  }
+
+  isOrange(certificat){
+    return this.dateService.isOrange(certificat);
+  }
+
+  isRed(certificat){
+    return this.dateService.isRed(certificat);
+  }
+
+  search(form){
+    let results = new Array();
+
+    this.certificats.forEach(function(cert){
+      if(cert.dn.includes(form.value.research)
+        || this.getDate().includes(form.value.research)
+        || this.getRemTime().includes(form.value.research)){
+        results.push(cert);
+      }else{
+        let mail = false;
+        for(let i = 0; i < cert.additionnalMails.length; i++){
+          if(cert.additionnalMails[i].adresse.includes(form.value.research)){
+            mail = true;
+          }
+        }
+        if(mail === true){
+          results.push(cert);
+        }
+      }
+    });
+    return results;
+  }
+
+
+  objAsc(){
+    let buffer;
+    for(let i = 0; i < this.certificats.length; i++) {
+      for(let j = i; j < this.certificats.length; j++) {
+        if(this.getInformations(this.certificats[j]).cn.localeCompare(this.getInformations(this.certificats[i]).cn) === 1){
+          buffer = this.certificats[i];
+          this.certificats[i] = this.certificats[j];
+          this.certificats[j] = buffer;
+        }
+      }
+    }
+  }
+
+  objDesc(){
+    this.objAsc();
+    this.certificats = this.certificats.reverse();
+  }
+
+  dateAsc(){
+    let buffer;
+    for(let i = 0; i < this.certificats.length; i++) {
+      for(let j = i; j < this.certificats.length; j++) {
+        if(this.certificats[j].notAfter.getTime() < this.certificats[i].notAfter.getTime()){
+          buffer = this.certificats[i];
+          this.certificats[i] = this.certificats[j];
+          this.certificats[j] = buffer;
+        }
+      }
+    }
+  }
+
+  dateDesc(){
+    this.dateAsc();
+    this.certificats = this.certificats.reverse();
+  }
+
+  switchTriDate(){
+    let dateAsc = document.getElementsByClassName("sort-date-asc")[0];
+    let dateDesc = document.getElementsByClassName("sort-date-desc")[0];
+    let objAsc = document.getElementsByClassName("sort-obj-asc")[0].classList.remove("selectedTri");
+    let objDesc = document.getElementsByClassName("sort-obj-desc")[0].classList.remove("selectedTri");
+
+    if(dateDesc.classList.contains("selectedTri")){
+      dateAsc.classList.add("selectedTri");
+      dateDesc.classList.remove("selectedTri");
+      this.dateAsc();
+    }else if(dateAsc.classList.contains("selectedTri")){
+      dateDesc.classList.add("selectedTri");
+      dateAsc.classList.remove("selectedTri");
+      this.dateDesc();
+    }else{
+      dateDesc.classList.add("selectedTri");
+      this.dateDesc();
+    }
+    this.page = this.getActualPage();
+  }
+
+  switchTriObjet(){
+    let dateAsc = document.getElementsByClassName("sort-date-asc")[0].classList.remove("selectedTri");
+    let dateDesc = document.getElementsByClassName("sort-date-desc")[0].classList.remove("selectedTri");
+    let objAsc = document.getElementsByClassName("sort-obj-asc")[0];
+    let objDesc = document.getElementsByClassName("sort-obj-desc")[0];
+
+    if(objDesc.classList.contains("selectedTri")){
+      objAsc.classList.add("selectedTri");
+      objDesc.classList.remove("selectedTri");
+      this.objAsc();
+    }else if(objAsc.classList.contains("selectedTri")){
+      objDesc.classList.add("selectedTri");
+      objAsc.classList.remove("selectedTri");
+      this.objDesc();
+    }else{
+      objAsc.classList.add("selectedTri");
+      this.objAsc();
+    }
+    this.page = this.getActualPage();
   }
 }

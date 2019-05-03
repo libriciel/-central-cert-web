@@ -1,13 +1,12 @@
 export class DistinguishedNumber {
-  cn: string;
-  mail: string;
-  o: string;
-  ou: string;
-  l: string;
-  st: string;
-  c: string;
-  t: string;
-  dc: string;
-  street: string;
-  pc: string;
+  cn: string; //common name
+  mail: string; //mail
+  o: string; //Organisation name
+  ou: string; //Unité d'organisation
+  l: string; //Localité
+  st: string;//région
+  c: string;//pays
+  t: string;//titre
+  street: string; // rue
+  pc: string;//Code postal / ZIP code
 }

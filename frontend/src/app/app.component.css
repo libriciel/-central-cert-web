@@ -1,1 +1,6 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
+
+body {
+  height: 100%;
+  margin: 0px;
+}

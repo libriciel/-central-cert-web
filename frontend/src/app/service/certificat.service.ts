@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpHeaders, HttpEvent} from '@angular/common/http';
 import { Certificat } from '../model/certificat';
 import { Observable } from 'rxjs/Observable';
 import { DistinguishedNumber } from '../model/DistinguishedNumber';
@@ -11,6 +11,7 @@ export class CertificatService {
   private saveAllUrl: string;
   private selectUrl: string;
   private selectFromUrlUrl: string;
+  private selectFromFileUrl: string;
   private selectAllUrl: string;
   private deleteUrl: string;
   private deleteAllUrl: string;
@@ -22,6 +23,7 @@ export class CertificatService {
     this.saveAllUrl = '/api/certificat/saveAll';
     this.selectUrl = '/api/certificat/select?id='
     this.selectFromUrlUrl = '/api/certificat/selectFromURL?URL=';
+    this.selectFromFileUrl = '/api/certificat/selectFromFile';
     this.selectAllUrl = '/api/certificat/selectAll';
     this.deleteUrl = '/api/certificat/delete?id=';
     this.deleteAllUrl = '/api/certificat/deleteAll';
@@ -43,6 +45,14 @@ export class CertificatService {
 
   public selectFromUrl(url: String): Observable<Certificat[]> {
     return this.http.get<Certificat[]>(this.selectFromUrlUrl + url);
+  }
+
+  public selectFromFile(file: File): Observable<Certificat>{
+    const fd = new FormData();
+    fd.append("file", file);
+    console.log(fd);
+    console.log(file);
+    return this.http.post<Certificat>(this.selectFromFileUrl, fd);
   }
 
   public selectAll(): Observable<Certificat[]> {
@@ -77,7 +87,6 @@ export class CertificatService {
     res.street = "non disponible";
     res.c = "non disponible";
     res.t = "non disponible";
-    res.dc = "non disponible";
     res.pc = "non disponible";
 
 		for(let k = 0; k < l.length; k++) {
@@ -121,11 +130,7 @@ export class CertificatService {
 				res.t = l[k].substring(2);
 			}else if(l[k].startsWith("2.5.4.12=")) { //OID
 				res.t = l[k].substring(9);
-			}else if(l[k].startsWith("DC=")) { //TYPE
-				res.dc = l[k].substring(2);
-			}else if(l[k].startsWith("0.9.2342.19200300.100.1.25=")) { //OID
-				res.dc = l[k].substring(26);
-			}else if(l[k].startsWith("PC=")) { //TYPE
+      }else if(l[k].startsWith("PC=")) { //TYPE
 				res.pc = l[k].substring(2);
 			}else if(l[k].startsWith("2.5.4.17=")) { //OID
 				res.pc = l[k].substring(9);

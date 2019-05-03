@@ -1,11 +1,8 @@
-<div class="body-contact">
+<div *ngIf="certificat" class="wrapper">
   <div class="contact-header">
     <div class="contact-header-title-wraper">
       <div class="contact-title">
         <p class="title">Gestion des contacts et notifications</p>
-      </div>
-      <div class="contact-enregistrer">
-        <button (click)="saveAll()" type="button"><i class="fa fa-floppy-o" aria-hidden="true"></i>Enregistrer les modifications</button>
       </div>
     </div>
     <p class="bleu-ciel subtitle">"{{getInformations(certificat).cn}}" arrivant à expiration le {{getDate(certificat.notAfter)}}</p>
@@ -19,9 +16,6 @@
           <i (click)="changeNotifiableAll()" *ngIf="certificat.notifyAll == true" class="fa fa-toggle-off" aria-hidden="true"></i>
           <i (click)="changeNotifiableAll()" *ngIf="certificat.notifyAll == false" class="fa fa-toggle-on" aria-hidden="true"></i>
         </div>
-        <div class="button-contact">
-          <button (click)="openCloseForm()" type="button"><i class="fa fa-plus" aria-hidden="true"></i>Ajouter un contact</button>
-        </div>
       </div>
       <table class="contact-list">
         <thead>
@@ -34,10 +28,10 @@
         <tbody>
           <tr class="contact-list-content" *ngFor="let mail of certificat.additionnalMails; let i = index">
             <td>{{mail.adresse}}</td>
-            <td *ngIf="mail.notifiable == false">
-              <i (click)="changeNotifiable(i)" class="toggle fa fa-toggle-on" aria-hidden="true"></i>
-            </td>
             <td *ngIf="mail.notifiable == true">
+              <i (click)="changeNotifiable(i)" class="toggle fa fa-toggle-on" aria-hidden="false"></i>
+            </td>
+            <td *ngIf="mail.notifiable == false">
               <i (click)="changeNotifiable(i)" class="toggle fa fa-toggle-off" aria-hidden="true"></i>
             </td>
             <td (click)="deleteContact(i)" class="trash-list-contact"><i class="fa fa-trash" aria-hidden="true"></i></td>
@@ -46,41 +40,26 @@
       </table>
     </div>
     <div class="contact-right">
-      <p class="subtitle">Notification</p>
-      <form>
-        <p>First Name</p>
-        <input class="inpuText" type="text" id="sujet" name="sujet" placeholder="Sujet...">
-
-        <p>First Name</p>
-        <textarea class="textArea" id="message" placeholder="Message..." name="message"></textarea>
+      <div class="icon-text title">
+        <i class="fa fa-envelope" aria-hidden="true"></i>
+        <p>Ajout d'un contact</p>
+      </div>
+      <form class="contactForm" (ngSubmit)="addContact(formContact)" #formContact="ngForm">
+        <p>Adresse mail</p>
+        <input type="mail" id="mail" name="mail" placeholder="monadresse@mail.com" ngModel>
+        <div class="notifCheckbox">
+          <p>Notifications</p>
+          <input type="checkbox" id="notifiable" name="notifiable" ngModel>
+        </div>
+        <div class="validcancelbutton">
+          <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Ajouter le contact</button>
+        </div>
       </form>
     </div>
   </div>
-
-  <div class="add-contact">
-    <div class="icon-text title">
-      <i class="fa fa-envelope" aria-hidden="true"></i>
-      <p>Ajout d'un contact</p>
-    </div>
-
-    <form>
-      <p>Adresse mail</p>
-      <input class="inpuText" type="mail" id="mail" name="mail" placeholder="monadresse@mail.com">
-
-      <p>Notifications</p>
-      <div class="yesnobutton">
-        <button type="button">OUI</button>
-        <button type="button">NON</button>
-      </div>
-      <div class="validcancelbutton">
-        <input (click)="openCloseForm()" type="button" name="annuler" value="Annuler">
-        <button type="button"><i class="fa fa-plus" aria-hidden="true"></i>Ajouter le contact</button>
-      </div>
-      <i (click)="openCloseForm()" class="fa fa-times close" aria-hidden="true"></i>
-    </form>
-  </div>
+  <i (click)="closeSelf()" class="fa fa-times close" aria-hidden="true"></i>
 </div>
 
-<div class="shadow">
+<div (click)="closeSelf()" *ngIf="certificat" class="shadow">
 
 </div>

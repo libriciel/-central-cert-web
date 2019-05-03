@@ -103,7 +103,9 @@ export class DateService {
       }
 
       if(tab.jours > 0){
-        dateTab.push(" et ");
+        if(tab.mois > 0 || tab.annees > 0){
+          dateTab.push(" et ");
+        }
       }
 
       if(tab.jours > 0){
@@ -129,30 +131,30 @@ export class DateService {
   isOrange(c: Certificat){
     let remTime = this.getRem(c);
     if(remTime != undefined){
-      if(remTime.annees >= 1){
-        return false;
-      }else if(remTime.mois >= 3){
-        return false;
+      if(remTime.mois <= 3){
+        if(remTime.mois >= 1 && remTime.jours >= 0){
+          return true;
+        }else{
+          return false;
+        }
       }else{
-        return true;
+        return false;
       }
+    }else{
+      return false;
     }
   }
 
   isRed(c: Certificat){
     let remTime = this.getRem(c);
     if(remTime != undefined){
-      if(this.isOrange(c) === false){
-        return false;
+      if(remTime.mois > 1){
+        return true;
       }else{
-        if(remTime.mois === 1 && remTime.jours === 0){
-          return true;
-        }else if(remTime.mois === 0){
-          return true;
-        }else{
-          return false;
-        }
+        return false;
       }
+    }else{
+      return true;
     }
   }
 }
