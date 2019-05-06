@@ -64,7 +64,6 @@ export class CertificatDetailComponent implements OnInit {
       dn = dn.substring(0, dn.length - 1);
     }
 
-    console.log(dn);
     this.certificat.dn = dn;
 
     this.certificatService.save(this.certificat).subscribe();

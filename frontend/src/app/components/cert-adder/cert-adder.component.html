@@ -108,7 +108,7 @@
       </thead>
       <tbody>
         <tr class="adder-list-content" *ngFor="let certificat of certificats; let i = index">
-          <td class="checkboxTD"><input type="checkbox" name="check{{i}}" ngModel="checked"></td>
+          <td class="checkboxTD"><input type="checkbox" name="check{{i}}" ngModel="true"></td>
           <td>{{getInformations(certificat).cn}}</td>
           <td>
             <p>{{getDate(certificat.notAfter)}}</p>

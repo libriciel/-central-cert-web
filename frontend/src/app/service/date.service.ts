@@ -131,8 +131,8 @@ export class DateService {
   isOrange(c: Certificat){
     let remTime = this.getRem(c);
     if(remTime != undefined){
-      if(remTime.mois <= 3){
-        if(remTime.mois >= 1 && remTime.jours >= 0){
+      if(remTime.annees === 0 && remTime.mois <= 3){
+        if(remTime.mois >= 1){
           return true;
         }else{
           return false;
@@ -148,7 +148,7 @@ export class DateService {
   isRed(c: Certificat){
     let remTime = this.getRem(c);
     if(remTime != undefined){
-      if(remTime.mois > 1){
+      if(remTime.annees === 0 && remTime.mois === 0 ){
         return true;
       }else{
         return false;

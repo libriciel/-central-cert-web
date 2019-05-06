@@ -30,7 +30,7 @@ export class CertificatListComponent implements OnInit {
 
   ngOnInit() {
     this.certificats = [];
-    this.certificats = [
+    /*this.certificats = [
       {
         id: 1,
         notBefore: new Date("December 17, 1800"),
@@ -161,144 +161,19 @@ export class CertificatListComponent implements OnInit {
         notifyAll: false,
         notified: false,
       },
-      {
-        id: 14,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP14",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 15,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP15",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 16,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP16",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 17,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP17",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 18,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP18",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 19,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP19",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 20,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP20",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 21,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP21",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 22,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP22",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 23,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP23",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 24,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP24",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 25,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP25",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      }
-    ];
-    this.certificatService.selectAll().subscribe(data => {
-      this.certificats = data;
-      this.dateDesc();
-      this.orderByFavoris();
-    });
-    this.pageNumber = 1;
-    this.page = this.getActualPage();
-    this.actualisePageIndication();
+    ];*/
     this.selectedCertificats = [];
     this.inDeletion = undefined;
+    this.pageNumber = 1;
+    this.actualiseCertList();
   }
 
-  getAllCerts(){
+  actualiseCertList(){
     this.certificatService.selectAll().subscribe(data => {
       this.certificats = data;
       this.dateDesc();
       this.orderByFavoris();
+      this.page = this.getActualPage();
     });
   }
 
@@ -326,10 +201,10 @@ export class CertificatListComponent implements OnInit {
   removeDetailled(){
     this.contactPressed = undefined;
     this.detailledCertificat = undefined;
-    this.getAllCerts();
+    this.actualiseCertList();
   }
 
-  toContact(certificat){
+  toContact(certificat: Certificat){
     this.detailledCertificat = certificat;
     this.contactPressed = certificat;
   }
@@ -356,6 +231,7 @@ export class CertificatListComponent implements OnInit {
     this.certificats = certs;
     this.certificatService.delete(id).subscribe();
     this.toastr.success('\"' + this.getInformations(cert).cn + '\" supprimé avec succès !!!');
+    this.actualiseCertList();
   }
 
   verifyDelete(certificat: Certificat){
@@ -410,11 +286,15 @@ export class CertificatListComponent implements OnInit {
       }
     }
     this.certificats = certs;
-    this.certificatService.delete(id).subscribe();
+    this.certificatService.delete(id).subscribe(data => {
+      this.actualiseCertList();
+    });
   }
 
   deleteAll(){
-    this.certificatService.deleteAll().subscribe();
+    this.certificatService.deleteAll().subscribe(data => {
+      this.actualiseCertList();
+    });
     this.certificats = [];
   }
 
@@ -424,7 +304,6 @@ export class CertificatListComponent implements OnInit {
     }else{
       certificat.favoris = true;
     }
-    this.orderByFavoris();
     this.certificatService.save(certificat).subscribe();
   }
 
@@ -449,7 +328,6 @@ export class CertificatListComponent implements OnInit {
       cert.favoris = true;
     });
     this.certificatService.saveAll(this.selectedCertificats).subscribe();
-    this.orderByFavoris();
   }
 
   selectedToNotFavoris(){
@@ -457,7 +335,6 @@ export class CertificatListComponent implements OnInit {
       cert.favoris = false;
     });
     this.certificatService.saveAll(this.selectedCertificats).subscribe();
-    this.orderByFavoris();
   }
 
   selectedToDelete(){
@@ -481,11 +358,11 @@ export class CertificatListComponent implements OnInit {
   getPage(num: number){
     let resPage = new Array();
     let min = num * 10 - 10;
-    let max = num * 10 - 1;
+    let max = num * 10;
     if(max > this.certificats.length){
-      max = this.certificats.length - 1;
+      max = this.certificats.length;
     }
-    for(let i = min; i <= max; i++){
+    for(let i = min; i < max; i++){
       resPage.push(this.certificats[i]);
     }
     return resPage;
@@ -500,7 +377,7 @@ export class CertificatListComponent implements OnInit {
   }
 
   canNextPage(){
-    if(this.pageNumber * 10 - 1 < this.certificats.length){
+    if(this.pageNumber * 10 < this.certificats.length){
       return true;
     }else{
       return false;
@@ -511,7 +388,6 @@ export class CertificatListComponent implements OnInit {
     if(this.pageNumber * 10 - 1 < this.certificats.length){
       this.pageNumber ++;
       this.page = this.getActualPage();
-      this.actualisePageIndication()
     }
   }
 
@@ -519,7 +395,6 @@ export class CertificatListComponent implements OnInit {
     if(this.pageNumber > 1){
       this.pageNumber --;
       this.page = this.getActualPage();
-      this.actualisePageIndication()
     }
   }
 
@@ -535,6 +410,7 @@ export class CertificatListComponent implements OnInit {
     for(let i = 0; i < paragraphs.length; i++){
       paragraphs[i].innerHTML = borneMin + "-" + borneMax + " sur " + max;
     }
+    return borneMin + "-" + borneMax + " sur " + max;
   }
 
   isGreen(certificat){
@@ -573,7 +449,7 @@ export class CertificatListComponent implements OnInit {
   }
 
 
-  objAsc(){
+  objDesc(){
     let buffer;
     for(let i = 0; i < this.certificats.length; i++) {
       for(let j = i; j < this.certificats.length; j++) {
@@ -586,8 +462,8 @@ export class CertificatListComponent implements OnInit {
     }
   }
 
-  objDesc(){
-    this.objAsc();
+  objAsc(){
+    this.objDesc();
     this.certificats = this.certificats.reverse();
   }
 
@@ -595,7 +471,7 @@ export class CertificatListComponent implements OnInit {
     let buffer;
     for(let i = 0; i < this.certificats.length; i++) {
       for(let j = i; j < this.certificats.length; j++) {
-        if(this.certificats[j].notAfter.getTime() < this.certificats[i].notAfter.getTime()){
+        if(new Date(this.certificats[j].notAfter).getTime() < new Date(this.certificats[i].notAfter).getTime()){
           buffer = this.certificats[i];
           this.certificats[i] = this.certificats[j];
           this.certificats[j] = buffer;
@@ -624,8 +500,8 @@ export class CertificatListComponent implements OnInit {
       dateAsc.classList.remove("selectedTri");
       this.dateDesc();
     }else{
-      dateDesc.classList.add("selectedTri");
-      this.dateDesc();
+      dateAsc.classList.add("selectedTri");
+      this.dateAsc();
     }
     this.page = this.getActualPage();
   }

@@ -6,7 +6,7 @@
       <input class="list-search-bar" type="text" placeholder="Rechercher un certificat ...">
     </div>
     <div class="search-right">
-      <app-cert-adder (event)="getAllCerts()"></app-cert-adder>
+      <app-cert-adder (event)="actualiseCertList(c)"></app-cert-adder>
     </div>
   </div>
   <div *ngIf="selectedCertificats.length > 0" class="buttonDiv">
@@ -20,8 +20,8 @@
     <button class="top-list-button-grey" type="button"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer</button>
   </div>
 
-  <div class="pageIndication">
-    <p class="pageParagraph">1-10 sur 10</p>
+  <div *ngIf="certificats.length > 0" class="pageIndication">
+    <p class="pageParagraph">{{actualisePageIndication()}}</p>
     <i *ngIf="canPreviousPage() == false" (click)="previousPage()" class="grey fa fa-chevron-left" aria-hidden="true"></i>
     <i *ngIf="canPreviousPage() == true" (click)="previousPage()" class="chevron fa fa-chevron-left" aria-hidden="true"></i>
     <i *ngIf="canNextPage() == false" (click)="nextPage()" class="grey fa fa-chevron-right" aria-hidden="true"></i>
@@ -81,8 +81,8 @@
       </td>
     </tr>
   </table>
-  <div class="pageIndication">
-    <p class="pageParagraph">1-10 sur 10</p>
+  <div *ngIf="certificats.length > 0" class="pageIndication">
+    <p class="pageParagraph">{{actualisePageIndication()}}</p>
     <i *ngIf="canPreviousPage() == false" (click)="previousPage()" class="grey fa fa-chevron-left" aria-hidden="true"></i>
     <i *ngIf="canPreviousPage() == true" (click)="previousPage()" class="chevron fa fa-chevron-left" aria-hidden="true"></i>
     <i *ngIf="canNextPage() == false" (click)="nextPage()" class="grey fa fa-chevron-right" aria-hidden="true"></i>

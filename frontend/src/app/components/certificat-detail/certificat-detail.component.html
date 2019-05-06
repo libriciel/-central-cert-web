@@ -116,8 +116,8 @@
 <app-certificats-contacts [certificat]="contactCertificat" (event)="closeContactWindows()"></app-certificats-contacts>
 
 
-<div class="det-verify-suppr">
-  <p>Êtes-vous sur de vouloir supprimer "{{getInformations(inDeletion).cn}}" arrivant à expiration le {{getDate(inDeletion.notAfter)}} ?</p>
+<div *ngIf="certificat" class="det-verify-suppr">
+  <p>Êtes-vous sur de vouloir supprimer ce certificat ?</p>
   <div class="det-validcancelbutton">
     <input (click)="detCloseVerifySuppr()" type="button" name="annuler" value="Annuler">
     <button (click)="detVerifySupprDelete()" type="button"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer</button>

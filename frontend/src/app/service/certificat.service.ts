@@ -50,8 +50,6 @@ export class CertificatService {
   public selectFromFile(file: File): Observable<Certificat>{
     const fd = new FormData();
     fd.append("file", file);
-    console.log(fd);
-    console.log(file);
     return this.http.post<Certificat>(this.selectFromFileUrl, fd);
   }
 

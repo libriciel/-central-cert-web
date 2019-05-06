@@ -103,7 +103,7 @@ export class CertAdderComponent implements OnInit {
   }
 
   callParent() {
-    this.event.emit(null);
+    this.event.emit(this.certificats);
   }
 
   createCert(form){
@@ -136,7 +136,6 @@ export class CertAdderComponent implements OnInit {
 
   onFileChange(event){
     this.file = <File>event.target.files[0];
-    console.log(this.file);
   }
 
   addByFile(){
@@ -149,11 +148,9 @@ export class CertAdderComponent implements OnInit {
 
   validate(form){
     let certs = new Array();
-
     let checks = Object.values(form.value);
-
     for(let i = 0; i < checks.length; i++){
-        if(checks[i] === "checked"){
+        if(checks[i] == "true"){
           certs.push(this.certificats[i]);
         }
     }
