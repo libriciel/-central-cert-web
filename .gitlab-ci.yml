@@ -19,8 +19,6 @@ junit:
   script:
     - cd core
     - gradle test
-  after_script:
-    - cat build/reports/jacoco/test/html/index.html
 
 jar:
   stage: package
