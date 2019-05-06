@@ -1,11 +1,379 @@
-#updateform {
-  display:flex;
+.wrapper {
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 620px;
+  background-color: white;
+  position: absolute;
+  max-width: 850px;
+  margin: auto;
+  color: #105385;
+  padding: 20px;
+  font-size: 15px;
+  z-index: 30;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+}
+
+.detail-header {
+  width: 100%;
+  display: flex;
   flex-direction: column;
-  position:absolute;
-  top:10%;
-  width: 90%;
-  height: 50%;
-  background-color: grey;
-  left: 5%;
-  right: 5%;
+}
+
+.detail-header-title-wraper {
+  margin-bottom: -40px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.detail-title {
+  width:70%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.detail-title p {
+  margin-right: 10px;
+}
+
+.close {
+  font-size: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.detail-supprimer button {
+  width: 100%;
+  background-color: #FFFFFF;
+  border: 2px solid #EA4B4B;
+  padding: 5px 0px;
+  margin-right: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #EA4B4B;
+}
+
+.detail-supprimer {
+  width:30%;
+  text-align: right;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.detail-supprimer .fa {
+  margin-right: 10px;
+}
+
+.detail-components {
+  display: flex;
+  flex-direction: row;
+}
+
+.detail-left {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  border-right: 1px solid #105385;
+  padding-right: 20px;
+}
+
+.detail-right {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.detail-adress-div {
+  height: 40px;
+}
+
+.detail-adresses {
+  width:57%;
+}
+
+.button-contact {
+  text-align: right;
+  width:43%;
+}
+
+.button-contact button {
+  width: 100%;
+  background-color: #FFFFFF;
+  border: 2px solid #89C4F1;
+  padding: 5px 0px;
+  margin-right: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #105385;
+}
+
+.button-contact .fa {
+  margin-right: 10px;
+}
+
+.info-container-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-container-row {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icon-text .fa {
+  margin-right: 10px;
+}
+
+.detail-list {
+  width:100%;
+  background-color: white;
+  border-collapse: collapse;
+}
+
+.detail-list tbody {
+  display:block;
+  overflow-y: scroll;
+  max-height: 200px;
+}
+
+.detail-list thead {
+  display: table;
+  width: 100%
+}
+
+.detail-list thead td th{
+  width: 50%
+}
+
+.detail-list tr {
+  display: table;
+  width: 100%;
+}
+
+.detail-list tbody tr {
+  display: table;
+  width: 100%;
+}
+
+.detail-list tbody tr td {
+  width: 50%;
+}
+
+.detail-list-top {
+  text-align: center;
+  height: 30px;
+  border-bottom: 2px solid #105385;
+}
+
+.detail-list-content {
+  text-align: center;
+  height: 30px;
+}
+
+.detail-list-content:hover {
+  background-color: #D0E8F9;
+}
+
+tr:nth-child(even){
+  background-color: #ECF5FC;
+}
+
+.dn-detail-title {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.dn-detail {
+  padding-left: 20px;
+}
+
+.span-detail {
+  display: flex;
+  flex-direction: row;
+}
+
+.span-detail p{
+  margin-right: 10px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.subtitle {
+  font-size: 18px;
+}
+
+.bleu-ciel {
+  color: #42A1E8;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+  padding-left: 20px;
+}
+
+.form-group input {
+  width: 40%;
+  position: absolute;
+  right: 0px;
+  border: none;
+  border-bottom: 2px solid #42A1E8;
+}
+
+.modifyButton{
+  background-color: #89C4F1;
+  color: #105385;
+  padding: 10px 0px 10px 0px;
+  width: 40%;
+  float: right;
+  margin-right: 20px;
+  border: 2px solid #89C4F1;
+}
+
+.modifyButton .fa {
+  margin-right: 10px;
+}
+
+.modifyButton:hover {
+  cursor: pointer;
+  border: 2px solid #105385;
+}
+
+.annulerAndSubmit {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  float: right;
+  margin-top: 10px;
+}
+
+.annulerAndSubmit .cancelSubmit {
+  background: none;
+  color: #105385;
+  border: none;
+}
+
+.annulerAndSubmit .submitChanges {
+  background-color: #89C4F1;
+  color: #105385;
+  padding: 10px;
+  float: right;
+  border: 2px solid #89C4F1;
+  margin-left: 10px;
+}
+
+.annulerAndSubmit .submitChanges .fa {
+  margin-right: 10px;
+}
+
+.annulerAndSubmit .submitChanges:hover {
+  cursor: pointer;
+  border: 2px solid #105385;
+}
+
+.annulerAndSubmit .cancelSubmit:hover {
+  cursor: pointer;
+}
+
+.det-verify-suppr {
+  display: none;
+  border: 1px solid #707070;
+  position: absolute;
+  flex-direction: column;
+  background-color: white;
+  padding: 0px 30px 10px 30px;;
+  width: 400px;
+  height: 200px;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 20%;
+  margin: auto;
+  z-index: 80;
+}
+
+.det-verify-suppr p{
+  width: 80%;
+  padding-top: 50px;
+}
+
+.det-close {
+  font-size: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.det-validcancelbutton {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  height: 40px;
+}
+
+.det-validcancelbutton button {
+  margin-left: 20px;
+  background-color: #EA4B4B;
+  border: none;
+  padding: 0px 15px;
+  font-size: 13px;
+  cursor: pointer;
+  color: #ffffff;
+  height: 100%;
+  font-size: 20px;
+}
+
+.det-validcancelbutton button .fa{
+  color: #ffffff;
+  margin-left: 0px;
+}
+
+.det-validcancelbutton input {
+  background: none;
+  border: none;
+  color: #105385;
+  font-size: 18px;
+}
+
+.shadow {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 20;
+}
+
+.supprshadow {
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 70;
 }

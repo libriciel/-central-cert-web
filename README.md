@@ -129,13 +129,31 @@ Parmi les entreprises qui proposent ce type de produits :
 
 ### Diagramme de classes de la base de données
 
-![Diagramme de classes de la base de données](markdown_ressources/img/BDD_class.png)
+![Diagramme de classes de la base de données](markdown_ressources/img/BDD_class_diagram.png)
+
+* **Les mails :**
+
+    Chaque adresse mail possédera en plus de l'adresse un attribut "**Notifiable**" qui permettra à l'application de savoir si elle doit envoyer des notifications à cette adresse. Cet attribut est un booléen.
+
+* **Les notifications :**
+
+    Les notifications sont représentées par deux attributs textes, un "**objet**" qui permet d'identifier le but de la notification, et un "**message**" qui permet de préciser des détails à la notification.
+
+* **Les certificats :**
+
+    Les certificats sont composés de différentes données importantes. Deux dates "**Not Before**" et "**Not After**" qui permettent de connaître la période de validité du formulaire, un attribut "**Distinguished Name (DN)**" qui contient toutes les informations importantes relatives au certificat, à savoir l'autorité de certification (AC), l'adresse, le pays ou encore les informations de contacts. Un attribut "**Favoris**" permet de savoir si ce certificat doit être affiché en favoris dans la liste ou non, cet attribut est un booléen (true ou false).
+
+    Finalement, les certificats ont une relation avec deux autres classes.
+
+    * La première relation concerne les mails. En effet les mails concernés directement par le certificat sont stockés dans le "**Distinguished Name**" et ne sont pas modifiables par l'utilisateur. Or on souhaite pouvoir ajouter des contacts aux certificats. C'est pourquoi les certificats possèdent une relation "one to many" avec les mails, permettant aux certificats d'avoir une liste de "**mails additionnels**".
+
+    * La seconde relation concerne les notifications. Si aucune notification n'est liée à un certificat, alors on envoi les notification de base programmées via les options de l'application, mais il est possible de préciser des notifications. C'est pourquoi on peut lier des notifications à un certificat.
 
 ***
 
 ### Récupération des certificats
 
-Une page dédiée à l'ajout de certificats à la base de donénes offrira différentes manières de les ajouter.
+Une page dédiée à l'ajout de certificats à la base de données offrira différentes manières de les ajouter.
 
 * **Par URL :**
 
@@ -314,17 +332,17 @@ Le détail d'un certificat est accessible en cliquant sur celui-ci dans la liste
 
 * ***Informations visibles dans le détail d'un certificat :***
 
-    1. Not before.
+    1. Not before, date de mise en validation du certificat.
 
-    2. Not After.
+    2. Not After, date de fin de validité du certificat.
 
     3. adresse mail du certificat.
 
-    4. Adresse additionnelles.
+    4. Adresse additionnelles (contacts ajoutés par l'utilisateur).
 
-    5. Temps restant.
+    5. Temps restant avant fin de validité.
 
-    6. DN (Distinguished Name)
+    6. DN (Distinguished Name) :
 
         a. Intitulé (Common Name).
 
@@ -459,7 +477,17 @@ Si les notifications personnalisées sont modifiables dans le détail des certif
 
 #### Diagramme de cas d'utilisation de l'application
 
-![Diagramme de cas d'utilisation de l'application](markdown_ressources/img/Atteste_Use_Case.png)
+![Diagramme de cas d'utilisation de l'application](markdown_ressources/img/Use_Case_Atteste.png)
+
+* Les cas d'utilisation principaux sont au nombre de quatre. On y trouve :
+
+  * **L'ajout de certificats.**
+
+  * **La visualisation des certificats.**
+
+  * **La gestion des certificats.**
+
+  * **La gestion des notifications.**
 
 ***
 

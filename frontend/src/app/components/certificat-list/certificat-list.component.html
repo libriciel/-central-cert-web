@@ -1,37 +1,112 @@
-<div>
-  <div>
-    <table>
-      <thead>
-        <tr>
-          <th scope="col">id</th>
-          <th scope="col">notBefore</th>
-          <th scope="col">notAfter</th>
-          <th scope="col">Remaining Time</th>
-          <th scope="col">mails</th>
-          <th scope="col">delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let certificat of certificats; let j = index"
-          [class.selected]="certificat === selectedCertificat"
-          (click)="onSelect(certificat)">
-          <td>{{ certificat.id }}</td>
-          <td>{{ getFrenchDate(certificat.notBefore)}}</td>
-          <td>{{ getFrenchDate(certificat.notAfter)}}</td>
-          <td>{{ getRemTime(certificat.notBefore, certificat.notAfter)}}</td>
-          <td>
-            <div *ngFor="let mail of certificat.mails; let k = index">
-              <p>{{certificat.mails[k].adresse}}</p>
-            </div>
-            <div *ngFor="let additionnalMail of certificat.additionnalMails; let l = index">
-              <p>{{certificat.mails[l].adresse}}</p>
-            </div>
-          </td>
-          <td><input value="delete" type="submit" (click)="delete(certificat.id, j)"></td>
-        </tr>
-      </tbody>
-    </table>
+<div class="body-accueil">
+  <p class="titleAccueil"> Accueil </p>
+  <div class="search-div">
+    <div class="search-left">
+      <i class="fa fa-search" aria-hidden="true"></i>
+      <input class="list-search-bar" type="text" placeholder="Rechercher un certificat ...">
+    </div>
+    <div class="search-right">
+      <app-cert-adder (event)="actualiseCertList(c)"></app-cert-adder>
+    </div>
   </div>
+  <div *ngIf="selectedCertificats.length > 0" class="buttonDiv">
+    <button class="favButton top-list-button" (click)="selectedToFavoris()" type="button"><i class="fa fa-star" aria-hidden="true"></i>Ajouter aux favoris</button>
+    <button class="favButton top-list-button" (click)="selectedToNotFavoris()" type="button"><i class="fa fa-star-o" aria-hidden="true"></i>Retirer des favoris</button>
+    <button class="deleteButton top-list-button" (click)="verifySelectDelete()" type="button"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer</button>
+  </div>
+  <div *ngIf="selectedCertificats.length == 0" class="buttonDiv">
+    <button class="top-list-button-grey" type="button"><i class="fa fa-star" aria-hidden="true"></i>Ajouter aux favoris</button>
+    <button class="top-list-button-grey" type="button"><i class="fa fa-star-o" aria-hidden="true"></i>Retirer des favoris</button>
+    <button class="top-list-button-grey" type="button"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer</button>
+  </div>
+
+  <div *ngIf="certificats.length > 0" class="pageIndication">
+    <p class="pageParagraph">{{actualisePageIndication()}}</p>
+    <i *ngIf="canPreviousPage() == false" (click)="previousPage()" class="grey fa fa-chevron-left" aria-hidden="true"></i>
+    <i *ngIf="canPreviousPage() == true" (click)="previousPage()" class="chevron fa fa-chevron-left" aria-hidden="true"></i>
+    <i *ngIf="canNextPage() == false" (click)="nextPage()" class="grey fa fa-chevron-right" aria-hidden="true"></i>
+    <i *ngIf="canNextPage() == true" (click)="nextPage()" class="chevron fa fa-chevron-right" aria-hidden="true"></i>
+  </div>
+  <table *ngIf="certificats.length > 0" class="table">
+    <tr class="top-list">
+      <th></th>
+      <th (click)="switchTriObjet()">
+        <div class="sorting-th">
+          <p>Objet</p>
+          <div class="sorting-div">
+            <i class="fa fa-sort-asc sort-obj-asc" aria-hidden="true"></i>
+            <i class="fa fa-sort-desc sort-obj-desc" aria-hidden="true"></i>
+          </div>
+        </div>
+      </th>
+      <th (click)="switchTriDate()">
+        <div class="sorting-th">
+          <p>Date d'expiration</p>
+          <div class="sorting-div">
+            <i class="fa fa-sort-asc sort-date-asc" aria-hidden="true"></i>
+            <i class="fa fa-sort-desc sort-date-desc" aria-hidden="true"></i>
+          </div>
+        </div>
+      </th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr class="list-content" *ngFor="let certificat of page; let j = index">
+      <td class="left-icon">
+        <input type="checkbox" (change)="checkBoxHandler(certificat, $event.target.checked)">
+        <i (click)="favorize(certificat)" class="fa fa-star-o" *ngIf="certificat.favoris == false" aria-hidden="true"></i>
+        <i (click)="favorize(certificat)" class="fa fa-star" *ngIf="certificat.favoris == true" aria-hidden="true"></i>
+      </td>
+      <td class="list-item">{{getInformations(certificat).cn}}</td>
+      <td>
+        <div class="divDates">
+          <div class="dateAff">
+            <p>{{getDate(certificat.notAfter)}}</p>
+            <p>{{getRemTime(certificat)}}</p>
+          </div>
+          <i *ngIf="isGreen(certificat) == true" class="greenIndicator fa fa-circle" aria-hidden="true"></i>
+          <i *ngIf="isOrange(certificat) == true" class="orangeIndicator fa fa-circle" aria-hidden="true"></i>
+          <i *ngIf="isRed(certificat) == true" class="redIndicator fa fa-circle" aria-hidden="true"></i>
+        </div>
+      </td>
+      <td (click)="toDetail(certificat)" class="right-icon">
+        <i class="fa-none fa fa-eye" aria-hidden="true"></i>
+      </td>
+      <td (click)="toContact(certificat)" class="right-icon">
+        <i class="fa fa-none fa-bell" aria-hidden="true"></i>
+      </td>
+      <td (click)="verifyDelete(certificat)" class="right-icon">
+        <i class="fa fa-none fa-trash" aria-hidden="true"></i>
+      </td>
+    </tr>
+  </table>
+  <div *ngIf="certificats.length > 0" class="pageIndication">
+    <p class="pageParagraph">{{actualisePageIndication()}}</p>
+    <i *ngIf="canPreviousPage() == false" (click)="previousPage()" class="grey fa fa-chevron-left" aria-hidden="true"></i>
+    <i *ngIf="canPreviousPage() == true" (click)="previousPage()" class="chevron fa fa-chevron-left" aria-hidden="true"></i>
+    <i *ngIf="canNextPage() == false" (click)="nextPage()" class="grey fa fa-chevron-right" aria-hidden="true"></i>
+    <i *ngIf="canNextPage() == true" (click)="nextPage()" class="chevron fa fa-chevron-right" aria-hidden="true"></i>
+  </div>
+
+  <div *ngIf="certificats.length <= 0">
+    <p>Pas de certificats</p>
+  </div>
+
+  <div class="verify-suppr">
+    <p *ngIf="inDeletion == undefined">Êtes-vous sur de vouloir supprimer ces {{selectedCertificats.length}} certificats ?</p>
+    <p *ngIf="inDeletion != undefined">Êtes-vous sur de vouloir supprimer "{{getInformations(inDeletion).cn}}" arrivant à expiration le {{getDate(inDeletion.notAfter)}} ?</p>
+    <div class="validcancelbutton">
+      <input (click)="closeVerifySuppr()" type="button" name="annuler" value="Annuler">
+      <button (click)="verifySupprDelete()" type="button"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer</button>
+    </div>
+    <i (click)="closeVerifySuppr()" class="fa fa-times close" aria-hidden="true"></i>
+  </div>
+
 </div>
-<input type="submit" (click)="deleteAll()" value="deleteall">
-<app-certificat-detail [certificat]="selectedCertificat"></app-certificat-detail>
+
+<div class="shadow">
+
+</div>
+
+<app-certificat-detail [contactCertificat]="contactPressed" [certificat]="detailledCertificat" (event)="removeDetailled()"></app-certificat-detail>
