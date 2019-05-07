@@ -234,6 +234,17 @@ tr:nth-child(even){
   font-size: 20px;
 }
 
+.errorFormGroup {
+  position: relative;
+}
+
+.error_span{
+  color: red;
+  position: absolute;
+  left: 0px;
+  bottom: -20px;
+}
+
 .shadow {
   position: fixed;
   top: 0px;

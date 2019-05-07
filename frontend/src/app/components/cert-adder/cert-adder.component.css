@@ -14,6 +14,97 @@
   padding: 20px;
 }
 
+.buttonCertAdderDiv {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  height: 70%;
+}
+
+.certAddButton {
+  cursor: pointer;
+  height: 80%;
+  width: 17%;
+  text-align: center;
+  margin: 30px auto auto auto;
+  padding: 20px;
+  background-color: #D0E8F9;
+  border: 2px solid #D0E8F9;
+  border-bottom: 2px solid #42A1E8;
+  -webkit-transition: border 0.3s, margin 0.3s;
+  transition: border 0.3s, margin 0.3s;
+}
+
+.titleCerAdder {
+  font-size: 18px;
+  font-weight: bold;
+  height: 50px;
+}
+
+.descriptionCertAdder {
+  margin-top: 40%;
+}
+
+.buttonCertAdderDiv div:hover {
+  margin: 0px auto auto auto;
+  border: 2px solid #42A1E8;
+}
+
+.urlCertAdder {
+  width: 80%;
+  height: 70%;
+  margin: 15% auto;
+}
+
+input[type="text"]{
+  border-radius: 0px 4px 0px 0px;
+  background-color: #D0E8F9;
+  font-size: 16px;
+  padding: 12px 20px 12px 20px;
+  border:none;
+  border-bottom: 2px solid #42A1E8;
+  width: 30%;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type="text"]:focus {
+  width: 90%;
+}
+
+input[type="date"] {
+  border-radius: 0px 0px 4px 0px;
+  background-color: #D0E8F9;
+  font-size: 16px;
+  padding: 12px 20px 12px 20px;
+  border:none;
+  border-top: 2px solid #42A1E8;
+  width: 30%;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type="date"]:focus {
+  width: 90%;
+}
+
+input[type="file"] {
+  margin: auto;
+  border-radius: 0px 0px 4px 4px;
+  background-color: #D0E8F9;
+  padding: 50px 100px;
+  border:none;
+  cursor: pointer;
+  border-top: 2px solid #42A1E8;
+  -webkit-transition: background-color 0.4s ease-in-out;
+  transition: background-color 0.4s ease-in-out;
+}
+
+input[type="file"]:hover {
+  background-color: #89C4F1;
+}
+
+
 .add-cert-shadow {
   display: none;
   position: fixed;
@@ -28,6 +119,10 @@
 
 .active {
   display: inline;
+}
+
+.bleu-ciel {
+  color: #42A1E8;
 }
 
 .adder-list {
@@ -135,13 +230,42 @@ tr:nth-child(even){
 
 .form-inner-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding-left: 25px;
   padding-right: 25px;
+  width: 90%;
+  margin: auto;
+}
+
+.errorFormGroup {
+  position: relative;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.errorFormGroupFile {
+  position: relative;
+  margin: auto;
+}
+
+.error_span{
+  color: red;
+  position: absolute;
+  left: 0px;
+  bottom: -20px;
 }
 
 .formDiv {
   max-height: 325px;
   overflow: scroll;
   margin-left: auto;
+}
+
+.text-inner-container {
+  margin: auto auto 30px auto;
+}
+
+.subtitle {
+  font-size: 18px;
+  font-weight: bold;
 }

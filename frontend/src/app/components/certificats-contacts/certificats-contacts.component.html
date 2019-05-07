@@ -44,9 +44,17 @@
         <i class="fa fa-envelope" aria-hidden="true"></i>
         <p>Ajout d'un contact</p>
       </div>
-      <form class="contactForm" (ngSubmit)="addContact(formContact)" #formContact="ngForm">
-        <p>Adresse mail</p>
-        <input type="mail" id="mail" name="mail" placeholder="monadresse@mail.com" ngModel>
+      <form [class.has-error]="contactEmail.invalid && contactEmail.touched" class="contactForm" (ngSubmit)="addContact(formContact)" #formContact="ngForm">
+        <div class="errorFormGroup">
+          <p>Adresse mail</p>
+          <input required email #contactEmail="ngModel" type="mail" id="mail" name="mail" placeholder="monadresse@mail.com" ngModel>
+          <span class="error_span" *ngIf="contactEmail.errors?.required && contactEmail.touched">
+            L'adresse email est nécéssaire
+          </span>
+          <span class="error_span" *ngIf="contactEmail.errors?.email && contactEmail.touched">
+            L'adresse email est invalide
+          </span>
+        </div>
         <div class="notifCheckbox">
           <p>Notifications</p>
           <input type="checkbox" id="notifiable" name="notifiable" ngModel>

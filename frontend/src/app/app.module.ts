@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CertAdderComponent } from './components/cert-adder/cert-adder.component';
 import { ContentComponent } from './components/content/content.component';
+import { CustomFormsModule } from 'ngx-custom-validators';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { ContentComponent } from './components/content/content.component';
     LsComposantsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
+    CustomFormsModule,
   ],
   providers: [
     CertificatService,

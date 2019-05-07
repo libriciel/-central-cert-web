@@ -2,24 +2,48 @@
 
 <div class="add-cert-container">
   <p>STADE 1</p>
-  <button (click)="nextStageURL()">URL</button>
-  <button (click)="nextStageFORM()">FORM</button>
-  <button (click)="nextStageTOKEN()">TOKEN</button>
-  <button (click)="nextStageKEYSTORE()">KEYSTORE</button>
+  <div class="buttonCertAdderDiv">
+    <div class="certAddButton" (click)="nextStageURL()">
+      <p class="titleCerAdder" >Par URL</p>
+      <p class="descriptionCertAdder">Entrez une URL (exemple: https://votreSite.fr) et récupérez les certificats qu'elle contient.</p>
+    </div>
+
+    <div class="certAddButton" (click)="nextStageFORM()">
+      <p class="titleCerAdder" >Par formulaire</p>
+      <p class="descriptionCertAdder">Si vous n'avez pas accès au certificat, remplissez un formulaire avec les caractéristiques connues.</p>
+    </div>
+
+    <div class="certAddButton" (click)="nextStageTOKEN()">
+      <p class="titleCerAdder" >Par un fichier</p>
+      <p class="descriptionCertAdder">Importez le certificat d'un fichier (Exemple: fichier.crt, fichier.cer ...).</p>
+    </div>
+
+    <div class="certAddButton" (click)="nextStageKEYSTORE()">
+      <p class="titleCerAdder" >Par le magasin windows</p>
+      <p class="descriptionCertAdder">Importez directement tous les certificats de votre magasin windows.</p>
+    </div>
+
+  </div>
   <div class="validcancelbutton">
     <input (click)="close()" type="button" name="annuler" value="Annuler">
-    <button type="button" (click)="previousStage()"><i class="fa fa-chevron-left" aria-hidden="true"></i>Revenir en arrière</button>
-    <button type="button"><i class="fa fa-plus" aria-hidden="true"></i>Valider</button>
   </div>
   <i (click)="close()" class="fa fa-times close" aria-hidden="true"></i>
 </div>
 
 <div class="add-cert-container">
   <p>STADE 2</p>
-  <div *ngIf="mode == 1">
-    <p>URL :</p>
+  <div class="urlCertAdder"*ngIf="mode == 1">
+    <p>Entrez une URL valide dans le champ ci-dessous :</p>
     <form (ngSubmit)="addByURL(form1)" #form1="ngForm">
-      <input type="text" id="URL" name="URL" ngModel>
+      <div [class.has-error]="urlAdder.invalid && urlAdder.touched" class="errorFormGroup">
+        <input type="text" [(ngModel)]="url" name="urlAdder" #urlAdder="ngModel" url required>
+        <span class="error_span" *ngIf="urlAdder.errors?.required && urlAdder.touched">
+          L'url est nécéssaire
+        </span>
+        <span class="error_span" *ngIf="urlAdder.errors?.url && urlAdder.touched">
+          L'url est invalide
+        </span>
+      </div>
       <div class="validcancelbutton">
         <input (click)="close()" type="button" name="annuler" value="Annuler">
         <button type="button" (click)="previousStage()"><i class="fa fa-chevron-left" aria-hidden="true"></i>Revenir en arrière</button>
@@ -33,33 +57,28 @@
   <div *ngIf="mode == 2">
     <form (ngSubmit)="createCert(form2)" #form2="ngForm">
       <div class="form-inner-container">
-        <div>
+        <div [class.has-error]="cn.invalid && cn.touched" class="errorFormGroup">
           <p>Nom / sujet :</p>
-          <input type="text" id="cn" name="cn" ngModel/>
-          <p>Date de mise en circulation :</p>
-          <input type="date" pattern="dd/MM/YYYY" id="notbefore" name="notbefore" ngModel/>
-          <p>Date d'expiration :</p>
-          <input type="date" pattern="dd/MM/YYYY" id="notafter" name="notafter" ngModel/>
-          <p>Adresse mail</p>
-          <input type="mail" id="mail" name="mail" ngModel/>
+          <input type="text" id="cn" name="cn" #cn="ngModel" required ngModel/>
+          <span class="error_span" *ngIf="cn.errors?.required && cn.touched">
+            La sujet est nécéssaire
+          </span>
         </div>
-        <div class="formDiv">
-          <p>Titre</p>
-          <input type="text" id="t" name="t" ngModel/>
-          <p>Nom de l'organisation :</p>
-          <input type="text" id="o" name="o" ngModel/>
-          <p>Unité d'organisation :</p>
-          <input type="text" id="ou" name="ou" ngModel/>
-          <p>Localité :</p>
-          <input type="text" id="l" name="l" ngModel/>
-          <p>Région / état :</p>
-          <input type="text" id="st" name="st" ngModel/>
-          <p>Pays</p>
-          <input type="text" id="c" name="c" ngModel/>
-          <p>Rue</p>
-          <input type="text" id="street" name="street" ngModel/>
-          <p>Code postal / code ZIP :</p>
-          <input type="text" id="pc" name="pc" ngModel/>
+
+        <div [class.has-error]="notbefore.invalid && notbefore.touched" class="errorFormGroup">
+          <p>Date de mise en circulation :</p>
+          <input type="date" pattern="dd/MM/YYYY" id="notbefore" name="notbefore" #notbefore="ngModel" required ngModel/>
+          <span class="error_span" *ngIf="notbefore.errors?.required && notbefore.touched">
+            La date de mise en circulation est nécéssaire
+          </span>
+        </div>
+
+        <div [class.has-error]="notafter.invalid && notafter.touched" class="errorFormGroup">
+          <p>Date d'expiration :</p>
+          <input type="date" pattern="dd/MM/YYYY" id="notafter" name="notafter" #notafter="ngModel" required ngModel/>
+          <span class="error_span" *ngIf="notafter.errors?.required && notafter.touched">
+            La date d'expiration est nécéssaire
+          </span>
         </div>
       </div>
 
@@ -74,7 +93,22 @@
 
   <div *ngIf="mode == 3">
     <form (ngSubmit)="addByFile()" #file="ngForm" enctype="multipart/form-data">
-      <input type="file" id="file" class="file" name="file" (change)="onFileChange($event)" ngModel>
+      <div class="form-inner-container">
+        <div class="text-inner-container">
+          <p class="subtitle">Choisissez un fichier à importer.</p>
+          <p>Le fichier doit avoir l'une des extensions suivantes :</p>
+          <ul>
+            <li>Format PEM : <span class="bleu-ciel">.cer, .crt, .pem ou .key</span></li>
+            <li>Format DER : <span class="bleu-ciel">.cer ou .der</span></li>
+            <li>Format P7B/PKCS#7 : <span class="bleu-ciel">.p7b ou .p7c</span></li>
+            <li>Format PFX/P12/PKCS#12 : <span class="bleu-ciel">.pfx ou .p12</span></li>
+          </ul>
+        </div>
+        <div class="errorFormGroupFile">
+          <input type="file" id="file" class="file" name="file" (change)="onFileChange($event)" ngModel>
+          <span class="error_span" *ngIf="showFileError() == true">Le fichier importé n'est pas un certificat</span>
+        </div>
+      </div>
       <div class="validcancelbutton">
         <input (click)="close()" type="button" name="annuler" value="Annuler">
         <button type="button" (click)="previousStage()"><i class="fa fa-chevron-left" aria-hidden="true"></i>Revenir en arrière</button>

@@ -24,18 +24,21 @@ export class CertificatsContactsComponent implements OnInit {
   }
 
   addContact(form){
-    let notif = false;
-    if(form.value.notifiable === true){
-      notif = true;
-    }
+    if(form.status = "VALID"){
+      let notif = false;
+      if(form.value.notifiable === true){
+        notif = true;
+      }
 
-    let mail = {
-      adresse: form.value.mail,
-      notifiable: notif
+      let mail = {
+        adresse: form.value.mail,
+        notifiable: notif
+      }
+
+      this.certificat.additionnalMails.push(mail);
+      this.certificatService.save(this.certificat).subscribe();
+      this.toastr.success('Un contact ajouté avec succès !!!');
     }
-    this.certificat.additionnalMails.push(mail);
-    this.certificatService.save(this.certificat).subscribe();
-    this.toastr.success('Un contact ajouté avec succès !!!');
   }
 
   deleteContact(index){

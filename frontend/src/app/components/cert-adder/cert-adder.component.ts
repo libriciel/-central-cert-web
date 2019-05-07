@@ -91,10 +91,12 @@ export class CertAdderComponent implements OnInit {
   }
 
   addByURL(url){
-    this.certificatService.selectFromUrl(url.value.URL).subscribe(data => {
-      this.certificats = data;
-    });
-    this.nextStage();
+    if(url.status === "VALID"){
+      this.certificatService.selectFromUrl(url.value.urlCertAdder).subscribe(data => {
+        this.certificats = data;
+      });
+      this.nextStage();
+    }
   }
 
   closeSelf(){
@@ -107,43 +109,70 @@ export class CertAdderComponent implements OnInit {
   }
 
   createCert(form){
-    this.certificats = [];
-    let cert = {
-      id: undefined,
-      notBefore: new Date(form.value.notbefore),
-      notAfter: new Date(form.value.notafter),
-      favoris: false,
-      dn: "",
-      additionnalMails: [],
-      notified: false,
-      notifyAll: false,
+    if(form.status === "VALID"){
+      this.certificats = [];
+      let cert = {
+        id: undefined,
+        notBefore: new Date(form.value.notbefore),
+        notAfter: new Date(form.value.notafter),
+        favoris: false,
+        dn: "",
+        additionnalMails: [],
+        notified: false,
+        notifyAll: false,
+      }
+      this.certificats.push(cert);
+      this.nextStage();
     }
-
-    cert.dn = "CN=" + form.value.cn + ","
-            + "E=" + form.value.mail + ","
-            + "T=" + form.value.t + ","
-            + "O=" + form.value.o + ","
-            + "OU=" + form.value.ou + ","
-            + "L=" + form.value.l + ","
-            + "ST=" + form.value.st + ","
-            + "C=" + form.value.c + ","
-            + "STREET=" + form.value.street + ","
-            + "PC=" + form.value.pc + ",";
-
-    this.certificats.push(cert);
-    this.nextStage();
   }
 
   onFileChange(event){
     this.file = <File>event.target.files[0];
   }
 
+  showFileError(){
+    if(this.file == undefined
+    || this.file.name.includes(".cer")
+    || this.file.name.includes(".crt")
+    || this.file.name.includes(".pem")
+    || this.file.name.includes(".key")
+    || this.file.name.includes(".der")
+    || this.file.name.includes(".p7b")
+    || this.file.name.includes(".p7c")
+    || this.file.name.includes(".pfx")
+    || this.file.name.includes(".p12")){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+  isCorrectFile(){
+    console.log(this.file);
+    if(this.file != undefined &&
+      (this.file.name.includes(".cer")
+    || this.file.name.includes(".crt")
+    || this.file.name.includes(".pem")
+    || this.file.name.includes(".key")
+    || this.file.name.includes(".der")
+    || this.file.name.includes(".p7b")
+    || this.file.name.includes(".p7c")
+    || this.file.name.includes(".pfx")
+    || this.file.name.includes(".p12"))){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
   addByFile(){
-    this.certificats = [];
-    this.certificatService.selectFromFile(this.file).subscribe(data => {
-      this.certificats.push(data);
-    });
-    this.nextStage();
+    if(this.file != undefined && this.isCorrectFile() === true){
+      this.certificats = [];
+      this.certificatService.selectFromFile(this.file).subscribe(data => {
+        this.certificats.push(data);
+      });
+      this.nextStage();
+    }
   }
 
   validate(form){
