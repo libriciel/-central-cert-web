@@ -148,7 +148,6 @@ export class CertAdderComponent implements OnInit {
   }
 
   isCorrectFile(){
-    console.log(this.file);
     if(this.file != undefined &&
       (this.file.name.includes(".cer")
     || this.file.name.includes(".crt")

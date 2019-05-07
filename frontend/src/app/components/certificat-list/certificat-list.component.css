@@ -1,15 +1,4 @@
-.body-accueil {
-  width: 90%;
-  margin: auto;
-  color: #105385;
-}
-
-.titleAccueil {
-  color: #105385;
-  font-size: 32px;
-  font-weight: bold;
-}
-
+/* Search bar */
 .search-div {
   width: 100%;
   align-items: center;
@@ -18,14 +7,8 @@
   margin-top: 20px;
 }
 
-.search-right {
-  height: 100%;
-  width: 25%;
-  text-align: right;
-}
-
 .search-left {
-  height: 100%;
+  height: 90%;
   width: 75%;
   display: flex;
   flex-direction: row;
@@ -33,19 +16,23 @@
   background-color: #D0E8F9;;
 }
 
-.search-div .fa{
-  width: auto;
+/* Cert-adder button position */
+.search-right {
+  height: 90%;
+  width: 25%;
+  text-align: right;
 }
 
-.list-search-bar {
+.search-div input {
   width:100%;
+  padding: 10px;
   color: #42A1E8;
   background-color: #D0E8F9;
-  padding: 10px;
   border: none;
   font-size: 15px;
 }
 
+/*Boutons sélection*/
 .buttonDiv {
   text-align: right;
   display: flex;
@@ -54,22 +41,12 @@
   margin-top: 20px;
 }
 
-.deleteButton:hover {
-  color: red;
-  border: 2px solid red;
-}
-
-.favButton:hover {
-  border: 2px solid #105385;
-}
-
 .top-list-button {
   background-color: #FFFFFF;
   border: 2px solid #89C4F1;
   padding: 12px 16px;
   margin-right: 20px;
   font-size: 15px;
-  cursor: pointer;
   color: #105385;
 }
 
@@ -84,76 +61,28 @@
   color: #105385;
 }
 
+.deleteButton:hover {
+  color: red;
+  border: 2px solid red;
+}
+
+.favButton:hover {
+  border: 2px solid #105385;
+}
+
+/*Table*/
 .table {
   position: relative;
   width:100%;
   background-color: white;
   border-collapse: collapse;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
-  font-size: 15px;
+  font-size: 18px;
   margin-top: 20px;
 }
 
-.left-icon {
-  width: 10%;
-}
-
-.left-icon .fa {
-  cursor: pointer;
-}
-
-.right-icon {
-  height: inherit;
-  width: 5%;
-  text-align: center;
-}
-
-.right-icon:hover{
-  background-color: #B3D9F5;
-  cursor: pointer;
-}
-
-.right-icon:hover .fa-bell{
-  color: black;
-}
-
-.right-icon:hover .fa-trash{
-  color: red;
-}
-
-.right-icon:hover .fa-eye{
-  color: black;
-}
-
-.right-icon .fa-none {
-  display: none;
-}
-
-.fa {
-  font-size: 20px;
-  margin: 0px 10px 0px 10px;
-}
-
-.list-item {
-  text-align: center;
-  width:35%;
-}
-
-.divDates {
-  align-items: center;
-  display: flex;
-  flex-direction: row;
-  text-align: center;
-  width: max-content;
-  margin: auto;
-}
-
-.divDates .fa {
-  float: right;
-}
-
 .top-list {
-  height: 30px;
+  height: 80px;
   border-bottom: 1px solid #C1C1C1;
 }
 
@@ -165,7 +94,7 @@
   background-color: #D0E8F9;
 }
 
-.list-content:hover .right-icon .fa-none {
+.list-content:hover .fa-none {
   display: inline;
 }
 
@@ -173,30 +102,60 @@ tr:nth-child(even){
   background-color: #ECF5FC;
 }
 
-.sorting-th {
-  display: flex;
-  flex-direction:row;
+.icon-th {
+  width: 7%;
   align-items: center;
-  width: min-content;
-  margin:auto;
+  text-align: center;
 }
 
-.sorting-th p {
-  margin-right: 10px;
-  white-space: nowrap;
+.icon-th .fa {
+  font-size: 150%;
 }
 
-.sorting-div {
-  height: 30px;
+.hover-th:hover {
+  background-color: #A0CFF3;
+}
+
+.hover-th:hover .fa-trash {
+  color: red;
+}
+
+.content-th {
+  text-align: left;
+}
+
+.content-th .sorting-menu {
+  display: flex;
+  flex-direction: row;
+}
+
+.content-th .sorting-menu div {
   display: flex;
   flex-direction: column;
+  margin: auto 20px;
 }
 
-.sorting-div .fa {
-  font-size: 25px;
+.content-th .sorting-menu div i{
+  font-size: 40px;
+}
+
+.content-th .sorting-menu div .fa-sort-asc{
   height: 10px;
 }
 
+.first {
+  width: 30%;
+}
+
+.second {
+  width: 10%;
+}
+
+.fa-none {
+  display: none;
+}
+
+/* */
 .verify-suppr {
   border: 1px solid #707070;
   position: absolute;
@@ -219,13 +178,6 @@ tr:nth-child(even){
   padding-top: 50px;
 }
 
-.close {
-  font-size: 20px;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
 .validcancelbutton {
   position: absolute;
   bottom: 30px;
@@ -239,7 +191,6 @@ tr:nth-child(even){
   border: none;
   padding: 0px 15px;
   font-size: 13px;
-  cursor: pointer;
   color: #ffffff;
   height: 100%;
   font-size: 20px;
@@ -263,16 +214,6 @@ tr:nth-child(even){
   display: flex;
   flex-direction: row;
   align-items: center;
-}
-
-.grey {
-  color: #C1C1C1;
-  cursor: not-allowed;
-}
-
-.chevron:hover {
-  cursor: pointer;
-  color: black;
 }
 
 .redIndicator {
@@ -305,4 +246,9 @@ tr:nth-child(even){
   z-index: 10;
   background-color: black;
   opacity: 0.5;
+}
+
+.fa {
+  font-size: 20px;
+  margin: 0px 10px 0px 10px;
 }

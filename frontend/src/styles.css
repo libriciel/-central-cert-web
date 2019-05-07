@@ -8,4 +8,53 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
   background-color: #F7F7F7;
+  color: #105385;
+}
+
+.page-title {
+  font-size: 32px;
+}
+
+.title {
+  font-size: 26px;
+}
+
+.subtitle {
+  font-size: 18px;
+}
+
+.bleu-ciel {
+  color: #42A1E8;
+}
+
+.grey {
+  color: #C1C1C1;
+  cursor: not-allowed;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.main-container {
+  width: 90%;
+  margin: auto;
+}
+
+.close {
+  font-size: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.error_span{
+  color: red;
+  position: absolute;
+  left: 0px;
+  bottom: -20px;
 }

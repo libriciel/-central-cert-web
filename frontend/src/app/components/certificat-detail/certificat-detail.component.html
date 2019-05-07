@@ -2,12 +2,12 @@
   <div class="detail-header">
     <div class="detail-header-title-wraper">
       <div class="detail-title">
-        <p class="title">Mon certificat</p>
-        <i class="title fa fa-star-o" *ngIf="certificat.favoris == false" aria-hidden="true"></i>
-        <i class="title fa fa-star" *ngIf="certificat.favoris == true" aria-hidden="true"></i>
+        <p class="page-title bold">Mon certificat</p>
+        <i class="page-title fa fa-star-o" *ngIf="certificat.favoris == false" aria-hidden="true"></i>
+        <i class="page-title fa fa-star" *ngIf="certificat.favoris == true" aria-hidden="true"></i>
       </div>
       <div class="detail-supprimer">
-        <button (click)="detVerifySelectDelete()" routerLink="/accueil" type="button"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer le certificat</button>
+        <button class="pointer" (click)="detVerifySelectDelete()" routerLink="/accueil" type="button"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer le certificat</button>
       </div>
     </div>
     <p class="bleu-ciel subtitle">Arrive en expiration le {{getDate(certificat.notAfter)}} ( {{getRemTime(certificat)}} )</p>
@@ -35,7 +35,7 @@
           <p>Adresse(s) additionnelle(s) :</p>
         </div>
         <div class="button-contact">
-          <button (click)="contactWindow()" type="button"><i class="fa fa-cog" aria-hidden="true"></i>Gérer les contacts</button>
+          <button class="pointer" (click)="contactWindow()" type="button"><i class="fa fa-cog" aria-hidden="true"></i>Gérer les contacts</button>
         </div>
       </div>
 
@@ -56,7 +56,7 @@
       </table>
     </div>
     <div class="detail-right">
-      <p class="dn-detail-title">Informations complémentaires</p>
+      <p class="dn-detail-title bold">Informations complémentaires</p>
       <div *ngIf="inEdit == false" class="dn-detail">
         <span class="span-detail"><p>Intitulé :</p><p class="bleu-ciel">{{getInformations(certificat).cn}}</p></span>
         <span class="span-detail"><p>Unité d'organisation :</p><p class="bleu-ciel">{{getInformations(certificat).ou}}</p></span>
@@ -66,7 +66,7 @@
         <span class="span-detail"><p>Code postal / ZIP code :<p><p class="bleu-ciel">{{getInformations(certificat).pc}}</p></span>
         <span class="span-detail"><p>Rue :</p><p class="bleu-ciel">{{getInformations(certificat).street}}</p></span>
         <span class="span-detail"><p>Organisation :</p><p class="bleu-ciel">{{getInformations(certificat).o}}</p></span>
-        <button class="modifyButton" *ngIf="inEdit == false" (click)="edit()"><i class="fa fa-pencil" aria-hidden="true"></i>Modifier</button>
+        <button class="modifyButton pointer" *ngIf="inEdit == false" (click)="edit()"><i class="fa fa-pencil" aria-hidden="true"></i>Modifier</button>
       </div>
       <form *ngIf="inEdit == true" (ngSubmit)="changeDetail(formDetail)" #formDetail="ngForm">
         <div class="form-group">
@@ -102,15 +102,14 @@
           <input type="text" name="o" ngModel="{{getInformations(certificat).o}}">
         </div>
         <div class="annulerAndSubmit">
-          <button class="cancelSubmit" (click)="annulerEdit()" type="button">Annuler</button>
-          <button class="submitChanges" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>Enregistrer</button>
+          <button class="cancelSubmit pointer" (click)="annulerEdit()" type="button">Annuler</button>
+          <button class="submitChanges pointer" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>Enregistrer</button>
         </div>
       </form>
 
     </div>
   </div>
-  <i (click)="closeSelf()" class="fa fa-times close" aria-hidden="true"></i>
-
+  <i class="fa fa-times close pointer" (click)="closeSelf()" aria-hidden="true"></i>
 </div>
 
 <app-certificats-contacts [certificat]="contactCertificat" (event)="closeContactWindows()"></app-certificats-contacts>
@@ -119,10 +118,10 @@
 <div *ngIf="certificat" class="det-verify-suppr">
   <p>Êtes-vous sur de vouloir supprimer ce certificat ?</p>
   <div class="det-validcancelbutton">
-    <input (click)="detCloseVerifySuppr()" type="button" name="annuler" value="Annuler">
-    <button (click)="detVerifySupprDelete()" type="button"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer</button>
+    <input class="pointer" (click)="detCloseVerifySuppr()" type="button" name="annuler" value="Annuler">
+    <button class="pointer" (click)="detVerifySupprDelete()" type="button"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer</button>
   </div>
-  <i (click)="detCloseVerifySuppr()" class="fa fa-times det-close" aria-hidden="true"></i>
+  <i (click)="detCloseVerifySuppr()" class="fa fa-times close pointer" aria-hidden="true"></i>
 </div>
 
 <div (click)="closeSelf()" *ngIf="certificat" class="shadow">

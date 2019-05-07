@@ -92,7 +92,6 @@
   padding: 5px 5px;
   margin-right: 20px;
   font-size: 13px;
-  cursor: pointer;
   color: #105385;
 }
 
@@ -187,19 +186,6 @@ tr:nth-child(even){
   margin-right: 10px;
 }
 
-.title {
-  font-size: 26px;
-  font-weight: bold;
-}
-
-.subtitle {
-  font-size: 18px;
-}
-
-.bleu-ciel {
-  color: #42A1E8;
-}
-
 .icon-text {
   display: flex;
   flex-direction: row;
@@ -210,13 +196,6 @@ tr:nth-child(even){
   margin-right: 20px;
 }
 
-.close {
-  font-size: 20px;
-  position: absolute;
-  top: 20px;
-  right: 20px;
-}
-
 .validcancelbutton {
   float: right;
   height: 40px;
@@ -225,24 +204,24 @@ tr:nth-child(even){
 .validcancelbutton button {
   margin-left: 20px;
   background-color: #89C4F1;
-  border: none;
+  border: 2px solid #89C4F1;
   padding: 0px 15px;
   font-size: 13px;
-  cursor: pointer;
   color: #105385;
   height: 100%;
   font-size: 20px;
 }
 
-.errorFormGroup {
-  position: relative;
+.validcancelbutton button:hover {
+  border: 2px solid #105385;
 }
 
-.error_span{
-  color: red;
-  position: absolute;
-  left: 0px;
-  bottom: -20px;
+.validcancelbutton button .fa {
+  margin-right: 10px;
+}
+
+.errorFormGroup {
+  position: relative;
 }
 
 .shadow {

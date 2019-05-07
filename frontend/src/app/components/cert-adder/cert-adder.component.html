@@ -1,58 +1,77 @@
-<button class="addCertButton" (click)="open()" type="button"><i class="fa fa-plus" aria-hidden="true"></i>Ajouter un certificat</button>
+<button class="addCertButton pointer" (click)="open()" type="button"><i class="fa fa-plus" aria-hidden="true"></i>Ajouter un certificat</button>
 
 <div class="add-cert-container">
-  <p>STADE 1</p>
+  <div class="stades">
+    <span class="stade activeStade">Choix du mode d'importation</span>
+    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+    <span class="stade">Remplissage des données</span>
+    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+    <span class="stade">Validation des certificats</span>
+  </div>
   <div class="buttonCertAdderDiv">
-    <div class="certAddButton" (click)="nextStageURL()">
-      <p class="titleCerAdder" >Par URL</p>
-      <p class="descriptionCertAdder">Entrez une URL (exemple: https://votreSite.fr) et récupérez les certificats qu'elle contient.</p>
+    <div class="certAddButton pointer" (click)="nextStageURL()">
+      <p class="titleCerAdder bold" >Par URL</p>
+      <p class="descriptionCertAdder">Entrez une URL <span class="bleu-ciel">(exemple: https://votreSite.fr)</span> et récupérez les certificats qu'elle contient.</p>
     </div>
 
-    <div class="certAddButton" (click)="nextStageFORM()">
-      <p class="titleCerAdder" >Par formulaire</p>
+    <div class="certAddButton pointer" (click)="nextStageFORM()">
+      <p class="titleCerAdder bold" >Par formulaire</p>
       <p class="descriptionCertAdder">Si vous n'avez pas accès au certificat, remplissez un formulaire avec les caractéristiques connues.</p>
     </div>
 
-    <div class="certAddButton" (click)="nextStageTOKEN()">
-      <p class="titleCerAdder" >Par un fichier</p>
-      <p class="descriptionCertAdder">Importez le certificat d'un fichier (Exemple: fichier.crt, fichier.cer ...).</p>
+    <div class="certAddButton pointer" (click)="nextStageTOKEN()">
+      <p class="titleCerAdder bold" >Par un fichier</p>
+      <p class="descriptionCertAdder">Importez le certificat d'un fichier <span class="bleu-ciel">(Exemple: fichier.crt, fichier.cer ...)</span>.</p>
     </div>
 
-    <div class="certAddButton" (click)="nextStageKEYSTORE()">
-      <p class="titleCerAdder" >Par le magasin windows</p>
+    <div class="certAddButton pointer" (click)="nextStageKEYSTORE()">
+      <p class="titleCerAdder bold" >Par le magasin windows</p>
       <p class="descriptionCertAdder">Importez directement tous les certificats de votre magasin windows.</p>
     </div>
 
   </div>
   <div class="validcancelbutton">
-    <input (click)="close()" type="button" name="annuler" value="Annuler">
+    <input class="pointer" (click)="close()" type="button" name="annuler" value="Annuler">
   </div>
-  <i (click)="close()" class="fa fa-times close" aria-hidden="true"></i>
+  <i (click)="close()" class="fa fa-times close pointer" aria-hidden="true"></i>
 </div>
 
 <div class="add-cert-container">
-  <p>STADE 2</p>
-  <div class="urlCertAdder"*ngIf="mode == 1">
-    <p>Entrez une URL valide dans le champ ci-dessous :</p>
-    <form (ngSubmit)="addByURL(form1)" #form1="ngForm">
-      <div [class.has-error]="urlAdder.invalid && urlAdder.touched" class="errorFormGroup">
-        <input type="text" [(ngModel)]="url" name="urlAdder" #urlAdder="ngModel" url required>
-        <span class="error_span" *ngIf="urlAdder.errors?.required && urlAdder.touched">
-          L'url est nécéssaire
-        </span>
-        <span class="error_span" *ngIf="urlAdder.errors?.url && urlAdder.touched">
-          L'url est invalide
-        </span>
-      </div>
-      <div class="validcancelbutton">
-        <input (click)="close()" type="button" name="annuler" value="Annuler">
-        <button type="button" (click)="previousStage()"><i class="fa fa-chevron-left" aria-hidden="true"></i>Revenir en arrière</button>
-        <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Valider</button>
-      </div>
-    </form>
+    <div class="stades">
+      <span class="stade activeStade">Choix du mode d'importation</span>
+      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      <span class="stade activeStade">Remplissage des données</span>
+      <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      <span class="stade">Validation des certificats</span>
+    </div>
+    <div class="urlCertAdder" *ngIf="mode == 1">
+      <p class="subtitle">Entrez une URL valide dans le champ ci-dessous :</p>
 
-    <i (click)="close()" class="fa fa-times close" aria-hidden="true"></i>
-  </div>
+      <p>Exemples d'URL valides :</p>
+      <ul>
+        <li><span class="bleu-ciel">https://www.libriciel.fr/</span></li>
+        <li><span class="bleu-ciel">https://exemple/unepage/au/hasard</span></li>
+        <li><span class="bleu-ciel">https://www.encoreunexemple</span></li>
+      </ul>
+
+      <form (ngSubmit)="addByURL(form1)" #form1="ngForm">
+        <div [class.has-error]="urlAdder.invalid && urlAdder.touched" class="errorFormGroup">
+          <input type="text" [(ngModel)]="url" name="urlAdder" #urlAdder="ngModel" url required>
+          <span class="error_span" *ngIf="urlAdder.errors?.required && urlAdder.touched">
+            L'url est nécéssaire
+          </span>
+          <span class="error_span" *ngIf="urlAdder.errors?.url && urlAdder.touched">
+            L'url est invalide
+          </span>
+        </div>
+        <div class="validcancelbutton">
+          <input class="pointer" (click)="close()" type="button" name="annuler" value="Annuler">
+          <button class="pointer" type="button" (click)="previousStage()"><i class="fa fa-chevron-left" aria-hidden="true"></i>Revenir en arrière</button>
+          <button class="pointer" type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Valider</button>
+        </div>
+      </form>
+      <i (click)="close()" class="fa fa-times close pointer" aria-hidden="true"></i>
+    </div>
 
   <div *ngIf="mode == 2">
     <form (ngSubmit)="createCert(form2)" #form2="ngForm">
@@ -67,7 +86,7 @@
 
         <div [class.has-error]="notbefore.invalid && notbefore.touched" class="errorFormGroup">
           <p>Date de mise en circulation :</p>
-          <input type="date" pattern="dd/MM/YYYY" id="notbefore" name="notbefore" #notbefore="ngModel" required ngModel/>
+          <input type="date" id="notbefore" name="notbefore" #notbefore="ngModel" required ngModel/>
           <span class="error_span" *ngIf="notbefore.errors?.required && notbefore.touched">
             La date de mise en circulation est nécéssaire
           </span>
@@ -75,7 +94,7 @@
 
         <div [class.has-error]="notafter.invalid && notafter.touched" class="errorFormGroup">
           <p>Date d'expiration :</p>
-          <input type="date" pattern="dd/MM/YYYY" id="notafter" name="notafter" #notafter="ngModel" required ngModel/>
+          <input type="date" id="notafter" name="notafter" #notafter="ngModel" required ngModel/>
           <span class="error_span" *ngIf="notafter.errors?.required && notafter.touched">
             La date d'expiration est nécéssaire
           </span>
@@ -83,12 +102,12 @@
       </div>
 
       <div class="validcancelbutton">
-        <input (click)="close()" type="button" name="annuler" value="Annuler">
-        <button type="button" (click)="previousStage()"><i class="fa fa-chevron-left" aria-hidden="true"></i>Revenir en arrière</button>
-        <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Valider</button>
+        <input class="pointer" (click)="close()" type="button" name="annuler" value="Annuler">
+        <button class="pointer" type="button" (click)="previousStage()"><i class="fa fa-chevron-left" aria-hidden="true"></i>Revenir en arrière</button>
+        <button class="pointer" type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Valider</button>
       </div>
     </form>
-    <i (click)="close()" class="fa fa-times close" aria-hidden="true"></i>
+    <i (click)="close()" class="fa fa-times close pointer" aria-hidden="true"></i>
   </div>
 
   <div *ngIf="mode == 3">
@@ -106,31 +125,38 @@
         </div>
         <div class="errorFormGroupFile">
           <input type="file" id="file" class="file" name="file" (change)="onFileChange($event)" ngModel>
-          <span class="error_span" *ngIf="showFileError() == true">Le fichier importé n'est pas un certificat</span>
+          <span class="error_span" *ngIf="showFileError() == true">
+            Le fichier importé n'est pas un certificat
+          </span>
         </div>
       </div>
       <div class="validcancelbutton">
-        <input (click)="close()" type="button" name="annuler" value="Annuler">
-        <button type="button" (click)="previousStage()"><i class="fa fa-chevron-left" aria-hidden="true"></i>Revenir en arrière</button>
-        <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Valider</button>
+        <input class="pointer" (click)="close()" type="button" name="annuler" value="Annuler">
+        <button class="pointer" type="button" (click)="previousStage()"><i class="fa fa-chevron-left" aria-hidden="true"></i>Revenir en arrière</button>
+        <button class="pointer" type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Valider</button>
       </div>
     </form>
-    <i (click)="close()" class="fa fa-times close" aria-hidden="true"></i>
+    <i (click)="close()" class="fa fa-times close pointer" aria-hidden="true"></i>
   </div>
 
   <div *ngIf="mode == 4">
     <div class="validcancelbutton">
-      <input (click)="close()" type="button" name="annuler" value="Annuler">
-      <button type="button" (click)="previousStage()"><i class="fa fa-chevron-left" aria-hidden="true"></i>Revenir en arrière</button>
-      <button type="button"><i class="fa fa-plus" aria-hidden="true"></i>Valider</button>
+      <input class="pointer" (click)="close()" type="button" name="annuler" value="Annuler">
+      <button class="pointer" type="button" (click)="previousStage()"><i class="fa fa-chevron-left" aria-hidden="true"></i>Revenir en arrière</button>
+      <button class="pointer" type="button"><i class="fa fa-plus" aria-hidden="true"></i>Valider</button>
     </div>
-    <i (click)="close()" class="fa fa-times close" aria-hidden="true"></i>
+    <i (click)="close()" class="fa fa-times close pointer" aria-hidden="true"></i>
   </div>
-
 </div>
 
 <div class="add-cert-container">
-  <p>STADE 3</p>
+  <div class="stades">
+    <span class="stade activeStade">Choix du mode d'importation</span>
+    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+    <span class="stade activeStade">Remplissage des données</span>
+    <i class="fa fa-chevron-right" aria-hidden="true"></i>
+    <span class="stade activeStade">Validation des certificats</span>
+  </div>
   <form (ngSubmit)="validate(form)" #form="ngForm">
     <table class="adder-list">
       <thead>
@@ -152,11 +178,11 @@
       </tbody>
     </table>
     <div class="validcancelbutton">
-      <input (click)="close()" type="button" name="annuler" value="Annuler">
-      <button type="button" (click)="previousStage()"><i class="fa fa-chevron-left" aria-hidden="true"></i>Revenir en arrière</button>
-      <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Valider</button>
+      <input class="pointer" (click)="close()" type="button" name="annuler" value="Annuler">
+      <button class="pointer" type="button" (click)="previousStage()"><i class="fa fa-chevron-left" aria-hidden="true"></i>Revenir en arrière</button>
+      <button class="pointer" type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Valider</button>
     </div>
-    <i (click)="close()" class="fa fa-times close" aria-hidden="true"></i>
+    <i (click)="close()" class="fa fa-times close pointer" aria-hidden="true"></i>
   </form>
 </div>
 

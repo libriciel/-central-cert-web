@@ -2,7 +2,7 @@
   <div class="contact-header">
     <div class="contact-header-title-wraper">
       <div class="contact-title">
-        <p class="title">Gestion des contacts et notifications</p>
+        <p class="title bold">Gestion des contacts et notifications</p>
       </div>
     </div>
     <p class="bleu-ciel subtitle">"{{getInformations(certificat).cn}}" arrivant à expiration le {{getDate(certificat.notAfter)}}</p>
@@ -13,8 +13,8 @@
       <div class="info-container-row">
         <div class="text-icon contact-adresses">
           <p>Notifications pour tous</p>
-          <i (click)="changeNotifiableAll()" *ngIf="certificat.notifyAll == true" class="fa fa-toggle-off" aria-hidden="true"></i>
-          <i (click)="changeNotifiableAll()" *ngIf="certificat.notifyAll == false" class="fa fa-toggle-on" aria-hidden="true"></i>
+          <i (click)="changeNotifiableAll()" *ngIf="certificat.notifyAll == true" class="fa fa-toggle-off pointer" aria-hidden="true"></i>
+          <i (click)="changeNotifiableAll()" *ngIf="certificat.notifyAll == false" class="fa fa-toggle-on pointer" aria-hidden="true"></i>
         </div>
       </div>
       <table class="contact-list">
@@ -29,12 +29,12 @@
           <tr class="contact-list-content" *ngFor="let mail of certificat.additionnalMails; let i = index">
             <td>{{mail.adresse}}</td>
             <td *ngIf="mail.notifiable == true">
-              <i (click)="changeNotifiable(i)" class="toggle fa fa-toggle-on" aria-hidden="false"></i>
+              <i (click)="changeNotifiable(i)" class="toggle fa fa-toggle-on pointer" aria-hidden="false"></i>
             </td>
             <td *ngIf="mail.notifiable == false">
-              <i (click)="changeNotifiable(i)" class="toggle fa fa-toggle-off" aria-hidden="true"></i>
+              <i (click)="changeNotifiable(i)" class="toggle fa fa-toggle-off pointer" aria-hidden="true"></i>
             </td>
-            <td (click)="deleteContact(i)" class="trash-list-contact"><i class="fa fa-trash" aria-hidden="true"></i></td>
+            <td (click)="deleteContact(i)" class="trash-list-contact pointer"><i class="fa fa-trash" aria-hidden="true"></i></td>
           </tr>
         </tbody>
       </table>
@@ -46,7 +46,7 @@
       </div>
       <form [class.has-error]="contactEmail.invalid && contactEmail.touched" class="contactForm" (ngSubmit)="addContact(formContact)" #formContact="ngForm">
         <div class="errorFormGroup">
-          <p>Adresse mail</p>
+          <p class="bold">Adresse mail</p>
           <input required email #contactEmail="ngModel" type="mail" id="mail" name="mail" placeholder="monadresse@mail.com" ngModel>
           <span class="error_span" *ngIf="contactEmail.errors?.required && contactEmail.touched">
             L'adresse email est nécéssaire
@@ -56,16 +56,16 @@
           </span>
         </div>
         <div class="notifCheckbox">
-          <p>Notifications</p>
+          <p class="bold">Notifications</p>
           <input type="checkbox" id="notifiable" name="notifiable" ngModel>
         </div>
         <div class="validcancelbutton">
-          <button type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Ajouter le contact</button>
+          <button class="pointer" type="submit"><i class="fa fa-plus" aria-hidden="true"></i>Ajouter le contact</button>
         </div>
       </form>
     </div>
   </div>
-  <i (click)="closeSelf()" class="fa fa-times close" aria-hidden="true"></i>
+  <i (click)="closeSelf()" class="fa fa-times close pointer" aria-hidden="true"></i>
 </div>
 
 <div (click)="closeSelf()" *ngIf="certificat" class="shadow">
