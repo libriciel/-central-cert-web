@@ -124,7 +124,7 @@
           </ul>
         </div>
         <div class="errorFormGroupFile">
-          <input type="file" id="file" class="file" name="file" (change)="onFileChange($event)" ngModel>
+          <input type="file" id="file" class="file" name="file" (change)="onFileChange($event)" multiple="multiple" ngModel>
           <span class="error_span" *ngIf="showFileError() == true">
             Le fichier importé n'est pas un certificat
           </span>

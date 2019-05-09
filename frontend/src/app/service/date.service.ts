@@ -28,52 +28,19 @@ export class DateService {
     let d1: Date;
     let d2: Date;
 
-    d1 = new Date(c.notBefore);
+    d1 = new Date();
     d2 = new Date(c.notAfter);
 
-    if(d2.getTime() >= d1.getTime() && new Date().getTime() < d2.getTime()){
-      let d1_annee = d1.getFullYear();
-      let d2_annee = d2.getFullYear();
+    let res = new Array();
 
-      let d1_mois = d1.getMonth() + 1;
-      let d2_mois = d2.getMonth() + 1;
+    if(d2.getTime() > d1.getTime()){
+      let firstDate = new Date();
+      let subDate = new Date(Math.abs(d2.getTime() - d1.getTime()));
 
-      let d1_jour = d1.getDate();
-      let d2_jour = d2.getDate();
-
-      let annees = d2_annee - d1_annee;
-
-      let mois;
-      if(d2_mois >= d1_mois){
-        mois = d2_mois - d1_mois;
-      }else{
-        mois = 12 + d2_mois - d1_mois;
-      }
-
-      let jours;
-      if(d2_jour >= d1_jour){
-        jours = d2_jour - d1_jour;
-      }else{
-        if(d1_mois === 1){
-          if(this.isBissextile(d1_annee) === true){
-            jours = 29 + d2_jour - d1_jour;
-          }else{
-            jours = 28 + d2_jour - d1_jour;
-          }
-        }else if(d1_mois === 0
-          || d1_mois === 2
-          || d1_mois === 4
-          || d1_mois === 6
-          || d1_mois === 7
-          || d1_mois === 9
-          || d1_mois === 11){
-            jours = 31 + d2_jour - d1_jour;
-        }else{
-          jours = 30 + d2_jour - d1_jour;
-        }
-      }
-
-      return {annees: annees, mois: mois, jours: jours};
+      res[0] = subDate.getFullYear() - 1970;
+      res[1] = subDate.getMonth();
+      res[2] = subDate.getDate();
+      return {annees: res[0], mois: res[1], jours: res[2]};
     }else {
       return undefined;
     }

@@ -13,7 +13,7 @@ import { Output, EventEmitter } from '@angular/core';
 export class CertAdderComponent implements OnInit {
   @Output() event: EventEmitter<any> = new EventEmitter();
 
-  file: File;
+  file: File[];
   certificats: Certificat[];
   mode: number;
 
@@ -127,49 +127,60 @@ export class CertAdderComponent implements OnInit {
   }
 
   onFileChange(event){
-    this.file = <File>event.target.files[0];
+    this.file = [];
+    for(let i = 0; i < event.target.files.length; i++){
+      this.file.push(event.target.files[i]);
+    }
   }
 
   showFileError(){
-    if(this.file == undefined
-    || this.file.name.includes(".cer")
-    || this.file.name.includes(".crt")
-    || this.file.name.includes(".pem")
-    || this.file.name.includes(".key")
-    || this.file.name.includes(".der")
-    || this.file.name.includes(".p7b")
-    || this.file.name.includes(".p7c")
-    || this.file.name.includes(".pfx")
-    || this.file.name.includes(".p12")){
-      return false;
-    }else{
-      return true;
+    let test = false;
+    if(this.file != undefined){
+      for(let i = 0; i < this.file.length; i++){
+        if(!this.file[i].name.includes(".cer")
+          && !this.file[i].name.includes(".crt")
+          && !this.file[i].name.includes(".pem")
+          && !this.file[i].name.includes(".key")
+          && !this.file[i].name.includes(".der")
+          && !this.file[i].name.includes(".p7b")
+          && !this.file[i].name.includes(".p7c")
+          && !this.file[i].name.includes(".pfx")
+          && !this.file[i].name.includes(".p12")){
+          test = true;
+        }
+      }
     }
+    return test;
   }
 
   isCorrectFile(){
-    if(this.file != undefined &&
-      (this.file.name.includes(".cer")
-    || this.file.name.includes(".crt")
-    || this.file.name.includes(".pem")
-    || this.file.name.includes(".key")
-    || this.file.name.includes(".der")
-    || this.file.name.includes(".p7b")
-    || this.file.name.includes(".p7c")
-    || this.file.name.includes(".pfx")
-    || this.file.name.includes(".p12"))){
-      return true;
-    }else{
-      return false;
+    let test = true;
+    if(this.file != undefined){
+      for(let i = 0; i < this.file.length; i++){
+        if(!this.file[i].name.includes(".cer")
+          && !this.file[i].name.includes(".crt")
+          && !this.file[i].name.includes(".pem")
+          && !this.file[i].name.includes(".key")
+          && !this.file[i].name.includes(".der")
+          && !this.file[i].name.includes(".p7b")
+          && !this.file[i].name.includes(".p7c")
+          && !this.file[i].name.includes(".pfx")
+          && !this.file[i].name.includes(".p12")){
+            test = false;
+        }
+      }
     }
+    return test;
   }
 
   addByFile(){
     if(this.file != undefined && this.isCorrectFile() === true){
       this.certificats = [];
-      this.certificatService.selectFromFile(this.file).subscribe(data => {
-        this.certificats.push(data);
-      });
+      for(let i = 0; i < this.file.length; i++){
+        this.certificatService.selectFromFile(this.file[i]).subscribe(data => {
+          this.certificats.push(data);
+        });
+      }
       this.nextStage();
     }
   }

@@ -18,6 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { CertAdderComponent } from './components/cert-adder/cert-adder.component';
 import { ContentComponent } from './components/content/content.component';
 import { CustomFormsModule } from 'ngx-custom-validators';
+import { AideComponent } from './components/aide/aide.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CustomFormsModule } from 'ngx-custom-validators';
     CertificatsContactsComponent,
     CertAdderComponent,
     ContentComponent,
+    AideComponent,
   ],
   imports: [
     AppRoutingModule,

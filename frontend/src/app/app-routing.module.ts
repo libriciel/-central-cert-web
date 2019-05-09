@@ -4,6 +4,7 @@ import { CertificatListComponent } from './components/certificat-list/certificat
 import { UrlFormComponent } from './components/url-form/url-form.component';
 import { CertificatDetailComponent } from './components/certificat-detail/certificat-detail.component';
 import { CertificatsContactsComponent } from './components/certificats-contacts/certificats-contacts.component';
+import { AideComponent } from './components/aide/aide.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
     path: 'accueil',
     component: CertificatListComponent
   },
+  {
+    path: 'aide',
+    component: AideComponent
+  }
 ];
 
 @NgModule({
