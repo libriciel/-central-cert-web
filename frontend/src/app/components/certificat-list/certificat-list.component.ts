@@ -230,10 +230,9 @@ export class CertificatListComponent implements OnInit {
       }
     }
     this.certificats = certs;
-    this.certificatService.delete(id).subscribe(data => {
-      this.actualiseCertList();
-    });
+    this.certificatService.delete(id).subscribe();
     this.toastr.success('\"' + this.getInformations(cert).cn + '\" supprimé avec succès !!!');
+    this.actualiseCertList();
   }
 
   verifyDelete(certificat: Certificat){
