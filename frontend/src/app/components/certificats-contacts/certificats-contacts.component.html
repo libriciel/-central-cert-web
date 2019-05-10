@@ -36,6 +36,7 @@
             </td>
             <td (click)="deleteContact(i)" class="trash-list-contact pointer"><i class="fa fa-trash" aria-hidden="true"></i></td>
           </tr>
+          <p *ngIf="certificat.additionnalMails.length == 0">Pas d'adresses additionnelles</p>
         </tbody>
       </table>
     </div>
@@ -47,7 +48,7 @@
       <form [class.has-error]="contactEmail.invalid && contactEmail.touched" class="contactForm" (ngSubmit)="addContact(formContact)" #formContact="ngForm">
         <div class="errorFormGroup">
           <p class="bold">Adresse mail</p>
-          <input required email #contactEmail="ngModel" type="mail" id="mail" name="mail" placeholder="monadresse@mail.com" ngModel>
+          <input required email #contactEmail="ngModel" type="contactEmail" id="contactEmail" name="contactEmail" placeholder="monadresse@mail.com" ngModel>
           <span class="error_span" *ngIf="contactEmail.errors?.required && contactEmail.touched">
             L'adresse email est nécéssaire
           </span>

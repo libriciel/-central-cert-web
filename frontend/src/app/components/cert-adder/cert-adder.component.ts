@@ -92,7 +92,7 @@ export class CertAdderComponent implements OnInit {
 
   addByURL(url){
     if(url.status === "VALID"){
-      this.certificatService.selectFromUrl(url.value.urlCertAdder).subscribe(data => {
+      this.certificatService.selectFromUrl(url.value.urlAdder).subscribe(data => {
         this.certificats = data;
       });
       this.nextStage();
@@ -116,7 +116,7 @@ export class CertAdderComponent implements OnInit {
         notBefore: new Date(form.value.notbefore),
         notAfter: new Date(form.value.notafter),
         favoris: false,
-        dn: "",
+        dn: "CN=" + form.value.cn,
         additionnalMails: [],
         notified: false,
         notifyAll: false,

@@ -24,20 +24,22 @@ export class CertificatsContactsComponent implements OnInit {
   }
 
   addContact(form){
-    if(form.status = "VALID"){
+    if(form.status === "VALID"){
       let notif = false;
       if(form.value.notifiable === true){
         notif = true;
       }
 
       let mail = {
-        adresse: form.value.mail,
+        adresse: form.value.contactEmail,
         notifiable: notif
       }
 
       this.certificat.additionnalMails.push(mail);
       this.certificatService.save(this.certificat).subscribe();
       this.toastr.success('Un contact ajouté avec succès !!!');
+    }else{
+      console.log("invalid");
     }
   }
 

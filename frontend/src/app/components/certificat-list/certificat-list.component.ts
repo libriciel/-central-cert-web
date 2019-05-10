@@ -30,7 +30,7 @@ export class CertificatListComponent implements OnInit {
 
   ngOnInit() {
     this.certificats = [];
-    this.certificats = [
+    /*this.certificats = [
       {
         id: 1,
         notBefore: new Date("December 17, 1800"),
@@ -161,20 +161,20 @@ export class CertificatListComponent implements OnInit {
         notifyAll: false,
         notified: false,
       },
-    ];
+    ];*/
     this.selectedCertificats = [];
     this.inDeletion = undefined;
     this.pageNumber = 1;
     this.actualiseCertList();
-    this.page = this.getActualPage();
   }
 
   actualiseCertList(){
     this.certificatService.selectAll().subscribe(data => {
-    //  this.certificats = data;
+      this.certificats = data;
       this.dateDesc();
       this.orderByFavoris();
       this.page = this.getActualPage();
+      this.actualisePageIndication();
     });
   }
 
@@ -386,7 +386,7 @@ export class CertificatListComponent implements OnInit {
   }
 
   nextPage(){
-    if(this.pageNumber * 10 - 1 < this.certificats.length){
+    if(this.pageNumber * 10 < this.certificats.length){
       this.pageNumber ++;
       this.page = this.getActualPage();
     }

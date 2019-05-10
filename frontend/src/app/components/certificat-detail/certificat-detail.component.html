@@ -52,6 +52,7 @@
             <td *ngIf="mail.notifiable == false">NON</td>
             <td *ngIf="mail.notifiable == true">OUI</td>
           </tr>
+          <p *ngIf="certificat.additionnalMails.length == 0">Pas d'adresses additionnelles</p>
         </tbody>
       </table>
     </div>

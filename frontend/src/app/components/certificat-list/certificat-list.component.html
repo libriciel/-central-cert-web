@@ -22,9 +22,9 @@
 
   <div *ngIf="certificats.length > 0" class="pageIndication">
     <p class="pageParagraph">{{actualisePageIndication()}}</p>
-    <i *ngIf="canPreviousPage() == false" (click)="previousPage()" class="grey fa fa-chevron-left" aria-hidden="true"></i>
+    <i *ngIf="canPreviousPage() == false" class="grey fa fa-chevron-left" aria-hidden="true"></i>
     <i *ngIf="canPreviousPage() == true" (click)="previousPage()" class="fa fa-chevron-left pointer" aria-hidden="true"></i>
-    <i *ngIf="canNextPage() == false" (click)="nextPage()" class="grey fa fa-chevron-right" aria-hidden="true"></i>
+    <i *ngIf="canNextPage() == false" class="grey fa fa-chevron-right" aria-hidden="true"></i>
     <i *ngIf="canNextPage() == true" (click)="nextPage()" class="fa fa-chevron-right pointer" aria-hidden="true"></i>
   </div>
 
@@ -63,7 +63,7 @@
         <i class="fa fa-star-o pointer" (click)="favorize(certificat)" *ngIf="certificat.favoris == false" aria-hidden="true"></i>
         <i class="fa fa-star pointer" (click)="favorize(certificat)" *ngIf="certificat.favoris == true" aria-hidden="true"></i>
       </td>
-      <td class="content-th first">{{getInformations(certificat).cn}}</td>
+      <td class="content-th first"><p>{{getInformations(certificat).cn}}</p></td>
       <td class="content-th second">
         <p>{{getDate(certificat.notAfter)}}</p>
         <p>{{getRemTime(certificat)}}</p>
@@ -87,9 +87,9 @@
 
   <div *ngIf="certificats.length > 0" class="pageIndication">
     <p class="pageParagraph">{{actualisePageIndication()}}</p>
-    <i *ngIf="canPreviousPage() == false" (click)="previousPage()" class="grey fa fa-chevron-left" aria-hidden="true"></i>
+    <i *ngIf="canPreviousPage() == false" class="grey fa fa-chevron-left" aria-hidden="true"></i>
     <i *ngIf="canPreviousPage() == true" (click)="previousPage()" class="fa fa-chevron-left pointer" aria-hidden="true"></i>
-    <i *ngIf="canNextPage() == false" (click)="nextPage()" class="grey fa fa-chevron-right" aria-hidden="true"></i>
+    <i *ngIf="canNextPage() == false"class="grey fa fa-chevron-right" aria-hidden="true"></i>
     <i *ngIf="canNextPage() == true" (click)="nextPage()" class="fa fa-chevron-right pointer" aria-hidden="true"></i>
   </div>
 
