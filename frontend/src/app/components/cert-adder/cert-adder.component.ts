@@ -187,19 +187,27 @@ export class CertAdderComponent implements OnInit {
 
   validate(form){
     let certs = new Array();
+    let existant_certs = new Array();
     let checks = Object.values(form.value);
-    for(let i = 0; i < checks.length; i++){
-        if(checks[i] == "true"){
-          certs.push(this.certificats[i]);
-        }
-    }
-    this.close();
-    this.certificatService.saveAll(certs).subscribe(data => {
-      this.closeSelf();
+    this.certificatService.selectAll().subscribe(data => {
+      for(let i = 0; i < checks.length; i++){
+          if(checks[i] == "true" && !this.certificatService.exists(this.certificats[i], data)){
+            certs.push(this.certificats[i]);
+          }else if(checks[i] == "true" && this.certificatService.exists(this.certificats[i], data)){
+            existant_certs.push(this.certificats[i]);
+          }
+      }
+      this.close();
+      this.certificatService.saveAll(certs).subscribe(data => {
+        this.closeSelf();
+      });
+      if(certs.length > 0){
+        this.toastr.success(certs.length + ' certificat ajoutés avec succès !!!');
+      }
+      if(existant_certs.length > 0){
+        this.toastr.error(existant_certs.length + ' certificats sélectionnés existent déjà !')
+      }
     });
-    if(certs.length > 0){
-      this.toastr.success(certs.length + ' certificat ajoutés avec succès !!!');
-    }
   }
 
   getInformations(certificat: Certificat){

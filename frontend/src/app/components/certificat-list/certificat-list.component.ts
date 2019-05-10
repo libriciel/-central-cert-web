@@ -30,7 +30,7 @@ export class CertificatListComponent implements OnInit {
 
   ngOnInit() {
     this.certificats = [];
-    /*this.certificats = [
+    this.certificats = [
       {
         id: 1,
         notBefore: new Date("December 17, 1800"),
@@ -161,7 +161,7 @@ export class CertificatListComponent implements OnInit {
         notifyAll: false,
         notified: false,
       },
-    ];*/
+    ];
     this.selectedCertificats = [];
     this.inDeletion = undefined;
     this.pageNumber = 1;
@@ -170,7 +170,7 @@ export class CertificatListComponent implements OnInit {
 
   actualiseCertList(){
     this.certificatService.selectAll().subscribe(data => {
-      this.certificats = data;
+      //this.certificats = data;
       this.dateDesc();
       this.orderByFavoris();
       this.page = this.getActualPage();
@@ -230,9 +230,10 @@ export class CertificatListComponent implements OnInit {
       }
     }
     this.certificats = certs;
-    this.certificatService.delete(id).subscribe();
+    this.certificatService.delete(id).subscribe(data => {
+      this.actualiseCertList();
+    });
     this.toastr.success('\"' + this.getInformations(cert).cn + '\" supprimé avec succès !!!');
-    this.actualiseCertList();
   }
 
   verifyDelete(certificat: Certificat){
@@ -324,11 +325,28 @@ export class CertificatListComponent implements OnInit {
     }
   }
 
+  toggleAll(event){
+    let checks = document.getElementsByClassName('selectingCheckbox');
+
+    if(event === true){
+      for(let i = 0; i < checks.length; i++){
+        checks[i].checked = true;
+      }
+      this.selectedCertificats = this.certificats;
+    }else{
+      for(let i = 0; i < checks.length; i++){
+        checks[i].checked = false;
+      }
+      this.selectedCertificats = [];
+    }
+  }
+
   selectedToFavoris(){
     this.selectedCertificats.forEach(function(cert){
       cert.favoris = true;
     });
     this.certificatService.saveAll(this.selectedCertificats).subscribe();
+    this.toastr.success(this.selectedCertificats.length + ' certificats ont été ajouéts aux favoris');
   }
 
   selectedToNotFavoris(){
@@ -336,6 +354,7 @@ export class CertificatListComponent implements OnInit {
       cert.favoris = false;
     });
     this.certificatService.saveAll(this.selectedCertificats).subscribe();
+    this.toastr.success(this.selectedCertificats.length + ' certificats ont été retirés des favoris');
   }
 
   selectedToDelete(){

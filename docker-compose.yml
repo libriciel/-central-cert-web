@@ -9,8 +9,6 @@ services:
 
   core:
     build: ./core
-    ports:
-      - 25
     depends_on:
       - db
 

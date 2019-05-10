@@ -19,6 +19,7 @@ import { CertAdderComponent } from './components/cert-adder/cert-adder.component
 import { ContentComponent } from './components/content/content.component';
 import { CustomFormsModule } from 'ngx-custom-validators';
 import { AideComponent } from './components/aide/aide.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AideComponent } from './components/aide/aide.component';
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
     CustomFormsModule,
+    MatTooltipModule,
   ],
   providers: [
     CertificatService,

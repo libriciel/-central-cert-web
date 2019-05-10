@@ -133,8 +133,41 @@ export class CertificatService {
 			}else if(l[k].startsWith("2.5.4.17=")) { //OID
 				res.pc = l[k].substring(9);
 			}
-
 		}
     return res;
+  }
+
+  areEquals(c1: Certificat, c2: Certificat){
+    let i1 = this.getInformations(c1);
+    let i2 = this.getInformations(c2);
+
+    if(c1.id === c2.id){
+      return true;
+    }else{
+      if(i1.cn === i2.cn
+      && i1.mail === i2.mail
+      && i1.o === i2.o
+      && i1.ou === i2.ou
+      && i1.l === i2.l
+      && i1.st === i2.st
+      && i1.c === i2.c
+      && i1.t === i2.t
+      && i1.street === i2.street
+      && i1.pc === i2.pc){
+        return true;
+      }else{
+        return false;
+      }
+    }
+  }
+
+  exists(c: Certificat, list: Certificat[]){
+    let test = false;
+    for(let i = 0; i < list.length; i++){
+      if(this.areEquals(list[i], c)){
+        test = true;
+      }
+    }
+    return test;
   }
 }

@@ -2,8 +2,9 @@
   <p class="page-title bold"> Accueil</p>
   <div class="search-div">
     <div class="search-left">
-      <i class="fa fa-search" aria-hidden="true"></i>
-      <input type="text" placeholder="Rechercher un certificat ...">
+      <i class="fa fa-search pointer" aria-hidden="true"></i>
+      <input type="text" placeholder="Rechercher un certificat par mot-clé, date...">
+      <i class="fa fa-times pointer" (click)="closeSearch()" aria-hidden="true"></i>
     </div>
     <div class="search-right">
       <app-cert-adder (event)="actualiseCertList(c)"></app-cert-adder>
@@ -30,7 +31,9 @@
 
   <table *ngIf="certificats.length > 0" class="table">
     <tr class="top-list">
-      <th class="icon-th"></th>
+      <th class="icon-th">
+        <input type="checkbox" class="pointer" (change)="toggleAll($event.target.checked)">
+      </th>
       <th class="icon-th"></th>
       <th class="content-th first pointer" (click)="switchTriObjet()">
         <div class="sorting-menu">
@@ -57,11 +60,11 @@
     </tr>
     <tr class="list-content" *ngFor="let certificat of page; let j = index">
       <td class="icon-th">
-        <input type="checkbox" (change)="checkBoxHandler(certificat, $event.target.checked)">
+        <input type="checkbox" class="pointer selectingCheckbox" (change)="checkBoxHandler(certificat, $event.target.checked)">
       </td>
       <td class="icon-th">
-        <i class="fa fa-star-o pointer" (click)="favorize(certificat)" *ngIf="certificat.favoris == false" aria-hidden="true"></i>
-        <i class="fa fa-star pointer" (click)="favorize(certificat)" *ngIf="certificat.favoris == true" aria-hidden="true"></i>
+        <i matTooltip="Ajouter aux favoris" class="fa fa-star-o pointer" (click)="favorize(certificat)" *ngIf="certificat.favoris == false" aria-hidden="true"></i>
+        <i matTooltip="Retirer des favoris" class="fa fa-star pointer" (click)="favorize(certificat)" *ngIf="certificat.favoris == true" aria-hidden="true"></i>
       </td>
       <td class="content-th first"><p>{{getInformations(certificat).cn}}</p></td>
       <td class="content-th second">
@@ -69,17 +72,17 @@
         <p>{{getRemTime(certificat)}}</p>
       </td>
       <td>
-        <i *ngIf="isGreen(certificat) == true" class="greenIndicator fa fa-circle" aria-hidden="true"></i>
-        <i *ngIf="isOrange(certificat) == true" class="orangeIndicator fa fa-circle" aria-hidden="true"></i>
-        <i *ngIf="isRed(certificat) == true" class="redIndicator fa fa-circle" aria-hidden="true"></i>
+        <i matTooltip="Encore du temps avnt expiration" *ngIf="isGreen(certificat) == true" class="greenIndicator fa fa-circle" aria-hidden="true"></i>
+        <i matTooltip="Quelques mois avant expiration" *ngIf="isOrange(certificat) == true" class="orangeIndicator fa fa-circle" aria-hidden="true"></i>
+        <i matTooltip="Expire bientôt" *ngIf="isRed(certificat) == true" class="redIndicator fa fa-circle" aria-hidden="true"></i>
       </td>
-      <td class="icon-th hover-th pointer" (click)="toDetail(certificat)">
+      <td matTooltip="Visualiser" class="icon-th hover-th pointer" (click)="toDetail(certificat)">
         <i class="fa-none fa fa-eye" aria-hidden="true"></i>
       </td>
-      <td class="icon-th hover-th pointer" (click)="toContact(certificat)">
+      <td matTooltip="Gérer les contacts et notifications" class="icon-th hover-th pointer" (click)="toContact(certificat)">
         <i class="fa fa-none fa-bell" aria-hidden="true"></i>
       </td>
-      <td class="icon-th hover-th pointer" (click)="verifyDelete(certificat)">
+      <td matTooltip="Supprimer" class="icon-th hover-th pointer" (click)="verifyDelete(certificat)">
         <i class="fa fa-none fa-trash" aria-hidden="true"></i>
       </td>
     </tr>
