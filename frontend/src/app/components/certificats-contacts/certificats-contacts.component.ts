@@ -29,15 +29,18 @@ export class CertificatsContactsComponent implements OnInit {
       if(form.value.notifiable === true){
         notif = true;
       }
-
       let mail = {
         adresse: form.value.contactEmail,
         notifiable: notif
       }
 
-      this.certificat.additionnalMails.push(mail);
-      this.certificatService.save(this.certificat).subscribe();
-      this.toastr.success('Un contact ajouté avec succès !!!');
+      if(!this.exists(mail)){
+        this.certificat.additionnalMails.push(mail);
+        this.certificatService.save(this.certificat).subscribe();
+        this.toastr.success('Un contact ajouté avec succès !!!');
+      }else{
+        this.toastr.error('Le contact existe déjà !');
+      }
     }else{
       console.log("invalid");
     }
@@ -71,4 +74,12 @@ export class CertificatsContactsComponent implements OnInit {
     this.event.emit(null);
   }
 
+  exists(contact){
+    for(let i = 0; i < this.certificat.additionnalMails.length; i++) {
+      if(this.certificat.additionnalMails[i].adresse == contact.adresse){
+        return true;
+      }
+    }
+    return false;
+  }
 }

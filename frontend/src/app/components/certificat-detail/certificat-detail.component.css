@@ -9,7 +9,6 @@
   height: 700px;
   max-width: 1000px;
   background-color: white;
-  color: #105385;
   font-size: 15px;
   margin: auto;
   z-index: 30;
@@ -109,15 +108,14 @@
 .button-contact button {
   width: 100%;
   background-color: #FFFFFF;
-  border: 2px solid #89C4F1;
+  border: 2px solid rgba(3, 148, 171, 0.25);
   padding: 5px 0px;
   margin-right: 20px;
   font-size: 13px;
-  color: #105385;
 }
 
 .button-contact button:hover {
-  border: 2px solid #105385;
+  border: 2px solid rgba(3, 148, 171, 1);
 }
 
 .button-contact .fa {
@@ -184,7 +182,7 @@
 .detail-list-top {
   text-align: center;
   height: 30px;
-  border-bottom: 2px solid #105385;
+  border-bottom: 2px solid rgba(3, 148, 171, 1);
 }
 
 .detail-list-content {
@@ -193,11 +191,11 @@
 }
 
 .detail-list-content:hover {
-  background-color: #D0E8F9;
+  background-color: rgba(3, 148, 171, 0.25);
 }
 
 tr:nth-child(even){
-  background-color: #ECF5FC;
+  background-color: #f7f7f7;
 }
 
 .dn-detail-title {
@@ -230,17 +228,16 @@ tr:nth-child(even){
   position: absolute;
   right: 0px;
   border: none;
-  border-bottom: 2px solid #42A1E8;
+  border-bottom: 2px solid rgba(3, 148, 171, 1);
 }
 
 .modifyButton{
-  background-color: #89C4F1;
-  color: #105385;
+  background-color: rgba(3, 148, 171, 0.25);
   padding: 10px 0px 10px 0px;
   width: 40%;
   float: right;
   margin-right: 20px;
-  border: 2px solid #89C4F1;
+  border: 2px solid rgba(3, 148, 171, 0.25);
 }
 
 .modifyButton .fa {
@@ -248,7 +245,7 @@ tr:nth-child(even){
 }
 
 .modifyButton:hover {
-  border: 2px solid #105385;
+  border: 2px solid rgba(3, 148, 171, 1);
 }
 
 .annulerAndSubmit {
@@ -261,16 +258,14 @@ tr:nth-child(even){
 
 .annulerAndSubmit .cancelSubmit {
   background: none;
-  color: #105385;
   border: none;
 }
 
 .annulerAndSubmit .submitChanges {
-  background-color: #89C4F1;
-  color: #105385;
+  background-color: rgba(3, 148, 171, 0.25);
   padding: 10px;
   float: right;
-  border: 2px solid #89C4F1;
+  border: 2px solid rgba(3, 148, 171, 0.25);
   margin-left: 10px;
 }
 
@@ -279,7 +274,7 @@ tr:nth-child(even){
 }
 
 .annulerAndSubmit .submitChanges:hover {
-  border: 2px solid #105385;
+  border: 2px solid rgba(3, 148, 171, 1);
 }
 
 .det-verify-suppr {
@@ -324,13 +319,12 @@ tr:nth-child(even){
 
 .det-validcancelbutton button .fa{
   color: #ffffff;
-  margin-left: 0px;
+  margin-right: 10px;
 }
 
 .det-validcancelbutton input {
   background: none;
   border: none;
-  color: #105385;
   font-size: 18px;
 }
 

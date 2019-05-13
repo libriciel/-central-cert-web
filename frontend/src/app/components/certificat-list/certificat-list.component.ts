@@ -22,15 +22,17 @@ export class CertificatListComponent implements OnInit {
 
   contactPressed: Certificat;
 
-  page: Certificat[];
+  selectAllCerts: boolean;
 
-  pageNumber: number;
+  searchText: string;
 
   constructor(private toastr: ToastrService, private certificatService: CertificatService, private dateService: DateService) { }
 
   ngOnInit() {
+    this.searchText = undefined;
+    this.selectAllCerts = false;
     this.certificats = [];
-    this.certificats = [
+    /*this.certificats = [
       {
         id: 1,
         notBefore: new Date("December 17, 1800"),
@@ -161,20 +163,17 @@ export class CertificatListComponent implements OnInit {
         notifyAll: false,
         notified: false,
       },
-    ];
+    ];*/
     this.selectedCertificats = [];
     this.inDeletion = undefined;
-    this.pageNumber = 1;
     this.actualiseCertList();
   }
 
   actualiseCertList(){
     this.certificatService.selectAll().subscribe(data => {
-      //this.certificats = data;
+      this.certificats = data;
       this.dateDesc();
       this.orderByFavoris();
-      this.page = this.getActualPage();
-      this.actualisePageIndication();
     });
   }
 
@@ -311,7 +310,7 @@ export class CertificatListComponent implements OnInit {
 
   checkBoxHandler(certificat, event){
     if(event === true){
-      this.selectedCertificats.push(certificat)
+      this.selectedCertificats.push(certificat);
     }else{
       let exit = false;
       let i = 0;
@@ -326,17 +325,13 @@ export class CertificatListComponent implements OnInit {
   }
 
   toggleAll(event){
-    let checks = document.getElementsByClassName('selectingCheckbox');
-
     if(event === true){
-      for(let i = 0; i < checks.length; i++){
-        checks[i].checked = true;
+      this.selectAllCerts = true;
+      for(let i = 0; i < this.certificats.length; i++){
+        this.selectedCertificats.push(this.certificats[i]);
       }
-      this.selectedCertificats = this.certificats;
     }else{
-      for(let i = 0; i < checks.length; i++){
-        checks[i].checked = false;
-      }
+      this.selectAllCerts = false;
       this.selectedCertificats = [];
     }
   }
@@ -369,68 +364,6 @@ export class CertificatListComponent implements OnInit {
 
   getInformations(certificat: Certificat){
     return this.certificatService.getInformations(certificat);
-  }
-
-  getActualPage(){
-    return this.getPage(this.pageNumber);
-  }
-
-  getPage(num: number){
-    let resPage = new Array();
-    let min = num * 10 - 10;
-    let max = num * 10;
-    if(max > this.certificats.length){
-      max = this.certificats.length;
-    }
-    for(let i = min; i < max; i++){
-      resPage.push(this.certificats[i]);
-    }
-    return resPage;
-  }
-
-  canPreviousPage(){
-    if(this.pageNumber > 1){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  canNextPage(){
-    if(this.pageNumber * 10 < this.certificats.length){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  nextPage(){
-    if(this.pageNumber * 10 < this.certificats.length){
-      this.pageNumber ++;
-      this.page = this.getActualPage();
-    }
-  }
-
-  previousPage(){
-    if(this.pageNumber > 1){
-      this.pageNumber --;
-      this.page = this.getActualPage();
-    }
-  }
-
-  actualisePageIndication(){
-    let paragraphs = document.getElementsByClassName("pageParagraph");
-    let max = this.certificats.length;
-    let borneMax = this.pageNumber * 10;
-    if(borneMax > max){
-      borneMax = max;
-    }
-    let borneMin = this.pageNumber * 10 - 9;
-
-    for(let i = 0; i < paragraphs.length; i++){
-      paragraphs[i].innerHTML = borneMin + "-" + borneMax + " sur " + max;
-    }
-    return borneMin + "-" + borneMax + " sur " + max;
   }
 
   isGreen(certificat){
@@ -523,7 +456,6 @@ export class CertificatListComponent implements OnInit {
       dateAsc.classList.add("selectedTri");
       this.dateAsc();
     }
-    this.page = this.getActualPage();
   }
 
   switchTriObjet(){
@@ -544,6 +476,17 @@ export class CertificatListComponent implements OnInit {
       objAsc.classList.add("selectedTri");
       this.objAsc();
     }
-    this.page = this.getActualPage();
+  }
+
+  showCross(searchBar){
+    if(searchBar.value == "" || searchBar.value == undefined){
+      return false;
+    }else{
+      return true;
+    }
+  }
+
+  closeSearch(searchBar){
+    this.searchText = undefined;
   }
 }

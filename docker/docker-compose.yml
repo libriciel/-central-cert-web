@@ -1,0 +1,43 @@
+version: '3.2'
+services:
+  frontend:
+    build: ../frontend
+    ports:
+      - 80:80
+    depends_on:
+      - core
+
+  core:
+    build: ../core
+    depends_on:
+      - db
+
+  db:
+    build: postgres
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - DB_TO_CREATE=atteste,keycloak
+    command: postgres -c max_connections=300 -c log_min_messages=LOG
+
+  keycloak:
+      image: jboss/keycloak:4.5.0.Final
+      tty: true
+      environment:
+        - KEYCLOAK_USER=admin
+        - KEYCLOAK_PASSWORD=admin
+        - DB_VENDOR=postgres
+        - DB_ADDR=db
+        - DB_DATABASE=keycloak
+        - DB_USER=keycloak
+        - DB_PASSWORD=keycloak
+        - KEYCLOAK_IMPORT=/tmp/keycloak.json
+        - PROXY_ADDRESS_FORWARDING=true
+      volumes:
+        - ./keycloak/keycloak.json:/tmp/keycloak.json
+      ports:
+        - 9090:8080

@@ -1,52 +1,61 @@
-import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LsComposantsModule } from '@libriciel/ls-composants';
+import { CustomFormsModule } from 'ngx-custom-validators';
+import { HttpClientModule } from '@angular/common/http';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { ContentComponent } from './components/content/content.component';
+import { AppRoutingModule } from './app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { ToastrModule } from 'ngx-toastr';
+import { AppComponent } from './app.component';
+import { initializer } from './utils/app-init';
+
+import { CertificatsContactsComponent } from './components/certificats-contacts/certificats-contacts.component';
 import { CertificatDetailComponent } from './components/certificat-detail/certificat-detail.component';
 import { CertificatListComponent } from './components/certificat-list/certificat-list.component';
-import { UrlFormComponent } from './components/url-form/url-form.component';
-import { AppComponent } from './app.component';
-import { CertificatService } from './service/certificat.service';
-import { DateService } from './service/date.service';
-import { LsComposantsModule } from '@libriciel/ls-composants';
+import { CertAdderComponent } from './components/cert-adder/cert-adder.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { CertificatsContactsComponent } from './components/certificats-contacts/certificats-contacts.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ToastrModule } from 'ngx-toastr';
-import { CertAdderComponent } from './components/cert-adder/cert-adder.component';
-import { ContentComponent } from './components/content/content.component';
-import { CustomFormsModule } from 'ngx-custom-validators';
 import { AideComponent } from './components/aide/aide.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
+
+import { CertificatService } from './service/certificat.service';
+import { DateService } from './service/date.service';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    CertificatListComponent,
-    CertificatDetailComponent,
-    UrlFormComponent,
-    HeaderComponent,
-    FooterComponent,
     CertificatsContactsComponent,
+    CertificatDetailComponent,
+    CertificatListComponent,
     CertAdderComponent,
     ContentComponent,
+    HeaderComponent,
+    FooterComponent,
     AideComponent,
+    AppComponent,
   ],
   imports: [
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserModule,
-    FormsModule,
-    ReactiveFormsModule,
-    LsComposantsModule,
     BrowserAnimationsModule, // required animations module
     ToastrModule.forRoot(), // ToastrModule added
+    KeycloakAngularModule,
+    ReactiveFormsModule,
+    LsComposantsModule,
     CustomFormsModule,
+    AppRoutingModule,
+    HttpClientModule,
     MatTooltipModule,
+    BrowserModule,
+    FormsModule,
   ],
   providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializer,
+      multi: true,
+      deps: [KeycloakService]
+    },
     CertificatService,
     DateService,
   ],

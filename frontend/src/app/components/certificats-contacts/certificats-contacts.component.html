@@ -48,7 +48,7 @@
       <form [class.has-error]="contactEmail.invalid && contactEmail.touched" class="contactForm" (ngSubmit)="addContact(formContact)" #formContact="ngForm">
         <div class="errorFormGroup">
           <p class="bold">Adresse mail</p>
-          <input required email #contactEmail="ngModel" type="contactEmail" id="contactEmail" name="contactEmail" placeholder="monadresse@mail.com" ngModel>
+          <input required email #contactEmail="ngModel" type="mail" id="contactEmail" name="contactEmail" placeholder="monadresse@mail.com" ngModel>
           <span class="error_span" *ngIf="contactEmail.errors?.required && contactEmail.touched">
             L'adresse email est nécéssaire
           </span>

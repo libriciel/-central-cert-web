@@ -8,7 +8,6 @@
   position: absolute;
   max-width: 775px;
   margin: auto;
-  color: #105385;
   padding: 20px;
   font-size: 15px;
   z-index: 70;
@@ -17,7 +16,7 @@
 
 .contactForm input[type="mail"] {
   border: none;
-  border-bottom: 2px solid #42A1E8;
+  border-bottom: 2px solid rgba(3, 148, 171, 1);
 }
 
 .contactForm input[type="checkbox"]{
@@ -66,7 +65,7 @@
   display: flex;
   flex-direction: column;
   width: 50%;
-  border-right: 2px solid #105385;
+  border-right: 1px solid rgba(3, 148, 171, 1);
 }
 
 .contact-right {
@@ -88,11 +87,10 @@
 .button-contact button {
   width:100%;
   background-color: #FFFFFF;
-  border: 2px solid #89C4F1;
+  border: 2px solid rgba(3, 148, 171, 0.25);
   padding: 5px 5px;
   margin-right: 20px;
   font-size: 13px;
-  color: #105385;
 }
 
 .info-container-row {
@@ -131,8 +129,12 @@
   display:none;
 }
 
-td .trash-list-contact:hover {
-  background-color: #B3D9F5;
+.trash-list-contact:hover .fa {
+  color: #EA4B4B;
+}
+
+.trash-list-contact:hover {
+  background-color: rgba(3, 148, 171, 0.20)
 }
 
 .contact-list tr {
@@ -152,7 +154,7 @@ td .trash-list-contact:hover {
 .contact-list-top {
   text-align: center;
   height: 30px;
-  border-bottom: 2px solid #105385;
+  border-bottom: 2px solid rgba(3, 148, 171, 1);
 }
 
 .contact-list-content {
@@ -161,7 +163,7 @@ td .trash-list-contact:hover {
 }
 
 .contact-list-content:hover {
-  background-color: #D0E8F9;
+  background-color: rgba(3, 148, 171, 0.25);
 }
 
 .contact-list-content:hover .fa{
@@ -169,7 +171,7 @@ td .trash-list-contact:hover {
 }
 
 tr:nth-child(even){
-  background-color: #ECF5FC;
+  background-color: #f7f7f7;
 }
 
 .toggle:hover{
@@ -203,17 +205,16 @@ tr:nth-child(even){
 
 .validcancelbutton button {
   margin-left: 20px;
-  background-color: #89C4F1;
-  border: 2px solid #89C4F1;
+  background-color: rgba(3, 148, 171, 0.25);
+  border: 2px solid rgba(3, 148, 171, 0.25);
   padding: 0px 15px;
   font-size: 13px;
-  color: #105385;
   height: 100%;
   font-size: 20px;
 }
 
 .validcancelbutton button:hover {
-  border: 2px solid #105385;
+  border: 2px solid rgba(3, 148, 171, 1);
 }
 
 .validcancelbutton button .fa {

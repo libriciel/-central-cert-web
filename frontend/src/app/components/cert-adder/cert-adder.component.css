@@ -3,8 +3,6 @@
   position: absolute;
   width: 850px;
   height: 500px;
-  top: 0px;
-  bottom: 100px;
   left: 0px;
   right: 0px;
   margin: auto;
@@ -27,9 +25,9 @@
   text-align: center;
   margin: 30px auto auto auto;
   padding: 20px;
-  background-color: #D0E8F9;
-  border: 2px solid #D0E8F9;
-  border-bottom: 2px solid #42A1E8;
+  background-color: rgba(3, 148, 171, 0.25);
+  border: 2px solid rgba(3, 148, 171, 0.25);
+  border-bottom: 2px solid rgba(3, 148, 171, 1);
   -webkit-transition: border 0.3s, margin 0.3s;
   transition: border 0.3s, margin 0.3s;
 }
@@ -45,7 +43,7 @@
 
 .buttonCertAdderDiv div:hover {
   margin: 0px auto auto auto;
-  border: 2px solid #42A1E8;
+  border: 2px solid rgba(3, 148, 171, 1);
 }
 
 .urlCertAdder {
@@ -56,11 +54,11 @@
 
 input[type="text"]{
   border-radius: 0px 4px 0px 0px;
-  background-color: #D0E8F9;
+  background-color: rgba(3, 148, 171, 0.25);
   font-size: 16px;
   padding: 12px 20px 12px 20px;
   border:none;
-  border-bottom: 2px solid #42A1E8;
+  border-bottom: 2px solid rgba(3, 148, 171, 1);
   width: 30%;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
@@ -72,11 +70,11 @@ input[type="text"]:focus {
 
 input[type="date"] {
   border-radius: 0px 0px 4px 0px;
-  background-color: #D0E8F9;
+  background-color: rgba(3, 148, 171, 0.25);
   font-size: 16px;
   padding: 12px 20px 12px 20px;
   border:none;
-  border-top: 2px solid #42A1E8;
+  border-top: 2px solid rgba(3, 148, 171, 1);
   width: 30%;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
@@ -89,10 +87,10 @@ input[type="date"]:focus {
 input[type="file"] {
   margin: auto;
   border-radius: 0px 0px 4px 4px;
-  background-color: #D0E8F9;
+  background-color: rgba(3, 148, 171, 0.25);
   padding: 50px 100px;
   border:none;
-  border-top: 2px solid #42A1E8;
+  border-top: 2px solid rgba(3, 148, 171, 0.25);
   -webkit-transition: background-color 0.4s ease-in-out;
   transition: background-color 0.4s ease-in-out;
 }
@@ -151,7 +149,7 @@ th, td {
 .adder-list-top {
   text-align: center;
   height: 30px;
-  border-bottom: 2px solid #105385;
+  border-bottom: 2px solid rgba(3, 148, 171, 1);
 }
 
 .adder-list-content {
@@ -160,7 +158,7 @@ th, td {
 }
 
 .adder-list-content:hover {
-  background-color: #D0E8F9;
+  background-color: rgba(3, 148, 171, 0.25);
 }
 
 .adder-list-content:hover .fa{
@@ -168,15 +166,13 @@ th, td {
 }
 
 tr:nth-child(even){
-  background-color: #ECF5FC;
+  background-color: #f7f7f7;
 }
 
 .addCertButton {
-  background-color: #89C4F1;
-  color: #105385;
-  border: none;
+  background-color: rgba(3, 148, 171, 0.25);
   padding: 8px;
-  border: 2px solid #89C4F1;
+  border: 2px solid rgba(3, 148, 171, 0.25);
 }
 
 .addCertButton .fa {
@@ -184,7 +180,7 @@ tr:nth-child(even){
 }
 
 .addCertButton:hover{
-  border: 2px solid #105385;
+  border: 2px solid rgba(3, 148, 171, 1);
 }
 
 .validcancelbutton {
@@ -196,17 +192,16 @@ tr:nth-child(even){
 
 .validcancelbutton button {
   margin-left: 20px;
-  background-color: #89C4F1;
-  border: 2px solid #89C4F1;
+  background-color: rgba(3, 148, 171, 0.25);
+  border: 2px solid rgba(3, 148, 171, 0.25);
   padding: 0px 15px;
   font-size: 13px;
-  color: #105385;
   height: 100%;
   font-size: 20px;
 }
 
 .validcancelbutton button:hover {
-  border: 2px solid #105385;
+  border: 2px solid rgba(3, 148, 171, 1);
 }
 
 .validcancelbutton button .fa {
@@ -216,7 +211,6 @@ tr:nth-child(even){
 .validcancelbutton input {
   background: none;
   border: none;
-  color: #105385;
   font-size: 18px;
 }
 

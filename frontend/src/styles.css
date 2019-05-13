@@ -7,8 +7,8 @@ html, body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #F7F7F7;
-  color: #105385;
+  background-color: #f7f7f7;
+  color: #222222
 }
 
 .page-title {
@@ -24,7 +24,7 @@ body {
 }
 
 .bleu-ciel {
-  color: #42A1E8;
+  color: #0394AB;
 }
 
 .grey {

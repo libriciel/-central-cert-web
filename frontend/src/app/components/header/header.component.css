@@ -1,6 +1,6 @@
 .header {
   overflow: hidden;
-  background-color: #89C4F1;
+  background-color: rgba(3, 148, 171, 1);
   height: 40px;
 }
 
@@ -10,7 +10,6 @@
 }
 
 .dropdown {
-  color: #105385;
   float: right;
   display: inline-block;
 }
@@ -20,11 +19,11 @@
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #42A1E8;
+  background-color: rgba(3, 148, 171, 1);
 }
 
 .dropdown_content {
-  background-color: #89C4F1;
+  background-color: rgba(3, 148, 171, 1);
   display: none;
   position: absolute;
   width: 300px;
@@ -41,12 +40,12 @@
 }
 
 .dropdown_content div:hover {
-  background-color: #42A1E8;
+  background-color: rgba(3, 148, 185, 1);
   cursor: pointer;
 }
 
 .border-top {
-  border-top: 1px solid #105385;
+  border-top: 1px solid black;
 }
 
 .dropdown_content div .fa{
@@ -54,7 +53,6 @@
 }
 
 .dropbtn {
-  color: #105385;
   height: 40px;
   background: none;
   font-size: 16px;
