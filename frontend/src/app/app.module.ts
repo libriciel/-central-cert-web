@@ -9,9 +9,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { ContentComponent } from './components/content/content.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
-import { initializer } from './utils/app-init';
+import { ToastrModule } from 'ngx-toastr';
+import { initializer } from './app-init';
 
 import { CertificatsContactsComponent } from './components/certificats-contacts/certificats-contacts.component';
 import { CertificatDetailComponent } from './components/certificat-detail/certificat-detail.component';
@@ -37,8 +37,8 @@ import { DateService } from './service/date.service';
     AppComponent,
   ],
   imports: [
-    BrowserAnimationsModule, // required animations module
-    ToastrModule.forRoot(), // ToastrModule added
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     KeycloakAngularModule,
     ReactiveFormsModule,
     LsComposantsModule,
@@ -49,16 +49,20 @@ import { DateService } from './service/date.service';
     BrowserModule,
     FormsModule,
   ],
-  providers: [
+  providers:[
     {
       provide: APP_INITIALIZER,
       useFactory: initializer,
       multi: true,
-      deps: [KeycloakService]
+      deps: [
+        KeycloakService
+      ]
     },
     CertificatService,
     DateService,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

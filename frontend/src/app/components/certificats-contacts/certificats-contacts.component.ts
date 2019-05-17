@@ -41,8 +41,6 @@ export class CertificatsContactsComponent implements OnInit {
       }else{
         this.toastr.error('Le contact existe déjà !');
       }
-    }else{
-      console.log("invalid");
     }
   }
 

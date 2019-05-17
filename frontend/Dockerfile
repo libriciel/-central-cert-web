@@ -1,12 +1,35 @@
-FROM node:8.11.2-alpine as builder
+#FROM node:8.11.2-alpine as builder
 
-WORKDIR /app
+#WORKDIR /app
 
-COPY . .
+#COPY . .
 
+#RUN npm install
+
+#EXPOSE 4200
+
+#RUN npm run build --prod
+
+#FROM nginx:alpine
+#COPY --from=builder /app/dist/* /usr/share/nginx/html
+#COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+
+FROM node:8.15.1
+
+# set working directory
+RUN mkdir /usr/src/app
+WORKDIR /usr/src/app
+# add app
+COPY . /usr/src/app
+
+# add `/usr/src/app/node_modules/.bin` to $PATH
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
+
+# install and cache app dependencies
+COPY package.json /usr/src/app/package.json
 RUN npm install
-RUN npm run build --prod
+RUN npm install -g @angular/cli@7.2.4
 
-FROM nginx:alpine
-COPY --from=builder /app/dist/* /usr/share/nginx/html
-COPY ./nginx.conf /etc/nginx/conf.d/default.conf
+EXPOSE 4200
+
+CMD ng serve --host 0.0.0.0 --disable-host-check

@@ -1,5 +1,6 @@
 {
-  "realm": "pocv5",
+  "id": "Atteste",
+  "realm": "Atteste",
   "notBefore": 0,
   "revokeRefreshToken": false,
   "refreshTokenMaxReuse": 0,
@@ -51,7 +52,7 @@
   },
   "scopeMappings": [
     {
-      "client": "ipcore-web",
+      "client": "frontend",
       "roles": [
         "user"
       ]
@@ -60,7 +61,7 @@
   "clientScopeMappings": {
     "account": [
       {
-        "client": "ipcore-web",
+        "client": "frontend",
         "roles": [
           "view-profile"
         ]
@@ -93,7 +94,7 @@
   ],
   "clients": [
     {
-      "clientId": "ipcore-web",
+      "clientId": "frontend",
       "baseUrl": "",
       "surrogateAuthRequired": false,
       "enabled": true,
@@ -142,7 +143,7 @@
       ]
     },
     {
-      "clientId": "ipcore-api",
+      "clientId": "core",
       "surrogateAuthRequired": false,
       "enabled": true,
       "redirectUris": [],

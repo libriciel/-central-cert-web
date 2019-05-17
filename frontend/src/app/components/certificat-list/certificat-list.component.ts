@@ -166,6 +166,11 @@ export class CertificatListComponent implements OnInit {
     ];*/
     this.selectedCertificats = [];
     this.inDeletion = undefined;
+    this.certificatService.selectAll().subscribe(data => {
+      this.certificats = data;
+      this.dateDesc();
+      this.orderByFavoris();
+    });
     this.actualiseCertList();
   }
 
