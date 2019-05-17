@@ -1,7 +1,7 @@
 <div class="header">
   <img class="logo_link" alt="LOGO" routerLink="/accueil">
   <div class="dropdown">
-    <button class="dropbtn">Nom de l'utilisateur<i class="fa fa-sort-desc" aria-hidden="true"></i></button>
+    <button class="dropbtn">{{userName}}<i class="fa fa-sort-desc" aria-hidden="true"></i></button>
     <div class="dropdown_content border-top">
       <div routerLink="aide">
         <i class="fa fa-question" aria-hidden="true"></i>
@@ -11,7 +11,7 @@
         <i class="fa fa-certificate" aria-hidden="true"></i>
         <p>Politique de confidentialité ( RGPD )</p>
       </div>
-      <div class="border-top">
+      <div (click)="logout()" class="border-top">
         <i class="fa fa-sign-out" aria-hidden="true"></i>
         <p>Se déconnecter</p>
       </div>

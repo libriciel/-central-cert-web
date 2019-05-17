@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { KeycloakService } from 'keycloak-angular';
+import { KeycloakProfile } from 'keycloak-js';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  userName: string;
 
-  ngOnInit() {
+  constructor(private keycloakService: KeycloakService) { }
+
+  async ngOnInit() {
+    await this.keycloakService.loadUserProfile().then(data => {
+      this.userName = data.username;
+    });
+  }
+
+  logout(){
+    console.log("ok");
+    this.keycloakService.logout();
   }
 }

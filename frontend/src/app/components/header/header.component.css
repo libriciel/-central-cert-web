@@ -33,7 +33,6 @@
 
 .dropdown_content div {
   padding: 0px 10px 0px 10px;
-  width: 100%;
   display: flex;
   flex-direction: row;
   align-items: center;
