@@ -12,39 +12,16 @@ services:
 
   frontend:
     build: ../frontend
-    ports:
-      - 4200
-    depends_on:
-      - core
     volumes:
       - /usr/src/app
     command: "ng serve --host 0.0.0.0 --disable-host-check"
-
-  keycloak:
-    image: jboss/keycloak:4.5.0.Final
-    tty: true
-    environment:
-      - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=admin
-      - DB_VENDOR=postgres
-      - DB_USER=keycloak
-      - DB_PASSWORD=keycloak
-      - DB_ADDR=db
-      - DB_PORT=5432
-      - DB_DATABASE=keycloak
-      - PROXY_ADDRESS_FORWARDING=true
-      - KEYCLOAK_IMPORT=/tmp/keycloak.json
-    volumes:
-      - ./keycloak/keycloak.json:/tmp/keycloak.json
-    ports:
-      - 9090:8080
-    depends_on:
-      - db
 
   core:
     build: ../core
     depends_on:
       - db
+    ports:
+      - 9999:8080
 
   db:
     build: postgres
@@ -57,3 +34,21 @@ services:
       - POSTGRES_USER=postgres
       - DB_TO_CREATE=atteste,keycloak
     command: postgres -c max_connections=300 -c log_min_messages=LOG
+
+  keycloak:
+    image: jboss/keycloak:4.5.0.Final
+    tty: true
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
+      - DB_VENDOR=postgres
+      - DB_ADDR=db
+      - DB_DATABASE=keycloak
+      - DB_USER=keycloak
+      - DB_PASSWORD=keycloak
+      - KEYCLOAK_IMPORT=/tmp/keycloak.json
+      - PROXY_ADDRESS_FORWARDING=true
+    volumes:
+      - ./keycloak/keycloak.json:/tmp/keycloak.json
+    ports:
+      - 9090:8080

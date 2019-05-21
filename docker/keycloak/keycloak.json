@@ -1,6 +1,6 @@
 {
-  "id": "Atteste",
-  "realm": "Atteste",
+  "id": "atteste",
+  "realm": "atteste",
   "notBefore": 0,
   "revokeRefreshToken": false,
   "refreshTokenMaxReuse": 0,

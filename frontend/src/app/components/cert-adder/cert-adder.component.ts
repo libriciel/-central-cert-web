@@ -14,13 +14,13 @@ export class CertAdderComponent implements OnInit {
   @Output() event: EventEmitter<any> = new EventEmitter();
 
   file: File[];
-  certificats: Certificat[];
+  uplodedCerts: Certificat[];
   mode: number;
 
   constructor(private toastr: ToastrService, private dateService: DateService, private certificatService: CertificatService) { }
 
   ngOnInit() {
-
+    this.uplodedCerts = [];
   }
 
   open(){
@@ -93,9 +93,9 @@ export class CertAdderComponent implements OnInit {
   addByURL(url){
     if(url.status === "VALID"){
       this.certificatService.selectFromUrl(url.value.urlAdder).subscribe(data => {
-        this.certificats = data;
+        this.uplodedCerts = data;
+        this.nextStage();
       });
-      this.nextStage();
     }
   }
 
@@ -105,12 +105,12 @@ export class CertAdderComponent implements OnInit {
   }
 
   callParent() {
-    this.event.emit(this.certificats);
+    this.event.emit(this.uplodedCerts);
   }
 
   createCert(form){
     if(form.status === "VALID"){
-      this.certificats = [];
+      this.uplodedCerts = [];
       let cert = {
         id: undefined,
         notBefore: new Date(form.value.notbefore),
@@ -121,7 +121,7 @@ export class CertAdderComponent implements OnInit {
         notified: false,
         notifyAll: false,
       }
-      this.certificats.push(cert);
+      this.uplodedCerts.push(cert);
       this.nextStage();
     }
   }
@@ -175,13 +175,13 @@ export class CertAdderComponent implements OnInit {
 
   addByFile(){
     if(this.file != undefined && this.isCorrectFile() === true){
-      this.certificats = [];
+      this.uplodedCerts = [];
       for(let i = 0; i < this.file.length; i++){
         this.certificatService.selectFromFile(this.file[i]).subscribe(data => {
-          this.certificats.push(data);
+          this.uplodedCerts.push(data);
+          this.nextStage();
         });
       }
-      this.nextStage();
     }
   }
 
@@ -191,10 +191,10 @@ export class CertAdderComponent implements OnInit {
     let checks = Object.values(form.value);
     this.certificatService.selectAll().subscribe(data => {
       for(let i = 0; i < checks.length; i++){
-          if(checks[i] == "true" && !this.certificatService.exists(this.certificats[i], data)){
-            certs.push(this.certificats[i]);
-          }else if(checks[i] == "true" && this.certificatService.exists(this.certificats[i], data)){
-            existant_certs.push(this.certificats[i]);
+          if(checks[i] == "true" && !this.certificatService.exists(this.uplodedCerts[i], data)){
+            certs.push(this.uplodedCerts[i]);
+          }else if(checks[i] == "true" && this.certificatService.exists(this.uplodedCerts[i], data)){
+            existant_certs.push(this.uplodedCerts[i]);
           }
       }
       this.close();

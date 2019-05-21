@@ -32,138 +32,6 @@ export class CertificatListComponent implements OnInit {
     this.searchText = undefined;
     this.selectAllCerts = false;
     this.certificats = [];
-    /*this.certificats = [
-      {
-        id: 1,
-        notBefore: new Date("December 17, 1800"),
-        notAfter: new Date("December 17, 2027"),
-        favoris: false,
-        dn: "CN=Libriciel COOP1",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 2,
-        notBefore: new Date("April 8, 2019"),
-        notAfter: new Date("September 6, 2019"),
-        favoris: false,
-        dn: "CN=Libriciel COOP2",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 3,
-        notBefore: new Date("April 8, 2019"),
-        notAfter: new Date("June 9, 2019"),
-        favoris: false,
-        dn: "CN=Libriciel COOP3",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 4,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP4",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 5,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP5",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 6,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP6",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 7,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP7",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 8,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP8",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 9,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP9",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 10,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP10",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 11,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP11",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 12,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP12",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-      {
-        id: 13,
-        notBefore: new Date(),
-        notAfter: new Date(),
-        favoris: false,
-        dn: "CN=Libriciel COOP13",
-        additionnalMails: [],
-        notifyAll: false,
-        notified: false,
-      },
-    ];*/
     this.selectedCertificats = [];
     this.inDeletion = undefined;
     this.certificatService.selectAll().subscribe(data => {
@@ -177,7 +45,7 @@ export class CertificatListComponent implements OnInit {
   actualiseCertList(){
     this.certificatService.selectAll().subscribe(data => {
       this.certificats = data;
-      this.dateDesc();
+      this.dateAsc();
       this.orderByFavoris();
     });
   }
