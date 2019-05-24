@@ -26,6 +26,8 @@ export class CertificatListComponent implements OnInit {
 
   searchText: string;
 
+  searchCerts: Certificat[];
+
   constructor(private toastr: ToastrService, private certificatService: CertificatService, private dateService: DateService) { }
 
   ngOnInit() {
@@ -34,12 +36,55 @@ export class CertificatListComponent implements OnInit {
     this.certificats = [];
     this.selectedCertificats = [];
     this.inDeletion = undefined;
+    this.searchCerts = [];
     this.certificatService.selectAll().subscribe(data => {
       this.certificats = data;
       this.dateDesc();
       this.orderByFavoris();
     });
     this.actualiseCertList();
+    /*this.certificats = [
+    {
+        id: 1,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: true,
+        dn: "CN=TEST1",
+        additionnalMails: [],
+        notifyAll: true,
+        notified: false,
+      },
+      {
+        id: 2,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: true,
+        dn: "CN=TEST2",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 3,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: true,
+        dn: "CN=TEST3",
+        additionnalMails: [],
+        notifyAll: false,
+        notified: false,
+      },
+      {
+        id: 4,
+        notBefore: new Date(),
+        notAfter: new Date(),
+        favoris: true,
+        dn: "CN=TEST4",
+        additionnalMails: [],
+        notifyAll: true,
+        notified: true,
+      }
+    ];*/
   }
 
   actualiseCertList(){
@@ -252,26 +297,30 @@ export class CertificatListComponent implements OnInit {
   }
 
   search(form){
-    let results = new Array();
-
-    this.certificats.forEach(function(cert){
-      if(cert.dn.includes(form.value.research)
-        || this.getDate().includes(form.value.research)
-        || this.getRemTime().includes(form.value.research)){
-        results.push(cert);
-      }else{
-        let mail = false;
-        for(let i = 0; i < cert.additionnalMails.length; i++){
-          if(cert.additionnalMails[i].adresse.includes(form.value.research)){
-            mail = true;
+    if(form.value === undefined || form.value === null || form.value === ""){
+      this.searchCerts = [];
+    }else{
+      let results = new Array();
+      for(let i = 0; i < this.certificats.length; i++){
+        if(this.certificats[i].dn.includes(form.value)
+          || this.getDate(this.certificats[i].notBefore).includes(form.value)
+          || this.getDate(this.certificats[i].notAfter).includes(form.value)
+          || this.getRemTime(this.certificats[i]).includes(form.value)){
+          results.push(this.certificats[i]);
+        }else{
+          let mail = false;
+          for(let j = 0; j < this.certificats[i].additionnalMails.length; j++){
+            if(this.certificats[i].additionnalMails[j].adresse.includes(form.value)){
+              mail = true;
+            }
+          }
+          if(mail === true){
+            results.push(this.certificats[i]);
           }
         }
-        if(mail === true){
-          results.push(cert);
-        }
       }
-    });
-    return results;
+      this.searchCerts = results;
+    }
   }
 
 

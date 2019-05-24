@@ -2,8 +2,8 @@
   <p class="page-title bold"> Accueil</p>
   <div class="search-div">
     <div class="search-left">
-      <i class="fa fa-search pointer" aria-hidden="true"></i>
-      <input #searchBar="ngModel" type="text" placeholder="Rechercher un certificat par mot-clé, date..." [(ngModel)]="searchText">
+      <i (click)="search(searchBar)" class="fa fa-search pointer" aria-hidden="true"></i>
+      <input (change)="search(searchBar)" #searchBar="ngModel" type="text" placeholder="Rechercher un certificat par mot-clé, date..." [(ngModel)]="searchText">
       <i class="fa fa-times pointer" *ngIf="searchBar.value" (click)="closeSearch(searchBar)" aria-hidden="true"></i>
     </div>
     <div class="search-right">
@@ -51,8 +51,40 @@
         <th class="icon-th"></th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="!searchText && searchCerts.length == 0">
       <tr class="list-content" *ngFor="let certificat of certificats; let j = index">
+        <td class="icon-th">
+            <input type="checkbox" class="pointer" (change)="checkBoxHandler(certificat, $event.target.checked)" name="check{{j}}" [checked]="selectAllCerts">
+        </td>
+        <td class="icon-th">
+          <i matTooltip="Ajouter aux favoris" class="fa fa-star-o pointer" (click)="favorize(certificat)" *ngIf="certificat.favoris == false" aria-hidden="true"></i>
+          <i matTooltip="Retirer des favoris" class="fa fa-star pointer" (click)="favorize(certificat)" *ngIf="certificat.favoris == true" aria-hidden="true"></i>
+        </td>
+        <td class="content-th first"><p>{{getInformations(certificat).cn}}</p></td>
+        <td class="content-th second">
+          <div class="date-left">
+            <i matTooltip="Encore du temps avant expiration" *ngIf="isGreen(certificat) == true" class="greenIndicator fa fa-circle" aria-hidden="true"></i>
+            <i matTooltip="Quelques mois avant expiration" *ngIf="isOrange(certificat) == true" class="orangeIndicator fa fa-circle" aria-hidden="true"></i>
+            <i matTooltip="Expire bientôt" *ngIf="isRed(certificat) == true" class="redIndicator fa fa-circle" aria-hidden="true"></i>
+          </div>
+          <div class="date-right">
+            <p>{{getDate(certificat.notAfter)}}</p>
+            <p>{{getRemTime(certificat)}}</p>
+          </div>
+        </td>
+        <td matTooltip="Visualiser" class="icon-th hover-th pointer" (click)="toDetail(certificat)">
+          <i class="fa-none fa fa-eye" aria-hidden="true"></i>
+        </td>
+        <td matTooltip="Gérer les contacts et notifications" class="icon-th hover-th pointer" (click)="toContact(certificat)">
+          <i class="fa fa-none fa-bell" aria-hidden="true"></i>
+        </td>
+        <td matTooltip="Supprimer" class="icon-th hover-th pointer" (click)="verifyDelete(certificat)">
+          <i class="fa fa-none fa-trash" aria-hidden="true"></i>
+        </td>
+      </tr>
+    </tbody>
+    <tbody *ngIf="searchText && searchCerts.length > 0">
+      <tr class="list-content" *ngFor="let certificat of searchCerts; let j = index">
         <td class="icon-th">
             <input type="checkbox" class="pointer" (change)="checkBoxHandler(certificat, $event.target.checked)" name="check{{j}}" [checked]="selectAllCerts">
         </td>
@@ -87,6 +119,10 @@
 
   <div *ngIf="certificats.length <= 0">
     <p>Pas de certificats</p>
+  </div>
+
+  <div *ngIf="searchText && searchCerts.length == 0">
+    <p>Aucun certificats trouvé avec cette recherche</p>
   </div>
 
   <div class="verify-suppr">

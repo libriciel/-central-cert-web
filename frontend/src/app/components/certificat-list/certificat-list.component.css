@@ -291,3 +291,32 @@ input[type="checkbox"]:checked {
   font-size: 20px;
   margin: 0px 10px 0px 10px;
 }
+
+@media screen and (max-width: 800px){
+  .search-div {
+    flex-direction: column-reverse;
+    width: 100%;
+  }
+
+  .search-div .search-left {
+    width: 100%;
+  }
+
+  .search-div .search-right {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .buttonDiv {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .buttonDiv button {
+    width: 90%;
+    margin-top: 10px;
+  }
+}
