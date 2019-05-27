@@ -7,6 +7,7 @@ import { DistinguishedNumber } from '../model/DistinguishedNumber';
 @Injectable()
 export class CertificatService {
 
+  //URL des différentes requêtes au core
   private saveUrl: string;
   private saveAllUrl: string;
   private selectUrl: string;
@@ -19,6 +20,7 @@ export class CertificatService {
   private updateAllUrl: string;
 
   constructor(private http: HttpClient) {
+    //Instantiation de toutes les URLs
     this.saveUrl = '/api/certificat/save';
     this.saveAllUrl = '/api/certificat/saveAll';
     this.selectUrl = '/api/certificat/select?id='
@@ -73,6 +75,7 @@ export class CertificatService {
     return this.http.put<Certificat[]>(this.updateAllUrl, certificats);
   }
 
+  //Segmente et renvoit les informations du Distinguished Number (string) du certificat en un objet Distinguished Number
   public getInformations(certificat: Certificat){
     let l = certificat.dn.split(",");
     let res = new DistinguishedNumber();
@@ -137,6 +140,7 @@ export class CertificatService {
     return res;
   }
 
+  //Renvoit true si les deux certificats en paramètres ont la même ID ou sont égaux
   areEquals(c1: Certificat, c2: Certificat){
     let i1 = this.getInformations(c1);
     let i2 = this.getInformations(c2);
@@ -161,6 +165,7 @@ export class CertificatService {
     }
   }
 
+  //Renvoit true si le certificat entré en paramètres existe dans la liste entrée en paramètres
   exists(c: Certificat, list: Certificat[]){
     let test = false;
     for(let i = 0; i < list.length; i++){

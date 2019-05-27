@@ -14,13 +14,14 @@ export class HeaderComponent implements OnInit {
   constructor(private keycloakService: KeycloakService) { }
 
   async ngOnInit() {
+    //récupère les informations de l'utilisateur Keycloak à l'initialisation
     await this.keycloakService.loadUserProfile().then(data => {
       this.userName = data.username;
     });
   }
 
+  //déconnecte l'utilisateur
   logout(){
-    console.log("ok");
     this.keycloakService.logout();
   }
 }

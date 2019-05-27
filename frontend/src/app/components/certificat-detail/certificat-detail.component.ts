@@ -12,26 +12,36 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./certificat-detail.component.css']
 })
 export class CertificatDetailComponent implements OnInit {
+  //certificat en détail
   @Input() certificat: Certificat;
+
+  //certificat en contact
   @Input() contactCertificat: Certificat;
+
+  //permet d'envoyer un event au parent
   @Output() event: EventEmitter<any> = new EventEmitter();
 
+  //en édition ou non
   inEdit: boolean;
 
   constructor(private toastr: ToastrService, private dateService: DateService, private certificatService: CertificatService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    //initialisation des variables
     this.inEdit = false;
   }
 
+  //permet d'éditer les informations
   edit(){
     this.inEdit = true;
   }
 
+  //annule l'édition
   annulerEdit(){
     this.inEdit = false;
   }
 
+  //actualise les détails du certificat
   changeDetail(form){
     let dn = "";
 
@@ -71,40 +81,49 @@ export class CertificatDetailComponent implements OnInit {
     this.toastr.success("Le certificat a été modifié avec succès !!!");
   }
 
+  //récupère la date formatée
   getDate(d: Date){
     return this.dateService.format(d);
   }
 
+  //récupère le temps restant
   getRemTime(c: Certificat){
     return this.dateService.getRemainingTime(c);
   }
 
+  //supprime le certificat
   delete(){
     this.certificatService.delete(this.certificat.id).subscribe(data => {
       this.closeSelf();
     });
   }
 
+  //récupère les informations du certificat
   getInformations(certificat: Certificat){
     return this.certificatService.getInformations(certificat);
   }
 
+  //ouvre la fenetre de gestion des contacts
   contactWindow(){
     this.contactCertificat = this.certificat;
   }
 
+  //ferme la fenetre des contacts
   closeContactWindows(){
     this.contactCertificat = undefined;
   }
 
+  //ferme la fentre du détail
   closeSelf(){
     this.callParent();
   }
 
+  //envoit l'event à son parent
   callParent() {
     this.event.emit(null);
   }
 
+  //active le popup de validation de suppression
   detVerifySelectDelete(){
     let shadow = document.getElementsByClassName("supprshadow")[0];
     let verifySuppr = document.getElementsByClassName("det-verify-suppr")[0];
@@ -113,6 +132,7 @@ export class CertificatDetailComponent implements OnInit {
     verifySuppr.setAttribute("style", "display:flex");
   }
 
+  //ferme le popup de validation de suppression sans supprimer le certificat
   detCloseVerifySuppr(){
     let shadow = document.getElementsByClassName("supprshadow")[0];
     let verifySuppr = document.getElementsByClassName("det-verify-suppr")[0];
@@ -121,8 +141,7 @@ export class CertificatDetailComponent implements OnInit {
     verifySuppr.setAttribute("style", "display:none");
   }
 
-
-
+  //valide le popup et supprime le certificat
   detVerifySupprDelete(){
     let shadow = document.getElementsByClassName("supprshadow")[0];
     let verifySuppr = document.getElementsByClassName("det-verify-suppr")[0];
@@ -130,5 +149,4 @@ export class CertificatDetailComponent implements OnInit {
     verifySuppr.setAttribute("style", "display:none");
     this.delete();
   }
-
 }

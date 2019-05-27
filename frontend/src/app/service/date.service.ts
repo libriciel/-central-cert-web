@@ -7,15 +7,25 @@ export class DateService {
 
   constructor() { }
 
+  //formate la date entrée en paramètre sous la forme jour/mois/année
   format(d: Date){
     d = new Date(d);
     let jour = d.getDate();
     let mois = d.getMonth() + 1;
     let annee = d.getFullYear();
 
+    if(jour < 10){
+      jour = "0" + jour;
+    }
+
+    if(mois < 10){
+      mois = "0" + mois;
+    }
+
     return jour + "/" + mois + "/" + annee;
   }
 
+  //return true si la date entrée en paramètres est bissextile
   isBissextile(annee: number){
     if((annee % 400 === 0) || (annee % 4 === 0 && annee % 100 != 0)){
       return true;
@@ -24,6 +34,7 @@ export class DateService {
     }
   }
 
+  //retourne le temps restant avant expiration du certificat entré en paramètres sous la forme d'un tableau [années restantes, mois restants, jours restants]
   getRem(c: Certificat){
     let d1: Date;
     let d2: Date;
@@ -46,6 +57,10 @@ export class DateService {
     }
   }
 
+  /*retourne le temps restants avant expiration du certificat sous la forme d'un string
+    ex1: 12 ans, 6 mois et 12 jours
+    ex2: 3 mois et 2 jours
+  */
   getRemainingTime(c: Certificat){
     let tab = this.getRem(c);
     if(tab != undefined){
@@ -95,6 +110,7 @@ export class DateService {
     }
   }
 
+  //renvoit true si le certificat est en code ORANGE
   isOrange(c: Certificat){
     let remTime = this.getRem(c);
     if(remTime != undefined){
@@ -112,6 +128,7 @@ export class DateService {
     }
   }
 
+  //renvoit true si le certificat est en code RED
   isRed(c: Certificat){
     let remTime = this.getRem(c);
     if(remTime != undefined){

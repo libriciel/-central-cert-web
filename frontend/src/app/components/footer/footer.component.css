@@ -1,4 +1,6 @@
 .footer {
-  background-color: rgba(3, 148, 171, 1);
+  overflow: hidden;
+  background-color: #222;
   height: 40px;
+  color: white;
 }

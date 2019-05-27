@@ -1,4 +1,4 @@
 export class Mail {
-  adresse: string;
-  notifiable: boolean;
+  adresse: string; //Adresse
+  notifiable: boolean; //Notifiable ou non
 }

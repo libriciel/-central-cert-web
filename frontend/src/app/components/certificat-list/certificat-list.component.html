@@ -3,7 +3,7 @@
   <div class="search-div">
     <div class="search-left">
       <i (click)="search(searchBar)" class="fa fa-search pointer" aria-hidden="true"></i>
-      <input (change)="search(searchBar)" #searchBar="ngModel" type="text" placeholder="Rechercher un certificat par mot-clé, date..." [(ngModel)]="searchText">
+      <input (input)="search(searchBar)" #searchBar="ngModel" type="text" placeholder="Rechercher un certificat par mot-clé, date..." [(ngModel)]="searchText">
       <i class="fa fa-times pointer" *ngIf="searchBar.value" (click)="closeSearch(searchBar)" aria-hidden="true"></i>
     </div>
     <div class="search-right">
@@ -52,9 +52,9 @@
       </tr>
     </thead>
     <tbody *ngIf="!searchText && searchCerts.length == 0">
-      <tr class="list-content" *ngFor="let certificat of certificats; let j = index">
+      <tr id="checkTr{{j}}" class="list-content" *ngFor="let certificat of certificats; let j = index">
         <td class="icon-th">
-            <input type="checkbox" class="pointer" (change)="checkBoxHandler(certificat, $event.target.checked)" name="check{{j}}" [checked]="selectAllCerts">
+            <input type="checkbox" class="pointer" (change)="checkBoxHandler(certificat, $event.target.checked, j)" name="check{{j}}" [checked]="selectAllCerts">
         </td>
         <td class="icon-th">
           <i matTooltip="Ajouter aux favoris" class="fa fa-star-o pointer" (click)="favorize(certificat)" *ngIf="certificat.favoris == false" aria-hidden="true"></i>

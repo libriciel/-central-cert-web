@@ -11,23 +11,32 @@ import { Output, EventEmitter } from '@angular/core';
   styleUrls: ['./cert-adder.component.css']
 })
 export class CertAdderComponent implements OnInit {
+  //envoi d'event au parent
   @Output() event: EventEmitter<any> = new EventEmitter();
 
+  //fichiers importés
   file: File[];
+
+  //certificats importés
   uplodedCerts: Certificat[];
+
+  //mode d'importation
   mode: number;
 
   constructor(private toastr: ToastrService, private dateService: DateService, private certificatService: CertificatService) { }
 
   ngOnInit() {
+    //initialisation des variables
     this.uplodedCerts = [];
   }
 
+  //ouvre la fenetre d'importation des certificats
   open(){
     document.getElementsByClassName("add-cert-container")[0].classList.add("active");
     document.getElementsByClassName("add-cert-shadow")[0].classList.add("active");
   }
 
+  //ferme la fenetre d'importation des certificats
   close(){
     let containers = document.getElementsByClassName("add-cert-container");
     let shadow = document.getElementsByClassName("add-cert-shadow")[0];
@@ -38,6 +47,7 @@ export class CertAdderComponent implements OnInit {
     shadow.classList.remove("active");
   }
 
+  //passe au stage d'importation suivant
   nextStage(){
     let containers = document.getElementsByClassName("add-cert-container");
     let index = undefined;
@@ -54,6 +64,7 @@ export class CertAdderComponent implements OnInit {
     }
   }
 
+  //retourne au stage d'importation précédent
   previousStage(){
     let containers = document.getElementsByClassName("add-cert-container");
     let index = undefined;
@@ -70,26 +81,31 @@ export class CertAdderComponent implements OnInit {
     }
   }
 
+  //passe au mode URL et change de stage
   nextStageURL(){
     this.mode = 1;
     this.nextStage();
   }
 
+  //passe au mode Formulaire et change de stage
   nextStageFORM(){
     this.mode = 2;
     this.nextStage();
   }
 
+  //passe au mode token et change de srage
   nextStageTOKEN(){
     this.mode = 3;
     this.nextStage();
   }
 
+  //passe au mode keystore et change de stage
   nextStageKEYSTORE(){
     this.mode = 4;
     this.nextStage();
   }
 
+  //récupère les certificats via URL
   addByURL(url){
     if(url.status === "VALID"){
       this.certificatService.selectFromUrl(url.value.urlAdder).subscribe(data => {
@@ -99,15 +115,18 @@ export class CertAdderComponent implements OnInit {
     }
   }
 
+  //ferme la fenetre d'improtation
   closeSelf(){
     this.close();
     this.callParent();
   }
 
+  //envoi l'event au parent
   callParent() {
     this.event.emit(this.uplodedCerts);
   }
 
+  // créer un certificat via formulaire
   createCert(form){
     if(form.status === "VALID"){
       this.uplodedCerts = [];
@@ -118,14 +137,16 @@ export class CertAdderComponent implements OnInit {
         favoris: false,
         dn: "CN=" + form.value.cn,
         additionnalMails: [],
-        notified: false,
+        notified: "GREEN",
         notifyAll: false,
       }
+      console.log(cert);
       this.uplodedCerts.push(cert);
       this.nextStage();
     }
   }
 
+  //ajoute les fichiers
   onFileChange(event){
     this.file = [];
     for(let i = 0; i < event.target.files.length; i++){
@@ -133,6 +154,7 @@ export class CertAdderComponent implements OnInit {
     }
   }
 
+  //montre les erreurs de fichiers
   showFileError(){
     let test = false;
     if(this.file != undefined){
@@ -153,6 +175,7 @@ export class CertAdderComponent implements OnInit {
     return test;
   }
 
+  //vérifie que le format du fichier est correct
   isCorrectFile(){
     let test = true;
     if(this.file != undefined){
@@ -173,6 +196,7 @@ export class CertAdderComponent implements OnInit {
     return test;
   }
 
+  //ajoute le certificat par fichier
   addByFile(){
     if(this.file != undefined && this.isCorrectFile() === true){
       this.uplodedCerts = [];
@@ -185,6 +209,7 @@ export class CertAdderComponent implements OnInit {
     }
   }
 
+  //valide le formulaire et ajoute les certificats à la liste
   validate(form){
     let certs = new Array();
     let existant_certs = new Array();
@@ -210,14 +235,17 @@ export class CertAdderComponent implements OnInit {
     });
   }
 
+  //récupère les informations des certificats
   getInformations(certificat: Certificat){
     return this.certificatService.getInformations(certificat);
   }
 
+  //récupère la date formatée
   getDate(d: Date){
     return this.dateService.format(d);
   }
 
+  //récupère le temps restant
   getRemTime(c: Certificat){
     return this.dateService.getRemainingTime(c);
   }

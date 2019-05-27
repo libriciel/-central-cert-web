@@ -1,0 +1,22 @@
+.scroll-to-top {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  transition: all .2s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 0.25rem;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  display: none;
+}
+
+.scroll-to-top .fa {
+  font-size: 40px;
+}
+
+.show-scrollTop {
+  display: inline;
+}

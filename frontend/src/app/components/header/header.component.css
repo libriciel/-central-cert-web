@@ -1,7 +1,8 @@
 .header {
   overflow: hidden;
-  background-color: rgba(3, 148, 171, 1);
+  background-color: #222;
   height: 40px;
+  color: white;
 }
 
 .logo-link {
@@ -19,11 +20,11 @@
 }
 
 .dropdown:hover .dropbtn {
-  background-color: rgba(3, 148, 171, 1);
+  background-color: #222;
 }
 
 .dropdown_content {
-  background-color: rgba(3, 148, 171, 1);
+  background-color: #222;
   display: none;
   position: absolute;
   width: 300px;
@@ -39,7 +40,7 @@
 }
 
 .dropdown_content div:hover {
-  background-color: rgba(3, 148, 185, 1);
+  background-color: #5b5b5b;
   cursor: pointer;
 }
 
@@ -57,6 +58,7 @@
   font-size: 16px;
   border: none;
   cursor: pointer;
+  color: white;
 }
 
 .dropbtn .fa {

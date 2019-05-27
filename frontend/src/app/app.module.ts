@@ -2,7 +2,6 @@ import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LsComposantsModule } from '@libriciel/ls-composants';
 import { CustomFormsModule } from 'ngx-custom-validators';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -16,6 +15,7 @@ import { initializer } from './app-init';
 import { CertificatsContactsComponent } from './components/certificats-contacts/certificats-contacts.component';
 import { CertificatDetailComponent } from './components/certificat-detail/certificat-detail.component';
 import { CertificatListComponent } from './components/certificat-list/certificat-list.component';
+import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 import { CertAdderComponent } from './components/cert-adder/cert-adder.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -35,13 +35,13 @@ import { DateService } from './service/date.service';
     FooterComponent,
     AideComponent,
     AppComponent,
+    ScrollToTopComponent,
   ],
   imports: [
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     KeycloakAngularModule,
     ReactiveFormsModule,
-    LsComposantsModule,
     CustomFormsModule,
     AppRoutingModule,
     HttpClientModule,
