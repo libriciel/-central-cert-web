@@ -21,6 +21,7 @@
 
 .contactForm input[type="checkbox"]{
   margin-left: 10px;
+  align-self: center;
 }
 
 .notifCheckbox {

@@ -23,6 +23,7 @@ import { AideComponent } from './components/aide/aide.component';
 
 import { CertificatService } from './service/certificat.service';
 import { DateService } from './service/date.service';
+import { RGPDComponent } from './components/rgpd/rgpd.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { DateService } from './service/date.service';
     AideComponent,
     AppComponent,
     ScrollToTopComponent,
+    RGPDComponent,
   ],
   imports: [
     BrowserAnimationsModule,

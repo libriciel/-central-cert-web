@@ -149,4 +149,20 @@ export class CertificatDetailComponent implements OnInit {
     verifySuppr.setAttribute("style", "display:none");
     this.delete();
   }
+
+  //ajoute/supprime le certificat des favoris
+  detailFavorize(){
+      if(this.certificat.favoris === true){
+        this.certificat.favoris = false;
+      }else{
+        this.certificat.favoris = true;
+      }
+      this.certificatService.save(this.certificat).subscribe(data => {
+        if(this.certificat.favoris === true){
+          this.toastr.success("Le certificat " + this.getInformations(this.certificat).cn + " a bien été ajouté aux favoris.");
+        }else{
+          this.toastr.success("Le certificat " + this.getInformations(this.certificat).cn + " a bien été retiré des favoris.");
+        }
+      });
+  }
 }

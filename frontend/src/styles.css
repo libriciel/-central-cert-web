@@ -6,7 +6,7 @@ html, body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Ubuntu, sans-serif;
   background-color: #f7f7f7;
   color: #222222
 }
@@ -57,4 +57,24 @@ body {
   position: absolute;
   left: 0px;
   bottom: -20px;
+}
+
+.spanHome .fa-chevron-right{
+  padding: 0px 10px;
+  font-size: 26px;
+}
+
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: white;
+  border: 1px solid #C1C1C1;
+}
+
+input[type="checkbox"]:checked {
+  background-color: #0394AB;
+  border: 1px solid #0394AB;
 }

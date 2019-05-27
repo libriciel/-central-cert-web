@@ -14,15 +14,19 @@ export class DateService {
     let mois = d.getMonth() + 1;
     let annee = d.getFullYear();
 
+    let stringJour = "" + jour;
+    let stringMois = "" + mois;
+    let stringAnne = "" + annee;
+
     if(jour < 10){
-      jour = "0" + jour;
+      stringJour = "0" + stringJour;
     }
 
     if(mois < 10){
-      mois = "0" + mois;
+      stringMois = "0" + stringMois;
     }
 
-    return jour + "/" + mois + "/" + annee;
+    return stringJour + "/" + stringMois + "/" + stringAnne;
   }
 
   //return true si la date entrée en paramètres est bissextile

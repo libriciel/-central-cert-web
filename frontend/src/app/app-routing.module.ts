@@ -4,7 +4,7 @@ import { CertificatListComponent } from './components/certificat-list/certificat
 import { CertificatDetailComponent } from './components/certificat-detail/certificat-detail.component';
 import { CertificatsContactsComponent } from './components/certificats-contacts/certificats-contacts.component';
 import { AideComponent } from './components/aide/aide.component';
-
+import { RGPDComponent } from './components/rgpd/rgpd.component';
 const routes: Routes = [
   {
     path: '',
@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'aide',
     component: AideComponent
+  },
+  {
+    path: 'rgpd',
+    component: RGPDComponent
   }
 ];
 
