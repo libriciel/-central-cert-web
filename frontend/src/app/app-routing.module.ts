@@ -1,10 +1,12 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { CertificatListComponent } from './components/certificat-list/certificat-list.component';
-import { CertificatDetailComponent } from './components/certificat-detail/certificat-detail.component';
 import { CertificatsContactsComponent } from './components/certificats-contacts/certificats-contacts.component';
+import { CertificatDetailComponent } from './components/certificat-detail/certificat-detail.component';
+import { CertificatListComponent } from './components/certificat-list/certificat-list.component';
+import { Routes, RouterModule } from '@angular/router';
 import { AideComponent } from './components/aide/aide.component';
 import { RGPDComponent } from './components/rgpd/rgpd.component';
+import { OptionsComponent } from './components/options/options.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -22,6 +24,10 @@ const routes: Routes = [
   {
     path: 'rgpd',
     component: RGPDComponent
+  },
+  {
+    path: 'options',
+    component: OptionsComponent
   }
 ];
 

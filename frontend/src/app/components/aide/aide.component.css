@@ -1,0 +1,67 @@
+.help-container {
+  width: 100%;
+  height: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-top: 2px solid #0394AB;
+  display: flex;
+  flex-direction: row;
+}
+
+.helpMenu {
+  min-width: 25%;
+}
+
+.helpInfos {
+  padding: 20px;
+  width: 75%;
+  border-left:2px solid rgba(3, 148, 171, 0.25);
+}
+
+.unbdefinedInfo {
+  border-left:2px solid rgba(3, 148, 171, 0.1);
+}
+
+.help-list-menu {
+  padding: 0px;
+  margin: 0px;
+  list-style-type: none;
+  border-left: 2px solid rgba(3, 148, 171, 0.25);
+}
+
+.menu-item {
+  padding: 15px;
+  background-color: rgba(3, 148, 171, 0.1);
+}
+
+.menu-item i {
+  float: right;
+  margin-left: 10px;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.menu-item:hover i {
+  opacity: 0.8;
+}
+
+.helpMenu .listSelected {
+  border-left: 2px solid rgba(3, 148, 171, 1);
+  -webkit-transition: border 0.3s;
+  transition: border 0.3s;
+}
+
+.help-list-menu .helpSelected i{
+  opacity: 0.8;
+}
+
+.help-list-menu .helpSelected {
+  background-color: rgba(3, 148, 171, 0.25);
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+}
+
+.helpInfos img {
+  max-width: 100%;
+}

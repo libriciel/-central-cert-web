@@ -1,6 +1,7 @@
 <button class="addCertButton pointer" (click)="open()" type="button"><i class="fa fa-plus" aria-hidden="true"></i>Ajouter un certificat</button>
 
 <div class="add-cert-container">
+  <p class="title bold"><i class="fa fa-plus-circle" aria-hidden="true"></i>Ajout d'un certificat</p>
   <div class="stades">
     <span class="stade activeStade">Choix du mode d'importation</span>
     <i class="fa fa-chevron-right" aria-hidden="true"></i>
@@ -177,8 +178,8 @@
         </tr>
       </tbody>
     </table>
-    <div *ngIf="uplodedCerts == undefined || uplodedCerts.length == 0">
-      <p>Aucun certificat n'a été trouvé.</p>
+    <div class="noCertsFound" *ngIf="uplodedCerts == undefined || uplodedCerts.length == 0">
+      <p>Aucun certificat n'a été trouvé avec cette URL.</p>
     </div>
     <div class="validcancelbutton">
       <input class="pointer" (click)="close()" type="button" name="annuler" value="Annuler">

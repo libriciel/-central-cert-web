@@ -22,8 +22,9 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AideComponent } from './components/aide/aide.component';
 
 import { CertificatService } from './service/certificat.service';
-import { DateService } from './service/date.service';
+import { OptionsComponent } from './components/options/options.component';
 import { RGPDComponent } from './components/rgpd/rgpd.component';
+import { DateService } from './service/date.service';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { RGPDComponent } from './components/rgpd/rgpd.component';
     AppComponent,
     ScrollToTopComponent,
     RGPDComponent,
+    OptionsComponent,
   ],
   imports: [
     BrowserAnimationsModule,

@@ -42,6 +42,7 @@
   border: 1px solid #CBCBCB;
   border-radius: 0.25rem;
   padding-left: 50px;
+  min-width: 50px;
 }
 
 .search-div input:focus {
@@ -134,6 +135,22 @@
 
 tr:nth-child(even){
   background-color: #f7f7f7;
+}
+
+.noCertsDiv {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  align-items: center;
+  margin-top: -15px;
+  height: 200px;
+  width: 100%;
+  background-color: white;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+}
+
+.noCertsDiv p {
+  width: 100%;
 }
 
 .icon-th {
@@ -280,19 +297,6 @@ tr:nth-child(even){
   color: #222222;
 }
 
-input[type="checkbox"] {
-  width: 20px;
-  height: 20px;
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: white;
-  border: 1px solid #C1C1C1;
-}
-
-input[type="checkbox"]:checked {
-  background-color: #0394AB;
-  border: 1px solid #0394AB;
-}
 
 .shadow {
   display: none;

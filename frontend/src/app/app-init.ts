@@ -2,7 +2,7 @@ import {KeycloakConfig, KeycloakService } from 'keycloak-angular';
 
 export function initializer(keycloak: KeycloakService): () => Promise<any> {
   var keycloakConfig: KeycloakConfig = {
-    url: 'http://localhost/auth',
+    url: '/auth',
     clientId: 'frontend',
     realm: 'atteste'
   };
