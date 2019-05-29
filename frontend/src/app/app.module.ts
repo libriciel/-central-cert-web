@@ -2,6 +2,7 @@ import { KeycloakService, KeycloakAngularModule } from 'keycloak-angular';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule, APP_INITIALIZER } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 import { CustomFormsModule } from 'ngx-custom-validators';
 import { HttpClientModule } from '@angular/common/http';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -25,6 +26,7 @@ import { CertificatService } from './service/certificat.service';
 import { OptionsComponent } from './components/options/options.component';
 import { RGPDComponent } from './components/rgpd/rgpd.component';
 import { DateService } from './service/date.service';
+import { KeystoreService } from './service/keystore.service';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,7 @@ import { DateService } from './service/date.service';
     OptionsComponent,
   ],
   imports: [
+    DeviceDetectorModule.forRoot(),
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     KeycloakAngularModule,
@@ -64,6 +67,7 @@ import { DateService } from './service/date.service';
     },
     CertificatService,
     DateService,
+    KeystoreService,
   ],
   bootstrap: [
     AppComponent

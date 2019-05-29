@@ -4,6 +4,7 @@ import { CertificatService } from '../../service/certificat.service';
 import { DateService } from '../../service/date.service';
 import { ToastrService } from 'ngx-toastr';
 import { Output, EventEmitter } from '@angular/core';
+import { KeystoreService } from '../../service/keystore.service';
 
 @Component({
   selector: 'app-certificat-list',
@@ -36,7 +37,7 @@ export class CertificatListComponent implements OnInit {
   //résultats de la recherche
   searchCerts: Certificat[];
 
-  constructor(private toastr: ToastrService, private certificatService: CertificatService, private dateService: DateService) { }
+  constructor(private keystoreService: KeystoreService, private toastr: ToastrService, private certificatService: CertificatService, private dateService: DateService) { }
 
   ngOnInit() {
     //initialisation des variables
@@ -49,6 +50,8 @@ export class CertificatListComponent implements OnInit {
 
     //récuparation des certifications dans la base de données et actualisation de la liste
     this.actualiseCertList();
+
+    console.log(this.keystoreService.haveExtension());
   }
 
 

@@ -249,4 +249,28 @@ export class CertAdderComponent implements OnInit {
   getRemTime(c: Certificat){
     return this.dateService.getRemainingTime(c);
   }
+
+  canGoNextURL(form){
+    if(form.status === "VALID"){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  canGoNextFile(form){
+    if(this.isCorrectFile() === true){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  canGoNextForm(form){
+    if(form.status === "VALID"){
+      return true;
+    }else{
+      return false;
+    }
+  }
 }

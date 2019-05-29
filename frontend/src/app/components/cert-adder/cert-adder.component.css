@@ -200,6 +200,16 @@ tr:nth-child(even){
   font-size: 20px;
 }
 
+.validcancelbutton .greyButton {
+  background-color: rgba(3, 148, 171, 0.1);
+  border: 2px solid rgba(3, 148, 171, 0.1);
+  cursor: not-allowed;
+}
+
+.validcancelbutton .greyButton:hover {
+  border: 2px solid rgba(3, 148, 171, 0.1);
+}
+
 .validcancelbutton button:hover {
   border: 2px solid rgba(3, 148, 171, 1);
 }
