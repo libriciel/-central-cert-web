@@ -133,12 +133,12 @@ input[type="file"]:hover {
   width: 100%
 }
 
-th, td {
-  width: 45%;
-}
-
 .checkboxTD{
   width:10%;
+}
+
+.cert-adder-list-td {
+  width: 45%;
 }
 
 .adder-list tr {
@@ -290,6 +290,88 @@ tr:nth-child(even){
 
 .noCertsFound p {
   width: 100%;
+}
+
+.file-div {
+  display: flex;
+  flex-direction: row;
+}
+
+.file-left {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.file-right {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.file-list {
+  margin: 5% auto;
+  width: 80%;
+  border-collapse: collapse;
+}
+
+.file-list tbody {
+  display:block;
+  overflow-y: scroll;
+  max-height: 269px;
+}
+
+.file-list thead {
+  display: table;
+  width: 100%
+}
+
+.file-list-first-td {
+  width: 90%;
+}
+
+.file-list-second-td {
+  width: 10%;
+  text-align: right;
+  text-align: center;
+}
+
+.file-list-content .file-list-second-td .fa {
+  display: none;
+}
+
+.file-list-content .file-list-second-td:hover {
+  background-color: rgba(3, 148, 171, 0.20);
+}
+
+.file-list-content:hover td .fa {
+  display: inline;
+}
+
+.file-list-content .file-list-second-td:hover .fa {
+  color: red;
+}
+
+.file-list tr {
+  display: table;
+  width: 100%;
+}
+
+.file-list-top {
+  height: 30px;
+  border-bottom: 2px solid rgba(3, 148, 171, 1);
+}
+
+.file-list-content {
+  height: 30px;
+}
+
+.file-list-content:hover {
+  background-color: rgba(3, 148, 171, 0.25);
+}
+
+tr:nth-child(even){
+  background-color: #f7f7f7;
 }
 
 @media screen and (max-width: 800px){

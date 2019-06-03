@@ -15,7 +15,7 @@ export class CertAdderComponent implements OnInit {
   @Output() event: EventEmitter<any> = new EventEmitter();
 
   //fichiers importés
-  file: File[];
+  fileTab: File[];
 
   //certificats importés
   uplodedCerts: Certificat[];
@@ -28,6 +28,7 @@ export class CertAdderComponent implements OnInit {
   ngOnInit() {
     //initialisation des variables
     this.uplodedCerts = [];
+    this.fileTab = [];
   }
 
   //ouvre la fenetre d'importation des certificats
@@ -145,28 +146,51 @@ export class CertAdderComponent implements OnInit {
     }
   }
 
+  deleteFile(l){
+    this.fileTab.splice(l, 1);
+  }
+
   //ajoute les fichiers
   onFileChange(event){
-    this.file = [];
+    let test = false;
     for(let i = 0; i < event.target.files.length; i++){
-      this.file.push(event.target.files[i]);
+      for(let j = 0; j < this.fileTab.length; j++){
+        if(this.fileTab[j].name == event.target.files[i].name){
+          test = true;
+        }
+      }
+
+      if(test === false){
+        if(event.target.files[i].name.includes(".cer")
+          || event.target.files[i].name.includes(".crt")
+          || event.target.files[i].name.includes(".pem")
+          || event.target.files[i].name.includes(".key")
+          || event.target.files[i].name.includes(".der")
+          || event.target.files[i].name.includes(".p7b")
+          || event.target.files[i].name.includes(".p7c")
+          || event.target.files[i].name.includes(".pfx")
+          || event.target.files[i].name.includes(".p12")){
+          this.fileTab.push(event.target.files[i]);
+        }
+      }
+      test = false;
     }
   }
 
   //montre les erreurs de fichiers
   showFileError(){
     let test = false;
-    if(this.file != undefined){
-      for(let i = 0; i < this.file.length; i++){
-        if(!this.file[i].name.includes(".cer")
-          && !this.file[i].name.includes(".crt")
-          && !this.file[i].name.includes(".pem")
-          && !this.file[i].name.includes(".key")
-          && !this.file[i].name.includes(".der")
-          && !this.file[i].name.includes(".p7b")
-          && !this.file[i].name.includes(".p7c")
-          && !this.file[i].name.includes(".pfx")
-          && !this.file[i].name.includes(".p12")){
+    if(this.fileTab != undefined){
+      for(let i = 0; i < this.fileTab.length; i++){
+        if(!this.fileTab[i].name.includes(".cer")
+          && !this.fileTab[i].name.includes(".crt")
+          && !this.fileTab[i].name.includes(".pem")
+          && !this.fileTab[i].name.includes(".key")
+          && !this.fileTab[i].name.includes(".der")
+          && !this.fileTab[i].name.includes(".p7b")
+          && !this.fileTab[i].name.includes(".p7c")
+          && !this.fileTab[i].name.includes(".pfx")
+          && !this.fileTab[i].name.includes(".p12")){
           test = true;
         }
       }
@@ -177,17 +201,17 @@ export class CertAdderComponent implements OnInit {
   //vérifie que le format du fichier est correct
   isCorrectFile(){
     let test = true;
-    if(this.file != undefined){
-      for(let i = 0; i < this.file.length; i++){
-        if(!this.file[i].name.includes(".cer")
-          && !this.file[i].name.includes(".crt")
-          && !this.file[i].name.includes(".pem")
-          && !this.file[i].name.includes(".key")
-          && !this.file[i].name.includes(".der")
-          && !this.file[i].name.includes(".p7b")
-          && !this.file[i].name.includes(".p7c")
-          && !this.file[i].name.includes(".pfx")
-          && !this.file[i].name.includes(".p12")){
+    if(this.fileTab != undefined){
+      for(let i = 0; i < this.fileTab.length; i++){
+        if(!this.fileTab[i].name.includes(".cer")
+          && !this.fileTab[i].name.includes(".crt")
+          && !this.fileTab[i].name.includes(".pem")
+          && !this.fileTab[i].name.includes(".key")
+          && !this.fileTab[i].name.includes(".der")
+          && !this.fileTab[i].name.includes(".p7b")
+          && !this.fileTab[i].name.includes(".p7c")
+          && !this.fileTab[i].name.includes(".pfx")
+          && !this.fileTab[i].name.includes(".p12")){
             test = false;
         }
       }
@@ -197,11 +221,13 @@ export class CertAdderComponent implements OnInit {
 
   //ajoute le certificat par fichier
   addByFile(){
-    if(this.file != undefined && this.isCorrectFile() === true){
+    if(this.fileTab != undefined && this.isCorrectFile() === true){
       this.uplodedCerts = [];
-      for(let i = 0; i < this.file.length; i++){
-        this.certificatService.selectFromFile(this.file[i]).subscribe(data => {
-          this.uplodedCerts.push(data);
+      for(let i = 0; i < this.fileTab.length; i++){
+        this.certificatService.selectFromFile(this.fileTab[i]).subscribe(data => {
+          if(data != null &&  data != undefined){
+            this.uplodedCerts.push(data);
+          }
           this.nextStage();
         });
       }
