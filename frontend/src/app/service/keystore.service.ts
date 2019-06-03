@@ -55,7 +55,6 @@ export class KeystoreService {
     }
     LiberSign.setUpdateUrl(config.extensionUpdateUrl.replace(/\/?$/, '/'));
     LiberSign.getCertificates().then(function (certs) {
-      console.log(certs);
     });
   }
 

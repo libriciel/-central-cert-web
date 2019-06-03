@@ -140,7 +140,6 @@ export class CertAdderComponent implements OnInit {
         notified: "GREEN",
         notifyAll: false,
       }
-      console.log(cert);
       this.uplodedCerts.push(cert);
       this.nextStage();
     }

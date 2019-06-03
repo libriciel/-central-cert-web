@@ -50,8 +50,6 @@ export class CertificatListComponent implements OnInit {
 
     //récuparation des certifications dans la base de données et actualisation de la liste
     this.actualiseCertList();
-
-    console.log(this.keystoreService.haveExtension());
   }
 
 
