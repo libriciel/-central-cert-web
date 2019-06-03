@@ -36,9 +36,7 @@ export class KeystoreService {
   }
 
   haveExtension(){
-
     if(typeof LiberSign === "object"){
-      this.getCertificates();
       return true;
     }else{
       return false;
@@ -53,8 +51,9 @@ export class KeystoreService {
       width: '100%',
       iconType: 'fa'
     }
-    LiberSign.setUpdateUrl(config.extensionUpdateUrl.replace(/\/?$/, '/'));
+    console.log(LiberSign.setUpdateUrl(config.extensionUpdateUrl.replace(/\/?$/, '/')));
     LiberSign.getCertificates().then(function (certs) {
+      console.log(certs);
     });
   }
 

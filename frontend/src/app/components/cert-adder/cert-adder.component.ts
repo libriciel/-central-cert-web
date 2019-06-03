@@ -226,9 +226,11 @@ export class CertAdderComponent implements OnInit {
         this.closeSelf();
       });
       if(certs.length > 0){
-        this.toastr.success(certs.length + ' certificat ajoutés avec succès !!!');
+        this.toastr.success(certs.length + ' certificat ajoutés avec succès !');
       }
-      if(existant_certs.length > 0){
+      if(existant_certs.length === 1){
+        this.toastr.error('Un certificat sélectionné existe déjà !')
+      }else if(existant_certs.length > 1) {
         this.toastr.error(existant_certs.length + ' certificats sélectionnés existent déjà !')
       }
     });

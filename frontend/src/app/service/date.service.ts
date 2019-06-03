@@ -142,7 +142,16 @@ export class DateService {
         return false;
       }
     }else{
+      return false;
+    }
+  }
+
+  isExpired(c: Certificat){
+    let remTime = this.getRem(c);
+    if(remTime === undefined){
       return true;
+    }else{
+      return false;
     }
   }
 }

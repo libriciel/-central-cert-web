@@ -19,16 +19,12 @@
   border-bottom: 2px solid rgba(3, 148, 171, 1);
 }
 
-.contactForm input[type="checkbox"]{
-  margin-left: 10px;
-  align-self: center;
-}
-
 .notifCheckbox {
   margin-top: 20px;
   margin-bottom: 20px;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .contact-header {

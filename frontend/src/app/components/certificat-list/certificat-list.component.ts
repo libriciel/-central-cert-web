@@ -50,12 +50,19 @@ export class CertificatListComponent implements OnInit {
 
     //récuparation des certifications dans la base de données et actualisation de la liste
     this.actualiseCertList();
+    if(this.keystoreService.haveExtension() === true){
+      this.keystoreService.getCertificates();
+    }else{
+      console.log("no extension");
+    }
   }
 
 
   //actualise la liste des certificats avec les donénes de la base de données
   //Effectue un tri
   actualiseCertList(){
+    this.selectedCertificats = [];
+    this.selectAllCerts = false;
     this.certificatService.selectAll().subscribe(data => {
       this.certificats = data;
       this.dateAsc();
@@ -280,7 +287,7 @@ export class CertificatListComponent implements OnInit {
 
   //vérifie si le certificat est en code GREEN
   isGreen(certificat){
-    return !this.isOrange(certificat) && !this.isRed(certificat);
+    return !this.isOrange(certificat) && !this.isRed(certificat) && !this.isExpired(certificat);
   }
 
   //vérifie si le certificat est en code ORANGE
@@ -291,6 +298,10 @@ export class CertificatListComponent implements OnInit {
   //vérifie si le certificat est en code RED
   isRed(certificat){
     return this.dateService.isRed(certificat);
+  }
+
+  isExpired(certificat){
+    return this.dateService.isExpired(certificat);
   }
 
   //effectue une recherche et filtre les résultats

@@ -128,7 +128,7 @@
           </ul>
         </div>
         <div class="errorFormGroupFile">
-          <input type="file" id="file" class="file" name="file" (change)="onFileChange($event)" multiple="multiple" ngModel>
+          <input accept=".cer, .crt, .pem, .key, .der, .p7b, .p7c, .pfx, .p12" type="file" id="file" class="file" name="file" (change)="onFileChange($event)" multiple="multiple" ngModel>
           <span class="error_span" *ngIf="showFileError() == true">
             Le fichier importé n'est pas un certificat
           </span>
@@ -174,7 +174,13 @@
       </thead>
       <tbody>
         <tr class="adder-list-content" *ngFor="let certificat of uplodedCerts; let i = index">
-          <td class="checkboxTD"><input type="checkbox" name="check{{i}}" ngModel="true"></td>
+
+          <td class="checkboxTD">
+            <label class="check-label">
+              <input class="pointer" type="checkbox" name="check{{i}}" ngModel="true">
+              <span><i class="fa fa-check" aria-hidden="true"></i></span>
+            </label>
+          </td>
           <td>{{getInformations(certificat).cn}}</td>
           <td>
             <p>{{getDate(certificat.notAfter)}}</p>

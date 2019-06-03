@@ -160,7 +160,7 @@ tr:nth-child(even){
   text-align: center;
 }
 
-.icon-th .fa {
+.icon-th .fa-accueil {
   color: rgba(3, 148, 171, 1);
   font-size: 150%;
 }
@@ -221,6 +221,10 @@ tr:nth-child(even){
 .second .date-right p {
   margin: 0;
   padding: 5px;
+}
+
+.second .date-right .fa {
+  margin-left: 0px;
 }
 
 .fa-none {
@@ -311,7 +315,7 @@ tr:nth-child(even){
   opacity: 0.5;
 }
 
-.fa {
+.fa-accueil {
   font-size: 20px;
   margin: 0px 10px 0px 10px;
 }
