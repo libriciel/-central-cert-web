@@ -30,8 +30,10 @@
           <span class="pointer"><i class="fa fa-check" aria-hidden="true"></i></span>
         </label>
         </th>
-        <th class="icon-th media-disabled"></th>
-        <th class="content-th first pointer" (click)="switchTriObjet()">
+        <th (click)="orderByFavoris()" matTooltip="Trier par favoris" class="icon-th media-disabled">
+          <i class="fa-accueil fa fa-star pointer" aria-hidden="true"></i>
+        </th>
+        <th matTooltip="Trier par objet" class="content-th first pointer" (click)="switchTriObjet()">
           <div class="sorting-menu">
             <p>Objet</p>
             <div>
@@ -40,7 +42,7 @@
             </div>
           </div>
         </th>
-        <th class="content-th second pointer" (click)="switchTriDate()">
+        <th matTooltip="Trier par date" class="content-th second pointer" (click)="switchTriDate()">
           <div class="sorting-menu">
             <p>Date d'expiration</p>
             <div>
@@ -144,7 +146,7 @@
     <p *ngIf="inDeletion != undefined">Êtes-vous sur de vouloir supprimer "{{getInformations(inDeletion).cn}}" arrivant à expiration le {{getDate(inDeletion.notAfter)}} ?</p>
     <div class="validcancelbutton">
       <input class="pointer" (click)="closeVerifySuppr()" type="button" name="annuler" value="Annuler">
-      <button class="pointer" (click)="verifySupprDelete()" type="button"><i class="fa fa-trash" aria-hidden="true"></i>Supprimer</button>
+      <button class="pointer" (click)="verifySupprDelete()" type="button"><i class="fa-accueil fa fa-trash" aria-hidden="true"></i>Supprimer</button>
     </div>
     <i (click)="closeVerifySuppr()" class="fa fa-times close pointer" aria-hidden="true"></i>
   </div>

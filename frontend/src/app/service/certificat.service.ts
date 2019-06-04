@@ -137,7 +137,35 @@ export class CertificatService {
 				res.pc = l[k].substring(9);
 			}
 		}
+
+    if(res.mail != undefined && res.mail != "" && res.mail != null){
+      res.mail = this.getTextFromHex(res.mail);
+    }
+
     return res;
+  }
+
+  getTextFromHex(s: string){
+    let hex = s;
+    if(hex[0] == '#'){
+      hex = hex.slice(1);
+    }
+    let str = '';
+    for (let i = 0; i < hex.length; i += 2){
+
+      let sub = hex.substr(i, 2);
+
+      let parse = parseInt(sub, 16);
+      //console.log("parse : " + parse);
+
+      let charcode = String.fromCharCode(parse);
+      //console.log("charcode : " + charcode);
+
+      str += charcode;
+      //console.log("str : " + str);
+
+    }
+    return str;
   }
 
   //Renvoit true si les deux certificats en paramètres ont la même ID ou sont égaux

@@ -65,6 +65,7 @@ export class CertificatListComponent implements OnInit {
     this.selectAllCerts = false;
     this.certificatService.selectAll().subscribe(data => {
       this.certificats = data;
+      this.clearTri();
       this.dateAsc();
       this.orderByFavoris();
     });
@@ -327,6 +328,29 @@ export class CertificatListComponent implements OnInit {
         }
       }
       this.searchCerts = results;
+    }
+  }
+
+  clearTri(){
+    let dateAsc = document.getElementsByClassName("sort-date-asc")[0];
+    let dateDesc = document.getElementsByClassName("sort-date-desc")[0];
+    let objAsc = document.getElementsByClassName("sort-obj-asc")[0];
+    let objDesc = document.getElementsByClassName("sort-obj-desc")[0];
+
+    if(dateAsc != undefined){
+      dateAsc.classList.remove("selectedTri");
+    }
+
+    if(dateDesc != undefined){
+      dateDesc.classList.remove("selectedTri");
+    }
+
+    if(objAsc != undefined){
+      objAsc.classList.remove("selectedTri");
+    }
+
+    if(objDesc != undefined){
+      objDesc.classList.remove("selectedTri");
     }
   }
 
