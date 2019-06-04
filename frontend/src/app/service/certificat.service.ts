@@ -3,6 +3,7 @@ import { HttpClient, HttpRequest, HttpHeaders, HttpEvent} from '@angular/common/
 import { Certificat } from '../model/certificat';
 import { Observable } from 'rxjs/Observable';
 import { DistinguishedNumber } from '../model/DistinguishedNumber';
+import { KeystoreService } from './keystore.service';
 
 @Injectable()
 export class CertificatService {
@@ -19,7 +20,7 @@ export class CertificatService {
   private updateUrl: string;
   private updateAllUrl: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private keystore: KeystoreService) {
     //Instantiation de toutes les URLs
     this.saveUrl = '/api/certificat/save';
     this.saveAllUrl = '/api/certificat/saveAll';
@@ -189,26 +190,29 @@ export class CertificatService {
 
   //Renvoit true si les deux certificats en paramètres ont la même ID ou sont égaux
   areEquals(c1: Certificat, c2: Certificat){
-    let i1 = this.getInformations(c1);
-    let i2 = this.getInformations(c2);
-
-    if(c1.id === c2.id){
-      return true;
-    }else{
-      if(i1.cn === i2.cn
-      && i1.mail === i2.mail
-      && i1.o === i2.o
-      && i1.ou === i2.ou
-      && i1.l === i2.l
-      && i1.st === i2.st
-      && i1.c === i2.c
-      && i1.t === i2.t
-      && i1.street === i2.street
-      && i1.pc === i2.pc){
+    if(c1 != undefined && c2 != undefined){
+      let i1 = this.getInformations(c1);
+      let i2 = this.getInformations(c2);
+      if(c1.id === c2.id){
         return true;
       }else{
-        return false;
-      }
+        if(i1.cn === i2.cn
+          && i1.mail === i2.mail
+          && i1.o === i2.o
+          && i1.ou === i2.ou
+          && i1.l === i2.l
+          && i1.st === i2.st
+          && i1.c === i2.c
+          && i1.t === i2.t
+          && i1.street === i2.street
+          && i1.pc === i2.pc){
+            return true;
+          }else{
+            return false;
+          }
+        }
+    }else{
+      return false;
     }
   }
 

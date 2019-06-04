@@ -104,6 +104,7 @@ export class CertAdderComponent implements OnInit {
   nextStageKEYSTORE(){
     this.mode = 4;
     this.nextStage();
+    this.getFromExtension();
   }
 
   //récupère les certificats via URL
@@ -236,6 +237,7 @@ export class CertAdderComponent implements OnInit {
 
   //valide le formulaire et ajoute les certificats à la liste
   validate(form){
+    console.log(this.uplodedCerts);
     let certs = new Array();
     let existant_certs = new Array();
     let checks = Object.values(form.value);
@@ -300,6 +302,45 @@ export class CertAdderComponent implements OnInit {
       return true;
     }else{
       return false;
+    }
+  }
+
+  haveExtension(){
+    if(typeof LiberSign === "object"){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  getFromExtension(){
+    if(this.haveExtension() === true){
+      this.uplodedCerts = [];
+      let config = {
+        appletUrl: '/applets/',
+        extensionUpdateUrl: '../../../assets/libersign/',
+        height: 140,
+        width: '100%',
+        iconType: 'fa'
+      }
+      LiberSign.setUpdateUrl(config.extensionUpdateUrl.replace(/\/?$/, '/'));
+      LiberSign.getCertificates().then(certs => {
+        for(let i = 0; i < certs.length; i++){
+          let cert = {
+            id: undefined,
+            notBefore: new Date(certs[i].NOTBEFORE),
+            notAfter: new Date(certs[i].NOTAFTER),
+            favoris: false,
+            dn: "CN=" + certs[i].CN + "," + certs[i].ISSUERDN + ",MAIL=" + certs[i].EMAILADDRESS,
+            additionnalMails: [],
+            notified: "GREEN",
+            notifyAll: false,
+          };
+          console.log(cert.dn);
+          this.uplodedCerts.push(cert);
+        }
+        this.nextStage();
+      });
     }
   }
 }

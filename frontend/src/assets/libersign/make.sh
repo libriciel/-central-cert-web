@@ -1,6 +1,6 @@
 #!/bin/bash
 
-LIBERSIGN_PATH=/var/www/parapheur/libersign
+LIBERSIGN_PATH=.
 CHANNEL=$1
 
 if [ "${CHANNEL}" == "PROD" ]; then

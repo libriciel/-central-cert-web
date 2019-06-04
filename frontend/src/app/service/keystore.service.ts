@@ -21,40 +21,4 @@ export class KeystoreService {
     return (this.getSystem() === "Windows" && this.getNavigator() != "Edge")
         || (this.getSystem() === "Linux" && this.getNavigator() === "Firefox");
   }
-
-  canExtension(){
-    return this.getSystem() === "Windows"
-        && this.getNavigator() != "Edge"
-        && this.getNavigator() != "Internet Explorer"
-        && (this.getNavigator() === "Firefox" || this.getNavigator() === "Chrome");
-  }
-
-  canJava(){
-    return (this.getSystem() === "Windows"
-        && (this.getNavigator() === "Internet Explorer" || this.getNavigator() === "Firefox"))
-        || (this.getSystem() === "Linux" && this.getNavigator() === "Firefox");
-  }
-
-  haveExtension(){
-    if(typeof LiberSign === "object"){
-      return true;
-    }else{
-      return false;
-    }
-  }
-
-  getCertificates(){
-    let config = {
-      appletUrl: '/applets/',
-      extensionUpdateUrl: '/libersign/',
-      height: 140,
-      width: '100%',
-      iconType: 'fa'
-    }
-    console.log(LiberSign.setUpdateUrl(config.extensionUpdateUrl.replace(/\/?$/, '/')));
-    LiberSign.getCertificates().then(function (certs) {
-      console.log(certs);
-    });
-  }
-
 }

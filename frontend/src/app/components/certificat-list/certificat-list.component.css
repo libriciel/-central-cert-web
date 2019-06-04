@@ -163,6 +163,17 @@ tr:nth-child(even){
   text-align: center;
 }
 
+.check-th {
+  width: 7%;
+  align-items: center;
+  text-align: left;
+}
+
+.check-th .fa-accueil {
+  color: rgba(3, 148, 171, 1);
+  font-size: 150%;
+}
+
 .icon-th .fa-accueil {
   color: rgba(3, 148, 171, 1);
   font-size: 150%;
@@ -186,6 +197,8 @@ tr:nth-child(even){
 
 .content-th {
   text-align: left;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .content-th .sorting-menu {

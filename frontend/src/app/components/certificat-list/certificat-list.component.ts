@@ -50,11 +50,6 @@ export class CertificatListComponent implements OnInit {
 
     //récuparation des certifications dans la base de données et actualisation de la liste
     this.actualiseCertList();
-    if(this.keystoreService.haveExtension() === true){
-      this.keystoreService.getCertificates();
-    }else{
-      console.log("no extension");
-    }
   }
 
 
@@ -448,5 +443,6 @@ export class CertificatListComponent implements OnInit {
   //ferme la recherche
   closeSearch(searchBar){
     this.searchText = undefined;
+    this.searchCerts = [];
   }
 }
