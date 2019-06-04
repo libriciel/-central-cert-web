@@ -60,12 +60,22 @@ export class CertificatsContactsComponent implements OnInit {
   changeNotifiable(index){
     this.certificat.additionnalMails[index].notifiable = !this.certificat.additionnalMails[index].notifiable;
     this.certificatService.save(this.certificat).subscribe();
+    if(this.certificat.additionnalMails[index].notifiable === true){
+      this.toastr.success("Les notifications sont activées pour " + this.certificat.additionnalMails[index].adresse + "!");
+    }else {
+      this.toastr.success("Les notifications sont désactivées pour " + this.certificat.additionnalMails[index].adresse + "!");
+    }
   }
 
 
   //alterne l'attribut booléen notifyAll du certificat
   changeNotifiableAll(){
     this.certificat.notifyAll = !this.certificat.notifyAll;
+    if(this.certificat.notifyAll === true){
+      this.toastr.success("Les notifications sont activées pour toutes les adresses renseignées !");
+    }else {
+      this.toastr.success("Les notifications sont désactivées pour toutes les adresses renseignées !");
+    }
     this.certificatService.save(this.certificat).subscribe();
   }
 
