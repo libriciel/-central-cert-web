@@ -95,6 +95,7 @@ export class CertificatListComponent implements OnInit {
 
   //retire un certificat du détail
   removeDetailled(){
+    this.toastr.success(this.getInformations(this.detailledCertificat).cn + " a été supprimé avec succès !");
     this.contactPressed = undefined;
     this.detailledCertificat = undefined;
     this.actualiseCertList();
@@ -118,21 +119,16 @@ export class CertificatListComponent implements OnInit {
 
   // supprime un certificat avec son ID
   delete(id:number){
-    let certs = [];
-    let idx = 0;
-    let cert;
+    let cert ;
     for(let i = 0; i < this.certificats.length; i++){
-      if(this.certificats[i].id != id){
-        certs[idx] = this.certificats[i];
-        idx ++;
-        cert = this.certificats[i];
+      if(this.certificats[i].id === id){
+        cert = this.certificats.splice(i, 1)[0];
+        this.toastr.success('\"' + this.getInformations(cert).cn + '\" supprimé avec succès !!!');
       }
     }
-    this.certificats = certs;
     this.certificatService.delete(id).subscribe(data => {
       this.actualiseCertList();
     });
-    this.toastr.success('\"' + this.getInformations(cert).cn + '\" supprimé avec succès !!!');
   }
 
   //permet de demander vérification (popup) avant suppression

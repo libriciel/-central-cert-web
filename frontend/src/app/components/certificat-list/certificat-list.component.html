@@ -7,7 +7,7 @@
       <i class="fa-accueil fa fa-times pointer" *ngIf="searchBar.value" (click)="closeSearch(searchBar)" aria-hidden="true"></i>
     </div>
     <div class="search-right">
-      <app-cert-adder (event)="actualiseCertList(c)"></app-cert-adder>
+      <app-cert-adder (event)="actualiseCertList()"></app-cert-adder>
     </div>
   </div>
   <div *ngIf="selectedCertificats.length > 0" class="buttonDiv">

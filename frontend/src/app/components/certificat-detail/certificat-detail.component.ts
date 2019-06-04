@@ -120,7 +120,7 @@ export class CertificatDetailComponent implements OnInit {
 
   //envoit l'event à son parent
   callParent() {
-    this.event.emit(null);
+    this.event.emit();
   }
 
   //active le popup de validation de suppression

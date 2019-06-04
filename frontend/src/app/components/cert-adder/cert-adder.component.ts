@@ -251,8 +251,10 @@ export class CertAdderComponent implements OnInit {
       this.certificatService.saveAll(certs).subscribe(data => {
         this.closeSelf();
       });
-      if(certs.length > 0){
-        this.toastr.success(certs.length + ' certificat ajoutés avec succès !');
+      if(certs.length === 1){
+        this.toastr.success('Un certificat ajouté avec succès !');
+      }else if(certs.length > 1){
+        this.toastr.success(certs.length + ' certificats ajoutés avec succès !');
       }
       if(existant_certs.length === 1){
         this.toastr.error('Un certificat sélectionné existe déjà !')
