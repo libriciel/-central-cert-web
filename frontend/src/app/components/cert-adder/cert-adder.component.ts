@@ -288,7 +288,7 @@ export class CertAdderComponent implements OnInit {
   }
 
   canGoNextFile(form){
-    if(this.isCorrectFile() === true){
+    if(this.fileTab.length > 0 && this.isCorrectFile() === true){
       return true;
     }else{
       return false;
