@@ -25,9 +25,9 @@
     <thead>
       <tr class="top-list">
         <th class="icon-th">
-          <label class="check-label">
+          <label class="pointer check-label">
           <input type="checkbox" class="pointer" (change)="toggleAll($event.target.checked)">
-          <span><i class="fa fa-check" aria-hidden="true"></i></span>
+          <span class="pointer"><i class="fa fa-check" aria-hidden="true"></i></span>
         </label>
         </th>
         <th class="icon-th"></th>
@@ -57,9 +57,9 @@
     <tbody *ngIf="!searchText && searchCerts.length == 0">
       <tr id="checkTr{{j}}" class="list-content" *ngFor="let certificat of certificats; let j = index">
         <td class="icon-th">
-          <label class="check-label">
+          <label class="check-label pointer">
             <input type="checkbox" class="pointer" (change)="checkBoxHandler(certificat, $event.target.checked, j)" name="check{{j}}" [checked]="selectAllCerts">
-            <span><i class="fa fa-check" aria-hidden="true"></i></span>
+            <span class="pointer"><i class="fa fa-check" aria-hidden="true"></i></span>
           </label>
 
         </td>

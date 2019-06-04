@@ -197,9 +197,9 @@
       <tbody>
         <tr class="adder-list-content" *ngFor="let certificat of uplodedCerts; let i = index">
           <td class="checkboxTD">
-            <label class="check-label">
+            <label class="pointer check-label">
               <input class="pointer" type="checkbox" name="check{{i}}" ngModel="true">
-              <span><i class="fa fa-check" aria-hidden="true"></i></span>
+              <span class="pointer"><i class="fa fa-check" aria-hidden="true"></i></span>
             </label>
           </td>
           <td class="cert-adder-list-td">{{getInformations(certificat).cn}}</td>
