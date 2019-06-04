@@ -147,8 +147,27 @@ export class CertificatService {
 
   getTextFromHex(s: string){
     let hex = s;
-    if(hex[0] == '#'){
-      hex = hex.slice(1);
+    for(let i = 0; i < hex.length; i++){
+      if(hex[i] != "0"
+      && hex[i] != "1"
+      && hex[i] != "2"
+      && hex[i] != "3"
+      && hex[i] != "4"
+      && hex[i] != "5"
+      && hex[i] != "6"
+      && hex[i] != "7"
+      && hex[i] != "8"
+      && hex[i] != "9"
+      && hex[i].toUpperCase() != "A"
+      && hex[i].toUpperCase() != "B"
+      && hex[i].toUpperCase() != "C"
+      && hex[i].toUpperCase() != "D"
+      && hex[i].toUpperCase() != "E"
+      && hex[i].toUpperCase() != "F"){
+        let part1 = hex.substring(0, i);
+        let part2 = hex.substring(i + 1, hex.length);
+        hex = part1 + part2;
+      }
     }
     let str = '';
     for (let i = 0; i < hex.length; i += 2){
