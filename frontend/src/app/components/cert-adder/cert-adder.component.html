@@ -151,7 +151,7 @@
             <th class="file-list-second-td"></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="fileTab.length > 0">
           <tr class="file-list-content" *ngFor="let fichier of fileTab; let l = index">
             <td class="file-list-first-td">
               {{fichier.name}}
@@ -161,6 +161,7 @@
             </td>
           </tr>
         </tbody>
+        <p *ngIf="fileTab.length == 0">Aucuns fichiers sélectionnés</p>
       </table>
     </div>
     <i (click)="close()" class="fa fa-times close pointer" aria-hidden="true"></i>

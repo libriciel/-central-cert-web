@@ -13,24 +13,24 @@
   <div *ngIf="selectedCertificats.length > 0" class="buttonDiv">
     <button class="favButton top-list-button pointer" (click)="selectedToFavoris()" type="button"><i class="fa-accueil fa fa-star" aria-hidden="true"></i>Ajouter aux favoris</button>
     <button class="favButton top-list-button pointer" (click)="selectedToNotFavoris()" type="button"><i class="fa-accueil fa fa-star-o" aria-hidden="true"></i>Retirer des favoris</button>
-    <button class="deleteButton top-list-button pointer" (click)="verifySelectDelete()" type="button"><i class="fa-accueil fa fa-trash" aria-hidden="true"></i>Supprimer</button>
+    <button class="deleteButton top-list-button pointer last-button" (click)="verifySelectDelete()" type="button"><i class="fa-accueil fa fa-trash" aria-hidden="true"></i>Supprimer</button>
   </div>
   <div *ngIf="selectedCertificats.length == 0" class="buttonDiv">
     <button class="top-list-button-grey" type="button"><i class="fa-accueil fa fa-star" aria-hidden="true"></i>Ajouter aux favoris</button>
     <button class="top-list-button-grey" type="button"><i class="fa-accueil fa fa-star-o" aria-hidden="true"></i>Retirer des favoris</button>
-    <button class="top-list-button-grey" type="button"><i class="fa-accueil fa fa-trash" aria-hidden="true"></i>Supprimer</button>
+    <button class="top-list-button-grey last-button" type="button"><i class="fa-accueil fa fa-trash" aria-hidden="true"></i>Supprimer</button>
   </div>
 
   <table *ngIf="certificats.length > 0" class="table">
     <thead>
       <tr class="top-list">
-        <th class="icon-th">
+        <th class="icon-th media-disabled">
           <label class="pointer check-label">
           <input type="checkbox" class="pointer" (change)="toggleAll($event.target.checked)">
           <span class="pointer"><i class="fa fa-check" aria-hidden="true"></i></span>
         </label>
         </th>
-        <th class="icon-th"></th>
+        <th class="icon-th media-disabled"></th>
         <th class="content-th first pointer" (click)="switchTriObjet()">
           <div class="sorting-menu">
             <p>Objet</p>
@@ -49,21 +49,21 @@
             </div>
           </div>
         </th>
-        <th class="icon-th"></th>
-        <th class="icon-th"></th>
-        <th class="icon-th"></th>
+        <th class="icon-th media-disabled"></th>
+        <th class="icon-th media-disabled"></th>
+        <th class="icon-th media-disabled"></th>
       </tr>
     </thead>
     <tbody *ngIf="!searchText && searchCerts.length == 0">
       <tr id="checkTr{{j}}" class="list-content" *ngFor="let certificat of certificats; let j = index">
-        <td class="icon-th">
+        <td class="icon-th media-disabled">
           <label class="check-label pointer">
             <input type="checkbox" class="pointer" (change)="checkBoxHandler(certificat, $event.target.checked, j)" name="check{{j}}" [checked]="selectAllCerts">
             <span class="pointer"><i class="fa fa-check" aria-hidden="true"></i></span>
           </label>
 
         </td>
-        <td class="icon-th">
+        <td class="icon-th media-disabled">
           <i matTooltip="Ajouter aux favoris" class="fa-accueil fa fa-star-o pointer" (click)="favorize(certificat)" *ngIf="certificat.favoris == false" aria-hidden="true"></i>
           <i matTooltip="Retirer des favoris" class="fa-accueil fa fa-star pointer" (click)="favorize(certificat)" *ngIf="certificat.favoris == true" aria-hidden="true"></i>
         </td>
@@ -81,13 +81,13 @@
             <p *ngIf="isExpired(certificat) == true"><i matTooltip="Ce certificat est expiré" class="fa-accueil fa fa-exclamation-triangle" aria-hidden="true"></i>{{getRemTime(certificat)}}</p>
           </div>
         </td>
-        <td matTooltip="Visualiser" class="icon-th hover-th pointer" (click)="toDetail(certificat)">
+        <td matTooltip="Visualiser" class="icon-th hover-th pointer media-disabled" (click)="toDetail(certificat)">
           <i class="fa-accueil fa-none fa fa-eye" aria-hidden="true"></i>
         </td>
-        <td matTooltip="Gérer les contacts et notifications" class="icon-th hover-th pointer" (click)="toContact(certificat)">
+        <td matTooltip="Gérer les contacts et notifications" class="icon-th hover-th pointer media-disabled" (click)="toContact(certificat)">
           <i class="fa-accueil fa fa-none fa-bell" aria-hidden="true"></i>
         </td>
-        <td matTooltip="Supprimer" class="icon-th hover-th pointer" (click)="verifyDelete(certificat)">
+        <td matTooltip="Supprimer" class="icon-th hover-th pointer media-disabled" (click)="verifyDelete(certificat)">
           <i class="fa-accueil fa fa-none fa-trash" aria-hidden="true"></i>
         </td>
       </tr>
@@ -155,4 +155,4 @@
 
 </div>
 
-<app-certificat-detail [contactCertificat]="contactPressed" [certificat]="detailledCertificat" (event)="removeDetailled(data)"></app-certificat-detail>
+<app-certificat-detail [contactCertificat]="contactPressed" [certificat]="detailledCertificat" (event)='removeDetailled($event)'></app-certificat-detail>

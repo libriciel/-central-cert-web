@@ -94,7 +94,7 @@ export class CertificatDetailComponent implements OnInit {
   //supprime le certificat
   delete(){
     this.certificatService.delete(this.certificat.id).subscribe(data => {
-      this.closeSelf();
+      this.deleteAndCloseSelf();
     });
   }
 

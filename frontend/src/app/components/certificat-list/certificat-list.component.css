@@ -87,11 +87,14 @@
   border: 2px solid red;
 }
 
+.last-button {
+  margin-right: 0px;
+}
+
 /*Table*/
 .table {
   position: relative;
   width:100%;
-  min-width: 650px;
   background-color: white;
   border-collapse: collapse;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
@@ -335,6 +338,15 @@ tr:nth-child(even){
     text-align: center;
     margin-bottom: 10px;
   }
+
+  .media-disabled {
+    display: none;
+  }
+
+  .content-th {
+    width: 50%;
+    padding-left: 10px;
+  }
 }
 
 @media screen and (max-width: 500px){
@@ -346,5 +358,9 @@ tr:nth-child(even){
   .buttonDiv button {
     width: 90%;
     margin-top: 10px;
+  }
+
+  .top-list-button, .top-list-button-grey {
+    margin: 0px;
   }
 }
