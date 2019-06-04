@@ -115,12 +115,16 @@ export class CertificatDetailComponent implements OnInit {
 
   //ferme la fentre du détail
   closeSelf(){
-    this.callParent();
+    this.callParent(false);
+  }
+
+  deleteAndCloseSelf(){
+    this.callParent(true);
   }
 
   //envoit l'event à son parent
-  callParent() {
-    this.event.emit();
+  callParent(data) {
+    this.event.emit(data);
   }
 
   //active le popup de validation de suppression

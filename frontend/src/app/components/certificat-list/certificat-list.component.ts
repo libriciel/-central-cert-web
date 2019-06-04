@@ -94,8 +94,10 @@ export class CertificatListComponent implements OnInit {
   }
 
   //retire un certificat du détail
-  removeDetailled(){
-    this.toastr.success(this.getInformations(this.detailledCertificat).cn + " a été supprimé avec succès !");
+  removeDetailled(data){
+    if(data === true){
+      this.toastr.success(this.getInformations(this.detailledCertificat).cn + " a été supprimé avec succès !");
+    }
     this.contactPressed = undefined;
     this.detailledCertificat = undefined;
     this.actualiseCertList();
