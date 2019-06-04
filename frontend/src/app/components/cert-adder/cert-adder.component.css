@@ -318,7 +318,7 @@ tr:nth-child(even){
 .file-list tbody {
   display:block;
   overflow-y: scroll;
-  max-height: 269px;
+  max-height: 297px;
 }
 
 .file-list thead {
@@ -328,6 +328,7 @@ tr:nth-child(even){
 
 .file-list-first-td {
   width: 90%;
+  padding-left: 10px;
 }
 
 .file-list-second-td {
