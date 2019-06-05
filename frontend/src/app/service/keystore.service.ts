@@ -18,7 +18,6 @@ export class KeystoreService {
   }
 
   isCompatible(){
-    return (this.getSystem() === "Windows" && this.getNavigator() != "Edge")
-        || (this.getSystem() === "Linux" && this.getNavigator() === "Firefox");
+    return (this.getSystem() === "Windows" && this.getNavigator() != "Edge");
   }
 }

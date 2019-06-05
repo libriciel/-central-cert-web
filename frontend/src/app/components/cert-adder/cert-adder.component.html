@@ -10,24 +10,34 @@
     <span class="stade">Validation des certificats</span>
   </div>
   <div class="buttonCertAdderDiv">
-    <div class="certAddButton pointer" (click)="nextStageURL()">
+    <div class="upperDiv certAddButton pointer" (click)="nextStageURL()">
       <p class="titleCerAdder bold" >Par URL</p>
       <p class="descriptionCertAdder">Entrez une URL <span class="bleu-ciel">(exemple: https://votreSite.fr)</span> et récupérez les certificats qu'elle contient.</p>
     </div>
 
-    <div class="certAddButton pointer" (click)="nextStageFORM()">
+    <div class="upperDiv certAddButton pointer" (click)="nextStageFORM()">
       <p class="titleCerAdder bold" >Par formulaire</p>
       <p class="descriptionCertAdder">Si vous n'avez pas accès au certificat, remplissez un formulaire avec les caractéristiques connues.</p>
     </div>
 
-    <div class="certAddButton pointer" (click)="nextStageTOKEN()">
+    <div class="upperDiv certAddButton pointer" (click)="nextStageTOKEN()">
       <p class="titleCerAdder bold" >Par un fichier</p>
       <p class="descriptionCertAdder">Importez le certificat d'un fichier <span class="bleu-ciel">(Exemple: fichier.crt, fichier.cer ...)</span>.</p>
     </div>
 
-    <div class="certAddButton pointer" (click)="nextStageKEYSTORE()">
+    <div *ngIf="isCompatible() == true && haveExtension() == true" class="upperDiv certAddButton pointer" (click)="nextStageKEYSTORE()">
       <p class="titleCerAdder bold" >Par le magasin windows</p>
       <p class="descriptionCertAdder">Importez directement tous les certificats de votre magasin windows.</p>
+    </div>
+
+    <div *ngIf="isCompatible() == true && haveExtension() == false" class="certAddButtonGrey">
+      <p class="titleCerAdder bold" >Par le magasin windows</p>
+      <p class="descriptionCertAdder"><i class="fa-accueil fa fa-exclamation-triangle" aria-hidden="true"></i> Vous devez installer l'extension "LiberSign" de Libriciel.</p>
+    </div>
+
+    <div *ngIf="isCompatible() == false" class="certAddButtonGrey">
+      <p class="titleCerAdder bold" >Par le magasin windows</p>
+      <p class="descriptionCertAdder"><i class="fa-accueil fa fa-exclamation-triangle" aria-hidden="true"></i> Votre système et/ou navigateur est incompatible.</p>
     </div>
 
   </div>
@@ -167,10 +177,12 @@
     <i (click)="close()" class="fa fa-times close pointer" aria-hidden="true"></i>
   </div>
 
-  <div *ngIf="mode == 4">
+  <div class="center-chargement" *ngIf="mode == 4">
+    <div>
+      <p>Importation des certificats de l'extension, veuillez patienter ...</p>
+    </div>
     <div class="validcancelbutton">
       <input class="pointer" (click)="close()" type="button" name="annuler" value="Annuler">
-      <button class="pointer" type="button" (click)="previousStage()"><i class="fa fa-chevron-left" aria-hidden="true"></i>Revenir en arrière</button>
       <button class="pointer" type="button"><i class="fa fa-plus" aria-hidden="true"></i>Valider</button>
     </div>
     <i (click)="close()" class="fa fa-times close pointer" aria-hidden="true"></i>

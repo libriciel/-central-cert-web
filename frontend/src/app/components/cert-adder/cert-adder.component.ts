@@ -4,6 +4,7 @@ import { Certificat } from '../../model/certificat';
 import { DateService } from '../../service/date.service';
 import { ToastrService } from 'ngx-toastr';
 import { Output, EventEmitter } from '@angular/core';
+import { KeystoreService } from '../../service/keystore.service';
 
 @Component({
   selector: 'app-cert-adder',
@@ -23,7 +24,7 @@ export class CertAdderComponent implements OnInit {
   //mode d'importation
   mode: number;
 
-  constructor(private toastr: ToastrService, private dateService: DateService, private certificatService: CertificatService) { }
+  constructor(private keystore: KeystoreService, private toastr: ToastrService, private dateService: DateService, private certificatService: CertificatService) { }
 
   ngOnInit() {
     //initialisation des variables
@@ -76,9 +77,14 @@ export class CertAdderComponent implements OnInit {
       }
       i ++;
     }
-    if(index > 0){
+    if(this.mode === 4){
       containers[index].classList.remove("active");
-      containers[index - 1].classList.add("active");
+      containers[0].classList.add("active");
+    }else{
+      if(index > 0){
+        containers[index].classList.remove("active");
+        containers[index - 1].classList.add("active");
+      }
     }
   }
 
@@ -311,6 +317,10 @@ export class CertAdderComponent implements OnInit {
     }else{
       return false;
     }
+  }
+
+  isCompatible(){
+    return this.keystore.isCompatible();
   }
 
   getFromExtension(){

@@ -139,7 +139,7 @@ export class CertificatService {
 			}
 		}
 
-    if(res.mail != undefined && res.mail != "" && res.mail != null){
+    if(res.mail.includes("@") == false && res.mail != undefined && res.mail != "" && res.mail != null && res.mail != "non disponible"){
       res.mail = this.getTextFromHex(res.mail);
     }
 
