@@ -14,7 +14,6 @@ export class ResetMailComponent implements OnInit {
   ngOnInit() {
     let id = this.activatedRoute.queryParams.value.id;
     let add = this.activatedRoute.queryParams.value.addMail;
-    this.http.post("/api/certificat/resetMail?id=" + id + "&addMail=" + add).subscribe(data => {
-    });
+    this.http.post("/api/certificat/resetMail?id=" + id + "&addMail=" + add).subscribe(data => {});
   }
 }
