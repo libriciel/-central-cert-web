@@ -64,35 +64,33 @@
 }
 
 input[type="text"]{
-  border-radius: 0px 4px 0px 0px;
-  background-color: rgba(3, 148, 171, 0.25);
+  border-radius: 0.25rem;
   font-size: 16px;
   padding: 12px 20px 12px 20px;
-  border:none;
-  border-bottom: 2px solid rgba(3, 148, 171, 1);
-  width: 30%;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
+  border: 1px solid #ced4da;
+  width: 95%;
+  -webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 input[type="text"]:focus {
-  width: 90%;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 .2rem rgba(0,123,255,.25)
 }
 
 input[type="date"] {
-  border-radius: 0px 0px 4px 0px;
-  background-color: rgba(3, 148, 171, 0.25);
+  border-radius: 0.25rem;
   font-size: 16px;
   padding: 12px 20px 12px 20px;
-  border:none;
-  border-top: 2px solid rgba(3, 148, 171, 1);
-  width: 30%;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
+  border: 1px solid #ced4da;
+  width: 95%;
+  -webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
 input[type="date"]:focus {
-  width: 90%;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 .2rem rgba(0,123,255,.25)
 }
 
 input[type="file"] {

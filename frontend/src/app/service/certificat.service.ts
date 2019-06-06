@@ -112,18 +112,18 @@ export class CertificatService {
 				res.ou = l[k].substring(9);
 			}else if(l[k].startsWith("L=")) { //TYPE
 				res.l = l[k].substring(2);
-			}else if(l[k].startsWith("ST=")) { //TYPE
-				res.st = l[k].substring(3);
-			}else if(l[k].startsWith("SP=")) { //TYPE
-				res.st = l[k].substring(3);
 			}else if(l[k].startsWith("STREET=")) { //TYPE
-				res.street = l[k].substring(2);
+				res.street = l[k].substring(7);
 			}else if(l[k].startsWith("2.5.4.9=")) { //OID
 				res.street = l[k].substring(8);
 			}else if(l[k].startsWith("S=")) { //TYPE
 				res.st = l[k].substring(2);
 			}else if(l[k].startsWith("2.5.4.8=")) { //OID
 				res.st = l[k].substring(8);
+			}else if(l[k].startsWith("ST=")) { //TYPE
+				res.st = l[k].substring(3);
+			}else if(l[k].startsWith("SP=")) { //TYPE
+				res.st = l[k].substring(3);
 			}else if(l[k].startsWith("C=")) { //TYPE
 				res.c = l[k].substring(2);
 			}else if(l[k].startsWith("2.5.4.6=")) { //OID
@@ -133,7 +133,7 @@ export class CertificatService {
 			}else if(l[k].startsWith("2.5.4.12=")) { //OID
 				res.t = l[k].substring(9);
       }else if(l[k].startsWith("PC=")) { //TYPE
-				res.pc = l[k].substring(2);
+				res.pc = l[k].substring(3);
 			}else if(l[k].startsWith("2.5.4.17=")) { //OID
 				res.pc = l[k].substring(9);
 			}

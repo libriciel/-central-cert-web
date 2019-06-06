@@ -223,12 +223,21 @@ tr:nth-child(even){
   padding-left: 20px;
 }
 
-.form-group input {
+.form-group input[type="text"]{
+  border-radius: 0.25rem;
+  font-size: 16px;
+  padding: 12px 20px 12px 20px;
+  border: 1px solid #ced4da;
   width: 40%;
   position: absolute;
   right: 0px;
-  border: none;
-  border-bottom: 2px solid rgba(3, 148, 171, 1);
+  -webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.form-group input[type="text"]:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 .2rem rgba(0,123,255,.25)
 }
 
 .modifyButton{

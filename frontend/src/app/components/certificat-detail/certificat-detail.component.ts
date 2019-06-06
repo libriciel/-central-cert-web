@@ -43,6 +43,8 @@ export class CertificatDetailComponent implements OnInit {
 
   //actualise les détails du certificat
   changeDetail(form){
+    console.log(form.value);
+
     let dn = "";
 
     if(form.value.cn != "" && form.value.cn != undefined && form.value.cn != "non disponible"){

@@ -43,6 +43,8 @@
   border-radius: 0.25rem;
   padding-left: 50px;
   min-width: 50px;
+  transition: box-shadow .15s ease-in-out;
+  -webkit-transition: box-shadow .15s ease-in-out;
 }
 
 .search-div input:focus {
