@@ -18,6 +18,7 @@ import { CertificatDetailComponent } from './components/certificat-detail/certif
 import { CertificatListComponent } from './components/certificat-list/certificat-list.component';
 import { ScrollToTopComponent } from './components/scroll-to-top/scroll-to-top.component';
 import { CertAdderComponent } from './components/cert-adder/cert-adder.component';
+import { ResetMailComponent } from './components/reset-mail/reset-mail.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AideComponent } from './components/aide/aide.component';
@@ -42,6 +43,7 @@ import { KeystoreService } from './service/keystore.service';
     ScrollToTopComponent,
     RGPDComponent,
     OptionsComponent,
+    ResetMailComponent,
   ],
   imports: [
     DeviceDetectorModule.forRoot(),
