@@ -22,7 +22,7 @@ sonarqube:
     - dev # SonarQube Community is limited to one branch. 'develop' is the most relevant.
   script:
     - cd core
-    - gradle sonar -Dsonar.host.url=https://sonarqube.libriciel.fr -Dsonar.login=$SONAR_TOKEN
+    - gradle sonar -Dsonar.host.url=https://sonarqube.libriciel.fr -D sonar.login=$SONAR_TOKEN
 
 jar:
   stage: package
