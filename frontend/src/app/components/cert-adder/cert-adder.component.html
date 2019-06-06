@@ -99,7 +99,8 @@
 
         <div [class.has-error]="notbefore.invalid && notbefore.touched" class="errorFormGroup">
           <p>Date de mise en circulation :</p>
-          <input type="date" id="notbefore" name="notbefore" #notbefore="ngModel" required ngModel/>
+          <input class="pointer" type="date" id="notbefore" name="notbefore" #notbefore="ngModel" required ngModel/>
+          <i class="pointer fa fa-calendar" aria-hidden="true"></i>
           <span class="error_span" *ngIf="notbefore.errors?.required && notbefore.touched">
             La date de mise en circulation est nécéssaire
           </span>
@@ -107,7 +108,8 @@
 
         <div [class.has-error]="notafter.invalid && notafter.touched" class="errorFormGroup">
           <p>Date d'expiration :</p>
-          <input type="date" id="notafter" name="notafter" #notafter="ngModel" required ngModel/>
+          <input class="pointer" type="date" id="notafter" name="notafter" #notafter="ngModel" required ngModel/>
+          <i class="pointer fa fa-calendar" aria-hidden="true"></i>
           <span class="error_span" *ngIf="notafter.errors?.required && notafter.touched">
             La date d'expiration est nécéssaire
           </span>

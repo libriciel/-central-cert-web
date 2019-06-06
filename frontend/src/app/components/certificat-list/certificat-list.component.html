@@ -30,21 +30,21 @@
           <span class="pointer"><i class="fa fa-check" aria-hidden="true"></i></span>
         </label>
         </th>
-        <th (click)="orderByFavoris()" matTooltip="Trier par favoris" class="check-th media-disabled pointer">
-          <i class="fa-accueil fa fa-star" aria-hidden="true"></i>
+        <th (click)="orderByFavoris()" class="check-th media-disabled pointer">
+          <i matTooltip="Trier par favoris" class="fa-accueil fa fa-star" aria-hidden="true"></i>
         </th>
-        <th matTooltip="Trier par objet" class="content-th first pointer" (click)="switchTriObjet()">
+        <th class="content-th first pointer" (click)="switchTriObjet()">
           <div class="sorting-menu">
-            <p>Objet</p>
+            <p matTooltip="Trier par objet">Objet</p>
             <div>
               <i class="fa-accueil fa fa-sort-asc sort-obj-asc" aria-hidden="true"></i>
               <i class="fa-accueil fa fa-sort-desc sort-obj-desc" aria-hidden="true"></i>
             </div>
           </div>
         </th>
-        <th matTooltip="Trier par date" class="content-th second pointer" (click)="switchTriDate()">
+        <th class="content-th second pointer" (click)="switchTriDate()">
           <div class="sorting-menu">
-            <p>Date d'expiration</p>
+            <p matTooltip="Trier par date">Date d'expiration</p>
             <div>
               <i class="fa-accueil fa fa-sort-asc sort-date-asc" aria-hidden="true"></i>
               <i class="fa-accueil fa fa-sort-desc sort-date-desc" aria-hidden="true"></i>
