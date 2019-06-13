@@ -205,7 +205,9 @@ export class CertificatService {
           && i1.c === i2.c
           && i1.t === i2.t
           && i1.street === i2.street
-          && i1.pc === i2.pc){
+          && i1.pc === i2.pc
+          && new Date(c1.notBefore).getTime() === new Date(c2.notBefore).getTime()
+          && new Date(c1.notAfter).getTime() === new Date(c2.notAfter).getTime()) {
             return true;
           }else{
             return false;

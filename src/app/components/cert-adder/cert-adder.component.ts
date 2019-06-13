@@ -136,7 +136,8 @@ export class CertAdderComponent implements OnInit {
 
   // créer un certificat via formulaire
   createCert(form){
-    if(form.status === "VALID"){
+    if(form.status === "VALID"
+      && new Date(form.value.notbefore).getTime() <= new Date(form.value.notafter)){
       this.uplodedCerts = [];
       let cert = {
         id: undefined,
@@ -304,7 +305,8 @@ export class CertAdderComponent implements OnInit {
   }
 
   canGoNextForm(form){
-    if(form.status === "VALID"){
+    if(form.status === "VALID"
+    && new Date(form.value.notbefore).getTime() <= new Date(form.value.notafter)){
       return true;
     }else{
       return false;
