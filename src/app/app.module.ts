@@ -21,11 +21,10 @@ import { CertAdderComponent } from './components/cert-adder/cert-adder.component
 import { ResetMailComponent } from './components/reset-mail/reset-mail.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { RGPDComponent } from './components/rgpd/rgpd.component';
 import { AideComponent } from './components/aide/aide.component';
 
 import { CertificatService } from './service/certificat.service';
-import { OptionsComponent } from './components/options/options.component';
-import { RGPDComponent } from './components/rgpd/rgpd.component';
 import { DateService } from './service/date.service';
 import { KeystoreService } from './service/keystore.service';
 
@@ -42,7 +41,6 @@ import { KeystoreService } from './service/keystore.service';
     AppComponent,
     ScrollToTopComponent,
     RGPDComponent,
-    OptionsComponent,
     ResetMailComponent,
   ],
   imports: [

@@ -5,7 +5,6 @@ import { CertificatListComponent } from './components/certificat-list/certificat
 import { Routes, RouterModule } from '@angular/router';
 import { AideComponent } from './components/aide/aide.component';
 import { RGPDComponent } from './components/rgpd/rgpd.component';
-import { OptionsComponent } from './components/options/options.component';
 import { ResetMailComponent } from './components/reset-mail/reset-mail.component';
 
 const routes: Routes = [
@@ -29,10 +28,6 @@ const routes: Routes = [
   {
     path: 'resetMail',
     component: ResetMailComponent
-  },
-  {
-    path: 'options',
-    component: OptionsComponent
   }
 ];
 
