@@ -21,26 +21,25 @@
 }
 
 .certAddButton {
+  border-radius: 0.25rem;
   height: 65%;
   width: 17%;
   text-align: center;
   margin: 30px auto auto auto;
   padding: 20px;
-  background-color: rgba(3, 148, 171, 0.25);
-  border: 2px solid rgba(3, 148, 171, 0.25);
-  border-bottom: 2px solid rgba(3, 148, 171, 1);
-  -webkit-transition: border 0.3s, margin 0.3s;
-  transition: border 0.3s, margin 0.3s;
+  border: 1px solid rgba(3, 148, 171, 1);
+  -webkit-transition: background 0.3s, border 0.3s, margin 0.3s, color 0.3s;
+  transition: background 0.3s, border 0.3s, margin 0.3s, color 0.3s;
 }
 
 .certAddButtonGrey {
+  border-radius: 0.25rem;
   height: 65%;
   width: 17%;
   text-align: center;
   margin: 30px auto auto auto;
   padding: 20px;
-  background-color: rgba(3, 148, 171, 0.1);
-  border: 2px solid rgba(3, 148, 171, 0.1);
+  border: 1px solid rgba(3, 148, 171, 0.1);
   cursor: not-allowed;
 }
 
@@ -54,8 +53,13 @@
 }
 
 .buttonCertAdderDiv .upperDiv:hover {
+  background-color: rgba(3, 148, 171, 1);
   margin: 0px auto auto auto;
-  border: 2px solid rgba(3, 148, 171, 1);
+  color: white;
+}
+
+.buttonCertAdderDiv .upperDiv:hover .bleu-ciel {
+  color: rgba(0, 0, 0, 0.7);
 }
 
 .urlCertAdder {
@@ -180,9 +184,13 @@ tr:nth-child(even){
 }
 
 .addCertButton {
-  background-color: rgba(3, 148, 171, 0.25);
-  padding: 8px;
-  border: 2px solid rgba(3, 148, 171, 0.25);
+  border-radius: 0.25rem;
+  background-color: rgba(3, 148, 171, 0.75);
+  border: none;
+  padding: 10px;
+  color: white;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
 }
 
 .addCertButton .fa {
@@ -190,7 +198,7 @@ tr:nth-child(even){
 }
 
 .addCertButton:hover{
-  border: 2px solid rgba(3, 148, 171, 1);
+  background-color: rgba(3, 148, 171, 1);
 }
 
 .validcancelbutton {
@@ -201,27 +209,45 @@ tr:nth-child(even){
 }
 
 .validcancelbutton button {
+  border-radius: 0.25rem;
   margin-left: 20px;
-  background-color: rgba(3, 148, 171, 0.25);
-  border: 2px solid rgba(3, 148, 171, 0.25);
+  background-color: white;
+  border: 1px solid rgba(3, 148, 171, 1);
   padding: 0px 15px;
   font-size: 13px;
   height: 100%;
   font-size: 20px;
+  transition: background 0.3s;
+  -webkit-transition: background 0.3s;
 }
 
 .validcancelbutton .greyButton {
+  border-radius: 0.25rem;
   background-color: rgba(3, 148, 171, 0.1);
-  border: 2px solid rgba(3, 148, 171, 0.1);
+  border: 1px solid rgba(3, 148, 171, 0.1);
   cursor: not-allowed;
 }
 
+.validcancelbutton .primaryButton {
+  background-color: rgba(3, 148, 171, 0.75);
+  border: 1px solid rgba(3, 148, 171, 0.75);
+  transition: background 0.3s, border 0.3s;
+  -webkit-transition: background 0.3s, border 0.3s;
+}
+
+.validcancelbutton .primaryButton:hover {
+  background-color: rgba(3, 148, 171, 1);
+  border: 1px solid rgba(3, 148, 171, 1);
+  transition: background 0.3s, border 0.3s;
+  -webkit-transition: background 0.3s, border 0.3s;
+}
+
 .validcancelbutton .greyButton:hover {
-  border: 2px solid rgba(3, 148, 171, 0.1);
+  background-color: rgba(3, 148, 171, 0.1);
 }
 
 .validcancelbutton button:hover {
-  border: 2px solid rgba(3, 148, 171, 1);
+  background-color: rgba(3, 148, 171, 1);
 }
 
 .validcancelbutton button .fa {
@@ -229,11 +255,19 @@ tr:nth-child(even){
 }
 
 .validcancelbutton input {
-  background: none;
+  background-color: rgba(0, 0, 0, 0);
   border: none;
-  font-size: 18px;
+  border-radius: 0.25rem;
+  padding: 0px 15px;
+  height: 100%;
+  font-size: 16px;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
 }
 
+.validcancelbutton input:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
 .form-inner-container {
   display: flex;
   flex-direction: column;

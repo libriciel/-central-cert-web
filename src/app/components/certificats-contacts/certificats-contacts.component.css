@@ -115,7 +115,6 @@ input[type="mail"]:focus {
 
 .contact-list tbody {
   display:block;
-  overflow-y: scroll;
   max-height: 200px;
 }
 
@@ -167,6 +166,8 @@ input[type="mail"]:focus {
 .contact-list-content {
   text-align: center;
   height: 30px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .contact-list-content:hover {
@@ -212,16 +213,19 @@ tr:nth-child(even){
 
 .validcancelbutton button {
   margin-left: 20px;
-  background-color: rgba(3, 148, 171, 0.25);
-  border: 2px solid rgba(3, 148, 171, 0.25);
+  border-radius: 0.25rem;
+  border: none;
+  background-color: rgba(3, 148, 171, 0.75);
+  color: white;
   padding: 0px 15px;
-  font-size: 13px;
+  font-size: 16px;
   height: 100%;
-  font-size: 20px;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
 }
 
 .validcancelbutton button:hover {
-  border: 2px solid rgba(3, 148, 171, 1);
+  background-color: rgba(3, 148, 171, 1);
 }
 
 .validcancelbutton button .fa {

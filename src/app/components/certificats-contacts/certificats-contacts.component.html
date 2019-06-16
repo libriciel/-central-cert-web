@@ -25,7 +25,20 @@
             <th class="trash-list-contact"></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="certificat.additionnalMails.length < 7">
+          <tr class="contact-list-content" *ngFor="let mail of certificat.additionnalMails; let i = index">
+            <td>{{mail.adresse}}</td>
+            <td *ngIf="mail.notifiable == true">
+              <i (click)="changeNotifiable(i)" class="toggle fa fa-toggle-on pointer" aria-hidden="false"></i>
+            </td>
+            <td *ngIf="mail.notifiable == false">
+              <i (click)="changeNotifiable(i)" class="toggle fa fa-toggle-off pointer" aria-hidden="true"></i>
+            </td>
+            <td (click)="deleteContact(i)" class="trash-list-contact pointer"><i class="fa fa-trash" aria-hidden="true"></i></td>
+          </tr>
+          <p *ngIf="certificat.additionnalMails.length == 0">Pas d'adresses additionnelles</p>
+        </tbody>
+        <tbody class="overflow" *ngIf="certificat.additionnalMails.length >= 7">
           <tr class="contact-list-content" *ngFor="let mail of certificat.additionnalMails; let i = index">
             <td>{{mail.adresse}}</td>
             <td *ngIf="mail.notifiable == true">

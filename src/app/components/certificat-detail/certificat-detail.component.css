@@ -46,13 +46,16 @@
 }
 
 .detail-supprimer button {
-  width: 100%;
+  width: 80%;
+  border-radius: 0.25rem;
   background-color: #FFFFFF;
-  border: 2px solid #EA4B4B;
+  border: 1px solid #EA4B4B;
   padding: 5px 0px;
   margin-right: 20px;
   font-size: 13px;
   color: #EA4B4B;
+  -webkit-transition: background 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s;
 }
 
 .detail-supprimer button:hover {
@@ -107,15 +110,20 @@
 
 .button-contact button {
   width: 100%;
+  border-radius: 0.25rem;
   background-color: #FFFFFF;
-  border: 2px solid rgba(3, 148, 171, 0.25);
+  border: 1px solid rgba(3, 148, 171, 1);
+  color: rgba(3, 148, 171, 1);
   padding: 5px 0px;
   margin-right: 20px;
   font-size: 13px;
+  -webkit-transition: background 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s;
 }
 
 .button-contact button:hover {
-  border: 2px solid rgba(3, 148, 171, 1);
+  color: white;
+  background-color: rgba(3, 148, 171, 1);
 }
 
 .button-contact .fa {
@@ -152,7 +160,6 @@
 
 .detail-list tbody {
   display:block;
-  overflow-y: scroll;
   max-height: 200px;
 }
 
@@ -188,6 +195,8 @@
 .detail-list-content {
   text-align: center;
   height: 30px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .detail-list-content:hover {
@@ -241,12 +250,16 @@ tr:nth-child(even){
 }
 
 .modifyButton{
-  background-color: rgba(3, 148, 171, 0.25);
+  background-color: white;
   padding: 10px 0px 10px 0px;
   width: 40%;
   float: right;
   margin-right: 20px;
-  border: 2px solid rgba(3, 148, 171, 0.25);
+  border-radius: 0.25rem;
+  color: rgba(3, 148, 171, 1);
+  border: 1px solid rgba(3, 148, 171, 1);
+  -webkit-transition: background 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s;
 }
 
 .modifyButton .fa {
@@ -254,7 +267,8 @@ tr:nth-child(even){
 }
 
 .modifyButton:hover {
-  border: 2px solid rgba(3, 148, 171, 1);
+ background-color: rgba(3, 148, 171, 1);
+ color: white;
 }
 
 .annulerAndSubmit {
@@ -266,16 +280,29 @@ tr:nth-child(even){
 }
 
 .annulerAndSubmit .cancelSubmit {
-  background: none;
+  background-color: rgba(0, 0, 0, 0);
   border: none;
+  border-radius: 0.25rem;
+  padding: 10px 15px;
+  font-size: 16px;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+}
+
+.annulerAndSubmit .cancelSubmit:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .annulerAndSubmit .submitChanges {
-  background-color: rgba(3, 148, 171, 0.25);
+  margin-left: 20px;
+  background-color: rgba(234, 75, 75, 0.9);
+  border: none;
+  border-radius: 0.25rem;
   padding: 10px;
-  float: right;
-  border: 2px solid rgba(3, 148, 171, 0.25);
-  margin-left: 10px;
+  color: #ffffff;
+  font-size: 16px;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
 }
 
 .annulerAndSubmit .submitChanges .fa {
@@ -283,7 +310,7 @@ tr:nth-child(even){
 }
 
 .annulerAndSubmit .submitChanges:hover {
-  border: 2px solid rgba(3, 148, 171, 1);
+  background-color: rgba(234, 75, 75, 1);
 }
 
 .det-verify-suppr {
@@ -317,13 +344,19 @@ tr:nth-child(even){
 
 .det-validcancelbutton button {
   margin-left: 20px;
-  background-color: #EA4B4B;
+  background-color: rgba(234, 75, 75, 0.9);
   border: none;
+  border-radius: 0.25rem;
   padding: 0px 15px;
-  font-size: 13px;
   color: #ffffff;
   height: 100%;
-  font-size: 20px;
+  font-size: 16px;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+}
+
+.validcancelbutton button:hover {
+  background-color: rgba(234, 75, 75, 1);
 }
 
 .det-validcancelbutton button .fa{
@@ -332,9 +365,18 @@ tr:nth-child(even){
 }
 
 .det-validcancelbutton input {
-  background: none;
+  background-color: rgba(0, 0, 0, 0);
   border: none;
-  font-size: 18px;
+  border-radius: 0.25rem;
+  padding: 0px 15px;
+  height: 100%;
+  font-size: 16px;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+}
+
+.det-validcancelbutton input:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .shadow {

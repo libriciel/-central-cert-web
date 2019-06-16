@@ -24,4 +24,12 @@ export class HeaderComponent implements OnInit {
   logout(){
     this.keycloakService.logout();
   }
+
+  onHover(element){
+    element.src = "/assets/images/logos/logo_centralcert_white_color.svg"
+  }
+
+  onQuitHover(element){
+    element.src = "/assets/images/logos/logo_centralcert_white.svg"
+  }
 }

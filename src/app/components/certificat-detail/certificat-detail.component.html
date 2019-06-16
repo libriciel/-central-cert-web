@@ -46,7 +46,15 @@
             <th>Notification</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody *ngIf="certificat.additionnalMails.length < 7">
+          <tr class="detail-list-content" *ngFor="let mail of certificat.additionnalMails; let i = index">
+            <td>{{mail.adresse}}</td>
+            <td *ngIf="mail.notifiable == false">NON</td>
+            <td *ngIf="mail.notifiable == true">OUI</td>
+          </tr>
+          <p *ngIf="certificat.additionnalMails.length == 0">Pas d'adresses additionnelles</p>
+        </tbody>
+        <tbody class="overflow" *ngIf="certificat.additionnalMails.length >= 7">
           <tr class="detail-list-content" *ngFor="let mail of certificat.additionnalMails; let i = index">
             <td>{{mail.adresse}}</td>
             <td *ngIf="mail.notifiable == false">NON</td>

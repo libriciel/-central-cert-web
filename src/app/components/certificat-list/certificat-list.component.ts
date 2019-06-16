@@ -215,6 +215,7 @@ export class CertificatListComponent implements OnInit {
       document.getElementById("checkTr" + j).classList.add("selected");
       this.selectedCertificats.push(certificat);
     }else{
+      document.getElementsByClassName("toggleAllCheckBox")[0].value = false;
       document.getElementById("checkTr" + j).classList.remove("selected");
       let exit = false;
       let i = 0;

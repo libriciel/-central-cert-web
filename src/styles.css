@@ -115,3 +115,7 @@ input[type=checkbox]:checked + span {
 .retourHome i {
   margin-right: 10px;
 }
+
+.overflow {
+  overflow-y: scroll;
+}

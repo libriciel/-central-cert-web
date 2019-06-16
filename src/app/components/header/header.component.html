@@ -1,12 +1,12 @@
 <div class="header">
-  <img class="logo_link" alt="LOGO" routerLink="/accueil">
+  <img #logoHeader (mouseenter)="onHover(logoHeader)" (mouseleave)="onQuitHover(logoHeader)" class="logo-link pointer" src="/assets/images/logos/logo_centralcert_white.svg" alt="LOGO" routerLink="/accueil">
   <div class="dropdown">
     <button class="dropbtn">{{userName}}<i class="fa fa-sort-desc" aria-hidden="true"></i></button>
     <div class="dropdown_content border-top">
       <a href="../auth/realms/CentralCert/account?referrer=frontend">
         <div>
           <i class="fa fa-user" aria-hidden="true"></i>
-          <p>Compte</p>
+          <p>Préférences utilisateur</p>
         </div>
       </a>
       <div routerLink="aide">

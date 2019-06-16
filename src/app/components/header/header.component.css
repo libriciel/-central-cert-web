@@ -3,6 +3,8 @@
   background-color: #222;
   height: 50px;
   color: white;
+  display: flex;
+  flex-direction: row;
 }
 
 .logo-link {
@@ -11,11 +13,15 @@
 }
 
 .dropdown {
-  float: right;
-  display: inline-block;
+  width: 100%;
+  text-align: right;
 }
 
-.dropdown:hover .dropdown_content {
+.dropbtn:hover + .dropdown_content {
+  display:block;
+}
+
+.dropdown_content:hover {
   display:block;
 }
 
@@ -46,7 +52,7 @@
 }
 
 .border-top {
-  border-top: 1px solid black;
+  border-top: 1px solid white;
 }
 
 .dropdown_content div .fa{

@@ -137,7 +137,7 @@ export class CertAdderComponent implements OnInit {
   // créer un certificat via formulaire
   createCert(form){
     if(form.status === "VALID"
-      && new Date(form.value.notbefore).getTime() <= new Date(form.value.notafter)){
+      && new Date(form.value.notbefore).getTime() <= new Date(form.value.notafter).getTime()){
       this.uplodedCerts = [];
       let cert = {
         id: undefined,
@@ -244,7 +244,6 @@ export class CertAdderComponent implements OnInit {
 
   //valide le formulaire et ajoute les certificats à la liste
   validate(form){
-    console.log(this.uplodedCerts);
     let certs = new Array();
     let existant_certs = new Array();
     let checks = Object.values(form.value);
@@ -259,6 +258,8 @@ export class CertAdderComponent implements OnInit {
       this.close();
       this.certificatService.saveAll(certs).subscribe(data => {
         this.closeSelf();
+        this.uplodedCerts = [];
+        this.fileTab = [];
       });
       if(certs.length === 1){
         this.toastr.success('Un certificat ajouté avec succès !');
@@ -306,7 +307,7 @@ export class CertAdderComponent implements OnInit {
 
   canGoNextForm(form){
     if(form.status === "VALID"
-    && new Date(form.value.notbefore).getTime() <= new Date(form.value.notafter)){
+    && new Date(form.value.notbefore).getTime() <= new Date(form.value.notafter).getTime()){
       return true;
     }else{
       return false;
@@ -314,11 +315,12 @@ export class CertAdderComponent implements OnInit {
   }
 
   haveExtension(){
-    if(typeof LiberSign === "object"){
+    /*if(typeof LiberSign === "object"){
       return true;
     }else{
       return false;
-    }
+    }*/
+    return false;
   }
 
   isCompatible(){
@@ -326,7 +328,7 @@ export class CertAdderComponent implements OnInit {
   }
 
   getFromExtension(){
-    if(this.haveExtension() === true){
+    /*if(this.haveExtension() === true){
       this.uplodedCerts = [];
       let config = {
         appletUrl: '/applets/',
@@ -353,6 +355,6 @@ export class CertAdderComponent implements OnInit {
         }
         this.nextStage();
       });
-    }
+    }*/
   }
 }
