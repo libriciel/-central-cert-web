@@ -6,6 +6,8 @@ import { ToastrService } from 'ngx-toastr';
 import { Output, EventEmitter } from '@angular/core';
 import { KeystoreService } from '../../service/keystore.service';
 
+declare var LiberSign: any;
+
 @Component({
   selector: 'app-cert-adder',
   templateUrl: './cert-adder.component.html',
@@ -24,7 +26,7 @@ export class CertAdderComponent implements OnInit {
   //mode d'importation
   mode: number;
 
-  constructor(private keystore: KeystoreService, private toastr: ToastrService, private dateService: DateService, private certificatService: CertificatService) { }
+  constructor(private keystore: KeystoreService, private toastr: ToastrService, private dateService: DateService, private certificatService: CertificatService) {}
 
   ngOnInit() {
     //initialisation des variables
@@ -315,11 +317,11 @@ export class CertAdderComponent implements OnInit {
   }
 
   haveExtension(){
-    /*if(typeof LiberSign === "object"){
+    if(typeof LiberSign === "object"){
       return true;
     }else{
       return false;
-    }*/
+    }
     return false;
   }
 
@@ -328,7 +330,7 @@ export class CertAdderComponent implements OnInit {
   }
 
   getFromExtension(){
-    /*if(this.haveExtension() === true){
+    if(this.haveExtension() === true){
       this.uplodedCerts = [];
       let config = {
         appletUrl: '/applets/',
@@ -355,6 +357,6 @@ export class CertAdderComponent implements OnInit {
         }
         this.nextStage();
       });
-    }*/
+    }
   }
 }

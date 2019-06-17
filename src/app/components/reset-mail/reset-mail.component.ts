@@ -9,11 +9,13 @@ import { HttpClient, HttpRequest, HttpHeaders, HttpEvent} from '@angular/common/
 })
 export class ResetMailComponent implements OnInit {
 
-  constructor(private http: HttpClient, private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    //let id = this.activatedRoute.queryParams.value.id;
-    //let add = this.activatedRoute.queryParams.value.addMail;
-    //this.http.get("/api/certificat/resetMail?id=" + id + "&addMail=" + add).subscribe(data => {});
+    this.activatedRoute.queryParams.subscribe(data => {
+      let id = data.id;
+      let add = data.addMail;
+      this.http.get("/api/certificat/resetMail?id=" + id + "&addMail=" + add).subscribe(data => {});
+    });
   }
 }
