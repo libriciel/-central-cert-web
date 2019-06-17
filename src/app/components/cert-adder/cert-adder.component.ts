@@ -235,7 +235,7 @@ export class CertAdderComponent implements OnInit {
       this.uplodedCerts = [];
       for(let i = 0; i < this.fileTab.length; i++){
         this.certificatService.selectFromFile(this.fileTab[i]).subscribe(data => {
-          if(data != null &&  data != undefined){
+          if(data != null && data != undefined){
             this.uplodedCerts.push(data);
           }
           this.nextStage();
@@ -352,7 +352,6 @@ export class CertAdderComponent implements OnInit {
             notified: "GREEN",
             notifyAll: false,
           };
-          console.log(cert.dn);
           this.uplodedCerts.push(cert);
         }
         this.nextStage();
