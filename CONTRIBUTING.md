@@ -1,11 +1,5 @@
 # Contributing
 
-## Importing project
-
-##### Setup in Eclipse :
-TODO
-
-
 ## Code style and project structure
 TODO
 
