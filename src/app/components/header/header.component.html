@@ -15,7 +15,7 @@
  - You should have received a copy of the GNU Affero General Public License
  - along with this program.  If not, see <https://www.gnu.org/licenses/>.
  -->
- 
+
 <div class="header">
   <img #logoHeader (mouseenter)="onHover(logoHeader)" (mouseleave)="onQuitHover(logoHeader)" class="logo-link pointer" src="/assets/images/logos/logo_centralcert_white.svg" alt="LOGO" routerLink="/accueil">
   <div class="dropdown">
@@ -27,15 +27,15 @@
           <p>Préférences utilisateur</p>
         </div>
       </a>
-      <div routerLink="aide">
-        <i class="fa fa-question" aria-hidden="true"></i>
-        <p>Aide</p>
-      </div>
       <div routerLink="rgpd">
         <i class="fa fa-certificate" aria-hidden="true"></i>
         <p>Politique de confidentialité ( RGPD )</p>
       </div>
-      <div (click)="logout()" class="border-top">
+      <div routerLink="aide">
+        <i class="fa fa-question" aria-hidden="true"></i>
+        <p>Aide</p>
+      </div>
+      <div (click)="logout()" class="logout border-top">
         <i class="fa fa-sign-out" aria-hidden="true"></i>
         <p>Se déconnecter</p>
       </div>

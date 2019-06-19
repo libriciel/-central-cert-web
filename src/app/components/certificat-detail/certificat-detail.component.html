@@ -15,7 +15,7 @@
  - You should have received a copy of the GNU Affero General Public License
  - along with this program.  If not, see <https://www.gnu.org/licenses/>.
  -->
- 
+
 <div *ngIf="certificat" class="wrapper">
   <div class="detail-header">
     <div class="detail-header-title-wraper">
@@ -84,56 +84,65 @@
     </div>
     <div class="detail-right">
       <p class="dn-detail-title bold">Informations complémentaires</p>
-      <div *ngIf="inEdit == false" class="dn-detail">
-        <span class="span-detail"><p>Intitulé :</p><p class="bleu-ciel">{{getInformations(certificat).cn}}</p></span>
-        <span class="span-detail"><p>Unité d'organisation :</p><p class="bleu-ciel">{{getInformations(certificat).ou}}</p></span>
-        <span class="span-detail"><p>Titre :</p><p class="bleu-ciel">{{getInformations(certificat).t}}</p></span>
-        <span class="span-detail"><p>Localité :</p><p class="bleu-ciel">{{getInformations(certificat).l}}</p></span>
-        <span class="span-detail"><p>Pays :</p><p class="bleu-ciel">{{getInformations(certificat).st}}</p></span>
-        <span class="span-detail"><p>Code postal / ZIP code :<p><p class="bleu-ciel">{{getInformations(certificat).pc}}</p></span>
-        <span class="span-detail"><p>Rue :</p><p class="bleu-ciel">{{getInformations(certificat).street}}</p></span>
-        <span class="span-detail"><p>Organisation :</p><p class="bleu-ciel">{{getInformations(certificat).o}}</p></span>
-        <button class="modifyButton pointer" *ngIf="inEdit == false" (click)="edit()"><i class="fa fa-pencil" aria-hidden="true"></i>Modifier</button>
-      </div>
-      <form *ngIf="inEdit == true" (ngSubmit)="changeDetail(formDetail)" #formDetail="ngForm">
-        <div class="form-group">
-          <p>Intitulé :</p>
-          <input type="text" name="cn" ngModel="{{getInformations(certificat).cn}}">
-        </div>
-        <div class="form-group">
-          <p>Unité d'organisation :</p>
-          <input type="text" name="ou" ngModel="{{getInformations(certificat).ou}}">
-        </div>
-        <div class="form-group">
-          <p>Titre :</p>
-          <input type="text" name="t" ngModel="{{getInformations(certificat).t}}">
-        </div>
-        <div class="form-group">
-          <p>Localité :</p>
-          <input type="text" name="l" ngModel="{{getInformations(certificat).l}}">
-        </div>
-        <div class="form-group">
-          <p>Pays :</p>
-          <input type="text" name="st" ngModel="{{getInformations(certificat).st}}">
-        </div>
-        <div class="form-group">
-          <p>Code postal / ZIP code :</p>
-          <input type="text" name="pc" ngModel="{{getInformations(certificat).pc}}">
-        </div>
-        <div class="form-group">
-          <p>Rue :</p>
-          <input type="text" name="street" ngModel="{{getInformations(certificat).street}}">
-        </div>
-        <div class="form-group">
-          <p>Organisation :</p>
-          <input type="text" name="o" ngModel="{{getInformations(certificat).o}}">
-        </div>
-        <div class="annulerAndSubmit">
-          <button class="cancelSubmit pointer" (click)="annulerEdit()" type="button">Annuler</button>
-          <button class="submitChanges pointer" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i>Enregistrer</button>
+      <form (ngSubmit)="changeDetail(formDetail)" #formDetail="ngForm">
+        <div class="dn-detail">
+          <span *ngIf="inEdit != 0" class="span-detail"><p>Intitulé :</p><p class="bleu-ciel">{{getInformations(certificat).cn}}</p><i (click)="edit(0)" class="fa fa-pencil pointer" aria-hidden="true"></i></span>
+          <div *ngIf="inEdit == 0" class="form-group">
+            <p>Intitulé :</p>
+            <input type="text" name="cn" ngModel="{{getInformations(certificat).cn}}">
+            <button class="submitChanges pointer" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+          </div>
+
+          <span *ngIf="inEdit != 1" class="span-detail"><p>Unité d'organisation :</p><p class="bleu-ciel">{{getInformations(certificat).ou}}</p><i (click)="edit(1)" class="fa fa-pencil pointer" aria-hidden="true"></i></span>
+          <div *ngIf="inEdit == 1" class="form-group">
+            <p>Unité d'organisation :</p>
+            <input type="text" name="ou" ngModel="{{getInformations(certificat).ou}}">
+            <button class="submitChanges pointer" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+          </div>
+
+          <span *ngIf="inEdit != 2" class="span-detail"><p>Titre :</p><p class="bleu-ciel">{{getInformations(certificat).t}}</p><i (click)="edit(2)" class="fa fa-pencil pointer" aria-hidden="true"></i></span>
+          <div *ngIf="inEdit == 2" class="form-group">
+            <p>Titre :</p>
+            <input type="text" name="t" ngModel="{{getInformations(certificat).t}}">
+            <button class="submitChanges pointer" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+          </div>
+
+          <span *ngIf="inEdit != 3" class="span-detail"><p>Localité :</p><p class="bleu-ciel">{{getInformations(certificat).l}}</p><i (click)="edit(3)" class="fa fa-pencil pointer" aria-hidden="true"></i></span>
+          <div *ngIf="inEdit == 3" class="form-group">
+            <p>Localité :</p>
+            <input type="text" name="l" ngModel="{{getInformations(certificat).l}}">
+            <button class="submitChanges pointer" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+          </div>
+
+          <span *ngIf="inEdit != 4" class="span-detail"><p>Pays :</p><p class="bleu-ciel">{{getInformations(certificat).st}}</p><i (click)="edit(4)" class="fa fa-pencil pointer" aria-hidden="true"></i></span>
+          <div *ngIf="inEdit == 4" class="form-group">
+            <p>Pays :</p>
+            <input type="text" name="st" ngModel="{{getInformations(certificat).st}}">
+            <button class="submitChanges pointer" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+          </div>
+
+          <span *ngIf="inEdit != 5" class="span-detail"><p>Code postal / ZIP code :<p><p class="bleu-ciel">{{getInformations(certificat).pc}}</p><i (click)="edit(5)" class="fa fa-pencil pointer" aria-hidden="true"></i></span>
+          <div *ngIf="inEdit == 5" class="form-group">
+            <p>Code postal / ZIP code :</p>
+            <input type="text" name="pc" ngModel="{{getInformations(certificat).pc}}">
+            <button class="submitChanges pointer" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+          </div>
+
+          <span *ngIf="inEdit != 6" class="span-detail"><p>Rue :</p><p class="bleu-ciel">{{getInformations(certificat).street}}</p><i (click)="edit(6)" class="fa fa-pencil pointer" aria-hidden="true"></i></span>
+          <div *ngIf="inEdit == 6" class="form-group">
+            <p>Rue :</p>
+            <input type="text" name="street" ngModel="{{getInformations(certificat).street}}">
+            <button class="submitChanges pointer" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+          </div>
+
+          <span *ngIf="inEdit != 7" class="span-detail"><p>Organisation :</p><p class="bleu-ciel">{{getInformations(certificat).o}}</p><i (click)="edit(7)" class="fa fa-pencil pointer" aria-hidden="true"></i></span>
+          <div *ngIf="inEdit == 7" class="form-group">
+            <p>Organisation :</p>
+            <input type="text" name="o" ngModel="{{getInformations(certificat).o}}">
+            <button class="submitChanges pointer" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+          </div>
         </div>
       </form>
-
     </div>
   </div>
   <i class="fa fa-times close pointer" (click)="closeSelf()" aria-hidden="true"></i>

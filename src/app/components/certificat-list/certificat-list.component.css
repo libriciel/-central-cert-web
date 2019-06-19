@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 /* Search bar */
 .search-div {
   width: 100%;
@@ -108,13 +108,13 @@
 }
 
 .deleteButton {
-  color: red;
-  border: 1px solid red;
+  color: #EA4B4B;
+  border: 1px solid #EA4B4B;
 }
 
 .deleteButton:hover {
   color: white;
-  background-color: red;
+  background-color: #EA4B4B;
 }
 
 .last-button {
@@ -156,6 +156,11 @@
 
 .top-list {
   border-bottom: 2px solid #C1C1C1;
+}
+
+.list-content {
+  transition: background 0.1s;
+  -webkit-transition: background 0.1s;
 }
 
 .list-content:hover {
@@ -210,10 +215,11 @@ tr:nth-child(even){
 
 .hover-th:hover {
   background-color: rgba(3, 148, 171, 0.20);
+  border-radius: 0.25rem;
 }
 
 .hover-th:hover .fa-trash {
-  color: red;
+  color: #EA4B4B;
 }
 
 .table tbody .selected {
@@ -400,9 +406,12 @@ tr:nth-child(even){
     display: none;
   }
 
-  .content-th {
-    width: 50%;
+  .content-th p {
     padding-left: 10px;
+  }
+
+  .first {
+    width: 40%;
   }
 }
 

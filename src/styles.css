@@ -75,7 +75,7 @@ body {
 }
 
 .error_span{
-  color: red;
+  color: #EA4B4B;
   position: absolute;
   left: 0px;
   bottom: -25px;

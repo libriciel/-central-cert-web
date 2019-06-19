@@ -181,7 +181,17 @@
             <th class="file-list-second-td"></th>
           </tr>
         </thead>
-        <tbody *ngIf="fileTab.length > 0">
+        <tbody *ngIf="fileTab.length > 0 && fileTab.length <= 9">
+          <tr class="file-list-content" *ngFor="let fichier of fileTab; let l = index">
+            <td class="file-list-first-td">
+              {{fichier.name}}
+            </td>
+            <td (click)="deleteFile(l)" class="file-list-second-td pointer">
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            </td>
+          </tr>
+        </tbody>
+        <tbody class="overflow" *ngIf="fileTab.length > 9">
           <tr class="file-list-content" *ngFor="let fichier of fileTab; let l = index">
             <td class="file-list-first-td">
               {{fichier.name}}
@@ -227,7 +237,22 @@
           <th class="cert-adder-list-td">Date d'expiration</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody *ngIf="uplodedCerts.length <= 3">
+        <tr class="adder-list-content" *ngFor="let certificat of uplodedCerts; let i = index">
+          <td class="checkboxTD">
+            <label class="pointer check-label">
+              <input class="pointer" type="checkbox" name="check{{i}}" ngModel="true">
+              <span class="pointer"><i class="fa fa-check" aria-hidden="true"></i></span>
+            </label>
+          </td>
+          <td class="cert-adder-list-td">{{getInformations(certificat).cn}}</td>
+          <td class="cert-adder-list-td">
+            <p>{{getDate(certificat.notAfter)}}</p>
+            <p>{{getRemTime(certificat)}}</p>
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="uplodedCerts.length > 3" class="overflow">
         <tr class="adder-list-content" *ngFor="let certificat of uplodedCerts; let i = index">
           <td class="checkboxTD">
             <label class="pointer check-label">

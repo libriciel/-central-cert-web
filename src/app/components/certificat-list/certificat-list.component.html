@@ -15,7 +15,7 @@
  - You should have received a copy of the GNU Affero General Public License
  - along with this program.  If not, see <https://www.gnu.org/licenses/>.
  -->
- 
+
 <div class="main-container">
   <p class="page-title bold"> Accueil</p>
   <div class="search-div">
@@ -28,12 +28,12 @@
       <app-cert-adder (event)="actualiseCertList()"></app-cert-adder>
     </div>
   </div>
-  <div *ngIf="selectedCertificats.length > 0" class="buttonDiv">
+  <div *ngIf="selectedCertificats.length > 0" class="media-disabled buttonDiv">
     <button class="favButton top-list-button pointer" (click)="selectedToFavoris()" type="button"><i class="fa-accueil fa fa-star" aria-hidden="true"></i>Ajouter aux favoris</button>
     <button class="favButton top-list-button pointer" (click)="selectedToNotFavoris()" type="button"><i class="fa-accueil fa fa-star-o" aria-hidden="true"></i>Retirer des favoris</button>
     <button class="deleteButton top-list-button pointer last-button" (click)="verifySelectDelete()" type="button"><i class="fa-accueil fa fa-trash" aria-hidden="true"></i>Supprimer</button>
   </div>
-  <div *ngIf="selectedCertificats.length == 0" class="buttonDiv">
+  <div *ngIf="selectedCertificats.length == 0" class="media-disabled buttonDiv">
     <button class="top-list-button-grey" type="button"><i class="fa-accueil fa fa-star" aria-hidden="true"></i>Ajouter aux favoris</button>
     <button class="top-list-button-grey" type="button"><i class="fa-accueil fa fa-star-o" aria-hidden="true"></i>Retirer des favoris</button>
     <button class="top-list-button-grey last-button" type="button"><i class="fa-accueil fa fa-trash" aria-hidden="true"></i>Supprimer</button>
@@ -44,9 +44,9 @@
       <tr class="top-list">
         <th class="icon-th media-disabled">
           <label class="pointer check-label">
-          <input type="checkbox" class="toggleAllCheckBox pointer" (change)="toggleAll($event.target.checked)">
-          <span class="pointer"><i class="fa fa-check" aria-hidden="true"></i></span>
-        </label>
+            <input type="checkbox" class="toggleAllCheckBox pointer" (change)="toggleAll($event.target.checked)">
+            <span class="pointer"><i class="fa fa-check" aria-hidden="true"></i></span>
+          </label>
         </th>
         <th class="check-th media-disabled">
         </th>

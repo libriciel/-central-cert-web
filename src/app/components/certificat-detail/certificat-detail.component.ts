@@ -15,7 +15,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 import { Component, OnInit, Input } from '@angular/core';
 import { Certificat } from '../../model/certificat';
 import { CertificatService } from '../../service/certificat.service';
@@ -46,17 +46,12 @@ export class CertificatDetailComponent implements OnInit {
 
   ngOnInit() {
     //initialisation des variables
-    this.inEdit = false;
+    this.inEdit = undefined;
   }
 
   //permet d'éditer les informations
-  edit(){
-    this.inEdit = true;
-  }
-
-  //annule l'édition
-  annulerEdit(){
-    this.inEdit = false;
+  edit(id: number){
+    this.inEdit = id;
   }
 
   //actualise les détails du certificat
@@ -97,7 +92,7 @@ export class CertificatDetailComponent implements OnInit {
     this.certificat.dn = dn;
 
     this.certificatService.save(this.certificat).subscribe();
-    this.inEdit = false;
+    this.inEdit = undefined;
     this.toastr.success("Le certificat a été modifié avec succès !!!");
   }
 

@@ -15,19 +15,19 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 .add-cert-container {
   display: none;
   position: absolute;
   width: 850px;
   height: 600px;
-  left: 0px;
+  left: -20px;
   right: 0px;
   margin: auto;
   background-color: white;
   z-index: 20;
   text-align: left;
-  padding: 20px;
+  padding: 0px 20px;
 }
 
 .buttonCertAdderDiv {
@@ -56,7 +56,7 @@
   text-align: center;
   margin: 30px auto auto auto;
   padding: 20px;
-  border: 1px solid rgba(3, 148, 171, 0.1);
+  border: 1px solid rgba(234, 75, 75, 0.3);
   cursor: not-allowed;
 }
 
@@ -155,7 +155,6 @@ input[type="file"]:hover {
 
 .adder-list tbody {
   display:block;
-  overflow-y: scroll;
   max-height: 300px;
 }
 
@@ -186,6 +185,8 @@ input[type="file"]:hover {
 .adder-list-content {
   text-align: center;
   height: 30px;
+  transition: background 0.1s;
+  -webkit-transition: background 0.1s;
 }
 
 .adder-list-content:hover {
@@ -312,12 +313,6 @@ tr:nth-child(even){
   right: 10px;
 }
 
-.formDiv {
-  max-height: 325px;
-  overflow: scroll;
-  margin-left: auto;
-}
-
 .text-inner-container {
   margin: auto auto 30px auto;
 }
@@ -385,7 +380,6 @@ tr:nth-child(even){
 
 .file-list tbody {
   display:block;
-  overflow-y: scroll;
   max-height: 297px;
 }
 
@@ -418,7 +412,7 @@ tr:nth-child(even){
 }
 
 .file-list-content .file-list-second-td:hover .fa {
-  color: red;
+  color: #EA4B4B;
 }
 
 .file-list tr {
