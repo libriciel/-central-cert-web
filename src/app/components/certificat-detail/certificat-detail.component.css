@@ -17,6 +17,7 @@
  */
 
 .wrapper {
+  border-radius: 0.25rem;
   box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
   position: absolute;
   top: 0;
@@ -303,6 +304,7 @@ tr:nth-child(even){
 }
 
 .det-verify-suppr {
+  border-radius: 0.25rem;
   display: none;
   border: 1px solid #707070;
   position: absolute;

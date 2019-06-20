@@ -17,6 +17,7 @@
  */
 
 .wrapper {
+  border-radius: 0.25rem;
   top: 0;
   bottom: 0;
   left: 0;

@@ -50,7 +50,7 @@ export class CertificatDetailComponent implements OnInit {
   }
 
   //permet d'éditer les informations
-  edit(id: number){
+  edit(id){
     this.inEdit = id;
   }
 

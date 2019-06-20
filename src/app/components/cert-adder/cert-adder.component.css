@@ -17,6 +17,7 @@
  */
 
 .add-cert-container {
+  border-radius: 0.25rem;
   display: none;
   position: absolute;
   width: 850px;

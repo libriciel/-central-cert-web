@@ -80,7 +80,6 @@
             <input type="checkbox" class="pointer" (change)="checkBoxHandler(certificat, $event.target.checked, j)" name="check{{j}}" [checked]="selectAllCerts">
             <span class="pointer"><i class="fa fa-check" aria-hidden="true"></i></span>
           </label>
-
         </td>
         <td class="check-th media-disabled">
           <i matTooltip="Ajouter aux favoris" class="fa-accueil fa fa-star-o pointer" (click)="favorize(certificat)" *ngIf="certificat.favoris == false" aria-hidden="true"></i>
@@ -149,15 +148,15 @@
         </td>
       </tr>
     </tbody>
-    <tbody *ngIf="searchText && searchCerts.length > 0">
-      <tr class="list-content" *ngFor="let certificat of searchCerts; let j = index">
-        <td class="icon-th">
-          <label class="check-label">
-            <input type="checkbox" class="pointer" (change)="checkBoxHandler(certificat, $event.target.checked)" name="check{{j}}" [checked]="selectAllCerts">
-            <span><i class="fa fa-check" aria-hidden="true"></i></span>
+    <tbody *ngIf="searchText && searchCerts.length > 0 && searchCerts.length < 10">
+      <tr id="checkTr{{j}}" class="list-content" *ngFor="let certificat of searchCerts; let j = index">
+        <td class="icon-th media-disabled">
+          <label class="check-label pointer">
+            <input type="checkbox" class="pointer" (change)="checkBoxHandler(certificat, $event.target.checked, j)" name="check{{j}}" [checked]="selectAllCerts">
+            <span class="pointer"><i class="fa fa-check" aria-hidden="true"></i></span>
           </label>
         </td>
-        <td class="icon-th">
+        <td class="check-th media-disabled">
           <i matTooltip="Ajouter aux favoris" class="fa-accueil fa fa-star-o pointer" (click)="favorize(certificat)" *ngIf="certificat.favoris == false" aria-hidden="true"></i>
           <i matTooltip="Retirer des favoris" class="fa-accueil fa fa-star pointer" (click)="favorize(certificat)" *ngIf="certificat.favoris == true" aria-hidden="true"></i>
         </td>
@@ -175,13 +174,50 @@
             <p *ngIf="isExpired(certificat) == true"><i matTooltip="Ce certificat est expiré" class="fa-accueil fa fa-exclamation-triangle" aria-hidden="true"></i>{{getRemTime(certificat)}}</p>
           </div>
         </td>
-        <td matTooltip="Visualiser" class="icon-th hover-th pointer" (click)="toDetail(certificat)">
+        <td matTooltip="Visualiser" class="icon-th hover-th pointer media-disabled" (click)="toDetail(certificat)">
           <i class="fa-accueil fa-none fa fa-eye" aria-hidden="true"></i>
         </td>
-        <td matTooltip="Gérer les contacts et notifications" class="icon-th hover-th pointer" (click)="toContact(certificat)">
+        <td matTooltip="Gérer les contacts et notifications" class="icon-th hover-th pointer media-disabled" (click)="toContact(certificat)">
           <i class="fa-accueil fa fa-none fa-bell" aria-hidden="true"></i>
         </td>
-        <td matTooltip="Supprimer" class="icon-th hover-th pointer" (click)="verifyDelete(certificat)">
+        <td matTooltip="Supprimer" class="icon-th hover-th pointer media-disabled" (click)="verifyDelete(certificat)">
+          <i class="fa-accueil fa fa-none fa-trash" aria-hidden="true"></i>
+        </td>
+      </tr>
+    </tbody>
+    <tbody class="overflow" *ngIf="searchText && searchCerts.length > 0 && searchCerts.length >= 10">
+      <tr id="checkTr{{j}}" class="list-content" *ngFor="let certificat of searchCerts; let j = index">
+        <td class="icon-th media-disabled">
+          <label class="check-label pointer">
+            <input type="checkbox" class="pointer" (change)="checkBoxHandler(certificat, $event.target.checked, j)" name="check{{j}}" [checked]="selectAllCerts">
+            <span class="pointer"><i class="fa fa-check" aria-hidden="true"></i></span>
+          </label>
+        </td>
+        <td class="check-th media-disabled">
+          <i matTooltip="Ajouter aux favoris" class="fa-accueil fa fa-star-o pointer" (click)="favorize(certificat)" *ngIf="certificat.favoris == false" aria-hidden="true"></i>
+          <i matTooltip="Retirer des favoris" class="fa-accueil fa fa-star pointer" (click)="favorize(certificat)" *ngIf="certificat.favoris == true" aria-hidden="true"></i>
+        </td>
+        <td class="content-th first"><p>{{getInformations(certificat).cn}}</p></td>
+        <td class="content-th second">
+          <div class="date-left">
+            <i matTooltip="Expire dans plus de trois mois" *ngIf="isGreen(certificat) == true" class="fa-accueil greenIndicator fa fa-circle" aria-hidden="true"></i>
+            <i matTooltip="Expire dans moins de trois mois" *ngIf="isOrange(certificat) == true" class="fa-accueil orangeIndicator fa fa-circle" aria-hidden="true"></i>
+            <i matTooltip="Expire bientôt" *ngIf="isRed(certificat) == true" class="fa-accueil redIndicator fa fa-circle" aria-hidden="true"></i>
+            <i matTooltip="Expiré" *ngIf="isExpired(certificat) == true" class="fa-accueil redIndicator fa fa-circle" aria-hidden="true"></i>
+          </div>
+          <div class="date-right">
+            <p>{{getDate(certificat.notAfter)}}</p>
+            <p *ngIf="isExpired(certificat) == false">{{getRemTime(certificat)}}</p>
+            <p *ngIf="isExpired(certificat) == true"><i matTooltip="Ce certificat est expiré" class="fa-accueil fa fa-exclamation-triangle" aria-hidden="true"></i>{{getRemTime(certificat)}}</p>
+          </div>
+        </td>
+        <td matTooltip="Visualiser" class="icon-th hover-th pointer media-disabled" (click)="toDetail(certificat)">
+          <i class="fa-accueil fa-none fa fa-eye" aria-hidden="true"></i>
+        </td>
+        <td matTooltip="Gérer les contacts et notifications" class="icon-th hover-th pointer media-disabled" (click)="toContact(certificat)">
+          <i class="fa-accueil fa fa-none fa-bell" aria-hidden="true"></i>
+        </td>
+        <td matTooltip="Supprimer" class="icon-th hover-th pointer media-disabled" (click)="verifyDelete(certificat)">
           <i class="fa-accueil fa fa-none fa-trash" aria-hidden="true"></i>
         </td>
       </tr>
