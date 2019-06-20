@@ -1,0 +1,269 @@
+/*
+ * central cert web
+ * Copyright (C) 2018-2019 Libriciel-SCOP
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+.wrapper {
+  border-radius: 0.25rem;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 450px;
+  background-color: white;
+  position: absolute;
+  max-width: 775px;
+  margin: auto;
+  padding: 20px;
+  font-size: 15px;
+  z-index: 70;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+}
+
+input[type="mail"]{
+  border-radius: 0.25rem;
+  font-size: 16px;
+  padding: 12px 20px 12px 20px;
+  border: 1px solid #ced4da;
+  width: 95%;
+  -webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+input[type="mail"]:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 .2rem rgba(0,123,255,.25)
+}
+
+.notifCheckbox {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.contact-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-header-title-wraper {
+  margin-bottom: -40px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.contact-title {
+  width:70%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.contact-title p {
+  margin-right: 10px;
+}
+
+.contact-components {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.contact-left {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  border-right: 1px solid rgba(3, 148, 171, 1);
+}
+
+.contact-right {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.contact-adresses {
+  width:60%;
+}
+
+.button-contact {
+  text-align: right;
+  width:40%;
+}
+
+.button-contact button {
+  width:100%;
+  background-color: #FFFFFF;
+  border: 2px solid rgba(3, 148, 171, 0.25);
+  padding: 5px 5px;
+  margin-right: 20px;
+  font-size: 13px;
+}
+
+.info-container-row {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.contact-list {
+  width:100%;
+  background-color: white;
+  border-collapse: collapse;
+}
+
+.contact-list tbody {
+  display:block;
+  max-height: 200px;
+}
+
+.contact-list thead {
+  display: table;
+  width: 100%
+}
+
+.contact-list thead td th{
+  width: 45%;
+}
+
+.trash-list-contact{
+  width:10%;
+}
+
+.trash-list-contact .fa{
+  display:none;
+}
+
+.trash-list-contact:hover .fa {
+  color: #EA4B4B;
+}
+
+.trash-list-contact:hover {
+  background-color: rgba(3, 148, 171, 0.20)
+}
+
+.contact-list tr {
+  display: table;
+  width: 100%;
+}
+
+.contact-list tbody tr {
+  display: table;
+  width: 100%;
+}
+
+.contact-list tbody tr td {
+  width: 45%;
+}
+
+.contact-list-top {
+  text-align: center;
+  height: 30px;
+  border-bottom: 2px solid rgba(3, 148, 171, 1);
+}
+
+.contact-list-content {
+  text-align: center;
+  height: 30px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  transition: background 0.1s;
+  -webkit-transition: background 0.1s;
+}
+
+.contact-list-content:hover {
+  background-color: rgba(3, 148, 171, 0.25);
+}
+
+.contact-list-content:hover .fa{
+    display: inline;
+}
+
+tr:nth-child(even){
+  background-color: #f7f7f7;
+}
+
+.toggle:hover{
+  color:black;
+}
+
+.text-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.text-icon p {
+  margin-right: 10px;
+}
+
+.icon-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icon-text .fa {
+  margin-right: 20px;
+}
+
+.validcancelbutton {
+  float: right;
+  height: 40px;
+}
+
+.validcancelbutton button {
+  margin-left: 20px;
+  border-radius: 0.25rem;
+  border: none;
+  background-color: rgba(3, 148, 171, 0.75);
+  color: white;
+  padding: 0px 15px;
+  font-size: 16px;
+  height: 100%;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+}
+
+.validcancelbutton button:hover {
+  background-color: rgba(3, 148, 171, 1);
+}
+
+.validcancelbutton button .fa {
+  margin-right: 10px;
+}
+
+.errorFormGroup {
+  position: relative;
+}
+
+.shadow {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 60;
+  background-color: black;
+  opacity: 0.5;
+}

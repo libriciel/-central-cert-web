@@ -1,0 +1,40 @@
+/*
+ * central cert web
+ * Copyright (C) 2018-2019 Libriciel-SCOP
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+ 
+.scroll-to-top {
+  width: 50px;
+  height: 50px;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  transition: all .2s ease-in-out;
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 0.25rem;
+  color: white;
+  text-align: center;
+  cursor: pointer;
+  display: none;
+}
+
+.scroll-to-top .fa {
+  font-size: 40px;
+}
+
+.show-scrollTop {
+  display: inline;
+}

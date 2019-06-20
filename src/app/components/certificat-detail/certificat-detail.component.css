@@ -1,0 +1,394 @@
+/*
+ * central cert web
+ * Copyright (C) 2018-2019 Libriciel-SCOP
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+.wrapper {
+  border-radius: 0.25rem;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0px 20px;
+  height: 620px;
+  width: 850px;
+  background-color: white;
+  font-size: 15px;
+  margin: auto;
+  z-index: 30;
+}
+
+.detail-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-header-title-wraper {
+  margin-bottom: -40px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.detail-title {
+  width:70%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.detail-title p {
+  margin-right: 10px;
+}
+
+.detail-title i {
+  color: #0394AB;
+}
+
+.close {
+  font-size: 20px;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.detail-supprimer button {
+  width: 80%;
+  border-radius: 0.25rem;
+  background-color: #FFFFFF;
+  border: 1px solid #EA4B4B;
+  padding: 5px 0px;
+  margin-right: 20px;
+  font-size: 13px;
+  color: #EA4B4B;
+  -webkit-transition: background 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s;
+}
+
+.detail-supprimer button:hover {
+  background-color: #EA4B4B;
+  color: #FFFFFF;
+}
+
+.detail-supprimer {
+  width:30%;
+  text-align: right;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.detail-supprimer .fa {
+  margin-right: 10px;
+}
+
+.detail-components {
+  display: flex;
+  flex-direction: row;
+}
+
+.detail-left {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  border-right: 1px solid #105385;
+  padding-right: 20px;
+}
+
+.detail-right {
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+
+.detail-adress-div {
+  height: 40px;
+}
+
+.detail-adresses {
+  width:57%;
+}
+
+.button-contact {
+  text-align: right;
+  width:43%;
+}
+
+.button-contact button {
+  width: 100%;
+  border-radius: 0.25rem;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(3, 148, 171, 1);
+  color: rgba(3, 148, 171, 1);
+  padding: 5px 0px;
+  margin-right: 20px;
+  font-size: 13px;
+  -webkit-transition: background 0.3s, color 0.3s;
+  transition: background 0.3s, color 0.3s;
+}
+
+.button-contact button:hover {
+  color: white;
+  background-color: rgba(3, 148, 171, 1);
+}
+
+.button-contact .fa {
+  margin-right: 10px;
+}
+
+.info-container-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-container-row {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+}
+
+.icon-text {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icon-text .fa {
+  margin-right: 10px;
+}
+
+.detail-list {
+  width:100%;
+  background-color: white;
+  border-collapse: collapse;
+}
+
+.detail-list tbody {
+  display:block;
+  max-height: 200px;
+}
+
+.detail-list thead {
+  display: table;
+  width: 100%
+}
+
+.detail-list thead td th{
+  width: 50%
+}
+
+.detail-list tr {
+  display: table;
+  width: 100%;
+}
+
+.detail-list tbody tr {
+  display: table;
+  width: 100%;
+}
+
+.detail-list tbody tr td {
+  width: 50%;
+}
+
+.detail-list-top {
+  text-align: center;
+  height: 30px;
+  border-bottom: 2px solid rgba(3, 148, 171, 1);
+}
+
+.detail-list-content {
+  text-align: center;
+  height: 30px;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  transition: background 0.1s;
+  -webkit-transition: background 0.1s;
+}
+
+.detail-list-content:hover {
+  background-color: rgba(3, 148, 171, 0.25);
+}
+
+tr:nth-child(even){
+  background-color: #f7f7f7;
+}
+
+.dn-detail-title {
+  font-size: 18px;
+}
+
+.dn-detail {
+  padding-left: 20px;
+}
+
+.span-detail {
+  display: flex;
+  flex-direction: row;
+}
+
+.span-detail p{
+  margin-right: 10px;
+}
+
+.span-detail i {
+  display: none;
+  align-self: center;
+  font-size: 20px;
+}
+
+.span-detail i:hover {
+  color: #0394AB;
+}
+
+.span-detail:hover i {
+  display: inline;
+  transition: color 0.3s;
+  -webkit-transition: color 0.3s;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  align-items: center;
+}
+
+.form-group input[type="text"]{
+  width: 30%;
+  margin: 0px 10px;
+  border-radius: 0.25rem;
+  font-size: 16px;
+  padding: 12px 20px 12px 20px;
+  border: 1px solid #ced4da;
+  -webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.form-group input[type="text"]:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 .2rem rgba(0,123,255,.25)
+}
+
+.submitChanges {
+  background: none;
+  border: none;
+  font-size: 20px;
+}
+
+.submitChanges i {
+  transition: color 0.3s;
+  -webkit-transition: color 0.3s;
+}
+
+.submitChanges i:hover {
+  color: #0394AB;
+}
+
+.det-verify-suppr {
+  border-radius: 0.25rem;
+  display: none;
+  border: 1px solid #707070;
+  position: absolute;
+  flex-direction: column;
+  background-color: white;
+  padding: 0px 30px 10px 30px;;
+  width: 400px;
+  height: 200px;
+  right: 0;
+  left: 0;
+  top: 0;
+  bottom: 20%;
+  margin: auto;
+  z-index: 80;
+}
+
+.det-verify-suppr p{
+  width: 80%;
+  padding-top: 50px;
+}
+
+.det-validcancelbutton {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  height: 40px;
+}
+
+.det-validcancelbutton button {
+  margin-left: 20px;
+  background-color: rgba(234, 75, 75, 0.9);
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0px 15px;
+  color: #ffffff;
+  height: 100%;
+  font-size: 16px;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+}
+
+.validcancelbutton button:hover {
+  background-color: rgba(234, 75, 75, 1);
+}
+
+.det-validcancelbutton button .fa{
+  color: #ffffff;
+  margin-right: 10px;
+}
+
+.det-validcancelbutton input {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0px 15px;
+  height: 100%;
+  font-size: 16px;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+}
+
+.det-validcancelbutton input:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.shadow {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 20;
+}
+
+.supprshadow {
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.5;
+  z-index: 70;
+}

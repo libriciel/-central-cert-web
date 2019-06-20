@@ -1,0 +1,454 @@
+/*
+ * central cert web
+ * Copyright (C) 2018-2019 Libriciel-SCOP
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+.add-cert-container {
+  border-radius: 0.25rem;
+  display: none;
+  position: absolute;
+  width: 850px;
+  height: 600px;
+  left: -20px;
+  right: 0px;
+  margin: auto;
+  background-color: white;
+  z-index: 20;
+  text-align: left;
+  padding: 0px 20px;
+}
+
+.buttonCertAdderDiv {
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  height: 70%;
+}
+
+.certAddButton {
+  border-radius: 0.25rem;
+  height: 65%;
+  width: 17%;
+  text-align: center;
+  margin: 30px auto auto auto;
+  padding: 20px;
+  border: 1px solid rgba(3, 148, 171, 1);
+  -webkit-transition: background 0.3s, border 0.3s, margin 0.3s, color 0.3s;
+  transition: background 0.3s, border 0.3s, margin 0.3s, color 0.3s;
+}
+
+.certAddButtonGrey {
+  border-radius: 0.25rem;
+  height: 65%;
+  width: 17%;
+  text-align: center;
+  margin: 30px auto auto auto;
+  padding: 20px;
+  border: 1px solid rgba(234, 75, 75, 0.3);
+  cursor: not-allowed;
+}
+
+.titleCerAdder {
+  font-size: 18px;
+  height: 50px;
+}
+
+.descriptionCertAdder {
+  margin-top: 40%;
+}
+
+.buttonCertAdderDiv .upperDiv:hover {
+  background-color: rgba(3, 148, 171, 1);
+  margin: 0px auto auto auto;
+  color: white;
+}
+
+.buttonCertAdderDiv .upperDiv:hover .bleu-ciel {
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.urlCertAdder {
+  width: 80%;
+  height: 70%;
+  margin: 10% auto;
+}
+
+input[type="text"]{
+  border-radius: 0.25rem;
+  font-size: 16px;
+  padding: 12px 20px 12px 20px;
+  border: 1px solid #ced4da;
+  width: 95%;
+  -webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+input[type="text"]:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 .2rem rgba(0,123,255,.25)
+}
+
+input[type="date"] {
+  border-radius: 0.25rem;
+  font-size: 16px;
+  padding: 12px 60px 12px 20px;
+  border: 1px solid #ced4da;
+  width: 90%;
+  -webkit-transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+input[type="date"]:focus {
+  border-color: #80bdff;
+  box-shadow: 0 0 0 .2rem rgba(0,123,255,.25)
+}
+
+input[type="file"] {
+  margin: auto;
+  border-radius: 0px 0px 4px 4px;
+  background-color: rgba(3, 148, 171, 0.25);
+  padding: 50px 100px;
+  border:none;
+  border-top: 2px solid rgba(3, 148, 171, 0.25);
+  -webkit-transition: background-color 0.4s ease-in-out;
+  transition: background-color 0.4s ease-in-out;
+}
+
+input[type="file"]:hover {
+  background-color: #89C4F1;
+}
+
+
+.add-cert-shadow {
+  display: none;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: black;
+  opacity: 0.5;
+}
+
+.active {
+  display: inline;
+}
+
+.adder-list {
+  margin: 5% auto;
+  width: 80%;
+  border-collapse: collapse;
+}
+
+.adder-list tbody {
+  display:block;
+  max-height: 300px;
+}
+
+.adder-list thead {
+  display: table;
+  width: 100%
+}
+
+.checkboxTD{
+  width:10%;
+}
+
+.cert-adder-list-td {
+  width: 45%;
+}
+
+.adder-list tr {
+  display: table;
+  width: 100%;
+}
+
+.adder-list-top {
+  text-align: center;
+  height: 30px;
+  border-bottom: 2px solid rgba(3, 148, 171, 1);
+}
+
+.adder-list-content {
+  text-align: center;
+  height: 30px;
+  transition: background 0.1s;
+  -webkit-transition: background 0.1s;
+}
+
+.adder-list-content:hover {
+  background-color: rgba(3, 148, 171, 0.25);
+}
+
+.adder-list-content:hover .fa{
+    display: inline;
+}
+
+tr:nth-child(even){
+  background-color: #f7f7f7;
+}
+
+.addCertButton {
+  border-radius: 0.25rem;
+  background-color: rgba(3, 148, 171, 0.75);
+  border: none;
+  padding: 10px;
+  color: white;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+}
+
+.addCertButton .fa {
+  margin-right: 10px;
+}
+
+.addCertButton:hover{
+  background-color: rgba(3, 148, 171, 1);
+}
+
+.validcancelbutton {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  height: 40px;
+}
+
+.validcancelbutton button {
+  border-radius: 0.25rem;
+  margin-left: 20px;
+  background-color: white;
+  border: 1px solid rgba(3, 148, 171, 1);
+  padding: 0px 15px;
+  font-size: 13px;
+  height: 100%;
+  font-size: 20px;
+  transition: background 0.3s;
+  -webkit-transition: background 0.3s;
+}
+
+.validcancelbutton .greyButton {
+  border-radius: 0.25rem;
+  background-color: rgba(3, 148, 171, 0.1);
+  border: 1px solid rgba(3, 148, 171, 0.1);
+  cursor: not-allowed;
+}
+
+.validcancelbutton .primaryButton {
+  background-color: rgba(3, 148, 171, 0.75);
+  border: 1px solid rgba(3, 148, 171, 0.75);
+  transition: background 0.3s, border 0.3s;
+  -webkit-transition: background 0.3s, border 0.3s;
+}
+
+.validcancelbutton .primaryButton:hover {
+  background-color: rgba(3, 148, 171, 1);
+  border: 1px solid rgba(3, 148, 171, 1);
+  transition: background 0.3s, border 0.3s;
+  -webkit-transition: background 0.3s, border 0.3s;
+}
+
+.validcancelbutton .greyButton:hover {
+  background-color: rgba(3, 148, 171, 0.1);
+}
+
+.validcancelbutton button:hover {
+  background-color: rgba(3, 148, 171, 1);
+}
+
+.validcancelbutton button .fa {
+  margin-right: 10px;
+}
+
+.validcancelbutton input {
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  border-radius: 0.25rem;
+  padding: 0px 15px;
+  height: 100%;
+  font-size: 16px;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+}
+
+.validcancelbutton input:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.form-inner-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 25px;
+  padding-right: 25px;
+  width: 90%;
+  margin: auto;
+}
+
+.errorFormGroup {
+  position: relative;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.errorFormGroupFile {
+  position: relative;
+  margin: auto;
+}
+
+.errorFormGroup i {
+  position: absolute;
+  font-size: 30px;
+  bottom: 9px;
+  right: 10px;
+}
+
+.text-inner-container {
+  margin: auto auto 30px auto;
+}
+
+.stades {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.stades .fa {
+  font-size: 40px;
+}
+
+.stade {
+  width: 25%;
+  height: 50px;
+  font-size: 18px;
+  margin: auto;
+  text-align: center;
+  opacity: 0.4;
+}
+
+.activeStade {
+  opacity: 1;
+}
+
+.noCertsFound {
+  width: 100%;
+  height: 475px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+}
+
+.noCertsFound p {
+  width: 100%;
+}
+
+.file-div {
+  display: flex;
+  flex-direction: row;
+}
+
+.file-left {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.file-right {
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+}
+
+.file-list {
+  margin: 5% auto;
+  width: 80%;
+  border-collapse: collapse;
+}
+
+.file-list tbody {
+  display:block;
+  max-height: 297px;
+}
+
+.file-list thead {
+  display: table;
+  width: 100%
+}
+
+.file-list-first-td {
+  width: 90%;
+  padding-left: 10px;
+}
+
+.file-list-second-td {
+  width: 10%;
+  text-align: right;
+  text-align: center;
+}
+
+.file-list-content .file-list-second-td .fa {
+  display: none;
+}
+
+.file-list-content .file-list-second-td:hover {
+  background-color: rgba(3, 148, 171, 0.20);
+}
+
+.file-list-content:hover td .fa {
+  display: inline;
+}
+
+.file-list-content .file-list-second-td:hover .fa {
+  color: #EA4B4B;
+}
+
+.file-list tr {
+  display: table;
+  width: 100%;
+}
+
+.file-list-top {
+  height: 30px;
+  border-bottom: 2px solid rgba(3, 148, 171, 1);
+}
+
+.file-list-content {
+  height: 30px;
+}
+
+.file-list-content:hover {
+  background-color: rgba(3, 148, 171, 0.25);
+}
+
+tr:nth-child(even){
+  background-color: #f7f7f7;
+}
+
+.center-chargement {
+  width: 80%;
+  height: 70%;
+  margin: 10% auto;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 800px){
+  .addCertButton {
+    width: 100%;
+  }
+}
