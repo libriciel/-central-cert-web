@@ -17,109 +17,109 @@
  */
 
 .header {
-  overflow: hidden;
-  background-color: #222;
-  height: 50px;
-  color: white;
-  display: flex;
-  flex-direction: row;
+    overflow: hidden;
+    background-color: #222;
+    height: 50px;
+    color: white;
+    display: flex;
+    flex-direction: row;
 }
 
 .logo-link {
-  height: 30px;
-  margin: 10px;
+    height: 30px;
+    margin: 10px;
 }
 
 .dropdown {
-  width: 100%;
-  text-align: right;
+    width: 100%;
+    text-align: right;
 }
 
 .dropbtn:hover + .dropdown_content {
-  display:block;
+    display: block;
 }
 
 .dropdown_content:hover {
-  display:block;
+    display: block;
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #222;
+    background-color: #222;
 }
 
 .dropdown_content {
-  background-color: #222;
-  display: none;
-  position: absolute;
-  width: 315px;
-  z-index: 10;
-  right: 0px;
-  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.3);
+    background-color: #222;
+    display: none;
+    position: absolute;
+    width: 315px;
+    z-index: 10;
+    right: 0px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.3);
 }
 
 .dropdown_content div {
-  padding: 0px 10px 0px 10px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+    padding: 0px 10px 0px 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .dropdown_content div:hover {
-  background-color: #5b5b5b;
-  cursor: pointer;
+    background-color: #5b5b5b;
+    cursor: pointer;
 }
 
 .border-top {
-  border-top: 1px solid white;
+    border-top: 1px solid white;
 }
 
 .logout i {
-  transition: margin 0.3s;
-  -webkit-transition: margin 0.3s;
+    transition: margin 0.3s;
+    -webkit-transition: margin 0.3s;
 }
 
 .logout:hover i {
-  margin-left: 20px;
+    margin-left: 20px;
 }
 
-.dropdown_content div .fa{
-  margin-right: 10px;
+.dropdown_content div .fa {
+    margin-right: 10px;
 }
 
 .dropbtn {
-  height: 50px;
-  background: none;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  color: white;
+    height: 50px;
+    background: none;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    color: white;
 }
 
 .dropbtn .fa {
-  margin-left: 10px;
+    margin-left: 10px;
 }
 
 a {
-  color: white;
-  text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 a:visited {
-  color: white;
-  text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 a:link {
-  color: white;
-  text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 a:hover {
-  color: white;
-  text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 a:active {
-  color: white;
-  text-decoration: none;
+    color: white;
+    text-decoration: none;
 }

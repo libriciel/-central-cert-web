@@ -15,27 +15,27 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
-import { Injectable } from '@angular/core';
-import { Certificat } from '../model/certificat';
-import { DeviceDetectorService } from 'ngx-device-detector';
+
+import {Injectable} from '@angular/core';
+import {DeviceDetectorService} from 'ngx-device-detector';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class KeystoreService {
 
-  constructor(private deviceService: DeviceDetectorService) { }
+    constructor(private deviceService: DeviceDetectorService) {
+    }
 
-  getSystem(){
-    return this.deviceService.getDeviceInfo().os;
-  }
+    getSystem() {
+        return this.deviceService.getDeviceInfo().os;
+    }
 
-  getNavigator(){
-    return this.deviceService.getDeviceInfo().browser;
-  }
+    getNavigator() {
+        return this.deviceService.getDeviceInfo().browser;
+    }
 
-  isCompatible(){
-    return (this.getSystem() === "Windows" && this.getNavigator() != "Edge");
-  }
+    isCompatible() {
+        return (this.getSystem() === 'Windows' && this.getNavigator() != 'Edge');
+    }
 }

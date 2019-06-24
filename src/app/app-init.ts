@@ -1,4 +1,4 @@
-/**
+/*
  * central cert web
  * Copyright (C) 2018-2019 Libriciel-SCOP
  *
@@ -14,21 +14,21 @@
  *
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
- **/
+ */
 
-import {KeycloakConfig, KeycloakService } from 'keycloak-angular';
+import {KeycloakConfig, KeycloakService} from 'keycloak-angular';
 
 export function initializer(keycloak: KeycloakService): () => Promise<any> {
-  var keycloakConfig: KeycloakConfig = {
-    url: '/auth',
-    clientId: 'frontend',
-    realm: 'CentralCert'
-  };
+    const keycloakConfig: KeycloakConfig = {
+        url: '/auth',
+        clientId: 'frontend',
+        realm: 'CentralCert'
+    };
 
-  return (): Promise<any> => keycloak.init({
-    config: keycloakConfig,
-    initOptions: {
-      onLoad: 'login-required'
-    },
-  });
+    return (): Promise<any> => keycloak.init({
+        config: keycloakConfig,
+        initOptions: {
+            onLoad: 'login-required'
+        },
+    });
 }

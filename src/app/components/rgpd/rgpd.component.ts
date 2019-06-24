@@ -15,19 +15,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
-import { Component, OnInit } from '@angular/core';
+
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-rgpd',
-  templateUrl: './rgpd.component.html',
-  styleUrls: ['./rgpd.component.css']
+    selector: 'app-rgpd',
+    templateUrl: './rgpd.component.html',
+    styleUrls: ['./rgpd.component.css']
 })
 export class RGPDComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

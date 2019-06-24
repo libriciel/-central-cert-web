@@ -15,25 +15,27 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { HttpClient, HttpRequest, HttpHeaders, HttpEvent} from '@angular/common/http';
+
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
-  selector: 'app-reset-mail',
-  templateUrl: './reset-mail.component.html',
-  styleUrls: ['./reset-mail.component.css']
+    selector: 'app-reset-mail',
+    templateUrl: './reset-mail.component.html',
+    styleUrls: ['./reset-mail.component.css']
 })
 export class ResetMailComponent implements OnInit {
 
-  constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) { }
+    constructor(private http: HttpClient, private activatedRoute: ActivatedRoute) {
+    }
 
-  ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(data => {
-      let id = data.id;
-      let add = data.addMail;
-      this.http.get("/api/certificat/resetMail?id=" + id + "&addMail=" + add).subscribe(data => {});
-    });
-  }
+    ngOnInit() {
+        this.activatedRoute.queryParams.subscribe(data => {
+            let id = data.id;
+            let add = data.addMail;
+            this.http.get('/api/certificat/resetMail?id=' + id + '&addMail=' + add).subscribe(data => {
+            });
+        });
+    }
 }
