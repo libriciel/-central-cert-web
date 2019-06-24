@@ -17,75 +17,80 @@
  -->
 
 <div class="main-container">
-  <p class="page-title bold"><span class="spanHome"><i routerLink="/accueil" class="pointer fa fa-home" aria-hidden="true"></i><i class="fa fa-chevron-right" aria-hidden="true"></i></span>Aide</p>
-  <div class="pointer retourHome" routerLink="/accueil"><p><i class="fa fa-arrow-left" aria-hidden="true"></i>Retour</p></div>
-  <div class="help-container">
-    <div class="helpMenu">
-      <ul class="help-list-menu">
-        <li *ngFor="let tuto of tutos; let i = index" (click)="displayHelp(tuto.id)" id="help{{i}}" class="pointer menu-item">{{tuto.menu}}<i class="fa fa-chevron-right" aria-hidden="true"></i></li>
-      </ul>
+    <p class="page-title bold"><span class="spanHome"><i routerLink="/accueil" class="pointer fa fa-home"
+                                                         aria-hidden="true"></i><i class="fa fa-chevron-right"
+                                                                                   aria-hidden="true"></i></span>Aide
+    </p>
+    <div class="pointer retourHome" routerLink="/accueil"><p><i class="fa fa-arrow-left" aria-hidden="true"></i>Retour
+    </p></div>
+    <div class="help-container">
+        <div class="helpMenu">
+            <ul class="help-list-menu">
+                <li *ngFor="let tuto of tutos; let i = index" (click)="displayHelp(tuto.id)" id="help{{i}}"
+                    class="pointer menu-item">{{tuto.menu}}<i class="fa fa-chevron-right" aria-hidden="true"></i></li>
+            </ul>
+        </div>
+        <div *ngIf="selectedID == undefined" class="helpInfos unbdefinedInfo">
+            <p>Choisissez le sujet de votre recherche dans le menu de gauche afin de reçevoir de l'aide</p>
+        </div>
+        <div *ngIf="selectedID == 0" class="helpInfos">
+            <p>Etape 1 : Dirigez vous sur la page d'accueil</p>
+            <img src="/assets/images/home.png" alt="logo home">
+
+            <p>Etape 2 : Appuyer sur le bouton "Ajouter un certificat"</p>
+            <img src="/assets/images/add_cert.png" alt="bouton ajouter certificat">
+
+            <p>Etape 3 : Sélectionnez le mode d'importation parmi ceux proposés</p>
+            <img src="/assets/images/add_url.png" alt="bouton ajouter url">
+            <img src="/assets/images/add_form.png" alt="bouton ajouter form">
+            <img src="/assets/images/add_fichier.png" alt="bouton ajouter fichier">
+            <img src="/assets/images/add_keystore.png" alt="bouton ajouter keystore">
+
+            <p>Etape 4 : Rentrez les informations demandées dans les formulaires respectifs</p>
+            <img src="/assets/images/form_url.png" alt="form ajouter url">
+            <img src="/assets/images/form_form.png" alt="form ajouter form">
+            <img src="/assets/images/form_fichier.png" alt="form ajouter fichier">
+
+            <p>Etape 5 : Sélectionnez les certificats que vous voulez ajouter dans la liste</p>
+            <img src="/assets/images/cert_list.png" alt="list certs">
+
+            <p>Etape 6 : Validez le formulaire</p>
+            <img src="/assets/images/validate_add_cert.png" alt="bouton valider">
+        </div>
+        <div *ngIf="selectedID == 1" class="helpInfos">
+            <p>Etape 1 : Dirigez vous sur la page d'accueil</p>
+            <img src="/assets/images/home.png" alt="logo home">
+
+            <p>Etape 2 : Parcourez la liste à la recherche du certificat voulu</p>
+            <img src="/assets/images/list_hover.png" alt="list hover">
+
+            <p>Etape 3 : Appuyez sur l'icone en forme de cloche</p>
+            <img src="/assets/images/cloche.png" alt="">
+
+            <p>Etape 4 : Remplissez le formulaire</p>
+            <img src="/assets/images/contact_form.png" alt="form contact">
+
+            <p>Etape 5 : Validez le formulaire</p>
+            <img src="/assets/images/add_contact.png" alt="bouton add contact">
+        </div>
+        <div *ngIf="selectedID == 2" class="helpInfos">
+            <p>Etape 1 : Dirigez vous sur la page d'accueil</p>
+            <img src="/assets/images/home.png" alt="logo home">
+
+            <p>Etape 2 : Parcourez la liste à la recherche du certificat voulu</p>
+            <img src="/assets/images/list_hover.png" alt="list hover">
+
+            <p>Etape 3 : Appuyez sur l'icone en forme d'oeil</p>
+            <img src="/assets/images/eye.png" alt="eye">
+
+            <p>Etape 4 : Appuyez sur le bouton "Modifier"</p>
+            <img src="/assets/images/modifier.png" alt="bouton modifier">
+
+            <p>Etape 5 : Remplissez le formulaire</p>
+            <img src="/assets/images/cert_form.png" alt="form cert">
+
+            <p>Etape 6 : Validez le formulaire</p>
+            <img src="/assets/images/enregistrer.png" alt="enregistrer">
+        </div>
     </div>
-    <div *ngIf="selectedID == undefined" class="helpInfos unbdefinedInfo">
-      <p>Choisissez le sujet de votre recherche dans le menu de gauche afin de reçevoir de l'aide</p>
-    </div>
-    <div *ngIf="selectedID == 0" class="helpInfos">
-      <p>Etape 1 : Dirigez vous sur la page d'accueil</p>
-      <img src="/assets/images/home.png" alt="logo home">
-
-      <p>Etape 2 : Appuyer sur le bouton "Ajouter un certificat"</p>
-      <img src="/assets/images/add_cert.png" alt="bouton ajouter certificat">
-
-      <p>Etape 3 : Sélectionnez le mode d'importation parmi ceux proposés</p>
-      <img src="/assets/images/add_url.png" alt="bouton ajouter url">
-      <img src="/assets/images/add_form.png" alt="bouton ajouter form">
-      <img src="/assets/images/add_fichier.png" alt="bouton ajouter fichier">
-      <img src="/assets/images/add_keystore.png" alt="bouton ajouter keystore">
-
-      <p>Etape 4 : Rentrez les informations demandées dans les formulaires respectifs</p>
-      <img src="/assets/images/form_url.png" alt="form ajouter url">
-      <img src="/assets/images/form_form.png" alt="form ajouter form">
-      <img src="/assets/images/form_fichier.png" alt="form ajouter fichier">
-
-      <p>Etape 5 : Sélectionnez les certificats que vous voulez ajouter dans la liste</p>
-      <img src="/assets/images/cert_list.png" alt="list certs">
-
-      <p>Etape 6 : Validez le formulaire</p>
-      <img src="/assets/images/validate_add_cert.png" alt="bouton valider">
-    </div>
-    <div *ngIf="selectedID == 1" class="helpInfos">
-      <p>Etape 1 : Dirigez vous sur la page d'accueil</p>
-      <img src="/assets/images/home.png" alt="logo home">
-
-      <p>Etape 2 : Parcourez la liste à la recherche du certificat voulu</p>
-      <img src="/assets/images/list_hover.png" alt="list hover">
-
-      <p>Etape 3 : Appuyez sur l'icone en forme de cloche</p>
-      <img src="/assets/images/cloche.png" alt="">
-
-      <p>Etape 4 : Remplissez le formulaire</p>
-      <img src="/assets/images/contact_form.png" alt="form contact">
-
-      <p>Etape 5 : Validez le formulaire</p>
-      <img src="/assets/images/add_contact.png" alt="bouton add contact">
-    </div>
-    <div *ngIf="selectedID == 2" class="helpInfos">
-      <p>Etape 1 : Dirigez vous sur la page d'accueil</p>
-      <img src="/assets/images/home.png" alt="logo home">
-
-      <p>Etape 2 : Parcourez la liste à la recherche du certificat voulu</p>
-      <img src="/assets/images/list_hover.png" alt="list hover">
-
-      <p>Etape 3 : Appuyez sur l'icone en forme d'oeil</p>
-      <img src="/assets/images/eye.png" alt="eye">
-
-      <p>Etape 4 : Appuyez sur le bouton "Modifier"</p>
-      <img src="/assets/images/modifier.png" alt="bouton modifier">
-
-      <p>Etape 5 : Remplissez le formulaire</p>
-      <img src="/assets/images/cert_form.png" alt="form cert">
-
-      <p>Etape 6 : Validez le formulaire</p>
-      <img src="/assets/images/enregistrer.png" alt="enregistrer">
-    </div>
-  </div>
 </div>

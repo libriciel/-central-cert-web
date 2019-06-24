@@ -17,28 +17,29 @@
  -->
 
 <div class="header">
-  <img #logoHeader (mouseenter)="onHover(logoHeader)" (mouseleave)="onQuitHover(logoHeader)" class="logo-link pointer" src="/assets/images/logos/logo_centralcert_white.svg" alt="LOGO" routerLink="/accueil">
-  <div class="dropdown">
-    <button class="dropbtn">{{userName}}<i class="fa fa-sort-desc" aria-hidden="true"></i></button>
-    <div class="dropdown_content border-top">
-      <a href="../auth/realms/CentralCert/account?referrer=frontend">
-        <div>
-          <i class="fa fa-user" aria-hidden="true"></i>
-          <p>Préférences utilisateur</p>
+    <img #logoHeader (mouseenter)="onHover(logoHeader)" (mouseleave)="onQuitHover(logoHeader)" class="logo-link pointer"
+         src="/assets/images/logos/logo_centralcert_white.svg" alt="LOGO" routerLink="/accueil">
+    <div class="dropdown">
+        <button class="dropbtn">{{userName}}<i class="fa fa-sort-desc" aria-hidden="true"></i></button>
+        <div class="dropdown_content border-top">
+            <a href="../auth/realms/CentralCert/account?referrer=frontend">
+                <div>
+                    <i class="fa fa-user" aria-hidden="true"></i>
+                    <p>Préférences utilisateur</p>
+                </div>
+            </a>
+            <div routerLink="rgpd">
+                <i class="fa fa-certificate" aria-hidden="true"></i>
+                <p>Politique de confidentialité ( RGPD )</p>
+            </div>
+            <div routerLink="aide">
+                <i class="fa fa-question" aria-hidden="true"></i>
+                <p>Aide</p>
+            </div>
+            <div (click)="logout()" class="logout border-top">
+                <i class="fa fa-sign-out" aria-hidden="true"></i>
+                <p>Se déconnecter</p>
+            </div>
         </div>
-      </a>
-      <div routerLink="rgpd">
-        <i class="fa fa-certificate" aria-hidden="true"></i>
-        <p>Politique de confidentialité ( RGPD )</p>
-      </div>
-      <div routerLink="aide">
-        <i class="fa fa-question" aria-hidden="true"></i>
-        <p>Aide</p>
-      </div>
-      <div (click)="logout()" class="logout border-top">
-        <i class="fa fa-sign-out" aria-hidden="true"></i>
-        <p>Se déconnecter</p>
-      </div>
     </div>
-  </div>
 </div>

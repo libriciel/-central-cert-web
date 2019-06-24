@@ -15,19 +15,20 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
-import { Component, OnInit } from '@angular/core';
+
+import {Component, OnInit} from '@angular/core';
 
 @Component({
-  selector: 'app-content',
-  templateUrl: './content.component.html',
-  styleUrls: ['./content.component.css']
+    selector: 'app-content',
+    templateUrl: './content.component.html',
+    styleUrls: ['./content.component.css']
 })
 export class ContentComponent implements OnInit {
 
-  constructor() { }
+    constructor() {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
 }

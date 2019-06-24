@@ -15,27 +15,30 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
-import { Component, OnInit, Inject, HostListener } from '@angular/core';
-import { DOCUMENT } from "@angular/platform-browser";
+
+import {Component, HostListener, Inject, OnInit} from '@angular/core';
+import {DOCUMENT} from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-scroll-to-top',
-  templateUrl: './scroll-to-top.component.html',
-  styleUrls: ['./scroll-to-top.component.css']
+    selector: 'app-scroll-to-top',
+    templateUrl: './scroll-to-top.component.html',
+    styleUrls: ['./scroll-to-top.component.css']
 })
 export class ScrollToTopComponent implements OnInit {
     windowScrolled: boolean;
-    constructor(@Inject(DOCUMENT) private document: Document) {}
-    @HostListener("window:scroll", [])
+
+    constructor(@Inject(DOCUMENT) private document: Document) {
+    }
+
+    @HostListener('window:scroll', [])
     onWindowScroll() {
         if (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop > 100) {
             this.windowScrolled = true;
-        }
-       else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
+        } else if (this.windowScrolled && window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop < 10) {
             this.windowScrolled = false;
         }
     }
+
     scrollToTop() {
         (function smoothscroll() {
             var currentScroll = document.documentElement.scrollTop || document.body.scrollTop;
@@ -45,5 +48,7 @@ export class ScrollToTopComponent implements OnInit {
             }
         })();
     }
-    ngOnInit() {}
+
+    ngOnInit() {
+    }
 }
