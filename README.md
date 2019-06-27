@@ -1,4 +1,4 @@
-#### central-cert-web
+# central-cert-web
 
 Client web de l'application de gestion des certificats électroniques "**Central Cert**".
 
