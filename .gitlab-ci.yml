@@ -21,7 +21,7 @@ before_script:
   #   - "1.2.3" on regular tagged commits
   #   - "0.0.1-branch_name" on others
   - CURRENT_VERSION=$(if [[ $CI_BUILD_TOKEN =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] ; then echo $CI_BUILD_TOKEN; else echo "0.0.1-${CI_BUILD_TOKEN}"; fi)
-  - sed -i "s/{0.0.1-version}/CURRENT_VERSION/g" package.json
+  - sed -i "s/{0.0.1-version}/$CURRENT_VERSION/g" package.json
   - echo "version generated = $CURRENT_VERSION"
   # Install dependencies
   - npm install --save-dev @angular/cli
