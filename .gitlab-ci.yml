@@ -24,9 +24,9 @@ before_script:
   - sed -i "s/{0.0.1-version}/$CURRENT_VERSION/g" package.json
   - echo "version generated = $CURRENT_VERSION"
   # Install dependencies
-  - npm install --save-dev @angular/cli
+  - npm install -g @angular/cli
   # For some reasons, NodeJS doesn't download the dependencies...
-  # TODO : Install every dependancies automatically, and remove those lines
+  # TODO : Install every dependencies automatically, and remove those lines
   - npm install --save-dev @angular/core
   - npm install --save-dev @angular-devkit/build-angular
   - npm install --save-dev @angular/compiler-cli
@@ -86,8 +86,9 @@ docker:
   tags:
     - docker-build
   stage: deploy
+  before_script:
+    - echo "Disabling global before_script"
   script:
-    - ng build --prod
     - docker login -u "gitlab-ci-token" -p "$CI_BUILD_TOKEN" $CI_REGISTRY
     - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME" .
     - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
@@ -97,10 +98,11 @@ docker_latest:
   tags:
     - docker-build
   stage: deploy
+  before_script:
+    - echo "Disabling global before_script"
   only:
     - tags
   script:
-    - ng build --prod
     - docker login -u "gitlab-ci-token" -p "$CI_BUILD_TOKEN" $CI_REGISTRY
     - docker build --pull -t "$CI_REGISTRY_IMAGE:latest" .
     - docker push "$CI_REGISTRY_IMAGE:latest"
