@@ -1,3 +1,19 @@
+# Central Cert Web
+# Copyright (C) 2019 Libriciel-SCOP
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 image: node
 
 stages:
@@ -98,10 +114,10 @@ docker_latest:
   tags:
     - docker-build
   stage: deploy
-  before_script:
-    - echo "Disabling global before_script"
   only:
     - tags
+  before_script:
+    - echo "Disabling global before_script"
   script:
     - docker login -u "gitlab-ci-token" -p "$CI_BUILD_TOKEN" $CI_REGISTRY
     - docker build --pull -t "$CI_REGISTRY_IMAGE:latest" .

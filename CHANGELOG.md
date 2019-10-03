@@ -6,6 +6,12 @@ Ce format est basé sur [Keep a Changelog](http://keepachangelog.com/)
 et ce projet adhère au [Semantic Versioning](http://semver.org/).
 
 
+## [1.0.2] - 2019-10-03
+
+### Ajouts
+- Dockerisation
+- Gitlab-CI
+
 
 ## [1.0.1] - 2019-06-24
 
@@ -28,5 +34,6 @@ et ce projet adhère au [Semantic Versioning](http://semver.org/).
 
 
 
+[1.0.2]: https://gitlab.libriciel.fr/outils/central-cert/central-cert-core/tags/1.0.2
 [1.0.1]: https://gitlab.libriciel.fr/outils/central-cert/central-cert-core/tags/1.0.1
 [1.0.0]: https://gitlab.libriciel.fr/outils/central-cert/central-cert-web/tags/1.0.0
