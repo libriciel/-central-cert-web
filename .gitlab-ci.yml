@@ -1,0 +1,127 @@
+# Central Cert Web
+# Copyright (C) 2019 Libriciel-SCOP
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+image: node
+
+stages:
+  - test
+  - package
+  - deploy
+
+
+variables:
+  PROJECT_NAME: "central-cert-web"
+
+
+cache:
+  key: "$CI_COMMIT_REF_NAME"
+  paths:
+    - ./node_modules/
+
+
+before_script:
+  # Generating an NPM-valid version number :
+  #   - "1.2.3" on regular tagged commits
+  #   - "0.0.1-branch_name" on others
+  - CURRENT_VERSION=$(if [[ $CI_BUILD_TOKEN =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] ; then echo $CI_BUILD_TOKEN; else echo "0.0.1-${CI_BUILD_TOKEN}"; fi)
+  - sed -i "s/{0.0.1-version}/$CURRENT_VERSION/g" package.json
+  - echo "version generated = $CURRENT_VERSION"
+  # Install dependencies
+  - npm install -g @angular/cli
+  # For some reasons, NodeJS doesn't download the dependencies...
+  # TODO : Install every dependencies automatically, and remove those lines
+  - npm install --save-dev @angular/core
+  - npm install --save-dev @angular-devkit/build-angular
+  - npm install --save-dev @angular/compiler-cli
+  - npm install --save-dev @angular/compiler
+  - npm install --save-dev karma
+  - npm install --save-dev karma-jasmine
+  - npm install --save-dev jasmine-core
+  - npm install --save-dev jasmine
+  - npm install --save-dev karma-chrome-launcher
+  - npm install --save-dev karma-phantomjs-launcher
+  - npm install --save-dev karma-jasmine-html-reporter
+  - npm install --save-dev karma-coverage-istanbul-reporter
+
+
+# <editor-fold desc="Test">
+
+
+karma:
+  stage: test
+  allow_failure: true
+  coverage: '/Lines \W+: (\d+\.\d+)%.*/'
+  script:
+    - ng test --code-coverage --progress false --watch false
+
+
+#sonarqube:
+#  stage: test
+#  only:
+#    - develop # SonarQube Community is limited to one branch. 'develop' is the most relevant.
+#  script:
+#    - gradle sonar -Dsonar.host.url=https://sonarqube.libriciel.fr "-Dsonar.login=$SONAR_TOKEN"
+
+
+# </editor-fold desc="Test">
+
+
+# <editor-fold desc="Package">
+
+
+dist:
+  stage: package
+  script:
+    - ng build --prod
+  artifacts:
+    name: "$PROJECT_NAME-$CI_COMMIT_REF_NAME"
+    paths:
+      - dist/*
+
+
+# </editor-fold desc="Package">
+
+
+# <editor-fold desc="Deploy">
+
+
+docker:
+  tags:
+    - docker-build
+  stage: deploy
+  before_script:
+    - echo "Disabling global before_script"
+  script:
+    - docker login -u "gitlab-ci-token" -p "$CI_BUILD_TOKEN" $CI_REGISTRY
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME" .
+    - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
+
+
+docker_latest:
+  tags:
+    - docker-build
+  stage: deploy
+  only:
+    - tags
+  before_script:
+    - echo "Disabling global before_script"
+  script:
+    - docker login -u "gitlab-ci-token" -p "$CI_BUILD_TOKEN" $CI_REGISTRY
+    - docker build --pull -t "$CI_REGISTRY_IMAGE:latest" .
+    - docker push "$CI_REGISTRY_IMAGE:latest"
+
+
+# </editor-fold desc="Deploy">

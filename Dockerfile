@@ -1,11 +1,23 @@
-FROM nginx:1.12
+# Central Cert Web
+# Copyright (C) 2019 Libriciel-SCOP
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU Affero General Public License as
+# published by the Free Software Foundation, either version 3 of the
+# License, or (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU Affero General Public License for more details.
+#
+# You should have received a copy of the GNU Affero General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-RUN apt-get update -qq &&  apt-get install curl software-properties-common gnupg  -yqq
-RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get install nodejs -yyq
-COPY . /var/www/centralcert/webroot/angular
-COPY ./docker-ressources/nginx.conf /etc/nginx/conf.d/default.conf
-WORKDIR /var/www/centralcert/webroot/angular
-RUN npm install
-RUN npm install -g @angular/cli@7.2.4
-RUN ng build
+FROM nginx:1.13.3-alpine
+
+## Remove default nginx website
+RUN rm -rf /usr/share/nginx/html/*
+COPY dist/Atteste-web/ /usr/share/nginx/html/
+
+CMD ["nginx", "-g", "daemon off;"]
