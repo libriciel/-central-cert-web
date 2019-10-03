@@ -31,8 +31,6 @@ before_script:
   - npm install --save-dev @angular-devkit/build-angular
   - npm install --save-dev @angular/compiler-cli
   - npm install --save-dev @angular/compiler
-  - npm install --save-dev @angular/platform-browser-dynamic/testing
-  - npm install --save-dev @angular/common/http
   - npm install --save-dev karma
   - npm install --save-dev karma-jasmine
   - npm install --save-dev jasmine-core
