@@ -74,7 +74,10 @@ sonarqube:
   only:
     - develop # SonarQube Community is limited to one branch. 'develop' is the most relevant.
   script:
+    - npm install --save-dev sonar-scanner
+    - npm install --save-dev tslint-sonarts
     - ./install_chrome_headless.sh
+    - node ./node_modules/.bin/webdriver-manager update
     - ng test --progress false --watch false
     - sonar-scanner -Dsonar.login=$SONAR_TOKEN
 
