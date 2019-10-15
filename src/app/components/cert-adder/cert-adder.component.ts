@@ -264,31 +264,39 @@ export class CertAdderComponent implements OnInit {
     // valide le formulaire et ajoute les certificats à la liste
     validate(form) {
         const certs = [];
-        const existantCerts = [];
+        const existingCerts = [];
         const checks = Object.values(form.value);
         this.certificatService.selectAll().subscribe(data => {
             for (let i = 0; i < checks.length; i++) {
-                if (checks[i] === 'true' && !this.certificatService.exists(this.uplodedCerts[i], data)) {
-                    certs.push(this.uplodedCerts[i]);
-                } else if (checks[i] === 'true' && this.certificatService.exists(this.uplodedCerts[i], data)) {
-                    existantCerts.push(this.uplodedCerts[i]);
+                console.log('Adrien check');
+                if (checks[i] === 'true') {
+                    console.log('Adrien true...');
+                    if (!this.certificatService.exists(this.uplodedCerts[i], data)) {
+                        console.log('Adrien 1...');
+                        certs.push(this.uplodedCerts[i]);
+                    } else if (this.certificatService.exists(this.uplodedCerts[i], data)) {
+                        console.log('Adrien 2...');
+                        existingCerts.push(this.uplodedCerts[i]);
+                    }
                 }
             }
             this.close();
-            this.certificatService.saveAll(certs).subscribe(data => {
+            this.certificatService.saveAll(certs).subscribe(_ => {
                 this.closeSelf();
                 this.uplodedCerts = [];
                 this.fileTab = [];
             });
+
             if (certs.length === 1) {
                 this.toastr.success('Un certificat ajouté avec succès !');
             } else if (certs.length > 1) {
                 this.toastr.success(certs.length + ' certificats ajoutés avec succès !');
             }
-            if (existantCerts.length === 1) {
+
+            if (existingCerts.length === 1) {
                 this.toastr.error('Un certificat sélectionné existe déjà !');
-            } else if (existantCerts.length > 1) {
-                this.toastr.error(existantCerts.length + ' certificats sélectionnés existent déjà !');
+            } else if (existingCerts.length > 1) {
+                this.toastr.error(existingCerts.length + ' certificats sélectionnés existent déjà !');
             }
         });
     }

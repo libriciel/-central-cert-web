@@ -206,15 +206,15 @@ export class CertificatService {
         return str;
     }
 
-    //Renvoit true si les deux certificats en paramètres ont la même ID ou sont égaux
+    // Renvoie true si les deux certificats en paramètres ont la même ID ou sont égaux
     areEquals(c1: Certificat, c2: Certificat) {
-        if (c1 != undefined && c2 != undefined) {
-            let i1 = this.getInformations(c1);
-            let i2 = this.getInformations(c2);
+        if (c1 !== undefined && c2 !== undefined) {
+            const i1 = this.getInformations(c1);
+            const i2 = this.getInformations(c2);
             if (c1.id === c2.id) {
                 return true;
             } else {
-                if (i1.cn === i2.cn
+                return i1.cn === i2.cn
                     && i1.mail === i2.mail
                     && i1.o === i2.o
                     && i1.ou === i2.ou
@@ -224,19 +224,15 @@ export class CertificatService {
                     && i1.t === i2.t
                     && i1.street === i2.street
                     && i1.pc === i2.pc
-                    && new Date(c1.notBefore).getTime() === new Date(c2.notBefore).getTime()
-                    && new Date(c1.notAfter).getTime() === new Date(c2.notAfter).getTime()) {
-                    return true;
-                } else {
-                    return false;
-                }
+                    && c1.notBefore.getTime() === c2.notBefore.getTime()
+                    && c1.notAfter.getTime() === c2.notAfter.getTime();
             }
         } else {
             return false;
         }
     }
 
-    //Renvoit true si le certificat entré en paramètres existe dans la liste entrée en paramètres
+    // Renvoie true si le certificat entré en paramètres existe dans la liste entrée en paramètres
     exists(c: Certificat, list: Certificat[]) {
         let test = false;
         for (let i = 0; i < list.length; i++) {
