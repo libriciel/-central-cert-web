@@ -2,7 +2,7 @@
 
 ##### Build the Project
 - Go to the root of the Project
-- Execute "ng serve"
+- Execute `ng serve --host 0.0.0.0 --disable-host-check`
 
 ## Code style and project structure
 TODO

@@ -31,111 +31,110 @@ declare var LiberSign: any;
     styleUrls: ['./cert-adder.component.css']
 })
 export class CertAdderComponent implements OnInit {
-    //envoi d'event au parent
+    // Envoi d'event au parent
     @Output() event: EventEmitter<any> = new EventEmitter();
 
-    //fichiers importés
+    // Fichiers importés
     fileTab: File[];
 
-    //certificats importés
+    // Certificats importés
     uplodedCerts: Certificat[];
 
-    //mode d'importation
+    // Mode d'importation
     mode: number;
 
     constructor(private keystore: KeystoreService, private toastr: ToastrService, private dateService: DateService, private certificatService: CertificatService) {
     }
 
     ngOnInit() {
-        //initialisation des variables
         this.uplodedCerts = [];
         this.fileTab = [];
     }
 
-    //ouvre la fenetre d'importation des certificats
+    // Ouvre la fenetre d'import des certificats
     open() {
-        document.getElementsByClassName("add-cert-container")[0].classList.add("active");
-        document.getElementsByClassName("add-cert-shadow")[0].classList.add("active");
+        document.getElementsByClassName('add-cert-container')[0].classList.add('active');
+        document.getElementsByClassName('add-cert-shadow')[0].classList.add('active');
     }
 
-    //ferme la fenetre d'importation des certificats
+    // Ferme la fenetre d'import des certificats
     close() {
-        let containers = document.getElementsByClassName("add-cert-container");
-        let shadow = document.getElementsByClassName("add-cert-shadow")[0];
+        const containers = document.getElementsByClassName('add-cert-container');
+        const shadow = document.getElementsByClassName('add-cert-shadow')[0];
 
         for (let i = 0; i < containers.length; i++) {
-            containers[i].classList.remove("active");
+            containers[i].classList.remove('active');
         }
-        shadow.classList.remove("active");
+        shadow.classList.remove('active');
     }
 
-    //passe au stage d'importation suivant
+    // Passe au stage d'importation suivant
     nextStage() {
-        let containers = document.getElementsByClassName("add-cert-container");
+        const containers = document.getElementsByClassName('add-cert-container');
         let index = undefined;
         let i = 0;
-        while (index == undefined && i < containers.length) {
-            if (containers[i].classList.contains("active")) {
+        while (index === undefined && i < containers.length) {
+            if (containers[i].classList.contains('active')) {
                 index = i;
             }
             i++;
         }
         if (index < containers.length - 1) {
-            containers[index].classList.remove("active");
-            containers[index + 1].classList.add("active");
+            containers[index].classList.remove('active');
+            containers[index + 1].classList.add('active');
         }
     }
 
-    //retourne au stage d'importation précédent
+    // Retourne au stage d'importation précédent
     previousStage() {
-        let containers = document.getElementsByClassName("add-cert-container");
+        const containers = document.getElementsByClassName('add-cert-container');
         let index = undefined;
         let i = 0;
-        while (index == undefined && i < containers.length) {
-            if (containers[i].classList.contains("active")) {
+        while (index === undefined && i < containers.length) {
+            if (containers[i].classList.contains('active')) {
                 index = i;
             }
             i++;
         }
         if (this.mode === 4) {
-            containers[index].classList.remove("active");
-            containers[0].classList.add("active");
+            containers[index].classList.remove('active');
+            containers[0].classList.add('active');
         } else {
             if (index > 0) {
-                containers[index].classList.remove("active");
-                containers[index - 1].classList.add("active");
+                containers[index].classList.remove('active');
+                containers[index - 1].classList.add('active');
             }
         }
     }
 
-    //passe au mode URL et change de stage
+    // Passe au mode URL et change de stage
     nextStageURL() {
         this.mode = 1;
         this.nextStage();
     }
 
-    //passe au mode Formulaire et change de stage
+    // Passe au mode Formulaire et change de stage
     nextStageFORM() {
         this.mode = 2;
         this.nextStage();
     }
 
-    //passe au mode token et change de srage
+    // Passe au mode token et change de srage
     nextStageTOKEN() {
         this.mode = 3;
         this.nextStage();
     }
 
-    //passe au mode keystore et change de stage
+    // Passe au mode keystore et change de stage
     nextStageKEYSTORE() {
         this.mode = 4;
         this.nextStage();
         this.getFromExtension();
     }
 
-    //récupère les certificats via URL
+    // Récupère les certificats via URL
     addByURL(url) {
-        if (url.status === "VALID") {
+        if (url.status === 'VALID') {
             this.certificatService.selectFromUrl(url.value.urlAdder).subscribe(data => {
                 this.uplodedCerts = data;
                 this.nextStage();
@@ -143,20 +142,20 @@ export class CertAdderComponent implements OnInit {
         }
     }
 
-    //ferme la fenetre d'improtation
+    // Ferme la fenetre d'improtation
     closeSelf() {
         this.close();
         this.callParent();
     }
 
-    //envoi l'event au parent
+    // Envoi l'event au parent
     callParent() {
         this.event.emit(this.uplodedCerts);
     }
 
-    // créer un certificat via formulaire
+    // Créer un certificat via formulaire
     createCert(form) {
-        if (form.status === "VALID"
+        if (form.status === 'VALID'
             && new Date(form.value.notbefore).getTime() <= new Date(form.value.notafter).getTime()) {
             this.uplodedCerts = [];
             let cert = {
@@ -164,11 +163,11 @@ export class CertAdderComponent implements OnInit {
                 notBefore: new Date(form.value.notbefore),
                 notAfter: new Date(form.value.notafter),
                 favoris: false,
-                dn: "CN=" + form.value.cn,
+                dn: 'CN=' + form.value.cn,
                 additionnalMails: [],
-                notified: "GREEN",
+                notified: 'GREEN',
                 notifyAll: false,
-            }
+            };
             this.uplodedCerts.push(cert);
             this.nextStage();
         }
@@ -178,7 +177,7 @@ export class CertAdderComponent implements OnInit {
         this.fileTab.splice(l, 1);
     }
 
-    //ajoute les fichiers
+    // Ajoute les fichiers
     onFileChange(event) {
         let test = false;
         for (let i = 0; i < event.target.files.length; i++) {
@@ -189,15 +188,15 @@ export class CertAdderComponent implements OnInit {
             }
 
             if (test === false) {
-                if (event.target.files[i].name.includes(".cer")
-                    || event.target.files[i].name.includes(".crt")
-                    || event.target.files[i].name.includes(".pem")
-                    || event.target.files[i].name.includes(".key")
-                    || event.target.files[i].name.includes(".der")
-                    || event.target.files[i].name.includes(".p7b")
-                    || event.target.files[i].name.includes(".p7c")
-                    || event.target.files[i].name.includes(".pfx")
-                    || event.target.files[i].name.includes(".p12")) {
+                if (event.target.files[i].name.includes('.cer')
+                    || event.target.files[i].name.includes('.crt')
+                    || event.target.files[i].name.includes('.pem')
+                    || event.target.files[i].name.includes('.key')
+                    || event.target.files[i].name.includes('.der')
+                    || event.target.files[i].name.includes('.p7b')
+                    || event.target.files[i].name.includes('.p7c')
+                    || event.target.files[i].name.includes('.pfx')
+                    || event.target.files[i].name.includes('.p12')) {
                     this.fileTab.push(event.target.files[i]);
                 }
             }
@@ -205,20 +204,20 @@ export class CertAdderComponent implements OnInit {
         }
     }
 
-    //montre les erreurs de fichiers
+    // Montre les erreurs de fichiers
     showFileError() {
         let test = false;
-        if (this.fileTab != undefined) {
+        if (this.fileTab !== undefined) {
             for (let i = 0; i < this.fileTab.length; i++) {
-                if (!this.fileTab[i].name.includes(".cer")
-                    && !this.fileTab[i].name.includes(".crt")
-                    && !this.fileTab[i].name.includes(".pem")
-                    && !this.fileTab[i].name.includes(".key")
-                    && !this.fileTab[i].name.includes(".der")
-                    && !this.fileTab[i].name.includes(".p7b")
-                    && !this.fileTab[i].name.includes(".p7c")
-                    && !this.fileTab[i].name.includes(".pfx")
-                    && !this.fileTab[i].name.includes(".p12")) {
+                if (!this.fileTab[i].name.includes('.cer')
+                    && !this.fileTab[i].name.includes('.crt')
+                    && !this.fileTab[i].name.includes('.pem')
+                    && !this.fileTab[i].name.includes('.key')
+                    && !this.fileTab[i].name.includes('.der')
+                    && !this.fileTab[i].name.includes('.p7b')
+                    && !this.fileTab[i].name.includes('.p7c')
+                    && !this.fileTab[i].name.includes('.pfx')
+                    && !this.fileTab[i].name.includes('.p12')) {
                     test = true;
                 }
             }
@@ -226,20 +225,20 @@ export class CertAdderComponent implements OnInit {
         return test;
     }
 
-    //vérifie que le format du fichier est correct
+    // Vérifie que le format du fichier est correct
     isCorrectFile() {
         let test = true;
-        if (this.fileTab != undefined) {
+        if (this.fileTab !== undefined) {
             for (let i = 0; i < this.fileTab.length; i++) {
-                if (!this.fileTab[i].name.includes(".cer")
-                    && !this.fileTab[i].name.includes(".crt")
-                    && !this.fileTab[i].name.includes(".pem")
-                    && !this.fileTab[i].name.includes(".key")
-                    && !this.fileTab[i].name.includes(".der")
-                    && !this.fileTab[i].name.includes(".p7b")
-                    && !this.fileTab[i].name.includes(".p7c")
-                    && !this.fileTab[i].name.includes(".pfx")
-                    && !this.fileTab[i].name.includes(".p12")) {
+                if (!this.fileTab[i].name.includes('.cer')
+                    && !this.fileTab[i].name.includes('.crt')
+                    && !this.fileTab[i].name.includes('.pem')
+                    && !this.fileTab[i].name.includes('.key')
+                    && !this.fileTab[i].name.includes('.der')
+                    && !this.fileTab[i].name.includes('.p7b')
+                    && !this.fileTab[i].name.includes('.p7c')
+                    && !this.fileTab[i].name.includes('.pfx')
+                    && !this.fileTab[i].name.includes('.p12')) {
                     test = false;
                 }
             }
@@ -247,9 +246,9 @@ export class CertAdderComponent implements OnInit {
         return test;
     }
 
-    //ajoute le certificat par fichier
+    // Ajoute le certificat par fichier
     addByFile() {
-        if (this.fileTab != undefined && this.isCorrectFile() === true) {
+        if (this.fileTab !== undefined && this.isCorrectFile() === true) {
             this.uplodedCerts = [];
             for (let i = 0; i < this.fileTab.length; i++) {
                 this.certificatService.selectFromFile(this.fileTab[i]).subscribe(data => {
@@ -262,17 +261,17 @@ export class CertAdderComponent implements OnInit {
         }
     }
 
-    //valide le formulaire et ajoute les certificats à la liste
+    // valide le formulaire et ajoute les certificats à la liste
     validate(form) {
-        let certs = new Array();
-        let existant_certs = new Array();
-        let checks = Object.values(form.value);
+        const certs = [];
+        const existantCerts = [];
+        const checks = Object.values(form.value);
         this.certificatService.selectAll().subscribe(data => {
             for (let i = 0; i < checks.length; i++) {
-                if (checks[i] == "true" && !this.certificatService.exists(this.uplodedCerts[i], data)) {
+                if (checks[i] === 'true' && !this.certificatService.exists(this.uplodedCerts[i], data)) {
                     certs.push(this.uplodedCerts[i]);
-                } else if (checks[i] == "true" && this.certificatService.exists(this.uplodedCerts[i], data)) {
-                    existant_certs.push(this.uplodedCerts[i]);
+                } else if (checks[i] === 'true' && this.certificatService.exists(this.uplodedCerts[i], data)) {
+                    existantCerts.push(this.uplodedCerts[i]);
                 }
             }
             this.close();
@@ -286,61 +285,43 @@ export class CertAdderComponent implements OnInit {
             } else if (certs.length > 1) {
                 this.toastr.success(certs.length + ' certificats ajoutés avec succès !');
             }
-            if (existant_certs.length === 1) {
-                this.toastr.error('Un certificat sélectionné existe déjà !')
-            } else if (existant_certs.length > 1) {
-                this.toastr.error(existant_certs.length + ' certificats sélectionnés existent déjà !')
+            if (existantCerts.length === 1) {
+                this.toastr.error('Un certificat sélectionné existe déjà !');
+            } else if (existantCerts.length > 1) {
+                this.toastr.error(existantCerts.length + ' certificats sélectionnés existent déjà !');
             }
         });
     }
 
-    //récupère les informations des certificats
+    // Récupère les informations des certificats
     getInformations(certificat: Certificat) {
         return this.certificatService.getInformations(certificat);
     }
 
-    //récupère la date formatée
+    // Récupère la date formatée
     getDate(d: Date) {
         return this.dateService.format(d);
     }
 
-    //récupère le temps restant
+    // Récupère le temps restant
     getRemTime(c: Certificat) {
         return this.dateService.getRemainingTime(c);
     }
 
     canGoNextURL(form) {
-        if (form.status === "VALID") {
-            return true;
-        } else {
-            return false;
-        }
+        return form.status === 'VALID';
     }
 
     canGoNextFile(form) {
-        if (this.fileTab.length > 0 && this.isCorrectFile() === true) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.fileTab.length > 0 && this.isCorrectFile() === true;
     }
 
     canGoNextForm(form) {
-        if (form.status === "VALID"
-            && new Date(form.value.notbefore).getTime() <= new Date(form.value.notafter).getTime()) {
-            return true;
-        } else {
-            return false;
-        }
+        return form.status === 'VALID' && new Date(form.value.notbefore).getTime() <= new Date(form.value.notafter).getTime();
     }
 
     haveExtension() {
-        if (typeof LiberSign === "object") {
-            return true;
-        } else {
-            return false;
-        }
-        return false;
+        return typeof LiberSign === 'object';
     }
 
     isCompatible() {
@@ -350,24 +331,24 @@ export class CertAdderComponent implements OnInit {
     getFromExtension() {
         if (this.haveExtension() === true) {
             this.uplodedCerts = [];
-            let config = {
+            const config = {
                 appletUrl: '/applets/',
                 extensionUpdateUrl: '../../../assets/libersign/',
                 height: 140,
                 width: '100%',
                 iconType: 'fa'
-            }
+            };
             LiberSign.setUpdateUrl(config.extensionUpdateUrl.replace(/\/?$/, '/'));
             LiberSign.getCertificates().then(certs => {
                 for (let i = 0; i < certs.length; i++) {
-                    let cert = {
+                    const cert = {
                         id: undefined,
                         notBefore: new Date(certs[i].NOTBEFORE),
                         notAfter: new Date(certs[i].NOTAFTER),
                         favoris: false,
-                        dn: "CN=" + certs[i].CN + "," + certs[i].ISSUERDN + ",MAIL=" + certs[i].EMAILADDRESS,
+                        dn: 'CN=' + certs[i].CN + ',' + certs[i].ISSUERDN + ',MAIL=' + certs[i].EMAILADDRESS,
                         additionnalMails: [],
-                        notified: "GREEN",
+                        notified: 'GREEN',
                         notifyAll: false,
                     };
                     this.uplodedCerts.push(cert);
