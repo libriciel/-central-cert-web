@@ -186,12 +186,10 @@ export class CertificatListComponent implements OnInit {
         verifySuppr.setAttribute('style', 'display:none');
 
         if (this.inDeletion !== undefined) {
-            console.log('Adrien delete ' + this.inDeletion.id);
             const id = this.inDeletion.certificatId;
             this.delete(id);
             this.inDeletion = undefined;
         } else {
-            console.log('Adrien delete unknown');
             this.selectedToDelete();
         }
     }
