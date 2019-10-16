@@ -1,6 +1,6 @@
 /*
  * Central Cert Web
- * Copyright (C) 2018-2019 Libriciel-SCOP
+ * Copyright (C) 2019 Libriciel-SCOP
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -19,7 +19,7 @@
 import {Mail} from './mail';
 
 export class Certificat {
-    id: number; //ID du certificat auto générée par la base de données
+    certificatId: number; //ID du certificat auto générée par la base de données
     notBefore: Date; //Date de mise en validité du certificat
     notAfter: Date; //Date d'expiration du certificat
     favoris: boolean; //Certificat en favoris ou non

@@ -62,18 +62,24 @@ before_script:
 
 karma:
   stage: test
-  allow_failure: true
   coverage: '/Lines \W+: (\d+\.\d+)%.*/'
   script:
-    - ng test --code-coverage --progress false --watch false
+    - ./install_chrome_headless.sh
+    - node ./node_modules/.bin/webdriver-manager update
+    - ng test --progress false --watch false
 
 
-#sonarqube:
-#  stage: test
-#  only:
-#    - develop # SonarQube Community is limited to one branch. 'develop' is the most relevant.
-#  script:
-#    - gradle sonar -Dsonar.host.url=https://sonarqube.libriciel.fr "-Dsonar.login=$SONAR_TOKEN"
+sonarqube:
+  stage: test
+  only:
+    - develop # SonarQube Community is limited to one branch. 'develop' is the most relevant.
+  script:
+    - npm install --save-dev tslint-sonarts
+    - ./install_chrome_headless.sh
+    - node ./node_modules/.bin/webdriver-manager update
+    - ng test --progress false --watch false
+    - npm install --save-dev sonar-scanner
+    - node_modules/sonar-scanner/bin/sonar-scanner -Dsonar.login=$SONAR_TOKEN
 
 
 # </editor-fold desc="Test">

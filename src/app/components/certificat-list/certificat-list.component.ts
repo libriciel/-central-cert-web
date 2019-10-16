@@ -1,6 +1,6 @@
 /*
  * Central Cert Web
- * Copyright (C) 2018-2019 Libriciel-SCOP
+ * Copyright (C) 2019 Libriciel-SCOP
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -54,7 +54,8 @@ export class CertificatListComponent implements OnInit {
     // résultats de la recherche
     searchCerts: Certificat[];
 
-    constructor(private keystoreService: KeystoreService, private toastr: ToastrService, private certificatService: CertificatService, private dateService: DateService) {
+    constructor(private keystoreService: KeystoreService, private toastr: ToastrService,
+                private certificatService: CertificatService, private dateService: DateService) {
     }
 
     ngOnInit() {
@@ -87,7 +88,7 @@ export class CertificatListComponent implements OnInit {
     // trie les certificats par favoris (favoris en haut de liste)
     orderByFavoris() {
         const notSortedArray = this.certificats;
-        const sortedArray = new Array();
+        const sortedArray = [];
         const index = 0;
         notSortedArray.forEach(function(certificat) {
             if (certificat.favoris === true) {
@@ -109,7 +110,7 @@ export class CertificatListComponent implements OnInit {
 
     // retire un certificat du détail
     removeDetailled(data) {
-        if (data == true) {
+        if (data === true) {
             this.toastr.success(this.getInformations(this.detailledCertificat).cn + ' a été supprimé avec succès !');
         }
         this.contactPressed = undefined;
@@ -137,7 +138,7 @@ export class CertificatListComponent implements OnInit {
     delete(id: number) {
         let cert;
         for (let i = 0; i < this.certificats.length; i++) {
-            if (this.certificats[i].id === id) {
+            if (this.certificats[i].certificatId === id) {
                 cert = this.certificats.splice(i, 1)[0];
                 this.toastr.success('\"' + this.getInformations(cert).cn + '\" supprimé avec succès !!!');
             }
@@ -184,11 +185,13 @@ export class CertificatListComponent implements OnInit {
         shadow.setAttribute('style', 'display:none');
         verifySuppr.setAttribute('style', 'display:none');
 
-        if (this.inDeletion != undefined) {
-            const id = this.inDeletion.id;
+        if (this.inDeletion !== undefined) {
+            console.log('Adrien delete ' + this.inDeletion.id);
+            const id = this.inDeletion.certificatId;
             this.delete(id);
             this.inDeletion = undefined;
         } else {
+            console.log('Adrien delete unknown');
             this.selectedToDelete();
         }
     }
@@ -198,7 +201,7 @@ export class CertificatListComponent implements OnInit {
         const certs = [];
         let idx = 0;
         for (let i = 0; i < this.certificats.length; i++) {
-            if (this.certificats[i].id != id) {
+            if (this.certificats[i].certificatId != id) {
                 certs[idx] = this.certificats[i];
                 idx++;
             }
@@ -237,7 +240,7 @@ export class CertificatListComponent implements OnInit {
             let exit = false;
             let i = 0;
             while (i < this.selectedCertificats.length && exit === false) {
-                if (this.selectedCertificats[i].id === certificat.id) {
+                if (this.selectedCertificats[i].certificatId === certificat.id) {
                     this.selectedCertificats.splice(i, 1);
                     exit = true;
                 }
@@ -285,7 +288,7 @@ export class CertificatListComponent implements OnInit {
     selectedToDelete() {
         let nbr = 0;
         for (let i = 0; i < this.selectedCertificats.length; i++) {
-            this.deleteWithoutToastr(this.selectedCertificats[i].id);
+            this.deleteWithoutToastr(this.selectedCertificats[i].certificatId);
             nbr++;
         }
         this.selectedCertificats = [];
@@ -321,7 +324,7 @@ export class CertificatListComponent implements OnInit {
         if (form.value === undefined || form.value === null || form.value === '') {
             this.searchCerts = [];
         } else {
-            const results = new Array();
+            const results = [];
             for (let i = 0; i < this.certificats.length; i++) {
                 if (this.certificats[i].dn.toLowerCase().includes(form.value.toLowerCase())
                     || this.getDate(this.certificats[i].notBefore).toLowerCase().includes(form.value.toLowerCase())
@@ -350,19 +353,19 @@ export class CertificatListComponent implements OnInit {
         const objAsc = document.getElementsByClassName('sort-obj-asc')[0];
         const objDesc = document.getElementsByClassName('sort-obj-desc')[0];
 
-        if (dateAsc != undefined) {
+        if (dateAsc !== undefined) {
             dateAsc.classList.remove('selectedTri');
         }
 
-        if (dateDesc != undefined) {
+        if (dateDesc !== undefined) {
             dateDesc.classList.remove('selectedTri');
         }
 
-        if (objAsc != undefined) {
+        if (objAsc !== undefined) {
             objAsc.classList.remove('selectedTri');
         }
 
-        if (objDesc != undefined) {
+        if (objDesc !== undefined) {
             objDesc.classList.remove('selectedTri');
         }
     }
@@ -451,11 +454,7 @@ export class CertificatListComponent implements OnInit {
 
     // permet de vérifier si l'on doit afficher la croix dans la barre de recherche (barre vide ou non)
     showCross(searchBar) {
-        if (searchBar.value == '' || searchBar.value == undefined) {
-            return false;
-        } else {
-            return true;
-        }
+        return !(searchBar.value === '' || searchBar.value === undefined);
     }
 
     // ferme la recherche

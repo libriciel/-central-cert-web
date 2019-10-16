@@ -1,6 +1,6 @@
 /*
  * Central Cert Web
- * Copyright (C) 2018-2019 Libriciel-SCOP
+ * Copyright (C) 2019 Libriciel-SCOP
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU Affero General Public License as
@@ -108,7 +108,7 @@ export class CertificatDetailComponent implements OnInit {
 
     //supprime le certificat
     delete() {
-        this.certificatService.delete(this.certificat.id).subscribe(data => {
+        this.certificatService.delete(this.certificat.certificatId).subscribe(data => {
             this.deleteAndCloseSelf();
         });
     }

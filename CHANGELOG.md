@@ -6,6 +6,12 @@ Ce format est basé sur [Keep a Changelog](http://keepachangelog.com/)
 et ce projet adhère au [Semantic Versioning](http://semver.org/).
 
 
+## 1.0.3 
+
+### Ajouts
+- Sonarqube
+
+
 ## [1.0.2] - 2019-10-03
 
 ### Ajouts
@@ -19,7 +25,6 @@ et ce projet adhère au [Semantic Versioning](http://semver.org/).
 - Bugfixes sur la documentation
 
 
-
 ## [1.0.0] - 2019-06-20
 
 ### Ajouts
@@ -31,7 +36,6 @@ et ce projet adhère au [Semantic Versioning](http://semver.org/).
 - Mise en place d'une application web angular
 - Ajout d'une base de données PostgreSQL
 - Ajout d'une REST API SpringBoot
-
 
 
 [1.0.2]: https://gitlab.libriciel.fr/outils/central-cert/central-cert-core/tags/1.0.2
