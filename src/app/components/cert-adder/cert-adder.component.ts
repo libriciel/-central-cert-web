@@ -159,7 +159,7 @@ export class CertAdderComponent implements OnInit {
             && new Date(form.value.notbefore).getTime() <= new Date(form.value.notafter).getTime()) {
             this.uplodedCerts = [];
             let cert = {
-                id: undefined,
+                certificatId: undefined,
                 notBefore: new Date(form.value.notbefore),
                 notAfter: new Date(form.value.notafter),
                 favoris: false,
@@ -350,7 +350,7 @@ export class CertAdderComponent implements OnInit {
             LiberSign.getCertificates().then(certs => {
                 for (let i = 0; i < certs.length; i++) {
                     const cert = {
-                        id: undefined,
+                        certificatId: undefined,
                         notBefore: new Date(certs[i].NOTBEFORE),
                         notAfter: new Date(certs[i].NOTAFTER),
                         favoris: false,

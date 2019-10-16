@@ -138,7 +138,7 @@ export class CertificatListComponent implements OnInit {
     delete(id: number) {
         let cert;
         for (let i = 0; i < this.certificats.length; i++) {
-            if (this.certificats[i].id === id) {
+            if (this.certificats[i].certificatId === id) {
                 cert = this.certificats.splice(i, 1)[0];
                 this.toastr.success('\"' + this.getInformations(cert).cn + '\" supprimé avec succès !!!');
             }
@@ -187,7 +187,7 @@ export class CertificatListComponent implements OnInit {
 
         if (this.inDeletion !== undefined) {
             console.log('Adrien delete ' + this.inDeletion.id);
-            const id = this.inDeletion.id;
+            const id = this.inDeletion.certificatId;
             this.delete(id);
             this.inDeletion = undefined;
         } else {
@@ -201,7 +201,7 @@ export class CertificatListComponent implements OnInit {
         const certs = [];
         let idx = 0;
         for (let i = 0; i < this.certificats.length; i++) {
-            if (this.certificats[i].id != id) {
+            if (this.certificats[i].certificatId != id) {
                 certs[idx] = this.certificats[i];
                 idx++;
             }
@@ -240,7 +240,7 @@ export class CertificatListComponent implements OnInit {
             let exit = false;
             let i = 0;
             while (i < this.selectedCertificats.length && exit === false) {
-                if (this.selectedCertificats[i].id === certificat.id) {
+                if (this.selectedCertificats[i].certificatId === certificat.id) {
                     this.selectedCertificats.splice(i, 1);
                     exit = true;
                 }
@@ -288,7 +288,7 @@ export class CertificatListComponent implements OnInit {
     selectedToDelete() {
         let nbr = 0;
         for (let i = 0; i < this.selectedCertificats.length; i++) {
-            this.deleteWithoutToastr(this.selectedCertificats[i].id);
+            this.deleteWithoutToastr(this.selectedCertificats[i].certificatId);
             nbr++;
         }
         this.selectedCertificats = [];

@@ -19,7 +19,7 @@
 import {Mail} from './mail';
 
 export class Certificat {
-    id: number; //ID du certificat auto générée par la base de données
+    certificatId: number; //ID du certificat auto générée par la base de données
     notBefore: Date; //Date de mise en validité du certificat
     notAfter: Date; //Date d'expiration du certificat
     favoris: boolean; //Certificat en favoris ou non

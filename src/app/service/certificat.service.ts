@@ -211,7 +211,7 @@ export class CertificatService {
         if (c1 !== undefined && c2 !== undefined) {
             const i1 = this.getInformations(c1);
             const i2 = this.getInformations(c2);
-            if (c1.id === c2.id) {
+            if (c1.certificatId === c2.certificatId) {
                 return true;
             } else {
                 return i1.cn === i2.cn
