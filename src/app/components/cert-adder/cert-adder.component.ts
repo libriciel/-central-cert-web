@@ -43,7 +43,8 @@ export class CertAdderComponent implements OnInit {
     // Mode d'importation
     mode: number;
 
-    constructor(private keystore: KeystoreService, private toastr: ToastrService, private dateService: DateService, private certificatService: CertificatService) {
+    constructor(private keystore: KeystoreService, private toastr: ToastrService, private dateService: DateService,
+                private certificatService: CertificatService) {
     }
 
     ngOnInit() {
@@ -71,7 +72,7 @@ export class CertAdderComponent implements OnInit {
     // Passe au stage d'importation suivant
     nextStage() {
         const containers = document.getElementsByClassName('add-cert-container');
-        let index = undefined;
+        let index;
         let i = 0;
         while (index === undefined && i < containers.length) {
             if (containers[i].classList.contains('active')) {
@@ -88,7 +89,7 @@ export class CertAdderComponent implements OnInit {
     // Retourne au stage d'importation précédent
     previousStage() {
         const containers = document.getElementsByClassName('add-cert-container');
-        let index = undefined;
+        let index;
         let i = 0;
         while (index === undefined && i < containers.length) {
             if (containers[i].classList.contains('active')) {
@@ -158,7 +159,7 @@ export class CertAdderComponent implements OnInit {
         if (form.status === 'VALID'
             && new Date(form.value.notbefore).getTime() <= new Date(form.value.notafter).getTime()) {
             this.uplodedCerts = [];
-            let cert = {
+            const cert = {
                 certificatId: undefined,
                 notBefore: new Date(form.value.notbefore),
                 notAfter: new Date(form.value.notafter),
@@ -180,24 +181,24 @@ export class CertAdderComponent implements OnInit {
     // Ajoute les fichiers
     onFileChange(event) {
         let test = false;
-        for (let i = 0; i < event.target.files.length; i++) {
-            for (let j = 0; j < this.fileTab.length; j++) {
-                if (this.fileTab[j].name == event.target.files[i].name) {
+        for (const targetFiles of event.target.files.length) {
+            for (const fileTab of this.fileTab) {
+                if (targetFiles.name === targetFiles.name) {
                     test = true;
                 }
             }
 
             if (test === false) {
-                if (event.target.files[i].name.includes('.cer')
-                    || event.target.files[i].name.includes('.crt')
-                    || event.target.files[i].name.includes('.pem')
-                    || event.target.files[i].name.includes('.key')
-                    || event.target.files[i].name.includes('.der')
-                    || event.target.files[i].name.includes('.p7b')
-                    || event.target.files[i].name.includes('.p7c')
-                    || event.target.files[i].name.includes('.pfx')
-                    || event.target.files[i].name.includes('.p12')) {
-                    this.fileTab.push(event.target.files[i]);
+                if (targetFiles.name.includes('.cer')
+                    || targetFiles.name.includes('.crt')
+                    || targetFiles.name.includes('.pem')
+                    || targetFiles.name.includes('.key')
+                    || targetFiles.name.includes('.der')
+                    || targetFiles.name.includes('.p7b')
+                    || targetFiles.name.includes('.p7c')
+                    || targetFiles.name.includes('.pfx')
+                    || targetFiles.name.includes('.p12')) {
+                    this.fileTab.push(targetFiles);
                 }
             }
             test = false;
@@ -208,16 +209,16 @@ export class CertAdderComponent implements OnInit {
     showFileError() {
         let test = false;
         if (this.fileTab !== undefined) {
-            for (let i = 0; i < this.fileTab.length; i++) {
-                if (!this.fileTab[i].name.includes('.cer')
-                    && !this.fileTab[i].name.includes('.crt')
-                    && !this.fileTab[i].name.includes('.pem')
-                    && !this.fileTab[i].name.includes('.key')
-                    && !this.fileTab[i].name.includes('.der')
-                    && !this.fileTab[i].name.includes('.p7b')
-                    && !this.fileTab[i].name.includes('.p7c')
-                    && !this.fileTab[i].name.includes('.pfx')
-                    && !this.fileTab[i].name.includes('.p12')) {
+            for (const fileTab of this.fileTab) {
+                if (!fileTab.name.includes('.cer')
+                    && !fileTab.name.includes('.crt')
+                    && !fileTab.name.includes('.pem')
+                    && !fileTab.name.includes('.key')
+                    && !fileTab.name.includes('.der')
+                    && !fileTab.name.includes('.p7b')
+                    && !fileTab.name.includes('.p7c')
+                    && !fileTab.name.includes('.pfx')
+                    && !fileTab.name.includes('.p12')) {
                     test = true;
                 }
             }
@@ -229,16 +230,16 @@ export class CertAdderComponent implements OnInit {
     isCorrectFile() {
         let test = true;
         if (this.fileTab !== undefined) {
-            for (let i = 0; i < this.fileTab.length; i++) {
-                if (!this.fileTab[i].name.includes('.cer')
-                    && !this.fileTab[i].name.includes('.crt')
-                    && !this.fileTab[i].name.includes('.pem')
-                    && !this.fileTab[i].name.includes('.key')
-                    && !this.fileTab[i].name.includes('.der')
-                    && !this.fileTab[i].name.includes('.p7b')
-                    && !this.fileTab[i].name.includes('.p7c')
-                    && !this.fileTab[i].name.includes('.pfx')
-                    && !this.fileTab[i].name.includes('.p12')) {
+            for (const fileTab of this.fileTab) {
+                if (!fileTab.name.includes('.cer')
+                    && !fileTab.name.includes('.crt')
+                    && !fileTab.name.includes('.pem')
+                    && !fileTab.name.includes('.key')
+                    && !fileTab.name.includes('.der')
+                    && !fileTab.name.includes('.p7b')
+                    && !fileTab.name.includes('.p7c')
+                    && !fileTab.name.includes('.pfx')
+                    && !fileTab.name.includes('.p12')) {
                     test = false;
                 }
             }
@@ -250,9 +251,9 @@ export class CertAdderComponent implements OnInit {
     addByFile() {
         if (this.fileTab !== undefined && this.isCorrectFile() === true) {
             this.uplodedCerts = [];
-            for (let i = 0; i < this.fileTab.length; i++) {
-                this.certificatService.selectFromFile(this.fileTab[i]).subscribe(data => {
-                    if (data != null && data != undefined) {
+            for (const fileTab of this.fileTab) {
+                this.certificatService.selectFromFile(fileTab).subscribe(data => {
+                    if (data !== null && data !== undefined) {
                         this.uplodedCerts.push(data);
                     }
                     this.nextStage();
@@ -268,14 +269,10 @@ export class CertAdderComponent implements OnInit {
         const checks = Object.values(form.value);
         this.certificatService.selectAll().subscribe(data => {
             for (let i = 0; i < checks.length; i++) {
-                console.log('Adrien check');
                 if (checks[i] === 'true') {
-                    console.log('Adrien true...');
                     if (!this.certificatService.exists(this.uplodedCerts[i], data)) {
-                        console.log('Adrien 1...');
                         certs.push(this.uplodedCerts[i]);
                     } else if (this.certificatService.exists(this.uplodedCerts[i], data)) {
-                        console.log('Adrien 2...');
                         existingCerts.push(this.uplodedCerts[i]);
                     }
                 }
@@ -348,13 +345,13 @@ export class CertAdderComponent implements OnInit {
             };
             LiberSign.setUpdateUrl(config.extensionUpdateUrl.replace(/\/?$/, '/'));
             LiberSign.getCertificates().then(certs => {
-                for (let i = 0; i < certs.length; i++) {
+                for (const certif of certs) {
                     const cert = {
                         certificatId: undefined,
-                        notBefore: new Date(certs[i].NOTBEFORE),
-                        notAfter: new Date(certs[i].NOTAFTER),
+                        notBefore: new Date(certif.NOTBEFORE),
+                        notAfter: new Date(certif.NOTAFTER),
                         favoris: false,
-                        dn: 'CN=' + certs[i].CN + ',' + certs[i].ISSUERDN + ',MAIL=' + certs[i].EMAILADDRESS,
+                        dn: 'CN=' + certif.CN + ',' + certif.ISSUERDN + ',MAIL=' + certif.EMAILADDRESS,
                         additionnalMails: [],
                         notified: 'GREEN',
                         notifyAll: false,

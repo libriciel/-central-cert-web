@@ -14,9 +14,10 @@
 # You should have received a copy of the GNU Affero General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-image: node
+image: gitlab.libriciel.fr:4567/docker/node-with-chrome-headless:latest
 
 stages:
+  - build
   - test
   - package
   - deploy
@@ -26,8 +27,10 @@ variables:
   PROJECT_NAME: "central-cert-web"
 
 
-cache:
-  key: "$CI_COMMIT_REF_NAME"
+cache: &global_cache
+  key: $CI_COMMIT_REF_SLUG-$CI_PROJECT_DIR
+  untracked: true
+  policy: pull
   paths:
     - ./node_modules/
 
@@ -37,24 +40,28 @@ before_script:
   #   - "1.2.3" on regular tagged commits
   #   - "0.0.1-branch_name" on others
   - CURRENT_VERSION=$(if [[ $CI_BUILD_TOKEN =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] ; then echo $CI_BUILD_TOKEN; else echo "0.0.1-${CI_BUILD_TOKEN}"; fi)
-  - sed -i "s/{0.0.1-version}/$CURRENT_VERSION/g" package.json
+  - sed -i "s/0.0.1-version/$CURRENT_VERSION/g" package.json
   - echo "version generated = $CURRENT_VERSION"
-  # Install dependencies
-  - npm install -g @angular/cli
-  # For some reasons, NodeJS doesn't download the dependencies...
-  # TODO : Install every dependencies automatically, and remove those lines
-  - npm install --save-dev @angular/core
-  - npm install --save-dev @angular-devkit/build-angular
-  - npm install --save-dev @angular/compiler-cli
-  - npm install --save-dev @angular/compiler
-  - npm install --save-dev karma
-  - npm install --save-dev karma-jasmine
-  - npm install --save-dev jasmine-core
-  - npm install --save-dev jasmine
-  - npm install --save-dev karma-chrome-launcher
-  - npm install --save-dev karma-phantomjs-launcher
-  - npm install --save-dev karma-jasmine-html-reporter
-  - npm install --save-dev karma-coverage-istanbul-reporter
+  # Refresh dependencies (This will be useless once/if a cache server is be set)
+  - npm install
+
+
+# <editor-fold desc="Build">
+
+
+download_dependancies:
+  stage: build
+  before_script:
+    - echo "Disable global before_script"
+  script:
+    - npm ci
+  cache:
+    <<: *global_cache
+    policy: push
+
+
+
+# <editor-fold desc="Build">
 
 
 # <editor-fold desc="Test">
@@ -64,9 +71,7 @@ karma:
   stage: test
   coverage: '/Lines \W+: (\d+\.\d+)%.*/'
   script:
-    - ./install_chrome_headless.sh
-    - node ./node_modules/.bin/webdriver-manager update
-    - ng test --progress false --watch false
+    - ./node_modules/@angular/cli/bin/ng test --progress false --watch false
 
 
 sonarqube:
@@ -74,12 +79,7 @@ sonarqube:
   only:
     - develop # SonarQube Community is limited to one branch. 'develop' is the most relevant.
   script:
-    - npm install --save-dev tslint-sonarts
-    - ./install_chrome_headless.sh
-    - node ./node_modules/.bin/webdriver-manager update
-    - ng test --progress false --watch false
-    - npm install --save-dev sonar-scanner
-    - node_modules/sonar-scanner/bin/sonar-scanner -Dsonar.login=$SONAR_TOKEN
+    - ./node_modules/sonar-scanner/bin/sonar-scanner -Dsonar.login=$SONAR_TOKEN
 
 
 # </editor-fold desc="Test">
@@ -91,7 +91,7 @@ sonarqube:
 dist:
   stage: package
   script:
-    - ng build --prod
+    - ./node_modules/@angular/cli/bin/ng build --prod
   artifacts:
     name: "$PROJECT_NAME-$CI_COMMIT_REF_NAME"
     paths:
@@ -109,7 +109,7 @@ docker:
     - docker-build
   stage: deploy
   before_script:
-    - echo "Disabling global before_script"
+    - echo "Disable global before_script"
   script:
     - docker login -u "gitlab-ci-token" -p "$CI_BUILD_TOKEN" $CI_REGISTRY
     - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME" .
@@ -123,7 +123,7 @@ docker_latest:
   only:
     - tags
   before_script:
-    - echo "Disabling global before_script"
+    - echo "Disable global before_script"
   script:
     - docker login -u "gitlab-ci-token" -p "$CI_BUILD_TOKEN" $CI_REGISTRY
     - docker build --pull -t "$CI_REGISTRY_IMAGE:latest" .
