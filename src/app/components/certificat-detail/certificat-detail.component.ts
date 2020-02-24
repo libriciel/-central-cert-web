@@ -29,59 +29,57 @@ import {ToastrService} from 'ngx-toastr';
     styleUrls: ['./certificat-detail.component.css']
 })
 export class CertificatDetailComponent implements OnInit {
-    //certificat en détail
+
     @Input() certificat: Certificat;
-
-    //certificat en contact
     @Input() contactCertificat: Certificat;
-
-    //permet d'envoyer un event au parent
     @Output() event: EventEmitter<any> = new EventEmitter();
 
-    //en édition ou non
     inEdit: boolean;
 
-    constructor(private toastr: ToastrService, private dateService: DateService, private certificatService: CertificatService, private route: ActivatedRoute) {
+
+    constructor(private toastr: ToastrService, private dateService: DateService, private certificatService: CertificatService,
+                private route: ActivatedRoute) {
     }
 
+
     ngOnInit() {
-        //initialisation des variables
+        // initialisation des variables
         this.inEdit = undefined;
     }
 
-    //permet d'éditer les informations
+    // permet d'éditer les informations
     edit(id) {
         this.inEdit = id;
     }
 
-    //actualise les détails du certificat
+    // actualise les détails du certificat
     changeDetail(form) {
         console.log(form.value);
 
         let dn = '';
 
-        if (form.value.cn != '' && form.value.cn != undefined && form.value.cn != 'non disponible') {
+        if (form.value.cn !== '' && form.value.cn !== undefined && form.value.cn !== 'non disponible') {
             dn += 'CN=' + form.value.cn + ',';
         }
-        if (form.value.ou != '' && form.value.ou != undefined && form.value.ou != 'non disponible') {
+        if (form.value.ou !== '' && form.value.ou !== undefined && form.value.ou !== 'non disponible') {
             dn += 'OU=' + form.value.ou + ',';
         }
-        if (form.value.t != '' && form.value.t != undefined && form.value.t != 'non disponible') {
+        if (form.value.t !== '' && form.value.t !== undefined && form.value.t !== 'non disponible') {
             dn += 'T=' + form.value.t + ',';
         }
-        if (form.value.l != '' && form.value.l != undefined && form.value.l != 'non disponible') {
+        if (form.value.l !== '' && form.value.l !== undefined && form.value.l !== 'non disponible') {
             dn += 'L=' + form.value.l + ',';
         }
-        if (form.value.st != '' && form.value.st != undefined && form.value.st != 'non disponible') {
+        if (form.value.st !== '' && form.value.st !== undefined && form.value.st !== 'non disponible') {
             dn += 'ST=' + form.value.st + ',';
         }
-        if (form.value.pc != '' && form.value.pc != undefined && form.value.pc != 'non disponible') {
+        if (form.value.pc !== '' && form.value.pc !== undefined && form.value.pc !== 'non disponible') {
             dn += 'PC=' + form.value.pc + ',';
         }
-        if (form.value.street != '' && form.value.street != undefined && form.value.street != 'non disponible') {
+        if (form.value.street !== '' && form.value.street !== undefined && form.value.street !== 'non disponible') {
             dn += 'STREET=' + form.value.street + ',';
         }
-        if (form.value.o != '' && form.value.o != undefined && form.value.o != 'non disponible') {
+        if (form.value.o !== '' && form.value.o !== undefined && form.value.o !== 'non disponible') {
             dn += 'O=' + form.value.o;
         }
 
@@ -96,39 +94,39 @@ export class CertificatDetailComponent implements OnInit {
         this.toastr.success('Le certificat a été modifié avec succès !!!');
     }
 
-    //récupère la date formatée
+    // récupère la date formatée
     getDate(d: Date) {
         return this.dateService.format(d);
     }
 
-    //récupère le temps restant
+    // récupère le temps restant
     getRemTime(c: Certificat) {
         return this.dateService.getRemainingTime(c);
     }
 
-    //supprime le certificat
+    // supprime le certificat
     delete() {
         this.certificatService.delete(this.certificat.certificatId).subscribe(data => {
             this.deleteAndCloseSelf();
         });
     }
 
-    //récupère les informations du certificat
+    // récupère les informations du certificat
     getInformations(certificat: Certificat) {
         return this.certificatService.getInformations(certificat);
     }
 
-    //ouvre la fenetre de gestion des contacts
+    // ouvre la fenetre de gestion des contacts
     contactWindow() {
         this.contactCertificat = this.certificat;
     }
 
-    //ferme la fenetre des contacts
+    // ferme la fenetre des contacts
     closeContactWindows() {
         this.contactCertificat = undefined;
     }
 
-    //ferme la fentre du détail
+    // ferme la fentre du détail
     closeSelf() {
         this.callParent(false);
     }
@@ -137,39 +135,39 @@ export class CertificatDetailComponent implements OnInit {
         this.callParent(true);
     }
 
-    //envoit l'event à son parent
+    // envoit l'event à son parent
     callParent(data) {
         this.event.emit(data);
     }
 
-    //active le popup de validation de suppression
+    // active le popup de validation de suppression
     detVerifySelectDelete() {
-        let shadow = document.getElementsByClassName('supprshadow')[0];
-        let verifySuppr = document.getElementsByClassName('det-verify-suppr')[0];
+        const shadow = document.getElementsByClassName('supprshadow')[0];
+        const verifySuppr = document.getElementsByClassName('det-verify-suppr')[0];
 
         shadow.setAttribute('style', 'display:inline');
         verifySuppr.setAttribute('style', 'display:flex');
     }
 
-    //ferme le popup de validation de suppression sans supprimer le certificat
+    // ferme le popup de validation de suppression sans supprimer le certificat
     detCloseVerifySuppr() {
-        let shadow = document.getElementsByClassName('supprshadow')[0];
-        let verifySuppr = document.getElementsByClassName('det-verify-suppr')[0];
+        const shadow = document.getElementsByClassName('supprshadow')[0];
+        const verifySuppr = document.getElementsByClassName('det-verify-suppr')[0];
 
         shadow.setAttribute('style', 'display:none');
         verifySuppr.setAttribute('style', 'display:none');
     }
 
-    //valide le popup et supprime le certificat
+    // valide le popup et supprime le certificat
     detVerifySupprDelete() {
-        let shadow = document.getElementsByClassName('supprshadow')[0];
-        let verifySuppr = document.getElementsByClassName('det-verify-suppr')[0];
+        const shadow = document.getElementsByClassName('supprshadow')[0];
+        const verifySuppr = document.getElementsByClassName('det-verify-suppr')[0];
         shadow.setAttribute('style', 'display:none');
         verifySuppr.setAttribute('style', 'display:none');
         this.delete();
     }
 
-    //ajoute/supprime le certificat des favoris
+    // ajoute/supprime le certificat des favoris
     detailFavorize() {
         if (this.certificat.favoris === true) {
             this.certificat.favoris = false;
