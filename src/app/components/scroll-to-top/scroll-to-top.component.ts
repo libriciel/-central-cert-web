@@ -17,7 +17,7 @@
  */
 
 import {Component, HostListener, Inject, OnInit} from '@angular/core';
-import {DOCUMENT} from '@angular/platform-browser';
+import {DOCUMENT} from '@angular/common';
 
 @Component({
     selector: 'app-scroll-to-top',
