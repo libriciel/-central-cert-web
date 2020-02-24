@@ -15,7 +15,14 @@ chrome-profiler-events.json
 speed-measure-plugin.json
 
 # IDEs and editors
-/.idea
+.idea/workspace.xml
+.idea/usage.statistics.xml
+.idea/tasks.xml
+.idea/shelf
+.idea/modules.xml
+.idea/gradle.xml
+.idea/libraries/**.xml
+.idea/**.iml
 .project
 .classpath
 .c9/
@@ -47,3 +54,5 @@ Thumbs.db
 
 .scannerwork/
 coverage/
+
+ng
